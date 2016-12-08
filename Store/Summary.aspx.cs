@@ -38,22 +38,17 @@ public partial class Store_Summary : System.Web.UI.Page
     #region method getPartner
     public void getPartner()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblPartner WHERE Account = @Account";
-        Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Session["ACCOUNT"].ToString();
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objDataPartner = this.objPartner.getPartnerInforByAccount(Session["ACCOUNT"].ToString());
+        if (objDataPartner.Rows.Count > 0)
         {
-            this.strName = Rd["Name"].ToString();
-            this.strAddress = Rd["Address"].ToString();
-            this.strManager = Rd["Manager"].ToString();
-            this.strPhone = Rd["Phone"].ToString();
-            this.strEmail = Rd["Email"].ToString();
-            this.strTaxcode = Rd["TaxCode"].ToString();
-            this.strAccount = Rd["Account"].ToString();
-            if (Rd["BestSale"].ToString() == "True")
+            this.strName = objDataPartner.Rows[0]["Name"].ToString();
+            this.strAddress = objDataPartner.Rows[0]["Address"].ToString();
+            this.strManager = objDataPartner.Rows[0]["Manager"].ToString();
+            this.strPhone = objDataPartner.Rows[0]["Phone"].ToString();
+            this.strEmail = objDataPartner.Rows[0]["Email"].ToString();
+            this.strTaxcode = objDataPartner.Rows[0]["TaxCode"].ToString();
+            this.strAccount = objDataPartner.Rows[0]["Account"].ToString();
+            if (objDataPartner.Rows[0]["BestSale"].ToString() == "True")
             {
                 this.strBestSale = "X";
             }
@@ -61,7 +56,7 @@ public partial class Store_Summary : System.Web.UI.Page
             {
                 this.strBestSale = "";
             }
-            if (Rd["VIP"].ToString() == "True")
+            if (objDataPartner.Rows[0]["VIP"].ToString() == "True")
             {
                 this.strVIP = "X";
             }
@@ -70,9 +65,6 @@ public partial class Store_Summary : System.Web.UI.Page
                 this.strVIP = "";
             }
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 
