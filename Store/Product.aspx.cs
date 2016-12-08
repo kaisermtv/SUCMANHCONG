@@ -10,10 +10,12 @@ using System.Web.UI.WebControls;
 public partial class Store_Product : System.Web.UI.Page
 {
     #region declare objects
-    public string strHtml = "";
     private DataTable objTable = new DataTable();
     private TVSFunc objFunc = new TVSFunc();
     private Partner objPartner = new Partner();
+    private Product objProduct = new Product();
+
+    public string strHtml = "";
     public string strName = "", strAddress = "", strPhone = "", strManager = "", strEmail = "", strTaxcode = "", strAccount = "", strBestSale = "", strVIP = "", strMsg = "";
     #endregion
 
@@ -27,7 +29,7 @@ public partial class Store_Product : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             this.getPartner();
-            this.objTable = this.getProduct();
+            this.objTable = this.objProduct.getDataByPartnerAllAccount(Session["ACCOUNT"].ToString());
             if (this.objTable.Rows.Count > 0)
             {
                 for (int i = 0; i < this.objTable.Rows.Count; i++)
@@ -43,47 +45,20 @@ public partial class Store_Product : System.Web.UI.Page
     }
     #endregion
 
-    #region method getProduct
-    public DataTable getProduct()
-    {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE PartnerId = (SELECT TOP 1 Id FROM tblPartner WHERE Account = @Account)";
-        Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Session["ACCOUNT"].ToString();
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        sqlCon.Close();
-        sqlCon.Dispose();
-        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-        {
-            ds.Tables[0].Rows[i]["TT"] = (i + 1);
-        }
-        return ds.Tables[0];
-    }
-    #endregion
-
     #region method getPartner
     public void getPartner()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblPartner WHERE Account = @Account";
-        Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Session["ACCOUNT"].ToString();
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objDataPartner = this.objPartner.getPartnerInforByAccount(Session["ACCOUNT"].ToString());
+        if (objDataPartner.Rows.Count > 0)
         {
-            this.strName = Rd["Name"].ToString();
-            this.strAddress = Rd["Address"].ToString();
-            this.strManager = Rd["Manager"].ToString();
-            this.strPhone = Rd["Phone"].ToString();
-            this.strEmail = Rd["Email"].ToString();
-            this.strTaxcode = Rd["TaxCode"].ToString();
-            this.strAccount = Rd["Account"].ToString();
-            if (Rd["BestSale"].ToString() == "True")
+            this.strName = objDataPartner.Rows[0]["Name"].ToString();
+            this.strAddress = objDataPartner.Rows[0]["Address"].ToString();
+            this.strManager = objDataPartner.Rows[0]["Manager"].ToString();
+            this.strPhone = objDataPartner.Rows[0]["Phone"].ToString();
+            this.strEmail = objDataPartner.Rows[0]["Email"].ToString();
+            this.strTaxcode = objDataPartner.Rows[0]["TaxCode"].ToString();
+            this.strAccount = objDataPartner.Rows[0]["Account"].ToString();
+            if (objDataPartner.Rows[0]["BestSale"].ToString() == "True")
             {
                 this.strBestSale = "X";
             }
@@ -91,7 +66,7 @@ public partial class Store_Product : System.Web.UI.Page
             {
                 this.strBestSale = "";
             }
-            if (Rd["VIP"].ToString() == "True")
+            if (objDataPartner.Rows[0]["VIP"].ToString() == "True")
             {
                 this.strVIP = "X";
             }
@@ -100,9 +75,6 @@ public partial class Store_Product : System.Web.UI.Page
                 this.strVIP = "";
             }
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 }
