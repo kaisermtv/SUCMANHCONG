@@ -54,7 +54,6 @@ public partial class Store_Register : System.Web.UI.Page
     }
     #endregion
 
-    //*
     #region method setPartner
     public void setPartner()
     {
@@ -75,7 +74,6 @@ public partial class Store_Register : System.Web.UI.Page
         
     }
     #endregion
-    // */
 
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
