@@ -10,7 +10,9 @@ using System.Web.UI.WebControls;
 public partial class Store_Register : System.Web.UI.Page
 {
     #region declare objects
-    
+    private Business objBusiness = new Business();
+    private Location objLocation = new Location();
+    private Partner objPartner = new Partner();
     #endregion
 
     #region method Page_Load
@@ -27,76 +29,53 @@ public partial class Store_Register : System.Web.UI.Page
     #region method getBusiness
     public void getBusiness()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblBusiness";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        this.ddlBusiness.DataSource = ds.Tables[0];
-        this.ddlBusiness.DataTextField = "Name";
-        this.ddlBusiness.DataValueField = "Id";
-        this.ddlBusiness.DataBind();
-        sqlCon.Close();
-        sqlCon.Dispose();
+        DataTable objDataBusiness = this.objBusiness.getIdAndUpperName();
+        if(objDataBusiness.Rows.Count > 0)
+        {
+            this.ddlBusiness.DataSource = objDataBusiness;
+            this.ddlBusiness.DataTextField = "Name";
+            this.ddlBusiness.DataValueField = "Id";
+            this.ddlBusiness.DataBind();
+        }
     }
     #endregion
 
     #region method getLocation
     public void getLocation()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblLocation";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        this.ddlLocation.DataSource = ds.Tables[0];
-        this.ddlLocation.DataTextField = "Name";
-        this.ddlLocation.DataValueField = "Id";
-        this.ddlLocation.DataBind();
-        sqlCon.Close();
-        sqlCon.Dispose();
+        DataTable objDataLocation = this.objLocation.getIdAndUpperName();
+        if(objDataLocation.Rows.Count > 0)
+        {
+            this.ddlLocation.DataSource = objDataLocation;
+            this.ddlLocation.DataTextField = "Name";
+            this.ddlLocation.DataValueField = "Id";
+            this.ddlLocation.DataBind();
+        }
     }
     #endregion
 
+    //*
     #region method setPartner
     public void setPartner()
     {
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            string sqlQuery = "IF NOT EXISTS (SELECT * FROM tblPartner WHERE Id = @Id)";
-            sqlQuery += "BEGIN INSERT INTO tblPartner(Name,Address,Phone,Manager,Business,TaxCode,BestSale,VIP,State.LocationId) VALUES(@Name,@Address,@Phone,@Manager,@Business,@TaxCode,@BestSale,@VIP,@State,@LocationId) END ";
-            sqlQuery += "UPDATE tblPartner SET Name = @Name, Address = @Address, Phone = @Phone, Manager = @Manager, Business = @Business, TaxCode = @TaxCode State = @State, BestSale = @BestSale, VIP = @VIP, LocationId = @LocationId WHERE Id = @Id";
-            Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = 0;
-            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = this.txtName.Value.ToString();
-            Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = this.txtAddress.Value.ToString();
-            Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = this.txtPhone.Value.ToString();
-            Cmd.Parameters.Add("Manager", SqlDbType.NVarChar).Value = this.txtManager.Value.ToString();
-            Cmd.Parameters.Add("TaxCode", SqlDbType.NVarChar).Value = this.txtTaxCode.Value.ToString();
-            Cmd.Parameters.Add("Business", SqlDbType.Int).Value = this.ddlBusiness.SelectedValue.ToString();
-            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = false;
-            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = false;
-            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = false;
-            Cmd.Parameters.Add("LocationId", SqlDbType.Int).Value = this.ddlLocation.SelectedValue.ToString();
-            Cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
+        int Business = 0;
+        try{
+            Business = Int32.Parse(this.ddlBusiness.SelectedValue.ToString());
         }
-        catch
-        {
+        catch { }
 
+        int LocationId = 0;
+        try{
+            LocationId = Int32.Parse(this.ddlLocation.SelectedValue.ToString());
         }
+        catch { }
+
+        int PartnerId = this.objPartner.addPartner(this.txtName.Value.ToString(), this.txtAddress.Value.ToString(), this.txtPhone.Value.ToString(), this.txtManager.Value.ToString(), this.txtTaxCode.Value.ToString(), Business, LocationId);
+
+        
     }
     #endregion
+    // */
 
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)

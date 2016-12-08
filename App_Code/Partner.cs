@@ -13,6 +13,40 @@ public class Partner
     } 
     #endregion
 
+    #region method setPartner
+    public int addPartner(string Name, string Address, string Phone, string Manager, string TaxCode, int Business, int LocationId)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "INSERT INTO tblPartner(Name,Address,Phone,Manager,Business,TaxCode,BestSale,VIP,State.LocationId) VALUES(@Name,@Address,@Phone,@Manager,@Business,@TaxCode,@BestSale,@VIP,@State,@LocationId) SELECT CAST(scope_identity() AS int)";
+            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
+            Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = Address;
+            Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = Phone;
+            Cmd.Parameters.Add("Manager", SqlDbType.NVarChar).Value = Manager;
+            Cmd.Parameters.Add("TaxCode", SqlDbType.NVarChar).Value = TaxCode;
+            Cmd.Parameters.Add("Business", SqlDbType.Int).Value = Business;
+            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = false;
+            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = false;
+            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = false;
+            Cmd.Parameters.Add("LocationId", SqlDbType.Int).Value = LocationId;
+            
+            //int ret = Cmd.ExecuteNonQuery();
+            int ret = (int)Cmd.ExecuteScalar();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+    #endregion
+
     #region method setPartnerCustomer
     public int setPartnerCustomer(int PartnerId, string CardNumberId, int ProductId, double Number, double Price)
     {
@@ -33,7 +67,6 @@ public class Partner
             sqlCon.Dispose();
 
             return ret;
-            //Response.Redirect("ProductCustomer.aspx");
         }
         catch
         {
@@ -69,6 +102,46 @@ public class Partner
         }
     }
     #endregion
+
+    
+    #region Method UpdateOrInsertPartner
+    /*
+    public int UpdateOrInsertPartner(int Id, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, int LocationId)
+    {
+        int ret = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            string sqlQuery = "IF NOT EXISTS (SELECT * FROM tblPartner WHERE Id = @Id)";
+            sqlQuery += "BEGIN INSERT INTO tblPartner(Name,Address,Phone,Manager,Business,TaxCode,BestSale,VIP,State.LocationId) VALUES(@Name,@Address,@Phone,@Manager,@Business,@TaxCode,@BestSale,@VIP,@State,@LocationId) END ";
+            sqlQuery += "ELSE BEGIN UPDATE tblPartner SET Name = @Name, Address = @Address, Phone = @Phone, Manager = @Manager, Business = @Business, TaxCode = @TaxCode State = @State, BestSale = @BestSale, VIP = @VIP, LocationId = @LocationId WHERE Id = @Id END";
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = 0;
+            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = this.txtName.Value.ToString();
+            Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = this.txtAddress.Value.ToString();
+            Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = this.txtPhone.Value.ToString();
+            Cmd.Parameters.Add("Manager", SqlDbType.NVarChar).Value = this.txtManager.Value.ToString();
+            Cmd.Parameters.Add("TaxCode", SqlDbType.NVarChar).Value = this.txtTaxCode.Value.ToString();
+            Cmd.Parameters.Add("Business", SqlDbType.Int).Value = this.ddlBusiness.SelectedValue.ToString();
+            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = false;
+            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = false;
+            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = false;
+            Cmd.Parameters.Add("LocationId", SqlDbType.Int).Value = this.ddlLocation.SelectedValue.ToString();
+            Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+        return ret;
+    }
+    // */
+    #endregion
+    
 
     #region PartnerBillDetail
 
@@ -218,6 +291,33 @@ public class Partner
     }
     #endregion
 
+    #region method getProductBillCount
+    public int getProductBillCount(string Account)
+    {
+        int CountItem = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblPartnerCustomer WHERE PartnerId = (SELECT TOP 1 Id FROM tblPartner WHERE Account = @Account)";
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            CountItem = ds.Tables[0].Rows.Count;
+        }
+        catch
+        {
+
+        }
+        return CountItem;
+    }
+    #endregion
+
     #region getPartnerBillProductNumberByProductId
     public string getPartnerBillProductNumber(string BillId, string ProductId)
     {
@@ -337,7 +437,7 @@ public class Partner
     }
     #endregion
 
-    #region method getPartnerInforByAccount
+    #region method getPartnerIdNameByAccount
     public DataTable getPartnerIdNameByAccount(string Account)
     {
         DataTable objTable = new DataTable();
@@ -368,7 +468,7 @@ public class Partner
     }
     #endregion
 
-    #region method getPartnerInforByAccount
+    #region method setPartnerInforByAccount
     public int setPartnerInforByAccount(string Account, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, string Content, string Image, bool BestSale, bool VIP, bool State, string BankAccount, string BankAccountName)
     {
         int ret = 0;
@@ -513,32 +613,6 @@ public class Partner
     }
     #endregion
 
-    #region method getProductBillCount
-    public int getProductBillCount(string Account)
-    {
-        int CountItem = 0;
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblPartnerCustomer WHERE PartnerId = (SELECT TOP 1 Id FROM tblPartner WHERE Account = @Account)";
-            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            CountItem = ds.Tables[0].Rows.Count;
-        }
-        catch
-        {
-
-        }
-        return CountItem;
-    }
-    #endregion
 
     #region method getProductDoanhSo
     public double getProductDoanhSo(string Account)

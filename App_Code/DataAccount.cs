@@ -189,7 +189,8 @@ public class DataAccount
             string sqlQuery1 = "";
             sqlQuery1 += "IF NOT EXISTS (SELECT * FROM tblAcc WHERE UserName = @UserName)";
             sqlQuery1 += "BEGIN INSERT INTO tblAcc([UserName],[PassWord],[FullName],[Status],[UGroup],[DelEnable],[Email],[DeptId],[Address],[Phone],[Role],[Departments],[HomePage]) ";
-            sqlQuery1 += " VALUES (@UserName,@PassWord,@FullName,@Status,@UGroup,0,@Email,@DeptId,@Address,@Phone,@Role,@Departments,@HomePage) END";
+            sqlQuery1 += " VALUES (@UserName,@PassWord,@FullName,@Status,@UGroup,0,@Email,@DeptId,@Address,@Phone,@Role,@Departments,@HomePage) SELECT CAST(scope_identity() AS int)  END ";
+            sqlQuery1 += "ELSE BEGIN SELECT CAST(0 AS int)  END";
             Cmd1.CommandText = sqlQuery1;
             Cmd1.Parameters.Add("UserName", SqlDbType.NVarChar).Value = UserName;
             Cmd1.Parameters.Add("PassWord", SqlDbType.NVarChar).Value = Password;
@@ -203,8 +204,8 @@ public class DataAccount
             Cmd1.Parameters.Add("Role", SqlDbType.NVarChar).Value = Role;
             Cmd1.Parameters.Add("Departments", SqlDbType.NVarChar).Value = Departments;
             Cmd1.Parameters.Add("HomePage", SqlDbType.Int).Value = HomePage;
-            ret = Cmd1.ExecuteNonQuery();
-            //ret = (int)Cmd1.ExecuteScalar();
+            //ret = Cmd1.ExecuteNonQuery();
+            ret = (int)Cmd1.ExecuteScalar();
             sqlCon1.Close();
             sqlCon1.Dispose();
         }

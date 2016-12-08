@@ -30,7 +30,7 @@ public class Product
 
             sqlQuery = "IF NOT EXISTS (SELECT * FROM tblProduct WHERE Id = @Id AND  PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account))";
             sqlQuery += "BEGIN INSERT INTO tblProduct(Name,Price,Discount,Content,Image,GroupId,BestSale,VIP,PartnerId,BrandId) VALUES(@Name,@Price,@Discount,@Content,@Image,@GroupId,@BestSale,@VIP,(SELECT id FROM tblPartner WHERE Account = @Account),@BrandId) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblProduct SET Name = @Name, Price = @Price, Discount = @Discount, Content = @Content, Image = @Image, BestSale = @BestSale, VIP = @VIP, GroupId = @GroupId, PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account), BrandId = @BrandId WHERE Id = @Id END";
+            sqlQuery += "ELSE BEGIN UPDATE tblProduct SET Name = @Name, Price = @Price, Discount = @Discount, Content = @Content, Image = @Image, BestSale = @BestSale, VIP = @VIP, GroupId = @GroupId, PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account), BrandId = @BrandId WHERE Id = @Id END ";
             Cmd.CommandText = sqlQuery;
 
             Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
@@ -45,7 +45,7 @@ public class Product
             Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
             Cmd.Parameters.Add("BrandId", SqlDbType.Int).Value = BrandId;
 
-            Cmd.ExecuteNonQuery();
+            ret = Cmd.ExecuteNonQuery();
             sqlCon.Close();
             sqlCon.Dispose();
         }
