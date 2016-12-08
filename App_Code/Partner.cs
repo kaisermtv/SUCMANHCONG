@@ -338,8 +338,9 @@ public class Partner
     #endregion
 
     #region method getPartnerInforByAccount
-    public void setPartnerInforByAccount(string Account)
+    public int setPartnerInforByAccount(string Account, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, string Content, string Image, bool BestSale, bool VIP, bool State, string BankAccount, string BankAccountName)
     {
+        int ret = 0;
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
@@ -347,29 +348,29 @@ public class Partner
             SqlCommand Cmd = sqlCon.CreateCommand();
             string sqlQuery = "UPDATE tblPartner SET Name = @Name, Address = @Address, Phone = @Phone, Manager = @Manager, Business = @Business, TaxCode = @TaxCode, Content = @Content, Image = @Image, State = @State, BestSale = @BestSale, VIP = @VIP, BankAccount = @BankAccount, BankAccountName = @BankAccountName WHERE Account = @Account";
             Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Session["ACCOUNT"].ToString();
-            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = this.txtName.Text;
-            Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = this.txtAddress.Text;
-            Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = this.txtPhone.Text;
-            Cmd.Parameters.Add("Manager", SqlDbType.NVarChar).Value = this.txtManager.Text;
-            Cmd.Parameters.Add("TaxCode", SqlDbType.NVarChar).Value = this.txtTaxCode.Text;
-            Cmd.Parameters.Add("Business", SqlDbType.Int).Value = this.ddlBusiness.SelectedValue.ToString();
-            Cmd.Parameters.Add("Content", SqlDbType.NText).Value = this.txtContent.Text;
-            Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = this.txtImage.Text;
-            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = this.ckbBestSale.Checked;
-            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = this.ckbVIP.Checked;
-            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = this.ckbState.Checked;
-            Cmd.Parameters.Add("BankAccount", SqlDbType.NVarChar).Value = this.txtBankAccount.Text;
-            Cmd.Parameters.Add("BankAccountName", SqlDbType.NVarChar).Value = this.txtBankAccountName.Text;
-            Cmd.ExecuteNonQuery();
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
+            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
+            Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = Address;
+            Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = Phone;
+            Cmd.Parameters.Add("Manager", SqlDbType.NVarChar).Value = Manager;
+            Cmd.Parameters.Add("TaxCode", SqlDbType.NVarChar).Value = TaxCode;
+            Cmd.Parameters.Add("Business", SqlDbType.Int).Value = Business;
+            Cmd.Parameters.Add("Content", SqlDbType.NText).Value = Content;
+            Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = Image;
+            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = BestSale;
+            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = VIP;
+            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;
+            Cmd.Parameters.Add("BankAccount", SqlDbType.NVarChar).Value = BankAccount;
+            Cmd.Parameters.Add("BankAccountName", SqlDbType.NVarChar).Value = BankAccountName;
+            ret = Cmd.ExecuteNonQuery();
             sqlCon.Close();
             sqlCon.Dispose();
-            Response.Redirect("default.aspx");
         }
         catch
         {
 
         }
+        return ret;
     }
     #endregion
 

@@ -11,6 +11,7 @@ public partial class Store_PartnerEdit : System.Web.UI.Page
 {    
     #region declare objects
     private Partner objPartner = new Partner();
+    private Business objBusiness = new Business();
     #endregion
 
     #region method Page_Load
@@ -94,41 +95,19 @@ public partial class Store_PartnerEdit : System.Web.UI.Page
     #region method setPartner
     public void setPartner()
     {
-        try
-        {
-            if (upImage1.PostedFile.FileName != "")
-                if (!saveImage1())
-                {
-                    return;
-                }
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            string sqlQuery = "UPDATE tblPartner SET Name = @Name, Address = @Address, Phone = @Phone, Manager = @Manager, Business = @Business, TaxCode = @TaxCode, Content = @Content, Image = @Image, State = @State, BestSale = @BestSale, VIP = @VIP, BankAccount = @BankAccount, BankAccountName = @BankAccountName WHERE Account = @Account";
-            Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Session["ACCOUNT"].ToString();
-            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = this.txtName.Text;
-            Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = this.txtAddress.Text;
-            Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = this.txtPhone.Text;
-            Cmd.Parameters.Add("Manager", SqlDbType.NVarChar).Value = this.txtManager.Text;
-            Cmd.Parameters.Add("TaxCode", SqlDbType.NVarChar).Value = this.txtTaxCode.Text;
-            Cmd.Parameters.Add("Business", SqlDbType.Int).Value = this.ddlBusiness.SelectedValue.ToString();
-            Cmd.Parameters.Add("Content", SqlDbType.NText).Value = this.txtContent.Text;
-            Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = this.txtImage.Text;
-            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = this.ckbBestSale.Checked;
-            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = this.ckbVIP.Checked;
-            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = this.ckbState.Checked;
-            Cmd.Parameters.Add("BankAccount", SqlDbType.NVarChar).Value = this.txtBankAccount.Text;
-            Cmd.Parameters.Add("BankAccountName", SqlDbType.NVarChar).Value = this.txtBankAccountName.Text;
-            Cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
-            Response.Redirect("default.aspx");
-        }
-        catch
-        {
+        if (upImage1.PostedFile.FileName != "")
+            if (!saveImage1())
+            {
+                return;
+            }
 
-        }
+        int Business = 0;
+        try{
+            Business = Int32.Parse(this.ddlBusiness.SelectedValue.ToString());
+        } catch{}
+
+        int ret = this.objPartner.setPartnerInforByAccount(Session["ACCOUNT"].ToString(), this.txtName.Text, this.txtAddress.Text, this.txtPhone.Text, this.txtManager.Text, this.txtTaxCode.Text, Business, this.txtContent.Text, this.txtImage.Text, this.ckbBestSale.Checked, this.ckbVIP.Checked, this.ckbState.Checked, this.txtBankAccount.Text, this.txtBankAccountName.Text);
+
     }
     #endregion
 
@@ -181,20 +160,15 @@ public partial class Store_PartnerEdit : System.Web.UI.Page
     #region method getBusiness
     public void getBusiness()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblBusiness";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        this.ddlBusiness.DataSource = ds.Tables[0];
-        this.ddlBusiness.DataTextField = "Name";
-        this.ddlBusiness.DataValueField = "Id";
-        this.ddlBusiness.DataBind();
-        sqlCon.Close();
-        sqlCon.Dispose();
+
+        DataTable objDataBusiness = this.objBusiness.getIdAndUpperName();
+        if (objDataBusiness.Rows.Count > 0)
+        {
+            this.ddlBusiness.DataSource = objDataBusiness;
+            this.ddlBusiness.DataTextField = "Name";
+            this.ddlBusiness.DataValueField = "Id";
+            this.ddlBusiness.DataBind();
+        }
     }
     #endregion
 }
