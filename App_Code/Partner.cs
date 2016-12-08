@@ -338,6 +338,37 @@ public class Partner
     #endregion
 
     #region method getPartnerInforByAccount
+    public DataTable getPartnerIdNameByAccount(string Account)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblPartner WHERE Account = @Account";
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+
+        return objTable;
+    }
+    #endregion
+
+    #region method getPartnerInforByAccount
     public int setPartnerInforByAccount(string Account, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, string Content, string Image, bool BestSale, bool VIP, bool State, string BankAccount, string BankAccountName)
     {
         int ret = 0;

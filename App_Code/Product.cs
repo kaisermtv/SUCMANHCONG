@@ -17,6 +17,76 @@ public class Product
 		//
 	}
 
+    #region Method UpdateOrInsertProductByAccount
+    public int UpdateOrInsertProductByAccount(string Account, int Id, string Name, float Price, float Discount, string Content, string Image, bool BestSale, bool VIP, int GroupId, int BrandId)
+    {
+        int ret = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            string sqlQuery = "";
+
+            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblProduct WHERE Id = @Id AND  PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account))";
+            sqlQuery += "BEGIN INSERT INTO tblProduct(Name,Price,Discount,Content,Image,GroupId,BestSale,VIP,PartnerId,BrandId) VALUES(@Name,@Price,@Discount,@Content,@Image,@GroupId,@BestSale,@VIP,(SELECT id FROM tblPartner WHERE Account = @Account),@BrandId) END ";
+            sqlQuery += "ELSE BEGIN UPDATE tblProduct SET Name = @Name, Price = @Price, Discount = @Discount, Content = @Content, Image = @Image, BestSale = @BestSale, VIP = @VIP, GroupId = @GroupId, PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account), BrandId = @BrandId WHERE Id = @Id END";
+            Cmd.CommandText = sqlQuery;
+
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
+            Cmd.Parameters.Add("Price", SqlDbType.Float).Value = Price;
+            Cmd.Parameters.Add("Discount", SqlDbType.Float).Value = Discount;
+            Cmd.Parameters.Add("Content", SqlDbType.NText).Value = Content;
+            Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = Image;
+            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = BestSale;
+            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = VIP;
+            Cmd.Parameters.Add("GroupId", SqlDbType.Int).Value = GroupId;
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
+            Cmd.Parameters.Add("BrandId", SqlDbType.Int).Value = BrandId;
+
+            Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+        return ret;
+    }
+    #endregion
+
+    #region Method getProductById
+    public DataTable getProductById(int Id)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT * FROM tblProduct WHERE Id = @Id";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
     #region Method getDataByPartner
     public DataTable getDataByPartner(string Account)
     {
@@ -79,5 +149,38 @@ public class Product
         }
         return objTable;
     }
+    #endregion
+
+    #region Table Product Group
+
+    #region Method getProductGroup
+    public DataTable getProductGroupIdUpperName()
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblProductGroup";
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
     #endregion
 }

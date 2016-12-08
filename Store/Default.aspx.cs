@@ -12,6 +12,7 @@ public partial class Store_Default : System.Web.UI.Page
     #region declare objects
     private TVSFunc objFunc = new TVSFunc();
     private Partner objPartner = new Partner();
+
     public int SoSanPham = 0, SoSanPhamVIP = 0, SoSanPhamBanChay = 0, SoGiaoDich = 0;
     public double TongDoanhSo = 0;
     public string strName = "", strAddress = "", strPhone = "", strManager = "", strEmail = "", strTaxcode = "", strAccount = "", strBestSale = "", strVIP = "", strBankAccount = "", strBankAccountName = "";

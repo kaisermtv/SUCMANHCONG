@@ -10,6 +10,10 @@ using System.Web.UI.WebControls;
 public partial class Store_ProductEdit : System.Web.UI.Page
 {
     #region declare objects
+    private Product objProduct = new Product();
+    private Partner objPartner = new Partner();
+    private Brand objBrand = new Brand();
+
     private int itemId = 0;
     #endregion
 
@@ -63,23 +67,18 @@ public partial class Store_ProductEdit : System.Web.UI.Page
     #region method getProduct
     public void getProduct()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblProduct WHERE Id = @Id";
-        Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objDataProduct = this.objProduct.getProductById(this.itemId);
+        if(objDataProduct.Rows.Count > 0 )
         {
-            this.txtName.Text = Rd["Name"].ToString();
-            this.txtPrice.Text = Rd["Price"].ToString();
-            this.txtDiscount.Text = Rd["Discount"].ToString();
-            this.txtContent.Text = Rd["Content"].ToString();
-            this.txtImage.Text = Rd["Image"].ToString();
-            this.ddlProductGroup.SelectedValue = Rd["GroupId"].ToString();
-            this.ddlPartner.SelectedValue = Rd["PartnerId"].ToString();
-            this.ddlBrand.SelectedValue = Rd["BrandId"].ToString();
-            if (Rd["State"].ToString() == "True")
+            this.txtName.Text = objDataProduct.Rows[0]["Name"].ToString();
+            this.txtPrice.Text = objDataProduct.Rows[0]["Price"].ToString();
+            this.txtDiscount.Text = objDataProduct.Rows[0]["Discount"].ToString();
+            this.txtContent.Text = objDataProduct.Rows[0]["Content"].ToString();
+            this.txtImage.Text = objDataProduct.Rows[0]["Image"].ToString();
+            this.ddlProductGroup.SelectedValue = objDataProduct.Rows[0]["GroupId"].ToString();
+            this.ddlPartner.SelectedValue = objDataProduct.Rows[0]["PartnerId"].ToString();
+            this.ddlBrand.SelectedValue = objDataProduct.Rows[0]["BrandId"].ToString();
+            if (objDataProduct.Rows[0]["State"].ToString() == "True")
             {
                 this.ckbState.Checked = true;
             }
@@ -87,7 +86,7 @@ public partial class Store_ProductEdit : System.Web.UI.Page
             {
                 this.ckbState.Checked = false;
             }
-            if (Rd["BestSale"].ToString() == "True")
+            if (objDataProduct.Rows[0]["BestSale"].ToString() == "True")
             {
                 this.ckbBestSale.Checked = true;
             }
@@ -95,7 +94,7 @@ public partial class Store_ProductEdit : System.Web.UI.Page
             {
                 this.ckbBestSale.Checked = false;
             }
-            if (Rd["VIP"].ToString() == "True")
+            if (objDataProduct.Rows[0]["VIP"].ToString() == "True")
             {
                 this.ckbVIP.Checked = true;
             }
@@ -103,122 +102,94 @@ public partial class Store_ProductEdit : System.Web.UI.Page
             {
                 this.ckbVIP.Checked = false;
             }
-            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Products/" + Rd["Image"].ToString() + "\">";
+            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Products/" + objDataProduct.Rows[0]["Image"].ToString() + "\">";
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 
     #region method getProductGroup
     public void getProductGroup()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblProductGroup";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        this.ddlProductGroup.DataSource = ds.Tables[0];
-        this.ddlProductGroup.DataTextField = "Name";
-        this.ddlProductGroup.DataValueField = "Id";
-        this.ddlProductGroup.DataBind();
-        sqlCon.Close();
-        sqlCon.Dispose();
+        DataTable objDataProductGroup = this.objProduct.getProductGroupIdUpperName();
+        if(objDataProductGroup.Rows.Count > 0)
+        {
+            this.ddlProductGroup.DataSource = objDataProductGroup;
+            this.ddlProductGroup.DataTextField = "Name";
+            this.ddlProductGroup.DataValueField = "Id";
+            this.ddlProductGroup.DataBind();
+        }
     }
     #endregion
 
     #region method getPartner
     public void getPartner()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblPartner WHERE Account = @Account";
-        Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Session["ACCOUNT"].ToString();
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        this.ddlPartner.DataSource = ds.Tables[0];
-        this.ddlPartner.DataTextField = "Name";
-        this.ddlPartner.DataValueField = "Id";
-        this.ddlPartner.DataBind();
-        sqlCon.Close();
-        sqlCon.Dispose();
+        DataTable objDataPartner = this.objPartner.getPartnerInforByAccount(Session["ACCOUNT"].ToString());
+        if(objDataPartner.Rows.Count > 0)
+        {
+            this.ddlPartner.DataSource = objDataPartner;
+            this.ddlPartner.DataTextField = "Name";
+            this.ddlPartner.DataValueField = "Id";
+            this.ddlPartner.DataBind();
+        }
     }
     #endregion
 
     #region method getBrand
     public void getBrand()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblBrand";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        this.ddlBrand.DataSource = ds.Tables[0];
-        this.ddlBrand.DataTextField = "Name";
-        this.ddlBrand.DataValueField = "Id";
-        this.ddlBrand.DataBind();
-        sqlCon.Close();
-        sqlCon.Dispose();
+        DataTable objDataBrand = this.objBrand.getBrandIdName();
+        if(objDataBrand.Rows.Count > 0)
+        {
+            this.ddlBrand.DataSource = objDataBrand;
+            this.ddlBrand.DataTextField = "Name";
+            this.ddlBrand.DataValueField = "Id";
+            this.ddlBrand.DataBind();
+        }
+
     }
     #endregion
 
     #region method setProduct
     public void setProduct()
     {
-        if (Session["ACCOUNT"] == null)
+        if (upImage1.PostedFile.FileName != "")
+            if (!saveImage1())
+            {
+                return;
+            }
+
+        float Price = 0;
+        try{
+            Price = float.Parse(this.txtPrice.Text);
+        }catch{}
+
+        float Discount = 0;
+        try{
+            Discount = float.Parse(this.txtDiscount.Text);
+        }catch{}
+
+        int GroupId = 0;
+        try{
+            GroupId = Int32.Parse(this.ddlProductGroup.SelectedValue.ToString());
+        }catch{}
+
+        int BrandId = 0;
+        try{
+            BrandId = Int32.Parse(this.ddlBrand.SelectedValue.ToString());
+        }catch{}
+
+
+
+        int ret = this.objProduct.UpdateOrInsertProductByAccount(Session["ACCOUNT"].ToString(), this.itemId, this.txtName.Text, Price, Discount, this.txtContent.Text, this.txtImage.Text, this.ckbBestSale.Checked, this.ckbVIP.Checked, GroupId, BrandId);
+        if(ret > 0)
         {
-            Response.Redirect("/");
+            Response.Redirect("Product.aspx");
+        } else
+        {
+            this.outtext.InnerText = "Có lỗi xảy ra. Xin thử lại!";
         }
 
-        try
-        {
-            if (upImage1.PostedFile.FileName != "")
-                if (!saveImage1())
-                {
-                    return;
-                }
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            string sqlQuery = "";
-           // sqlQuery = "IF NOT EXISTS (SELECT * FROM tblProduct WHERE Id = @Id AND  PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account))";
-          //  sqlQuery += "BEGIN INSERT INTO tblProduct(Name,Price,Discount,Content,Image,GroupId,BestSale,VIP,State,PartnerId,BrandId) VALUES(@Name,@Price,@Discount,@Content,@Image,@GroupId,@BestSale,@VIP,@State,(SELECT id FROM tblPartner WHERE Account = @Account),@BrandId) END ";
-           // sqlQuery += "ELSE BEGIN UPDATE tblProduct SET Name = @Name, Price = @Price, Discount = @Discount, Content = @Content, Image = @Image, BestSale = @BestSale, VIP = @VIP, State = @State, GroupId = @GroupId, PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account), BrandId = @BrandId WHERE Id = @Id END";
-            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblProduct WHERE Id = @Id AND  PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account))";
-            sqlQuery += "BEGIN INSERT INTO tblProduct(Name,Price,Discount,Content,Image,GroupId,BestSale,VIP,PartnerId,BrandId) VALUES(@Name,@Price,@Discount,@Content,@Image,@GroupId,@BestSale,@VIP,(SELECT id FROM tblPartner WHERE Account = @Account),@BrandId) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblProduct SET Name = @Name, Price = @Price, Discount = @Discount, Content = @Content, Image = @Image, BestSale = @BestSale, VIP = @VIP, GroupId = @GroupId, PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account), BrandId = @BrandId WHERE Id = @Id END";
-            Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = this.txtName.Text;
-            Cmd.Parameters.Add("Price", SqlDbType.Float).Value = this.txtPrice.Text;
-            Cmd.Parameters.Add("Discount", SqlDbType.Float).Value = this.txtDiscount.Text;
-            Cmd.Parameters.Add("Content", SqlDbType.NText).Value = this.txtContent.Text;
-            Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = this.txtImage.Text;
-            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = this.ckbBestSale.Checked;
-            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = this.ckbVIP.Checked;
-            //Cmd.Parameters.Add("State", SqlDbType.Bit).Value = this.ckbState.Checked;
-            Cmd.Parameters.Add("GroupId", SqlDbType.Int).Value = this.ddlProductGroup.SelectedValue.ToString();
-            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Session["ACCOUNT"].ToString();
-            Cmd.Parameters.Add("BrandId", SqlDbType.Int).Value = this.ddlBrand.SelectedValue.ToString();
-            Cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
-            Response.Redirect("Product.aspx");
-        }
-        catch (Exception ex)
-        {
-            this.outtext.InnerText = ex.Message;
-        }
     }
     #endregion
 
