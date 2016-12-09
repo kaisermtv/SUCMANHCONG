@@ -172,3 +172,23 @@
 {
     height: 35px; line-height: 35px; width: 100%; font-size: 15px; font-family: Arial;
 }
+
+.info-partner-line{
+    width: 100%; display: table; float: right; height:30px; line-height:30px;
+}
+
+.info-partner-head{
+    width: 100%; display: table; float: right;
+}
+
+.info-partner-label{
+    width: 20%; display: table; float: left; height:30px; line-height:30px;
+}
+
+.info-partner-out{
+    width: 80%; display: table; float: right; height:30px; line-height:30px;
+}
+
+.mgt10{
+    margin-top:10px;
+}
