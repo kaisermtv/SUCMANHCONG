@@ -145,6 +145,33 @@ public class Partner
 
     #region PartnerBillDetail
 
+    #region method getPartnerBillById
+    public DataTable getPartnerBillById(string billId)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblPartnerBill WHERE Id = @Id";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = billId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            objTable = ds.Tables[0];
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
     #region method getHistoryBill
     public DataTable getHistoryBillByPartnerAccount(string PartnerAccount)
     {
@@ -381,8 +408,8 @@ public class Partner
     }
     #endregion
 
-    #region method getPartnerIdById
-    public DataTable getPartnerBillById(string billId)
+    #region method getPartnerInforById
+    public DataTable getPartnerInforById(int Id)
     {
         DataTable objTable = new DataTable();
         try
@@ -390,20 +417,24 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblPartnerBill WHERE Id = @Id";
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = billId;
+
+            Cmd.CommandText = "SELECT TOP 4 0 AS TT, * FROM tblPartner WHERE Id = @Id";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
             da.Fill(ds);
-            objTable = ds.Tables[0];
             sqlCon.Close();
             sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
         }
         catch
         {
 
         }
+
         return objTable;
     }
     #endregion
@@ -532,6 +563,8 @@ public class Partner
     }
     #endregion
 
+    #region Table Product
+
     #region method getProductCount
     public int getProductCount(string Account)
     {
@@ -642,6 +675,8 @@ public class Partner
         }
         return TotalMoney;
     }
+    #endregion
+
     #endregion
 
 }
