@@ -99,7 +99,7 @@
                      <div class="info-partner-label" style="height:50px; line-height:50px;">
                         &nbsp;
                     </div>
-                    <div class="info-partner-out" style="right;height:50px; line-height:50px;">
+                    <div class="info-partner-out" style="height:50px; line-height:50px;">
                         &nbsp;
                     </div>
 
@@ -119,7 +119,7 @@
                     <div class="info-partner-label" style="height:50px; line-height:50px;">
                         &nbsp;
                     </div>
-                    <div class="info-partner-out" style="right;height:50px; line-height:50px;">
+                    <div class="info-partner-out" style="height:50px; line-height:50px;">
                         <asp:Label ID="lblMsg" runat="server" Text=""></asp:Label>
                     </div>
 
