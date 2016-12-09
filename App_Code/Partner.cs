@@ -377,6 +377,175 @@ public class Partner
     }
     #endregion
 
+    #region getPartnerBillInDayByAccount
+    public double getPartnerBillInDayByAccount(string Account)
+    {
+        double tmpValue = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT ISNULL(SUM(TotalMoneyDiscount),0) AS TotalMoneyDiscount FROM tblPartnerBill WHERE PartnerAccount = @PartnerAccount AND datepart(day,DayCreate) = datepart(day,getdate()) AND datepart(month,DayCreate) = datepart(month,getdate()) AND datepart(year,DayCreate) = datepart(year,getdate())";
+            Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = Account;
+            SqlDataReader Rd = Cmd.ExecuteReader();
+            while (Rd.Read())
+            {
+                tmpValue = double.Parse(Rd["TotalMoneyDiscount"].ToString());
+            }
+            Rd.Close();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+        return tmpValue;
+    }
+    #endregion
+
+    #region method getPartnerBillInWeekByAccount
+    public double getPartnerBillInWeekByAccount(string Account)
+    {
+        double tmpValue = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT ISNULL(SUM(TotalMoneyDiscount),0) AS TotalMoneyDiscount FROM tblPartnerBill WHERE PartnerAccount = @PartnerAccount AND datepart(week,DayCreate) = datepart(week,getdate()) AND datepart(month,DayCreate) = datepart(month,getdate()) AND datepart(year,DayCreate) = datepart(year,getdate())";
+            Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = Account;
+            SqlDataReader Rd = Cmd.ExecuteReader();
+            while (Rd.Read())
+            {
+                tmpValue = double.Parse(Rd["TotalMoneyDiscount"].ToString());
+            }
+            Rd.Close();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+        return tmpValue;
+    }
+    #endregion
+
+    #region method getPartnerBillInMonthByAccount
+    public double getPartnerBillInMonthByAccount(string Account)
+    {
+        double tmpValue = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT ISNULL(SUM(TotalMoneyDiscount),0) AS TotalMoneyDiscount FROM tblPartnerBill WHERE PartnerAccount = @PartnerAccount AND datepart(month,DayCreate) = datepart(month,getdate()) AND datepart(year,DayCreate) = datepart(year,getdate())";
+            Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = Account;
+            SqlDataReader Rd = Cmd.ExecuteReader();
+            while (Rd.Read())
+            {
+                tmpValue = double.Parse(Rd["TotalMoneyDiscount"].ToString());
+            }
+            Rd.Close();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+        return tmpValue;
+    }
+    #endregion
+
+
+    #region method getPartnerBillTotalDiscountByAccount
+    public double getPartnerBillTotalDiscountByAccount(string Account)
+    {
+        double tmpValue = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT ISNULL(SUM((TotalMoneyDiscount*Discount)/100),0) AS Discount FROM tblPartnerBill WHERE PartnerAccount = @PartnerAccount";
+            Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = Account;
+            SqlDataReader Rd = Cmd.ExecuteReader();
+            while (Rd.Read())
+            {
+                tmpValue = double.Parse(Rd["Discount"].ToString());
+            }
+            Rd.Close();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+        return tmpValue;
+    }
+    #endregion
+
+    #region method getPartnerBillTotalDiscountCardByAccount
+    public double getPartnerBillTotalDiscountCardByAccount(string Account)
+    {
+        double tmpValue = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT ISNULL(SUM((TotalMoneyDiscount*DiscountCard)/100),0) AS Discount FROM tblPartnerBill WHERE PartnerAccount = @PartnerAccount";
+            Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = Account;
+            SqlDataReader Rd = Cmd.ExecuteReader();
+            while (Rd.Read())
+            {
+                tmpValue = double.Parse(Rd["Discount"].ToString());
+            }
+            Rd.Close();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+        return tmpValue;
+    }
+    #endregion
+
+    #region method getPartnerBillTotalDiscountAdvByAccount
+    public double getPartnerBillTotalDiscountAdvByAccount(string Account)
+    {
+        double tmpValue = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT ISNULL(SUM((TotalMoneyDiscount*DiscountAdv)/100),0) AS Discount FROM tblPartnerBill WHERE PartnerAccount = @PartnerAccount";
+            Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = Account;
+            SqlDataReader Rd = Cmd.ExecuteReader();
+            while (Rd.Read())
+            {
+                tmpValue = double.Parse(Rd["Discount"].ToString());
+            }
+            Rd.Close();
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+        return tmpValue;
+    }
+    #endregion
+
     #endregion
 
 
