@@ -11,7 +11,7 @@ public partial class System_CustomerInfo : System.Web.UI.Page
 {
     #region declare objects
     private Customers objCustomers = new Customers();
-    private Product objProduct = new Product);
+    private Product objProducts= new Product();
 
     private TVSFunc objFunc = new TVSFunc();
     private int itemId = 0;
@@ -109,7 +109,7 @@ public partial class System_CustomerInfo : System.Web.UI.Page
         try{
             int id = Int32.Parse(PartnerId);
 
-            return this.objProduct.getProductCountById(id);
+            return this.objProducts.getProductCountById(id);
         } catch {
             return 0;
         }
@@ -122,7 +122,7 @@ public partial class System_CustomerInfo : System.Web.UI.Page
         try{
             int id = Int32.Parse(PartnerId);
 
-            return this.objProduct.getProductVIPCountById(id);
+            return this.objProducts.getProductVIPCountById(id);
         } catch {
             return 0;
         }
@@ -133,9 +133,9 @@ public partial class System_CustomerInfo : System.Web.UI.Page
     public int getProductBestSaleCountById(string PartnerId)
     {
         try{
-            int id = Int32.Parse(PartnerId);
+            int id =  Int32.Parse(PartnerId);
 
-            return this.objProduct.getProductBestSaleCountById(id);
+            return this.objProducts.getProductBestSaleCountById(id);
         } catch {
             return 0;
         }

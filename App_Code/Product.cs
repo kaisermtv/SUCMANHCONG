@@ -135,7 +135,7 @@ public class Product
         }
         catch
         {
-
+            return 0;
         }
         return CountItem;
     }
@@ -159,12 +159,13 @@ public class Product
             sqlCon.Close();
             sqlCon.Dispose();
             CountItem = ds.Tables[0].Rows.Count;
+            return CountItem;
         }
         catch
         {
-
+            return 0;
         }
-        return CountItem;
+       
     }
     #endregion
 
