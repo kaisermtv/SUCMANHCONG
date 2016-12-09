@@ -318,6 +318,58 @@ public class Partner
     }
     #endregion
 
+    #region method getPartnerBillDetailOtherById
+    public DataTable getPartnerBillDetailOtherById(int BillId)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblPartnerBillDetailOrther WHERE BillId = @BillId AND ISNULL(ProductNumber,0) > 0";
+            Cmd.Parameters.Add("BillId", SqlDbType.NVarChar).Value = BillId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            objTable = ds.Tables[0];
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+        }
+        return objTable;
+    }
+    #endregion
+
+    #region method getPartnerBillDetailById
+    public DataTable getPartnerBillDetailById(int BillId)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblPartnerBillDetail WHERE BillId = @BillId AND ISNULL(ProductNumber,0) > 0";
+            Cmd.Parameters.Add("BillId", SqlDbType.NVarChar).Value = BillId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            objTable = ds.Tables[0];
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+        }
+        return objTable;
+    }
+    #endregion
+
     #region method getProductBillCount
     public int getProductBillCount(string Account)
     {
@@ -543,6 +595,32 @@ public class Partner
 
         }
         return tmpValue;
+    }
+    #endregion
+
+    #region Method getNameAndAccountTypeCustomerByPartnerBillId
+    public DataTable getNameAndAccountTypeCustomerByPartnerBillId(int BillId)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT *, ISNULL((SELECT Name FROM tblCustomers WHERE Account = tblPartnerBill.CustomerAccount),'') AS CustomerName, ISNULL((SELECT AccountType FROM tblCustomers WHERE Account = tblPartnerBill.CustomerAccount),'') AS AccountType FROM tblPartnerBill WHERE Id = @Id";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = BillId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            DataSet ds = new DataSet();
+            da.SelectCommand = Cmd;
+            da.Fill(ds);
+            objTable = ds.Tables[0];
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+        }
+        return objTable;
     }
     #endregion
 

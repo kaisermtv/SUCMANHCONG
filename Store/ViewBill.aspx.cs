@@ -12,9 +12,13 @@ public partial class Store_ViewBill : System.Web.UI.Page
     #region declare objects
     public string strCusAccount = "", strCusName = "", strCusAddress = "", strCusPhone = "", strIdCard = "", strCusEmail = "", strCusAccountType = "", strCustomerTotalDiscountCard = "0", strDiscount = "-", strDiscountCard = "-", strDiscountAdv = "-", strHtml = "", strHtml1 = "";
     private int billId = 0;
+
     private DataTable objTable = new DataTable();
     private DataTable objTableDetailt = new DataTable();
     private DataTable objTableDetailtOrther = new DataTable();
+
+    private Partner objPartner = new Partner();
+    private Customers objCustomers = new Customers();
     #endregion
 
     #region method Page_Load
@@ -34,7 +38,7 @@ public partial class Store_ViewBill : System.Web.UI.Page
         }
         if (!Page.IsPostBack)
         {
-            this.objTable = this.getPartnerBill(this.billId.ToString());
+            this.objTable = this.objPartner.getNameAndAccountTypeCustomerByPartnerBillId(this.billId);
             if (this.objTable.Rows.Count > 0)
             {
                 this.lblAccount.Text = "Số thẻ: <a data-toggle=\"modal\" data-target=\"#myModal\" href = \"#\">" + this.objTable.Rows[0]["CustomerAccount"].ToString() + "</a>";
@@ -49,7 +53,7 @@ public partial class Store_ViewBill : System.Web.UI.Page
                 this.lblMsg1.Text = "Ngày tạo: " + DateTime.Parse(this.objTable.Rows[0]["DayCreate"].ToString()).ToString("dd/MM/yyyy HH:mm");
             }
 
-            this.objTableDetailt = this.getPartnerBillDetail(this.billId.ToString());
+            this.objTableDetailt = this.objPartner.getPartnerBillDetailById(this.billId);
             if (this.objTableDetailt.Rows.Count > 0)
             {
                 this.strHtml = "";
@@ -72,7 +76,7 @@ public partial class Store_ViewBill : System.Web.UI.Page
                 }
             }
 
-            this.objTableDetailtOrther = this.getPartnerBillDetailOther(this.billId.ToString());
+            this.objTableDetailtOrther = this.objPartner.getPartnerBillDetailOtherById(this.billId);
             if (this.objTableDetailtOrther.Rows.Count > 0)
             {
                 this.strHtml1 = "";
@@ -98,105 +102,23 @@ public partial class Store_ViewBill : System.Web.UI.Page
     }
      #endregion
 
-    #region method getPartnerBill
-    public DataTable getPartnerBill(string BillId)
-    {
-        DataTable objTable = new DataTable();
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT *, ISNULL((SELECT Name FROM tblCustomers WHERE Account = tblPartnerBill.CustomerAccount),'') AS CustomerName, ISNULL((SELECT AccountType FROM tblCustomers WHERE Account = tblPartnerBill.CustomerAccount),'') AS AccountType FROM tblPartnerBill WHERE Id = @Id";
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = BillId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            DataSet ds = new DataSet();
-            da.SelectCommand = Cmd;
-            da.Fill(ds);
-            objTable = ds.Tables[0];
-            sqlCon.Close();
-            sqlCon.Dispose();
-        }
-        catch
-        {
-        }
-        return objTable;
-    }
-    #endregion
-
-    #region method getPartnerBillDetail
-    public DataTable getPartnerBillDetail(string BillId)
-    {
-        DataTable objTable = new DataTable();
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblPartnerBillDetail WHERE BillId = @BillId AND ISNULL(ProductNumber,0) > 0";
-            Cmd.Parameters.Add("BillId", SqlDbType.NVarChar).Value = BillId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            objTable = ds.Tables[0];
-            sqlCon.Close();
-            sqlCon.Dispose();
-        }
-        catch
-        {
-        }
-        return objTable;
-    }
-    #endregion
-
-    #region method getPartnerBillDetailOther
-    public DataTable getPartnerBillDetailOther(string BillId)
-    {
-        DataTable objTable = new DataTable();
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblPartnerBillDetailOrther WHERE BillId = @BillId AND ISNULL(ProductNumber,0) > 0";
-            Cmd.Parameters.Add("BillId", SqlDbType.NVarChar).Value = BillId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            objTable = ds.Tables[0];
-            sqlCon.Close();
-            sqlCon.Dispose();
-        }
-        catch
-        {
-        }
-        return objTable;
-    }
-    #endregion
-
     #region method getCustomer
     public void getCustomer(string Account)
     {
+        
         this.lblMsg1.Text = "-:-";
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblCustomers WHERE Account = @Account";
-        Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objDataCustomer = this.objCustomers.getCustomer(Account);
+        if(objDataCustomer.Rows.Count > 0)
         {
             this.strCusAccount = Account.ToUpper();
-            this.strCusName = Rd["Name"].ToString();
-            this.strCusAddress = Rd["Address"].ToString();
-            this.strCusPhone = Rd["Phone"].ToString();
-            this.strIdCard = Rd["IdCard"].ToString();
-            this.strCusEmail = Rd["Email"].ToString();
+            this.strCusName = objDataCustomer.Rows[0]["Name"].ToString();
+            this.strCusAddress = objDataCustomer.Rows[0]["Address"].ToString();
+            this.strCusPhone = objDataCustomer.Rows[0]["Phone"].ToString();
+            this.strIdCard = objDataCustomer.Rows[0]["IdCard"].ToString();
+            this.strCusEmail = objDataCustomer.Rows[0]["Email"].ToString();
 
-            this.lblName.Text = "Họ tên: " + Rd["Name"].ToString();
-            if (Rd["AccountType"].ToString() == "CustomerAccount")
+            this.lblName.Text = "Họ tên: " + objDataCustomer.Rows[0]["Name"].ToString();
+            if (objDataCustomer.Rows[0]["AccountType"].ToString() == "CustomerAccount")
             {
                 this.ckbD.Checked = true;
                 this.ckbB.Checked = false;
@@ -206,7 +128,7 @@ public partial class Store_ViewBill : System.Web.UI.Page
                 this.ckbB1.Checked = false;
                 this.ckbV1.Checked = false;
             }
-            else if (Rd["AccountType"].ToString() == "CustomerAccount1")
+            else if (objDataCustomer.Rows[0]["AccountType"].ToString() == "CustomerAccount1")
             {
                 this.ckbD.Checked = false;
                 this.ckbB.Checked = true;
@@ -216,7 +138,7 @@ public partial class Store_ViewBill : System.Web.UI.Page
                 this.ckbB1.Checked = true;
                 this.ckbV1.Checked = false;
             }
-            else if (Rd["AccountType"].ToString() == "CustomerAccount2")
+            else if (objDataCustomer.Rows[0]["AccountType"].ToString() == "CustomerAccount2")
             {
                 this.ckbD.Checked = false;
                 this.ckbB.Checked = false;
@@ -226,11 +148,8 @@ public partial class Store_ViewBill : System.Web.UI.Page
                 this.ckbB1.Checked = false;
                 this.ckbV1.Checked = true;
             }
-            this.lblCusAvatar.Text = "<img width = \"150px\" height = \"100px\" src = \"/Images/Customer/" + Rd["Avatar"].ToString() + "\">";
+            this.lblCusAvatar.Text = "<img width = \"150px\" height = \"100px\" src = \"/Images/Customer/" + objDataCustomer.Rows[0]["Avatar"].ToString() + "\">";
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 }

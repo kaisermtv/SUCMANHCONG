@@ -28,9 +28,9 @@ public partial class Store_Summary : System.Web.UI.Page
             this.lblDSInDay.Text = String.Format("{0:0,0}", this.objPartner.getPartnerBillInDayByAccount(Session["ACCOUNT"].ToString()));
             this.lblDSInWeek.Text = String.Format("{0:0,0}", this.objPartner.getPartnerBillInWeekByAccount(Session["ACCOUNT"].ToString()));
             this.lblDSInMonth.Text = String.Format("{0:0,0}", this.objPartner.getPartnerBillInMonthByAccount(Session["ACCOUNT"].ToString()));
-            this.lblTotalDiscount.Text = String.Format("{0:0,0}", this.objPartner.getPartnerBillTotalDiscountByAccount(Session["ACCOUNT"].ToString());
+            this.lblTotalDiscount.Text = String.Format("{0:0,0}", this.objPartner.getPartnerBillTotalDiscountByAccount(Session["ACCOUNT"].ToString()));
             this.lblTotalDiscountCard.Text = String.Format("{0:0,0}", this.objPartner.getPartnerBillTotalDiscountCardByAccount(Session["ACCOUNT"].ToString()));
-            this.lblTotalDiscountAdv.Text = String.Format("{0:0,0}", this.objPartner.getPartnerBillTotalDiscountAdvByAccount(Session["ACCOUNT"].ToString());
+            this.lblTotalDiscountAdv.Text = String.Format("{0:0,0}", this.objPartner.getPartnerBillTotalDiscountAdvByAccount(Session["ACCOUNT"].ToString()));
         }
     }
     #endregion
