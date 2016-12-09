@@ -10,8 +10,11 @@ using System.Web.UI.WebControls;
 public partial class System_CustomerInfo : System.Web.UI.Page
 {
     #region declare objects
-    private int itemId = 0;
+    private Customers objCustomers = new Customers();
+    private Product objProduct = new Product);
+
     private TVSFunc objFunc = new TVSFunc();
+    private int itemId = 0;
     public int SoGiaoDich = 0;
     public double TongDoanhSo = 0;
     #endregion
@@ -50,150 +53,92 @@ public partial class System_CustomerInfo : System.Web.UI.Page
     #region method getCustomer
     public void getCustomer()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblCustomers WHERE Id = @Id";
-        Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objData = this.objCustomers.getCustomerById(this.itemId);
+        if(objData.Rows.Count > 0)
         {
-            this.lblName.Text = Rd["Name"].ToString();
-            this.lblAddress.Text = "Địa chỉ: "+Rd["Address"].ToString();
-            this.lblPhone.Text = "Điện thoại : "+Rd["Phone"].ToString();
+            this.lblName.Text = objData.Rows[0]["Name"].ToString();
+            this.lblAddress.Text = "Địa chỉ: " + objData.Rows[0]["Address"].ToString();
+            this.lblPhone.Text = "Điện thoại : " + objData.Rows[0]["Phone"].ToString();
             try
             {
-                this.lblBirthday.Text = "Ngày sinh : "+DateTime.Parse(Rd["Birthday"].ToString()).ToString("dd/MM/yyyy");
+                this.lblBirthday.Text = "Ngày sinh : " + DateTime.Parse(objData.Rows[0]["Birthday"].ToString()).ToString("dd/MM/yyyy");
             }
             catch { }
-            this.lblEmail.Text = "Email : "+Rd["Email"].ToString();
-            this.lblIdCard.Text = "Số CMND : " + Rd["IdCard"].ToString();
-            this.txtAccount.Text = Rd["Account"].ToString();
-            this.lblAvatar.Text = "<img width = \"125px\" height = \"100px\" alt = \"Hình đại diện\" src = \"/Images/Customer/" + Rd["Avatar"].ToString() + "\">";
-            this.ddlTypeCard.SelectedValue = Rd["AccountType"].ToString();
+            this.lblEmail.Text = "Email : " + objData.Rows[0]["Email"].ToString();
+            this.lblIdCard.Text = "Số CMND : " + objData.Rows[0]["IdCard"].ToString();
+            this.txtAccount.Text = objData.Rows[0]["Account"].ToString();
+            this.lblAvatar.Text = "<img width = \"125px\" height = \"100px\" alt = \"Hình đại diện\" src = \"/Images/Customer/" + objData.Rows[0]["Avatar"].ToString() + "\">";
+            this.ddlTypeCard.SelectedValue = objData.Rows[0]["AccountType"].ToString();
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 
     #region method btnCreate_Click
     protected void btnCreate_Click(object sender, EventArgs e)
     {
-        try
+        if (this.itemId == 0)
         {
-            if (this.itemId == 0)
-            {
-                return;
-            }
-            TVSFunc objFunc = new TVSFunc();
-            string CustomerAccount = "";
-            CustomerAccount = objFunc.getCustomerAccount(this.ddlTypeCard.SelectedValue.ToString());
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "UPDATE tblCustomers SET Account = @Account, AccountType = @AccountType, DayCreateAccount = getdate() WHERE Id = @Id";
-            string strCardNumber = "";
-            if (this.txtAccount.Text.Trim() == "")
-            {
-                strCardNumber = this.itemId.ToString("000000");
-            }
-            else
-            {
-                strCardNumber = this.txtAccount.Text.Trim();
-            }
-            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = CustomerAccount + strCardNumber;
-            Cmd.Parameters.Add("AccountType", SqlDbType.NVarChar).Value = this.ddlTypeCard.SelectedValue.ToString();
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-            Cmd.ExecuteNonQuery();
+            return;
+        }
+
+        string CustomerAccount = this.objFunc.getCustomerAccount(this.ddlTypeCard.SelectedValue.ToString());
+
+        string strCardNumber = "";
+        if (this.txtAccount.Text.Trim() == "")
+        {
+            strCardNumber = this.itemId.ToString("000000");
+        }
+        else
+        {
+            strCardNumber = this.txtAccount.Text.Trim();
+        }
+
+
+        int ret = this.objCustomers.UpdateCustomerById(this.itemId, CustomerAccount + strCardNumber, this.ddlTypeCard.SelectedValue.ToString());
+        if (ret > 0)
+        {
             this.txtAccount.Text = CustomerAccount + strCardNumber;
             this.btnCreate.Enabled = false;
-            sqlCon.Close();
-            sqlCon.Dispose();
         }
-        catch { }
-    } 
+    }
     #endregion
 
     #region method getProductCountById
     public int getProductCountById(string PartnerId)
     {
-        int CountItem = 0;
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblProduct WHERE PartnerId = @PartnerId";
-            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            CountItem = ds.Tables[0].Rows.Count;
-        }
-        catch
-        {
+        try{
+            int id = Int32.Parse(PartnerId);
 
+            return this.objProduct.getProductCountById(id);
+        } catch {
+            return 0;
         }
-        return CountItem;
     }
     #endregion
 
     #region method getProductVIPCountById
     public int getProductVIPCountById(string PartnerId)
     {
-        int CountItem = 0;
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblProduct WHERE PartnerId = @PartnerId AND VIP = 1";
-            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            CountItem = ds.Tables[0].Rows.Count;
-        }
-        catch
-        {
+        try{
+            int id = Int32.Parse(PartnerId);
 
+            return this.objProduct.getProductVIPCountById(id);
+        } catch {
+            return 0;
         }
-        return CountItem;
     }
     #endregion
 
     #region method getProductBestSaleCountById
     public int getProductBestSaleCountById(string PartnerId)
     {
-        int CountItem = 0;
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblProduct WHERE PartnerId = @PartnerId AND BestSale = 1";
-            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            CountItem = ds.Tables[0].Rows.Count;
-        }
-        catch
-        {
+        try{
+            int id = Int32.Parse(PartnerId);
 
+            return this.objProduct.getProductBestSaleCountById(id);
+        } catch {
+            return 0;
         }
-        return CountItem;
     }
     #endregion
 

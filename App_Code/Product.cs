@@ -87,6 +87,87 @@ public class Product
     }
     #endregion
 
+    #region method getProductCountById
+    public int getProductCountById(int PartnerId)
+    {
+        int CountItem = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblProduct WHERE PartnerId = @PartnerId";
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            CountItem = ds.Tables[0].Rows.Count;
+        }
+        catch
+        {
+
+        }
+        return CountItem;
+    }
+    #endregion
+
+    #region method getProductVIPCountById
+    public int getProductVIPCountById(int PartnerId)
+    {
+        int CountItem = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblProduct WHERE PartnerId = @PartnerId AND VIP = 1";
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            CountItem = ds.Tables[0].Rows.Count;
+        }
+        catch
+        {
+
+        }
+        return CountItem;
+    }
+    #endregion
+
+    #region method getProductBestSaleCountById
+    public int getProductBestSaleCountById(int PartnerId)
+    {
+        int CountItem = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblProduct WHERE PartnerId = @PartnerId AND BestSale = 1";
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            CountItem = ds.Tables[0].Rows.Count;
+        }
+        catch
+        {
+
+        }
+        return CountItem;
+    }
+    #endregion
+
     #region Method getDataByPartner
     public DataTable getDataByPartner(string Account)
     {

@@ -157,6 +157,33 @@ public class Customers
     }
     #endregion
 
+    #region method UpdateCustomerById
+    public int UpdateCustomerById(int Id, string Account, string AccountType)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "UPDATE tblCustomers SET Account = @Account, AccountType = @AccountType, DayCreateAccount = getdate() WHERE Id = @Id";
+
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
+            Cmd.Parameters.Add("AccountType", SqlDbType.NVarChar).Value = AccountType;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+
+            int ret = Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+    #endregion
+
     #region method getCustomerPaymentCallByCustomerAccount
     public double getCustomerPaymentCallByCustomerAccount(string CustomerAccount)
     {
