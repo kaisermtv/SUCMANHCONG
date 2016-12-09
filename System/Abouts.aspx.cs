@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 public partial class Abouts : System.Web.UI.Page
 {
     #region declare objects
+    private tblAbouts objAbouts = new tblAbouts();
     #endregion
 
     #region method Page_Load
@@ -47,48 +48,14 @@ public partial class Abouts : System.Web.UI.Page
     #region method getAbouts
     public void getAbouts()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblAbouts WHERE Id = 1";
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objDataAbout = this.objAbouts.getAbouts();
+        if(objDataAbout.Rows.Count > 0)
         {
-            this.txtName.Text = Rd["Name"].ToString();
-            this.txtAddress.Text = Rd["Address"].ToString();
-            this.txtPhone.Text = Rd["Phone"].ToString();
-            this.txtEmail.Text = Rd["Email"].ToString();
-            this.txtIntro.Text = Rd["Intro"].ToString();
-        }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
-    }
-    #endregion
-
-    #region method setTopic
-    public void setTopic()
-    {
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            string sqlQuery = "";
-            sqlQuery += "UPDATE tblAbouts SET Name = @Name, Address = @Address, Phone = @Phone, Email = @Email, Intro = @Intro WHERE Id = 1";
-            Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = this.txtName.Text;
-            Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = this.txtAddress.Text;
-            Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = this.txtPhone.Text;
-            Cmd.Parameters.Add("Email", SqlDbType.NVarChar).Value = this.txtEmail.Text;
-            Cmd.Parameters.Add("Intro", SqlDbType.NText).Value = this.txtIntro.Text;
-            Cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
-        }
-        catch
-        {
-
+            this.txtName.Text = objDataAbout.Rows[0]["Name"].ToString();
+            this.txtAddress.Text = objDataAbout.Rows[0]["Address"].ToString();
+            this.txtPhone.Text = objDataAbout.Rows[0]["Phone"].ToString();
+            this.txtEmail.Text = objDataAbout.Rows[0]["Email"].ToString();
+            this.txtIntro.Text = objDataAbout.Rows[0]["Intro"].ToString();
         }
     }
     #endregion
@@ -96,7 +63,7 @@ public partial class Abouts : System.Web.UI.Page
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        this.setTopic();
+        int ret = this.objAbouts.setTopic(this.txtName.Text, this.txtAddress.Text, this.txtPhone.Text, this.txtEmail.Text, this.txtIntro.Text);
     } 
     #endregion
 
