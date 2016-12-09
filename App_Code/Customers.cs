@@ -11,6 +11,52 @@ public class Customers
 	{
 	}
 
+    #region method setCustomer
+    //*
+    public int setCustomer(int Id, string Name, string Address, string Birthday,string Phone,string Email,string Account,string IdCard,String Avatar,bool State)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            string sqlQuery = "";
+            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblCustomers WHERE Id = @Id)";
+            sqlQuery += "BEGIN INSERT INTO tblCustomers(Name,Address,Birthday,IdCard,Phone,Email,Account,Avatar,State) VALUES(@Name,@Address,@Birthday,@IdCard,@Phone,@Email,@Account,@Avatar,@State) END ";
+            sqlQuery += "ELSE BEGIN UPDATE tblCustomers SET Name = @Name,Address = @Address,Birthday = @Birthday,IdCard = @IdCard,Phone = @Phone,Email = @Email,Account = @Account,Avatar = @Avatar,State = @State WHERE Id = @Id END";
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
+            Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = Address;
+            try
+            {
+                Cmd.Parameters.Add("Birthday", SqlDbType.DateTime).Value = Birthday;
+            }
+            catch
+            {
+                Cmd.Parameters.Add("Birthday", SqlDbType.DateTime).Value = DateTime.Now;
+            }
+            Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = Phone;
+            Cmd.Parameters.Add("Email", SqlDbType.NVarChar).Value = Email;
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
+            Cmd.Parameters.Add("IdCard", SqlDbType.NVarChar).Value = IdCard;
+            Cmd.Parameters.Add("Avatar", SqlDbType.NVarChar).Value = Avatar;
+            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;
+            int ret = Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+        }
+        catch
+        {
+            return 0;
+        }
+
+    }
+    //*/
+    #endregion
+
     #region method getDataCustomer
     public DataTable getDataCustomer()
     {
@@ -82,6 +128,35 @@ public class Customers
     }
     #endregion
 
+    #region method getCustomerById
+    public DataTable getCustomerById(int Id)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblCustomers WHERE Id = @Id";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+
+        return objTable;
+    }
+    #endregion
+
     #region method getCustomerPaymentCallByCustomerAccount
     public double getCustomerPaymentCallByCustomerAccount(string CustomerAccount)
     {
@@ -110,6 +185,8 @@ public class Customers
         return tmpValue1;
     }
     #endregion
+
+    #region SMS OTP
 
     #region method setCustomers_SMS_OTP
     public int setCustomers_SMS_OTP(string CustomerAccount, string PartnerAccount, string KeyOTP)
@@ -171,5 +248,5 @@ public class Customers
     }
     #endregion
 
-    
+    #endregion
 }

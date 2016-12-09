@@ -10,6 +10,8 @@ using System.Web.UI.WebControls;
 public partial class CustomerEdit : System.Web.UI.Page
 {
     #region declare objects
+    private Customers objCustomers = new Customers();
+
     private int itemId = 0;
     #endregion
 
@@ -57,35 +59,16 @@ public partial class CustomerEdit : System.Web.UI.Page
                 {
                     return;
                 }
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            string sqlQuery = "";
-            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblCustomers WHERE Id = @Id)";
-            sqlQuery += "BEGIN INSERT INTO tblCustomers(Name,Address,Birthday,IdCard,Phone,Email,Account,Avatar,State) VALUES(@Name,@Address,@Birthday,@IdCard,@Phone,@Email,@Account,@Avatar,@State) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblCustomers SET Name = @Name,Address = @Address,Birthday = @Birthday,IdCard = @IdCard,Phone = @Phone,Email = @Email,Account = @Account,Avatar = @Avatar,State = @State WHERE Id = @Id END";
-            Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = this.txtName.Text;
-            Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = this.txtAddress.Text;
-            try
+            int ret = this.objCustomers.setCustomer(this.itemId, this.txtName.Text, this.txtAddress.Text, this.txtBirthday.Text, this.txtPhone.Text, this.txtEmail.Text, this.txtAccount.Text, this.txtIdCard.Text, this.txtAvatar.Text, this.ckbState.Checked);
+
+            if(ret > 0)
             {
-                Cmd.Parameters.Add("Birthday", SqlDbType.DateTime).Value = this.txtBirthday.Text;
+                Response.Redirect("Customer.aspx");
             }
-            catch
+            else
             {
-                Cmd.Parameters.Add("Birthday", SqlDbType.DateTime).Value = DateTime.Now;
+                this.lblMsg.Text = "Có lỗi xảy ra. Xin thử lại";
             }
-            Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = this.txtPhone.Text;
-            Cmd.Parameters.Add("Email", SqlDbType.NVarChar).Value = this.txtEmail.Text;
-            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = this.txtAccount.Text;
-            Cmd.Parameters.Add("IdCard", SqlDbType.NVarChar).Value = this.txtIdCard.Text;
-            Cmd.Parameters.Add("Avatar", SqlDbType.NVarChar).Value = this.txtAvatar.Text;
-            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = this.ckbState.Checked;
-            Cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
-            Response.Redirect("Customer.aspx");
         }
         catch
         {
@@ -97,29 +80,24 @@ public partial class CustomerEdit : System.Web.UI.Page
     #region method getCustomer
     public void getCustomer()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblCustomers WHERE Id = @Id";
-        Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objData = this.objCustomers.getCustomerById(this.itemId);
+        if(objData.Rows.Count > 0)
         {
-            this.txtName.Text = Rd["Name"].ToString();
-            this.txtAddress.Text = Rd["Address"].ToString();
-            this.txtPhone.Text = Rd["Phone"].ToString();
-            try { 
-            this.txtBirthday.Text = DateTime.Parse(Rd["Birthday"].ToString()).ToString("dd/MM/yyyy");
+            this.txtName.Text = objData.Rows[0]["Name"].ToString();
+            this.txtAddress.Text = objData.Rows[0]["Address"].ToString();
+            this.txtPhone.Text = objData.Rows[0]["Phone"].ToString();
+            try {
+                this.txtBirthday.Text = DateTime.Parse(objData.Rows[0]["Birthday"].ToString()).ToString("dd/MM/yyyy");
                 }
             catch
             {
                 this.txtBirthday.Text = "";
             }
-            this.txtEmail.Text = Rd["Email"].ToString();
-            this.txtAccount.Text = Rd["Account"].ToString();
-            this.txtIdCard.Text = Rd["IdCard"].ToString();
-            this.txtAvatar.Text = Rd["Avatar"].ToString();
-            if (Rd["State"].ToString() == "True")
+            this.txtEmail.Text = objData.Rows[0]["Email"].ToString();
+            this.txtAccount.Text = objData.Rows[0]["Account"].ToString();
+            this.txtIdCard.Text = objData.Rows[0]["IdCard"].ToString();
+            this.txtAvatar.Text = objData.Rows[0]["Avatar"].ToString();
+            if (objData.Rows[0]["State"].ToString() == "True")
             {
                 this.ckbState.Checked = true;
             }
@@ -127,11 +105,8 @@ public partial class CustomerEdit : System.Web.UI.Page
             {
                 this.ckbState.Checked = false;
             }
-            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Customer/" + Rd["Avatar"].ToString() + "\">";
+            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Customer/" + objData.Rows[0]["Avatar"].ToString() + "\">";
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 
