@@ -77,28 +77,28 @@
 
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>HOÁ ĐƠN THANH TOÁN</b></div>
-                    <div class="form-group" style="width: 100%; text-align: right; background-color: #fff; margin-bottom: 0px; padding: 15px;">
+                    <div class="form-group line-panel-bill right" style="padding: 15px;">
                         <input enableviewstate="false" type="text" class="form-control" id="txtTotalMoney" runat="server" placeholder="TỔNG TIỀN HOÁ ĐƠN" style="font-weight: bold; text-align: right;">
                     </div>
-                    <div class="form-group" style="width: 100%; text-align: right; background-color: #fff; margin-bottom: 0px; padding: 5px; text-align: justify;">
+                    <div class="form-group line-panel-bill justify" style="padding: 5px;">
                         &nbsp;&nbsp;&nbsp;Tỷ lệ giảm giá: <b><% Response.Write(this.strDiscount); %></b> %
                     </div>
-                    <div class="form-group" style="width: 100%; text-align: right; background-color: #fff; margin-bottom: 0px; padding: 5px; text-align: justify;">
+                    <div class="form-group line-panel-bill justify" style="padding: 5px;">
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tích luỹ: <b><% Response.Write(this.strDiscountCard); %></b> % - Quảng cáo : <b><% Response.Write(this.strDiscountAdv); %></b> %
                     </div>
-                    <div class="form-group" style="width: 100%; text-align: right; background-color: #fff; margin-bottom: 0px; padding: 5px; text-align: justify;">
+                    <div class="form-group line-panel-bill justify" style="padding: 5px;">
                         &nbsp;&nbsp;&nbsp;<b>Tổng tiền giảm giá</b>
                     </div>
-                    <div class="form-group" style="width: 100%; text-align: right; background-color: #fff; margin-bottom: 0px; padding: 15px;">
-                        <asp:TextBox EnableViewState="false" ID="txtTotalMoneyDiscount" CssClass="form-control" runat="server" Width="100%" Style="text-align: right; font-weight: bold;"></asp:TextBox>
+                    <div class="form-group line-panel-bill right" style="padding: 15px;">
+                        <asp:TextBox EnableViewState="false" ID="txtTotalMoneyDiscount" CssClass="form-control input-panel-bill" runat="server"></asp:TextBox>
                     </div>
-                    <div class="form-group" style="width: 100%; text-align: right; background-color: #fff; margin-bottom: 0px; padding: 5px; text-align: justify;">
+                    <div class="form-group line-panel-bill justify" style="padding: 5px;">
                         &nbsp;&nbsp;&nbsp;<b>Tổng tiền phải thanh toán</b>
                     </div>
-                    <div class="form-group" style="width: 100%; text-align: right; background-color: #fff; margin-bottom: 0px; padding: 15px;">
-                        <asp:TextBox EnableViewState="false" ID="txtTotalMoneyPayment" CssClass="form-control" runat="server" Width="100%" Style="text-align: right; font-weight: bold;"></asp:TextBox>
+                    <div class="form-group line-panel-bill right" style="padding: 15px;">
+                        <asp:TextBox EnableViewState="false" ID="txtTotalMoneyPayment" CssClass="form-control input-panel-bill" runat="server"></asp:TextBox>
                     </div>
-                    <div class="form-group" style="width: 100%; text-align: justify; background-color: #fff; margin-bottom: 0px; padding: 15px;">
+                    <div class="form-group line-panel-bill justify" style="padding: 15px;">
                         <asp:Label EnableViewState="false" ID="lblMsg1" runat="server" Text="-:-" ForeColor="Black"></asp:Label>
                     </div>
                 </div>
@@ -109,20 +109,20 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><b>THÔNG TIN HÀNG HOÁ GIẢM GIÁ</b></div>
                         <div style="width: 100%;">
-                            <div style="width: 5%; float: left; text-align: center; padding: 3px; font-weight: bold; color: #000; font-size: 13px; background-color: #f2f7fc;">
+                            <div class="list-view-head-item center" style="width: 5%;">
                                 TT
                             </div>
-                            <div style="width: 65%; float: left; text-align: justify; padding: 3px; font-weight: bold; color: #000; font-size: 13px; background-color: #f2f7fc;">
+                            <div class="list-view-head-item justify" style="width: 65%;">
                                 Hàng hoá
                             </div>
-                            <div style="width: 15%; float: left; text-align: right; padding: 3px; font-weight: bold; color: #000; font-size: 13px; background-color: #f2f7fc;">
+                            <div class="list-view-head-item right" style="width: 15%;">
                                 Số lượng
                             </div>
-                            <div style="width: 15%; float: left; text-align: right; padding: 3px; font-weight: bold; color: #000; font-size: 13px; background-color: #f2f7fc;">
+                            <div class="list-view-head-item right" style="width: 15%;">
                                 Đơn giá
                             </div>
                         </div>
-                        <div style="height: 210px; overflow-y: scroll; border:solid 1px #fff;">
+                        <div class="list-view-page">
                             <% Response.Write(strHtml); %>
                         </div>
                     </div>
@@ -132,20 +132,20 @@
                     <div class="panel panel-default">
                         <div class="panel-heading"><b>THÔNG TIN HÀNG HOÁ THƯỜNG</b></div>
                         <div style="width: 100%;">
-                            <div style="width: 5%; float: left; text-align: center; padding: 3px; font-weight: bold; color: #000; font-size: 13px; background-color: #f2f7fc;">
+                            <div class="list-view-head-item center" style="width: 5%;">
                                 TT
                             </div>
-                            <div style="width: 65%; float: left; text-align: justify; padding: 3px; font-weight: bold; color: #000; font-size: 13px; background-color: #f2f7fc;">
+                            <div class="list-view-head-item justify" style="width: 65%;">
                                 Hàng hoá
                             </div>
-                            <div style="width: 15%; float: left; text-align: right; padding: 3px; font-weight: bold; color: #000; font-size: 13px; background-color: #f2f7fc;">
+                            <div class="list-view-head-item right" style="width: 15%;">
                                 Số lượng
                             </div>
-                            <div style="width: 15%; float: left; text-align: right; padding: 3px; font-weight: bold; color: #000; font-size: 13px; background-color: #f2f7fc;">
+                            <div class="list-view-head-item right" style="width: 15%;">
                                 Đơn giá
                             </div>
                         </div>
-                        <div style="height: 210px; overflow-y: scroll; border:solid 1px #fff;">
+                        <div class="list-view-page">
                             <% Response.Write(strHtml1); %>
                         </div>
                     </div>

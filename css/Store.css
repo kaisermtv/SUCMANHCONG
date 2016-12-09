@@ -168,27 +168,71 @@
     text-align: justify;
 }
 
-.ipgr_post
-{
-    height: 35px; line-height: 35px; width: 100%; font-size: 15px; font-family: Arial;
+.ipgr_post {
+    height: 35px;
+    line-height: 35px;
+    width: 100%;
+    font-size: 15px;
+    font-family: Arial;
 }
 
-.info-partner-line{
-    width: 100%; display: table; float: right; height:30px; line-height:30px;
+.info-partner-line {
+    width: 100%;
+    display: table;
+    float: right;
+    height: 30px;
+    line-height: 30px;
 }
 
-.info-partner-head{
-    width: 100%; display: table; float: right;
+.info-partner-head {
+    width: 100%;
+    display: table;
+    float: right;
 }
 
-.info-partner-label{
-    width: 20%; display: table; float: left; height:30px; line-height:30px;
+.info-partner-label {
+    width: 20%;
+    display: table;
+    float: left;
+    height: 30px;
+    line-height: 30px;
 }
 
-.info-partner-out{
-    width: 80%; display: table; float: right; height:30px; line-height:30px;
+.info-partner-out {
+    width: 80%;
+    display: table;
+    float: right;
+    height: 30px;
+    line-height: 30px;
 }
 
-.mgt10{
-    margin-top:10px;
+.mgt10 {
+    margin-top: 10px;
+}
+
+.list-view-head-item {
+    padding: 3px;
+    font-weight: bold;
+    color: #000;
+    font-size: 13px;
+    background-color: #f2f7fc;
+    float: left;
+}
+
+.list-view-page {
+    height: 210px;
+    overflow-y: scroll;
+    border: solid 1px #fff;
+}
+
+.line-panel-bill {
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 0px;
+}
+
+.input-panel-bill {
+    Width: 100%;
+    text-align: right;
+    font-weight: bold;
 }
