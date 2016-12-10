@@ -235,7 +235,36 @@ public class DataProduct
 
     #region Table Product Group
 
-    #region Method getProductGroup
+    #region method getProductGroup
+    public DataTable getProductGroup()
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT 0 AS TT, * FROM tblProductGroup";
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+       
+    }
+    #endregion
+
+    #region Method getProductGroupIdUpperName
     public DataTable getProductGroupIdUpperName()
     {
         DataTable objTable = new DataTable();
