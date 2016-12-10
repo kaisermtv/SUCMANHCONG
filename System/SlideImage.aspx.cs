@@ -9,6 +9,10 @@ using System.Web.UI.WebControls;
 
 public partial class SlideImage : System.Web.UI.Page
 {
+    #region declare objects
+    private DataSlideImage objSlideImage = new DataSlideImage();
+    #endregion
+
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,21 +31,12 @@ public partial class SlideImage : System.Web.UI.Page
     #region method getSlideImage
     public DataTable getSlideImage()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblSlideImage";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        sqlCon.Close();
-        sqlCon.Dispose();
-        if (ds.Tables[0].Rows.Count < 120)
+        DataTable objData = this.objSlideImage.getSlideImage();
+        if (objData.Rows.Count < 120)
         {
             this.tblABC.Visible = false;
         }
-        return ds.Tables[0];
+        return objData;
     }
     #endregion
 }
