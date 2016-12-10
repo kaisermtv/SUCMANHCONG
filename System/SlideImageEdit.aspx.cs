@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 public partial class SlideImageEdit : System.Web.UI.Page
 {
     #region declare objects
+    private DataSlideImage objSlideImage = new DataSlideImage();
     private int itemId = 0;
     #endregion
 
@@ -34,17 +35,12 @@ public partial class SlideImageEdit : System.Web.UI.Page
     #region method getTopic
     public void getTopic()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblSlideImage WHERE Id = @Id";
-        Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objData = this.objSlideImage.getSlideImageById(this.itemId);
+        if(objData.Rows.Count > 0)
         {
-            this.txtUrl.Text = Rd["Url"].ToString();
-            this.txtImage.Text = Rd["Image"].ToString();
-            if (Rd["State"].ToString() == "True")
+            this.txtUrl.Text = objData.Rows[0]["Url"].ToString();
+            this.txtImage.Text = objData.Rows[0]["Image"].ToString();
+            if (objData.Rows[0]["State"].ToString() == "True")
             {
                 this.ckbState.Checked = true;
             }
@@ -52,44 +48,7 @@ public partial class SlideImageEdit : System.Web.UI.Page
             {
                 this.ckbState.Checked = false;
             }
-            lblImg1.Text = "<img width = \"100%\" height = \"120px\" src = \"/Images/Slides/" + Rd["Image"].ToString() + "\">";
-        }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
-    }
-    #endregion
-
-    #region method setTopic
-    public void setTopic()
-    {
-        try
-        {
-            if (upImage1.PostedFile.FileName != "")
-                if (!saveImage1())
-                {
-                    return;
-                }
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            string sqlQuery = "";
-            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblSlideImage WHERE Id = @Id)";
-            sqlQuery += "BEGIN INSERT INTO tblSlideImage(Image,Url,State) VALUES(@Image,@Url,@State) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblSlideImage SET Image = @Image, Url = @Url, State = @State WHERE Id = @Id END";
-            Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-            Cmd.Parameters.Add("Url", SqlDbType.NVarChar).Value = this.txtUrl.Text;
-            Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = this.txtImage.Text;
-            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = this.ckbState.Checked;
-            Cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
-            Response.Redirect("SlideImage.aspx");
-        }
-        catch
-        {
-
+            lblImg1.Text = "<img width = \"100%\" height = \"120px\" src = \"/Images/Slides/" + objData.Rows[0]["Image"].ToString() + "\">";
         }
     }
     #endregion
@@ -97,7 +56,17 @@ public partial class SlideImageEdit : System.Web.UI.Page
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        this.setTopic();
+        if (upImage1.PostedFile.FileName != "")
+            if (!saveImage1())
+            {
+                return;
+            }
+
+        int ret = this.objSlideImage.setSlideImage(this.itemId, this.txtUrl.Text, this.txtImage.Text, this.ckbState.Checked);
+        if(ret > 0)
+        {
+            Response.Redirect("SlideImage.aspx");
+        }
     } 
     #endregion
 
