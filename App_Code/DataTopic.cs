@@ -74,6 +74,38 @@ public class DataTopic
     }
     #endregion
 
+    #region method getTopic
+    public DataTable getTopic()
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT 0 AS TT, * FROM tblTopic";
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+            objTable = ds.Tables[0];
+            return objTable;
+        }
+        catch
+        {
+
+        }
+
+        return objTable;
+    }
+    #endregion
+
     #region method getTopicGroup
     public DataTable getTopicGroup()
     {
