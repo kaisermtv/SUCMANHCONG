@@ -7,6 +7,36 @@ using System.Text;
 
 public class DataVideo
 {
+    #region method getVideo
+    public DataTable getVideo()
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT * FROM tblVideo";
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+
+        return objTable;
+    }
+    #endregion
+
     #region method getVideoInfoById
     public DataTable getVideoInfoById(int Id)
     {

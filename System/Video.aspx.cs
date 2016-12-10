@@ -9,6 +9,11 @@ using System.Web.UI.WebControls;
 
 public partial class Video : System.Web.UI.Page
 {
+
+    #region declare objects
+    private DataVideo objVideo = new DataVideo();
+    #endregion
+
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,21 +32,12 @@ public partial class Video : System.Web.UI.Page
     #region method getVideo
     public DataTable getVideo()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblVideo";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        sqlCon.Close();
-        sqlCon.Dispose();
-        if (ds.Tables[0].Rows.Count < 120)
+        DataTable objData = this.objVideo.getVideo();
+        if (objData.Rows.Count < 120)
         {
             this.tblABC.Visible = false;
         }
-        return ds.Tables[0];
+        return objData;
     }
     #endregion
 }
