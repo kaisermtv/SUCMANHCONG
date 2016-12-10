@@ -17,7 +17,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
     public DataTable objTableProduct = new DataTable();
     private Partner objPartner = new Partner();
     private Customers objCustomers = new Customers();
-    private Product objProduct = new Product();
+    private DataProduct objProduct = new DataProduct();
 
     public string strHtml = "", strValue = "", strCurrBillId = "", strhtmlbill = "";
     public string strName = "", strAddress = "", strPhone = "", strManager = "", strEmail = "", strTaxcode = "", strAccount = "", strBestSale = "", strVIP = "", strMsg = "", strDiscount = "-", strDiscountCard = "-", strDiscountAdv = "-", strCustomerTotalDiscountCard = "0";

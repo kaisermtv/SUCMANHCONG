@@ -11,7 +11,7 @@ public partial class Store_Detailt : System.Web.UI.Page
 {
     #region declare objects
     private Partner objPartner = new Partner();
-    private Product objProduct = new Product();
+    private DataProduct objProduct = new DataProduct();
 
     public DataTable objTablePartner = new DataTable();
     public DataTable objTable = new DataTable();

@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 public partial class Store_ProductEdit : System.Web.UI.Page
 {
     #region declare objects
-    private Product objProduct = new Product();
+    private DataProduct objProduct = new DataProduct();
     private Partner objPartner = new Partner();
     private Brand objBrand = new Brand();
 

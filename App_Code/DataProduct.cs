@@ -8,9 +8,9 @@ using System.Web;
 /// <summary>
 /// Summary description for DataProduct
 /// </summary>
-public class Product
+public class DataProduct
 {
-    public Product()
+    public DataProduct()
 	{
 		//
 		// TODO: Add constructor logic here

@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Product : System.Web.UI.Page
+public partial class System_Product : System.Web.UI.Page
 {
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)

@@ -13,7 +13,7 @@ public partial class Store_Product : System.Web.UI.Page
     private DataTable objTable = new DataTable();
     private TVSFunc objFunc = new TVSFunc();
     private Partner objPartner = new Partner();
-    private Product objProduct = new Product();
+    private DataProduct objProduct = new DataProduct();
 
     public string strHtml = "";
     public string strName = "", strAddress = "", strPhone = "", strManager = "", strEmail = "", strTaxcode = "", strAccount = "", strBestSale = "", strVIP = "", strMsg = "";

@@ -11,7 +11,7 @@ public partial class System_CustomerInfo : System.Web.UI.Page
 {
     #region declare objects
     private Customers objCustomers = new Customers();
-    private Product objProducts= new Product();
+    private DataProduct objProducts= new DataProduct();
 
     private TVSFunc objFunc = new TVSFunc();
     private int itemId = 0;
