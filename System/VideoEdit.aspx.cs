@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 public partial class VideoEdit : System.Web.UI.Page
 {
     #region declare objects
-    private Video objVideo = new Video();
+    private DataVideo objVideo = new DataVideo();
     private int itemId = 0;
     #endregion
 
