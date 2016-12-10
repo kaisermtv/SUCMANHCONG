@@ -84,13 +84,11 @@ public partial class TopicEdit : System.Web.UI.Page
     public void getTopicGroup()
     {
         DataTable objData = this.objTopic.getTopicGroup();
-        if(objData.Rows.Count > 0)
-        {
-            this.ddlTopicGroup.DataSource = objData;
-            this.ddlTopicGroup.DataTextField = "Name";
-            this.ddlTopicGroup.DataValueField = "Id";
-            this.ddlTopicGroup.DataBind();
-        }
+
+        this.ddlTopicGroup.DataSource = objData;
+        this.ddlTopicGroup.DataTextField = "Name";
+        this.ddlTopicGroup.DataValueField = "Id";
+        this.ddlTopicGroup.DataBind();
     }
     #endregion
 

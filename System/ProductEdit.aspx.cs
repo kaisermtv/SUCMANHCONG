@@ -10,6 +10,9 @@ using System.Web.UI.WebControls;
 public partial class ProductEdit : System.Web.UI.Page
 {
     #region declare objects
+    private DataProduct objProduct = new DataProduct();
+    private Partner objPartner = new Partner();
+
     private int itemId = 0;
     #endregion
 
@@ -58,22 +61,17 @@ public partial class ProductEdit : System.Web.UI.Page
     #region method getProduct
     public void getProduct()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblProduct WHERE Id = @Id";
-        Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objData = this.objProduct.getProductById(this.itemId);
+        if(objData.Rows.Count > 0)
         {
-            this.txtName.Text = Rd["Name"].ToString();
-            this.txtPrice.Text = Rd["Price"].ToString();
-            this.txtDiscount.Text = Rd["Discount"].ToString();
-            this.txtContent.Text = Rd["Content"].ToString();
-            this.txtImage.Text = Rd["Image"].ToString();
-            this.ddlProductGroup.SelectedValue = Rd["GroupId"].ToString();
-            this.ddlPartner.SelectedValue = Rd["PartnerId"].ToString();
-            if (Rd["State"].ToString() == "True")
+            this.txtName.Text = objData.Rows[0]["Name"].ToString();
+            this.txtPrice.Text = objData.Rows[0]["Price"].ToString();
+            this.txtDiscount.Text = objData.Rows[0]["Discount"].ToString();
+            this.txtContent.Text = objData.Rows[0]["Content"].ToString();
+            this.txtImage.Text = objData.Rows[0]["Image"].ToString();
+            this.ddlProductGroup.SelectedValue = objData.Rows[0]["GroupId"].ToString();
+            this.ddlPartner.SelectedValue = objData.Rows[0]["PartnerId"].ToString();
+            if (objData.Rows[0]["State"].ToString() == "True")
             {
                 this.ckbState.Checked = true;
             }
@@ -81,7 +79,7 @@ public partial class ProductEdit : System.Web.UI.Page
             {
                 this.ckbState.Checked = false;
             }
-            if (Rd["BestSale"].ToString() == "True")
+            if (objData.Rows[0]["BestSale"].ToString() == "True")
             {
                 this.ckbBestSale.Checked = true;
             }
@@ -89,7 +87,7 @@ public partial class ProductEdit : System.Web.UI.Page
             {
                 this.ckbBestSale.Checked = false;
             }
-            if (Rd["VIP"].ToString() == "True")
+            if (objData.Rows[0]["VIP"].ToString() == "True")
             {
                 this.ckbVIP.Checked = true;
             }
@@ -97,52 +95,33 @@ public partial class ProductEdit : System.Web.UI.Page
             {
                 this.ckbVIP.Checked = false;
             }
-            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Products/" + Rd["Image"].ToString() + "\">";
+            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Products/" + objData.Rows[0]["Image"].ToString() + "\">";
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 
     #region method getProductGroup
     public void getProductGroup()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblProductGroup";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        this.ddlProductGroup.DataSource = ds.Tables[0];
-        this.ddlProductGroup.DataTextField = "Name";
-        this.ddlProductGroup.DataValueField = "Id";
-        this.ddlProductGroup.DataBind();
-        sqlCon.Close();
-        sqlCon.Dispose();
+        DataTable objData = this.objProduct.getProductGroupIdUpperName();
+        if(objData.Rows.Count > 0)
+        {
+            this.ddlProductGroup.DataSource = objData;
+            this.ddlProductGroup.DataTextField = "Name";
+            this.ddlProductGroup.DataValueField = "Id";
+            this.ddlProductGroup.DataBind();
+        }
     }
     #endregion
 
     #region method getPartner
     public void getPartner()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblPartner";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        ds.Tables[0].Rows.Add(0,"Chọn cửa hàng");
-        this.ddlPartner.DataSource = ds.Tables[0];
+        DataTable objData = this.objPartner.getPartnerIdUpperName();
+        this.ddlPartner.DataSource = objData;
         this.ddlPartner.DataTextField = "Name";
         this.ddlPartner.DataValueField = "Id";
         this.ddlPartner.DataBind();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 

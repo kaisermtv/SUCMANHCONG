@@ -44,13 +44,12 @@ public partial class Store_Register : System.Web.UI.Page
     public void getLocation()
     {
         DataTable objDataLocation = this.objLocation.getIdAndUpperName();
-        if(objDataLocation.Rows.Count > 0)
-        {
-            this.ddlLocation.DataSource = objDataLocation;
-            this.ddlLocation.DataTextField = "Name";
-            this.ddlLocation.DataValueField = "Id";
-            this.ddlLocation.DataBind();
-        }
+
+        this.ddlLocation.DataSource = objDataLocation;
+        this.ddlLocation.DataTextField = "Name";
+        this.ddlLocation.DataValueField = "Id";
+        this.ddlLocation.DataBind();
+
     }
     #endregion
 

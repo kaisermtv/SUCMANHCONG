@@ -626,6 +626,34 @@ public class Partner
 
     #endregion
 
+    #region Method getPartnerIdUpperName
+    public DataTable getPartnerIdUpperName()
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblPartner";
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
 
     #region method getPartnerIdByAccount
     public int getPartnerIdByAccount(string Account)

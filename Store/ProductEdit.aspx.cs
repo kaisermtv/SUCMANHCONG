@@ -111,13 +111,12 @@ public partial class Store_ProductEdit : System.Web.UI.Page
     public void getProductGroup()
     {
         DataTable objDataProductGroup = this.objProduct.getProductGroupIdUpperName();
-        if(objDataProductGroup.Rows.Count > 0)
-        {
-            this.ddlProductGroup.DataSource = objDataProductGroup;
-            this.ddlProductGroup.DataTextField = "Name";
-            this.ddlProductGroup.DataValueField = "Id";
-            this.ddlProductGroup.DataBind();
-        }
+        
+        this.ddlProductGroup.DataSource = objDataProductGroup;
+        this.ddlProductGroup.DataTextField = "Name";
+        this.ddlProductGroup.DataValueField = "Id";
+        this.ddlProductGroup.DataBind();
+
     }
     #endregion
 
@@ -125,13 +124,11 @@ public partial class Store_ProductEdit : System.Web.UI.Page
     public void getPartner()
     {
         DataTable objDataPartner = this.objPartner.getPartnerInforByAccount(Session["ACCOUNT"].ToString());
-        if(objDataPartner.Rows.Count > 0)
-        {
-            this.ddlPartner.DataSource = objDataPartner;
-            this.ddlPartner.DataTextField = "Name";
-            this.ddlPartner.DataValueField = "Id";
-            this.ddlPartner.DataBind();
-        }
+
+        this.ddlPartner.DataSource = objDataPartner;
+        this.ddlPartner.DataTextField = "Name";
+        this.ddlPartner.DataValueField = "Id";
+        this.ddlPartner.DataBind();
     }
     #endregion
 
@@ -139,13 +136,11 @@ public partial class Store_ProductEdit : System.Web.UI.Page
     public void getBrand()
     {
         DataTable objDataBrand = this.objBrand.getBrandIdName();
-        if(objDataBrand.Rows.Count > 0)
-        {
-            this.ddlBrand.DataSource = objDataBrand;
-            this.ddlBrand.DataTextField = "Name";
-            this.ddlBrand.DataValueField = "Id";
-            this.ddlBrand.DataBind();
-        }
+
+        this.ddlBrand.DataSource = objDataBrand;
+        this.ddlBrand.DataTextField = "Name";
+        this.ddlBrand.DataValueField = "Id";
+        this.ddlBrand.DataBind();
 
     }
     #endregion
