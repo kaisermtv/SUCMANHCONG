@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 public partial class ProductGroupEdit : System.Web.UI.Page
 {
     #region declare objects
+    private DataProduct objProduct = new DataProduct();
     private int itemId = 0;
     #endregion
 
@@ -34,17 +35,12 @@ public partial class ProductGroupEdit : System.Web.UI.Page
     #region method getProductGroup
     public void getProductGroup()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblProductGroup WHERE Id = @Id";
-        Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objData = this.objProduct.getProductGroupById(this.itemId);
+        if(objData.Rows.Count > 0)
         {
-            this.txtDescription.Text = Rd["Description"].ToString();
-            this.txtName.Text = Rd["Name"].ToString();
-            if (Rd["State"].ToString() == "True")
+            this.txtDescription.Text = objData.Rows[0]["Description"].ToString();
+            this.txtName.Text = objData.Rows[0]["Name"].ToString();
+            if (objData.Rows[0]["State"].ToString() == "True")
             {
                 this.ckbState.Checked = true;
             }
@@ -53,50 +49,23 @@ public partial class ProductGroupEdit : System.Web.UI.Page
                 this.ckbState.Checked = false;
             }
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
-    }
-    #endregion
-
-    #region method setProductGroup
-    public void setProductGroup()
-    {
-        try
-        {
-            if (this.txtName.Text.Trim() == "")
-            {
-                this.txtName.Focus();
-                return;
-            }
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            string sqlQuery = "";
-            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblProductGroup WHERE Id = @Id)";
-            sqlQuery += "BEGIN INSERT INTO tblProductGroup(Name,Description,State) VALUES(@Name,@Description,@State) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblProductGroup SET Name = @Name, Description = @Description, State = @State WHERE Id = @Id END";
-            Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-            Cmd.Parameters.Add("Description", SqlDbType.NVarChar).Value = this.txtDescription.Text;
-            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = this.txtName.Text;
-            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = this.ckbState.Checked;
-            Cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
-            Response.Redirect("ProductGroup.aspx");
-        }
-        catch
-        {
-
-        }
     }
     #endregion
 
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        this.setProductGroup();
+        if (this.txtName.Text.Trim() == "")
+        {
+            this.txtName.Focus();
+            return;
+        }
+
+        int ret = this.objProduct.setProductGroup(this.itemId, this.txtDescription.Text, this.txtName.Text, this.ckbState.Checked);
+        if(ret > 0)
+        {
+            Response.Redirect("ProductGroup.aspx");
+        }
     } 
     #endregion
 

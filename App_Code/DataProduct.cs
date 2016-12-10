@@ -264,5 +264,62 @@ public class DataProduct
     }
     #endregion
 
+    #region method getProductGroupById
+    public DataTable getProductGroupById(int Id)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblProductGroup WHERE Id = @Id";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+        
+    }
+    #endregion
+
+    #region method setProductGroup
+    public int setProductGroup(int Id, string Descriptionm, string Name, bool State)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            string sqlQuery = "";
+            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblProductGroup WHERE Id = @Id)";
+            sqlQuery += "BEGIN INSERT INTO tblProductGroup(Name,Description,State) VALUES(@Name,@Description,@State) END ";
+            sqlQuery += "ELSE BEGIN UPDATE tblProductGroup SET Name = @Name, Description = @Description, State = @State WHERE Id = @Id END";
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            Cmd.Parameters.Add("Description", SqlDbType.NVarChar).Value = Descriptionm;
+            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
+            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;
+            int ret = Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+    #endregion
+
     #endregion
 }
