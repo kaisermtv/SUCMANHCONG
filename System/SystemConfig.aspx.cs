@@ -10,6 +10,8 @@ using System.Web.UI.WebControls;
 public partial class SystemConfig : System.Web.UI.Page
 {
     #region declare objects
+    private DataSystemCongif objSystemCongif = new DataSystemCongif();
+
     private int itemId = 0;
     #endregion
 
@@ -34,68 +36,63 @@ public partial class SystemConfig : System.Web.UI.Page
     #region method setCustomer
     public void setCustomer()
     {
-        try
+        this.lblMsg.Text = "";
+        if (this.txtPartnerAccount.Text.Trim() == "")
         {
-            this.lblMsg.Text = "";
-            if (this.txtPartnerAccount.Text.Trim() == "")
-            {
-                this.lblMsg.Text = "Bạn chưa nhập ký hiệu thẻ đối tác";
-                return;
-            }
-            if (this.txtCustomerAccount.Text.Trim() == "")
-            {
-                this.lblMsg.Text = "Bạn chưa nhập ký hiệu thẻ khách hàng hạng đồng";
-                return;
-            }
-            if (this.txtCustomerAccount1.Text.Trim() == "")
-            {
-                this.lblMsg.Text = "Bạn chưa nhập ký hiệu thẻ khách hàng hạng bạc";
-                return;
-            }
-            if (this.txtCustomerAccount2.Text.Trim() == "")
-            {
-                this.lblMsg.Text = "Bạn chưa nhập ký hiệu thẻ khách hàng hạng vàng";
-                return;
-            }
-            if (this.txtMemberAccount.Text.Trim() == "")
-            {
-                this.lblMsg.Text = "Bạn chưa nhập ký hiệu thẻ thành viên";
-                return;
-            }
-            if (this.txtPartnerDiscount.Text.Trim() == "")
-            {
-                this.lblMsg.Text = "Bạn chưa nhập mức giảm giá của đối tác";
-                return;
-            }
-            if (this.txtCustomerDiscount.Text.Trim() == "")
-            {
-                this.lblMsg.Text = "Bạn chưa nhập mức giảm giá thành viên";
-                return;
-            }
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            string sqlQuery = "";
-            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblSystemCongif WHERE Id = @Id)";
-            sqlQuery += "BEGIN INSERT INTO tblSystemCongif(PartnerAccount,CustomerAccount,CustomerAccount1,CustomerAccount2,MemberAccount,PartnerDiscount,CustomerDiscount) VALUES(@PartnerAccount,@CustomerAccount,@CustomerAccount1, @CustomerAccount2, @MemberAccount,@PartnerDiscount,@CustomerDiscount) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblSystemCongif SET PartnerAccount = @PartnerAccount,CustomerAccount = @CustomerAccount,CustomerAccount1 = @CustomerAccount1,CustomerAccount2 = @CustomerAccount2,MemberAccount = @MemberAccount,PartnerDiscount = @PartnerDiscount,CustomerDiscount = @CustomerDiscount WHERE Id = @Id END";
-            Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = 1;
-            Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = this.txtPartnerAccount.Text;
-            Cmd.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = this.txtCustomerAccount.Text;
-            Cmd.Parameters.Add("CustomerAccount1", SqlDbType.NVarChar).Value = this.txtCustomerAccount1.Text;
-            Cmd.Parameters.Add("CustomerAccount2", SqlDbType.NVarChar).Value = this.txtCustomerAccount2.Text;
-            Cmd.Parameters.Add("MemberAccount", SqlDbType.NVarChar).Value = this.txtMemberAccount.Text;
-            Cmd.Parameters.Add("PartnerDiscount", SqlDbType.Float).Value = this.txtPartnerDiscount.Text;
-            Cmd.Parameters.Add("CustomerDiscount", SqlDbType.Float).Value = this.txtCustomerDiscount.Text;
-            Cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
-            this.lblMsg.Text = "Lưu dữ thiệu thành công !";
+            this.lblMsg.Text = "Bạn chưa nhập ký hiệu thẻ đối tác";
+            return;
         }
-        catch
+        if (this.txtCustomerAccount.Text.Trim() == "")
         {
+            this.lblMsg.Text = "Bạn chưa nhập ký hiệu thẻ khách hàng hạng đồng";
+            return;
+        }
+        if (this.txtCustomerAccount1.Text.Trim() == "")
+        {
+            this.lblMsg.Text = "Bạn chưa nhập ký hiệu thẻ khách hàng hạng bạc";
+            return;
+        }
+        if (this.txtCustomerAccount2.Text.Trim() == "")
+        {
+            this.lblMsg.Text = "Bạn chưa nhập ký hiệu thẻ khách hàng hạng vàng";
+            return;
+        }
+        if (this.txtMemberAccount.Text.Trim() == "")
+        {
+            this.lblMsg.Text = "Bạn chưa nhập ký hiệu thẻ thành viên";
+            return;
+        }
+        if (this.txtPartnerDiscount.Text.Trim() == "")
+        {
+            this.lblMsg.Text = "Bạn chưa nhập mức giảm giá của đối tác";
+            return;
+        }
+        if (this.txtCustomerDiscount.Text.Trim() == "")
+        {
+            this.lblMsg.Text = "Bạn chưa nhập mức giảm giá thành viên";
+            return;
+        }
 
+        float PartnerDiscount = 0;
+        try{
+            PartnerDiscount = float.Parse(this.txtPartnerDiscount.Text);
+        }catch{
+            this.lblMsg.Text = "Bạn nhập sai định dạng mức giảm giá của đối tác";
+            return;
+        }
+
+        float CustomerDiscount = 0;
+        try{
+            CustomerDiscount = float.Parse(this.txtPartnerDiscount.Text);
+        }catch{
+            this.lblMsg.Text = "Bạn nhập sai định dạng mức giảm giá thành viên";
+            return;
+        }
+
+        int ret = this.objSystemCongif.setSystemCongif(1, this.txtPartnerAccount.Text, this.txtCustomerAccount.Text, this.txtCustomerAccount1.Text, this.txtCustomerAccount2.Text, this.txtMemberAccount.Text, PartnerDiscount, CustomerDiscount);
+        if(ret > 0)
+        {
+            this.lblMsg.Text = "Lưu dữ thiệu thành công !";
         }
     }
     #endregion
@@ -103,25 +100,17 @@ public partial class SystemConfig : System.Web.UI.Page
     #region method getCustomer
     public void getCustomer()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblSystemCongif WHERE Id = @Id";
-        Cmd.Parameters.Add("Id", SqlDbType.Int).Value = 1;
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objData = this.objSystemCongif.getCustomerById(1);
+        if(objData.Rows.Count > 0)
         {
-            this.txtPartnerAccount.Text = Rd["PartnerAccount"].ToString();
-            this.txtCustomerAccount.Text = Rd["CustomerAccount"].ToString();
-            this.txtCustomerAccount1.Text = Rd["CustomerAccount1"].ToString();
-            this.txtCustomerAccount2.Text = Rd["CustomerAccount2"].ToString();
-            this.txtMemberAccount.Text = Rd["MemberAccount"].ToString();
-            this.txtPartnerDiscount.Text = Rd["PartnerDiscount"].ToString();
-            this.txtCustomerDiscount.Text = Rd["CustomerDiscount"].ToString();
+            this.txtPartnerAccount.Text = objData.Rows[0]["PartnerAccount"].ToString();
+            this.txtCustomerAccount.Text = objData.Rows[0]["CustomerAccount"].ToString();
+            this.txtCustomerAccount1.Text = objData.Rows[0]["CustomerAccount1"].ToString();
+            this.txtCustomerAccount2.Text = objData.Rows[0]["CustomerAccount2"].ToString();
+            this.txtMemberAccount.Text = objData.Rows[0]["MemberAccount"].ToString();
+            this.txtPartnerDiscount.Text = objData.Rows[0]["PartnerDiscount"].ToString();
+            this.txtCustomerDiscount.Text = objData.Rows[0]["CustomerDiscount"].ToString();
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 
