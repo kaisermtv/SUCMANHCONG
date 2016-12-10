@@ -10,6 +10,8 @@ using System.Web.UI.WebControls;
 public partial class TopicEdit : System.Web.UI.Page
 {
     #region declare objects
+    DataTopic objTopic = new DataTopic();
+
     private int itemId = 0;
     #endregion
 
@@ -57,20 +59,15 @@ public partial class TopicEdit : System.Web.UI.Page
     #region method getTopic
     public void getTopic()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblTopic WHERE Id = @Id";
-        Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objData = this.objTopic.getTopicById(this.itemId);
+        if(objData.Rows.Count > 0)
         {
-            this.txtTitle.Text = Rd["Title"].ToString();
-            this.txtShortContent.Text = Rd["ShortContent"].ToString();
-            this.txtContent.Text = Rd["Content"].ToString();
-            this.txtImage.Text = Rd["Image"].ToString();
-            this.ddlTopicGroup.SelectedValue = Rd["GroupId"].ToString();
-            if (Rd["State"].ToString() == "True")
+            this.txtTitle.Text = objData.Rows[0]["Title"].ToString();
+            this.txtShortContent.Text = objData.Rows[0]["ShortContent"].ToString();
+            this.txtContent.Text = objData.Rows[0]["Content"].ToString();
+            this.txtImage.Text = objData.Rows[0]["Image"].ToString();
+            this.ddlTopicGroup.SelectedValue = objData.Rows[0]["GroupId"].ToString();
+            if (objData.Rows[0]["State"].ToString() == "True")
             {
                 this.ckbState.Checked = true;
             }
@@ -78,67 +75,21 @@ public partial class TopicEdit : System.Web.UI.Page
             {
                 this.ckbState.Checked = false;
             }
-            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/" + Rd["Image"].ToString() + "\">";
+            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/" + objData.Rows[0]["Image"].ToString() + "\">";
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 
     #region method getTopicGroup
     public void getTopicGroup()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblTopicGroup";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        this.ddlTopicGroup.DataSource = ds.Tables[0];
-        this.ddlTopicGroup.DataTextField = "Name";
-        this.ddlTopicGroup.DataValueField = "Id";
-        this.ddlTopicGroup.DataBind();
-        sqlCon.Close();
-        sqlCon.Dispose();
-    }
-    #endregion
-
-    #region method setTopic
-    public void setTopic()
-    {
-        try
+        DataTable objData = this.objTopic.getTopicGroup();
+        if(objData.Rows.Count > 0)
         {
-            if (upImage1.PostedFile.FileName != "")
-                if (!saveImage1())
-                {
-                    return;
-                }
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            string sqlQuery = "";
-            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblTopic WHERE Id = @Id)";
-            sqlQuery += "BEGIN INSERT INTO tblTopic(Title,ShortContent,Content,Image,GroupId,DayCreate) VALUES(@Title,@ShortContent,@Content,@Image,@GroupId,getdate()) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblTopic SET Title = @Title, ShortContent = @ShortContent, Content = @Content, Image = @Image, State = @State, GroupId = @GroupId WHERE Id = @Id END";
-            Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-            Cmd.Parameters.Add("Title", SqlDbType.NVarChar).Value = this.txtTitle.Text;
-            Cmd.Parameters.Add("ShortContent", SqlDbType.NVarChar).Value = this.txtShortContent.Text;
-            Cmd.Parameters.Add("Content", SqlDbType.NText).Value = this.txtContent.Text;
-            Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = this.txtImage.Text;
-            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = this.ckbState.Checked;
-            Cmd.Parameters.Add("GroupId", SqlDbType.Int).Value = this.ddlTopicGroup.SelectedValue.ToString();
-            Cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
-            Response.Redirect("Topic.aspx");
-        }
-        catch
-        {
-
+            this.ddlTopicGroup.DataSource = objData;
+            this.ddlTopicGroup.DataTextField = "Name";
+            this.ddlTopicGroup.DataValueField = "Id";
+            this.ddlTopicGroup.DataBind();
         }
     }
     #endregion
@@ -146,7 +97,22 @@ public partial class TopicEdit : System.Web.UI.Page
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        this.setTopic();
+        if (upImage1.PostedFile.FileName != "")
+            if (!saveImage1())
+            {
+                return;
+            }
+
+        int GroupId = 0;
+        try{
+            GroupId = Int32.Parse(this.ddlTopicGroup.SelectedValue.ToString());
+            int ret = this.objTopic.setTopic(this.itemId,this.txtTitle.Text,this.txtShortContent.Text,this.txtContent.Text,this.txtImage.Text,this.ckbState.Checked,GroupId);
+            if(ret > 0)
+            {
+                Response.Redirect("Topic.aspx");
+            }
+        }catch{}
+
     } 
     #endregion
 
