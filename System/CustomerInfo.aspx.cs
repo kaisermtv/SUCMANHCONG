@@ -109,7 +109,7 @@ public partial class System_CustomerInfo : System.Web.UI.Page
         try{
             int id = Int32.Parse(PartnerId);
 
-            return this.objProducts.getProductCountById(id);
+            return this.objProducts.getCountProductById(id);
         } catch {
             return 0;
         }
