@@ -9,6 +9,10 @@ using System.Web.UI.WebControls;
 
 public partial class System_Partner : System.Web.UI.Page
 {
+    #region declare objects
+    private Partner objPartner = new Partner();
+    #endregion
+
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,33 +31,25 @@ public partial class System_Partner : System.Web.UI.Page
     #region method getPartner
     public DataTable getPartner()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT 0 AS TT, '' AS State1, * FROM tblPartner";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        sqlCon.Close();
-        sqlCon.Dispose();
-        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        DataTable objData = this.objPartner.getPartner();
+
+        for (int i = 0; i < objData.Rows.Count; i++)
         {
-            ds.Tables[0].Rows[i]["TT"] = (i + 1);
-            if (ds.Tables[0].Rows[i]["State"].ToString().ToUpper() == "TRUE")
+            objData.Rows[i]["TT"] = (i + 1);
+            if (objData.Rows[i]["State"].ToString().ToUpper() == "TRUE")
             {
-                ds.Tables[0].Rows[i]["State1"] = "<B>x</B>";
+                objData.Rows[i]["State1"] = "<B>x</B>";
             }
             else
             {
-                ds.Tables[0].Rows[i]["State1"] = "-:-";
+                objData.Rows[i]["State1"] = "-:-";
             }
         }
-        if (ds.Tables[0].Rows.Count < 120)
+        if (objData.Rows.Count < 120)
         {
             this.tblABC.Visible = false;
         }
-        return ds.Tables[0];
+        return objData;
     }
     #endregion
 }
