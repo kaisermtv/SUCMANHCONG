@@ -52,11 +52,11 @@ public partial class System_PartnerInfo : System.Web.UI.Page
     } 
     #endregion
 
-    #region method getPartner
+    #region method getPartner new 
     public void getPartner()
     {
         DataTable objData = this.objPartner.getPartnerById(this.itemId);
-        if(objData.Rows.Count > 0)
+        if (objData.Rows.Count > 0)
         {
             this.lblName.Text = objData.Rows[0]["Name"].ToString();
             this.lblAddress.Text = objData.Rows[0]["Address"].ToString();
@@ -109,78 +109,30 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             TVSFunc objFunc = new TVSFunc();
             string PartnerAccount = "";
             PartnerAccount = objFunc.getPartnerAccount();
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "UPDATE tblPartner SET Account = @Account, DayCreate = getdate(), AccountPass = '123123' WHERE Id = @Id";
-            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = PartnerAccount + this.itemId.ToString("0000");
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-            Cmd.ExecuteNonQuery();
+
+            Partner pn = new Partner();
+            if (pn.updatePartner(itemId, PartnerAccount)<0) return;
+
             this.txtAccount.Text = PartnerAccount + this.itemId.ToString("0000");
             this.btnCreate.Enabled = false;
-            sqlCon.Close();
-            sqlCon.Dispose();
+          
         }
         catch { }
     } 
     #endregion
 
-
-
     #region method getProductBillCountById
     public int getProductBillCountById(string PartnerId)
     {
-        int CountItem = 0;
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblPartnerCustomer WHERE PartnerId = @PartnerId";
-            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            CountItem = ds.Tables[0].Rows.Count;
-        }
-        catch
-        {
+        return  objPartner.getProductBillCountById(PartnerId);
 
-        }
-        return CountItem;
     }
     #endregion
 
     #region method getProductDoanhSoById
     public double getProductDoanhSoById(string PartnerId)
     {
-        double TotalMoney = 0;
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT SUM(Price*Number) AS TotalMoney FROM tblPartnerCustomer WHERE PartnerId = @PartnerId";
-            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                TotalMoney = double.Parse(ds.Tables[0].Rows[0][0].ToString());
-            }
-        }
-        catch
-        {
-
-        }
-        return TotalMoney;
+        return objPartner.getProductDoanhSoById(PartnerId);
     }
     #endregion
 
@@ -248,18 +200,12 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             TVSFunc objFunc = new TVSFunc();
             string CustomerAccount = "";
             CustomerAccount = objFunc.getCustomerAccount("CustomerAccount");
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "UPDATE tblPartner SET DiscountTotal = @DiscountTotal, Discount = @Discount, DiscountAdv = @DiscountAdv, DiscountCard = @DiscountCard WHERE Id = @Id";
-            Cmd.Parameters.Add("DiscountTotal", SqlDbType.Float).Value = this.txtDiscountTotal.Text;
-            Cmd.Parameters.Add("Discount", SqlDbType.Float).Value = this.txtDiscount.Text;
-            Cmd.Parameters.Add("DiscountAdv", SqlDbType.Float).Value = this.txtDiscountAdv.Text;
-            Cmd.Parameters.Add("DiscountCard", SqlDbType.Float).Value = this.txtDiscountCard.Text;
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-            Cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
+
+            if  (objPartner.updatePartner(this.itemId,
+                  double.Parse(this.txtDiscountTotal.Text),
+                  double.Parse(this.txtDiscount.Text),
+                  double.Parse(this.txtDiscountAdv.Text),
+                  double.Parse(this.txtDiscountCard.Text))>0)
             this.lblMsg.Text = "Thông tin đã được cập nhật vào hệ thống.";
         }
         catch(Exception Ex)

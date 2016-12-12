@@ -6,11 +6,13 @@
 
         <div class="row" style="margin-top: 30px;">
             <div class="col-md-4">
+
                 <h3 style="margin-top: 0px;">Đăng ký hồ sơ cửa hàng</h3>
                 <p style="text-align: justify;">
                     <b>Sucmanhcong.com</b> là mạng cộng đồng, nơi mà những cá nhân có, tổ chức có khả năng, nguyện vọng hợp tác kinh doanh tìm kiếm cơ hội kinh doanh và tiêu dùng thông minh, cá nhân đó cần đăng ký thông tin và tuân thủ các quy định của website này!
                 </p>
                 <br />
+
                 <h4>Các bước để trở thành thành viên</h4>
                 <br />
                 <p><b>1.</b> Đăng ký thông tin thành viên theo mẫu bên cạnh</p>
@@ -21,6 +23,7 @@
                 <br />
                 <p><b>4.</b> Công bố hồ sơ trên website Sucmanhcong.com</p>
             </div>
+
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">THÔNG TIN CỬA HÀNG</div>

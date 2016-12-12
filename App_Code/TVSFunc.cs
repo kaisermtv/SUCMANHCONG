@@ -114,6 +114,8 @@ public class TVSFunc
     }
     #endregion
 
-     //IF NOT EXISTS (SELECT [column_name] FROM information_schema.columns WHERE [table_name] = 'tblBillDetail' and column_name = 'StockId')
+    
+
+    //IF NOT EXISTS (SELECT [column_name] FROM information_schema.columns WHERE [table_name] = 'tblBillDetail' and column_name = 'StockId')
      //BEGIN ALTER TABLE tblBillDetail ADD StockId nvarchar(50) DEFAULT('') END
 }

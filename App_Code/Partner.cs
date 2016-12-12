@@ -103,7 +103,6 @@ public class Partner
     }
     #endregion
 
-    
     #region Method UpdateOrInsertPartner
     //*
     public int UpdateOrInsertPartner(int Id, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, bool BestSale, bool VIP, bool State, float Discount, string Content, string Image)
@@ -143,7 +142,6 @@ public class Partner
     }
     // */
     #endregion
-    
 
     #region PartnerBillDetail
 
@@ -1009,6 +1007,113 @@ public class Partner
     }
     #endregion
 
+    #endregion
+
+    #region menthod getTVSFunc
+    public int  updatePartner(int id, string partnerAcc)
+    {
+        try
+        { 
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        sqlCon.Open();
+        SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = "UPDATE tblPartner SET Account = @Account, DayCreate = getdate(), AccountPass = '123123' WHERE Id = @Id";
+        Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = partnerAcc + id.ToString("0000");
+        Cmd.Parameters.Add("Id", SqlDbType.Int).Value = id;
+        Cmd.ExecuteNonQuery();
+            }
+        catch
+        {
+            return -1;
+        }
+        return 1;
+    }
+    #endregion
+
+    #region method getProductBillCountById
+    public int getProductBillCountById(string PartnerId)
+    {
+        int CountItem = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblPartnerCustomer WHERE PartnerId = @PartnerId";
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            CountItem = ds.Tables[0].Rows.Count;
+        }
+        catch
+        {
+
+        }
+        return CountItem;
+    }
+    #endregion
+
+
+    #region method getProductDoanhSoById
+    public double getProductDoanhSoById(string PartnerId)
+    {
+        double TotalMoney = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT SUM(Price*Number) AS TotalMoney FROM tblPartnerCustomer WHERE PartnerId = @PartnerId";
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                TotalMoney = double.Parse(ds.Tables[0].Rows[0][0].ToString());
+            }
+        }
+        catch
+        {
+
+        }
+        return TotalMoney;
+    }
+    #endregion
+
+    #region method updatePartner
+    public int updatePartner(int Id, double discountTotal, double discount, double discountAdv, double discountCard)
+    {
+        
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "UPDATE tblPartner SET DiscountTotal = @DiscountTotal, Discount = @Discount, DiscountAdv = @DiscountAdv, DiscountCard = @DiscountCard WHERE Id = @Id";
+            Cmd.Parameters.Add("DiscountTotal", SqlDbType.Float).Value = discountTotal;
+            Cmd.Parameters.Add("Discount", SqlDbType.Float).Value = discount;
+            Cmd.Parameters.Add("DiscountAdv", SqlDbType.Float).Value = discountAdv;
+            Cmd.Parameters.Add("DiscountCard", SqlDbType.Float).Value = discountCard;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();    
+  
+        }
+        catch
+        {
+            throw new Exception("Cannot Update " + "Error");
+        }
+        return 1;
+    }
     #endregion
 
 }

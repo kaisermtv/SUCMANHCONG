@@ -8,6 +8,9 @@
         <div style="float: left;">&nbsp;&nbsp;Cửa hàng - đối tác</div>
         <div style="float: right;"><a href="PartnerEdit.aspx"><span style="border: solid 1px #f8fbfc; padding: 5px; font-size: 11px; font-weight: bold; padding-left: 20px; padding-right: 20px;">Thêm mới</span></a>&nbsp;</div>
     </div>
+
+    
+
     <table cellpadding="0" cellspacing="0" border="0" style="margin: 0px; width: 99.9%; height: 30px;">
         <tr>
             <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #262626; background-color: #FFF; width: 4%;">
