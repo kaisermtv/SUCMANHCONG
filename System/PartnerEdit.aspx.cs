@@ -10,6 +10,9 @@ using System.Web.UI.WebControls;
 public partial class PartnerEdit : System.Web.UI.Page
 {
     #region declare objects
+    private Partner objPartner = new Partner();
+    private DataBusiness objBusiness = new DataBusiness();
+
     private int itemId = 0;
     #endregion
 
@@ -53,23 +56,18 @@ public partial class PartnerEdit : System.Web.UI.Page
     #region method getPartner
     public void getPartner()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblPartner WHERE Id = @Id";
-        Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objData = this.objPartner.getPartnerById(this.itemId);
+        if (objData.Rows.Count > 0)
         {
-            this.txtName.Text = Rd["Name"].ToString();
-            this.txtAddress.Text = Rd["Address"].ToString();
-            this.txtManager.Text = Rd["Manager"].ToString();
-            this.txtPhone.Text = Rd["Phone"].ToString();
-            this.txtTaxCode.Text = Rd["TaxCode"].ToString();
-            this.ddlBusiness.SelectedValue = Rd["Business"].ToString();
-            this.txtContent.Text = Rd["Content"].ToString();
-            this.txtImage.Text = Rd["Image"].ToString();
-            if (Rd["BestSale"].ToString() == "True")
+            this.txtName.Text = objData.Rows[0]["Name"].ToString();
+            this.txtAddress.Text = objData.Rows[0]["Address"].ToString();
+            this.txtManager.Text = objData.Rows[0]["Manager"].ToString();
+            this.txtPhone.Text = objData.Rows[0]["Phone"].ToString();
+            this.txtTaxCode.Text = objData.Rows[0]["TaxCode"].ToString();
+            this.ddlBusiness.SelectedValue = objData.Rows[0]["Business"].ToString();
+            this.txtContent.Text = objData.Rows[0]["Content"].ToString();
+            this.txtImage.Text = objData.Rows[0]["Image"].ToString();
+            if (objData.Rows[0]["BestSale"].ToString() == "True")
             {
                 this.ckbBestSale.Checked = true;
             }
@@ -77,7 +75,7 @@ public partial class PartnerEdit : System.Web.UI.Page
             {
                 this.ckbBestSale.Checked = false;
             }
-            if (Rd["VIP"].ToString() == "True")
+            if (objData.Rows[0]["VIP"].ToString() == "True")
             {
                 this.ckbVIP.Checked = true;
             }
@@ -85,7 +83,7 @@ public partial class PartnerEdit : System.Web.UI.Page
             {
                 this.ckbVIP.Checked = false;
             }
-            if (Rd["State"].ToString() == "True")
+            if (objData.Rows[0]["State"].ToString() == "True")
             {
                 this.ckbState.Checked = true;
             }
@@ -93,12 +91,9 @@ public partial class PartnerEdit : System.Web.UI.Page
             {
                 this.ckbState.Checked = false;
             }
-            this.txtDiscount.Text = Rd["Discount"].ToString();
-            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Partner/" + Rd["Image"].ToString() + "\">";
+            this.txtDiscount.Text = objData.Rows[0]["Discount"].ToString();
+            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Partner/" + objData.Rows[0]["Image"].ToString() + "\">";
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 
@@ -112,30 +107,21 @@ public partial class PartnerEdit : System.Web.UI.Page
                 {
                     return;
                 }
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            string sqlQuery = "IF NOT EXISTS (SELECT * FROM tblPartner WHERE Id = @Id)";
-            sqlQuery += "BEGIN INSERT INTO tblPartner(Name,Address,Phone,Manager,Business,TaxCode,Content,Image,BestSale,VIP,State,Discount) VALUES(@Name,@Address,@Phone,@Manager,@Business,@TaxCode,@Content,@Image,@BestSale,@VIP,@State,@Discount) END ";
-            sqlQuery += "UPDATE tblPartner SET Name = @Name, Address = @Address, Phone = @Phone, Manager = @Manager, Business = @Business, TaxCode = @TaxCode, Content = @Content, Image = @Image, State = @State, BestSale = @BestSale, VIP = @VIP, Discount = @Discount WHERE Id = @Id";
-            Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = this.txtName.Text;
-            Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = this.txtAddress.Text;
-            Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = this.txtPhone.Text;
-            Cmd.Parameters.Add("Manager", SqlDbType.NVarChar).Value = this.txtManager.Text;
-            Cmd.Parameters.Add("TaxCode", SqlDbType.NVarChar).Value = this.txtTaxCode.Text;
-            Cmd.Parameters.Add("Business", SqlDbType.Int).Value = this.ddlBusiness.SelectedValue.ToString();
-            Cmd.Parameters.Add("Content", SqlDbType.NText).Value = this.txtContent.Text;
-            Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = this.txtImage.Text;
-            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = this.ckbBestSale.Checked;
-            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = this.ckbVIP.Checked;
-            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = this.ckbState.Checked;
-            Cmd.Parameters.Add("Discount", SqlDbType.Float).Value = this.txtDiscount.Text;
-            Cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
-            Response.Redirect("Partner.aspx");
+            int Business = 0;
+            try{
+                Business = Int32.Parse(this.ddlBusiness.SelectedValue.ToString());
+            } catch{}
+
+            float Discount = 0;
+            try{
+                Discount = Int32.Parse(this.txtDiscount.Text);
+            } catch{}
+
+            int ret = this.objPartner.UpdateOrInsertPartner(this.itemId, this.txtName.Text, this.txtAddress.Text, this.txtPhone.Text, this.txtManager.Text, this.txtTaxCode.Text, Business, this.ckbBestSale.Checked, this.ckbVIP.Checked, this.ckbState.Checked, Discount, this.txtContent.Text, this.txtImage.Text);
+            if (ret > 0)
+            {
+                Response.Redirect("Partner.aspx");
+            }
         }
         catch
         {
@@ -193,20 +179,12 @@ public partial class PartnerEdit : System.Web.UI.Page
     #region method getBusiness
     public void getBusiness()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT Id, UPPER(Name) AS Name FROM tblBusiness";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        this.ddlBusiness.DataSource = ds.Tables[0];
+        DataTable objData = this.objBusiness.getBusiness();
+
+        this.ddlBusiness.DataSource = objData;
         this.ddlBusiness.DataTextField = "Name";
         this.ddlBusiness.DataValueField = "Id";
         this.ddlBusiness.DataBind();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 }

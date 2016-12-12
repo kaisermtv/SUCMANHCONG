@@ -105,39 +105,41 @@ public class Partner
 
     
     #region Method UpdateOrInsertPartner
-    /*
-    public int UpdateOrInsertPartner(int Id, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, int LocationId)
+    //*
+    public int UpdateOrInsertPartner(int Id, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, bool BestSale, bool VIP, bool State, float Discount, string Content, string Image)
     {
-        int ret = 0;
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             string sqlQuery = "IF NOT EXISTS (SELECT * FROM tblPartner WHERE Id = @Id)";
-            sqlQuery += "BEGIN INSERT INTO tblPartner(Name,Address,Phone,Manager,Business,TaxCode,BestSale,VIP,State.LocationId) VALUES(@Name,@Address,@Phone,@Manager,@Business,@TaxCode,@BestSale,@VIP,@State,@LocationId) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblPartner SET Name = @Name, Address = @Address, Phone = @Phone, Manager = @Manager, Business = @Business, TaxCode = @TaxCode State = @State, BestSale = @BestSale, VIP = @VIP, LocationId = @LocationId WHERE Id = @Id END";
+            sqlQuery += "BEGIN INSERT INTO tblPartner(Name,Address,Phone,Manager,Business,TaxCode,Content,Image,BestSale,VIP,State,Discount) VALUES(@Name,@Address,@Phone,@Manager,@Business,@TaxCode,@Content,@Image,@BestSale,@VIP,@State,@Discount) END ";
+            sqlQuery += "UPDATE tblPartner SET Name = @Name, Address = @Address, Phone = @Phone, Manager = @Manager, Business = @Business, TaxCode = @TaxCode, Content = @Content, Image = @Image, State = @State, BestSale = @BestSale, VIP = @VIP, Discount = @Discount WHERE Id = @Id";
             Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = 0;
-            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = this.txtName.Value.ToString();
-            Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = this.txtAddress.Value.ToString();
-            Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = this.txtPhone.Value.ToString();
-            Cmd.Parameters.Add("Manager", SqlDbType.NVarChar).Value = this.txtManager.Value.ToString();
-            Cmd.Parameters.Add("TaxCode", SqlDbType.NVarChar).Value = this.txtTaxCode.Value.ToString();
-            Cmd.Parameters.Add("Business", SqlDbType.Int).Value = this.ddlBusiness.SelectedValue.ToString();
-            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = false;
-            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = false;
-            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = false;
-            Cmd.Parameters.Add("LocationId", SqlDbType.Int).Value = this.ddlLocation.SelectedValue.ToString();
-            Cmd.ExecuteNonQuery();
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
+            Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = Address;
+            Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = Phone;
+            Cmd.Parameters.Add("Manager", SqlDbType.NVarChar).Value = Manager;
+            Cmd.Parameters.Add("TaxCode", SqlDbType.NVarChar).Value = TaxCode;
+            Cmd.Parameters.Add("Business", SqlDbType.Int).Value = Business;
+            Cmd.Parameters.Add("Content", SqlDbType.NText).Value = Content;
+            Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = Image;
+            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = BestSale;
+            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = VIP;
+            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;
+            Cmd.Parameters.Add("Discount", SqlDbType.Float).Value = Discount;
+            int ret = Cmd.ExecuteNonQuery();
             sqlCon.Close();
             sqlCon.Dispose();
+            
+            return ret;
         }
         catch
         {
-
+            return 0;
         }
-        return ret;
     }
     // */
     #endregion
@@ -636,6 +638,34 @@ public class Partner
             SqlCommand Cmd = sqlCon.CreateCommand();
 
             Cmd.CommandText = "SELECT 0 AS TT, '' AS State1, * FROM tblPartner";
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+    }
+    #endregion
+
+    #region Method getPartnerById
+    public DataTable getPartnerById(int Id)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT * FROM tblPartner WHERE Id = @Id";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
 
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
