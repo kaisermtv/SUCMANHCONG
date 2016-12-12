@@ -10,8 +10,11 @@ using System.Web.UI.WebControls;
 public partial class System_PartnerInfo : System.Web.UI.Page
 {
     #region declare objects
-    private int itemId = 0;
     private TVSFunc objFunc = new TVSFunc();
+    private Partner objPartner = new Partner();
+    private DataProduct objProduct = new DataProduct();
+
+    private int itemId = 0;
     public int SoSanPham = 0, SoSanPhamVIP = 0, SoSanPhamBanChay = 0, SoGiaoDich = 0;
     public double TongDoanhSo = 0;
     #endregion
@@ -32,9 +35,9 @@ public partial class System_PartnerInfo : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             this.getPartner();
-            this.SoSanPham = this.getProductCountById(this.itemId.ToString());
-            this.SoSanPhamVIP = this.getProductVIPCountById(this.itemId.ToString());
-            this.SoSanPhamBanChay = this.getProductBestSaleCountById(this.itemId.ToString());
+            this.SoSanPham = this.objProduct.getCountProductById(this.itemId);
+            this.SoSanPhamVIP = this.objProduct.getProductVIPCountById(this.itemId);
+            this.SoSanPhamBanChay = this.objProduct.getProductBestSaleCountById(this.itemId);
             this.SoGiaoDich = this.getProductBillCountById(this.itemId.ToString());
             this.TongDoanhSo = this.getProductDoanhSoById(this.itemId.ToString());
             if (this.txtAccount.Text.Trim() == "")
@@ -52,21 +55,16 @@ public partial class System_PartnerInfo : System.Web.UI.Page
     #region method getPartner
     public void getPartner()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblPartner WHERE Id = @Id";
-        Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataTable objData = this.objPartner.getPartnerById(this.itemId);
+        if(objData.Rows.Count > 0)
         {
-            this.lblName.Text = Rd["Name"].ToString();
-            this.lblAddress.Text = Rd["Address"].ToString();
-            this.lblManager.Text = Rd["Manager"].ToString();
-            this.lblPhone.Text = Rd["Phone"].ToString();
-            this.lblTaxCode.Text = Rd["TaxCode"].ToString();
-            this.txtAccount.Text = Rd["Account"].ToString();
-            if (Rd["BestSale"].ToString() == "True")
+            this.lblName.Text = objData.Rows[0]["Name"].ToString();
+            this.lblAddress.Text = objData.Rows[0]["Address"].ToString();
+            this.lblManager.Text = objData.Rows[0]["Manager"].ToString();
+            this.lblPhone.Text = objData.Rows[0]["Phone"].ToString();
+            this.lblTaxCode.Text = objData.Rows[0]["TaxCode"].ToString();
+            this.txtAccount.Text = objData.Rows[0]["Account"].ToString();
+            if (objData.Rows[0]["BestSale"].ToString() == "True")
             {
                 this.ckbBestSale.Checked = true;
             }
@@ -74,7 +72,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             {
                 this.ckbBestSale.Checked = false;
             }
-            if (Rd["VIP"].ToString() == "True")
+            if (objData.Rows[0]["VIP"].ToString() == "True")
             {
                 this.ckbVIP.Checked = true;
             }
@@ -82,7 +80,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             {
                 this.ckbVIP.Checked = false;
             }
-            if (Rd["State"].ToString() == "True")
+            if (objData.Rows[0]["State"].ToString() == "True")
             {
                 this.ckbState.Checked = true;
             }
@@ -90,15 +88,12 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             {
                 this.ckbState.Checked = false;
             }
-            this.txtDiscountCard.Text = Rd["DiscountCard"].ToString();
-            this.txtDiscountTotal.Text = Rd["DiscountTotal"].ToString();
-            this.txtDiscount.Text = Rd["Discount"].ToString();
-            this.txtDiscountAdv.Text = Rd["DiscountAdv"].ToString();
-            lblImg1.Text = "<img width = \"263px\" height = \"123px\" src = \"/Images/Partner/" + Rd["Image"].ToString() + "\">";
+            this.txtDiscountCard.Text = objData.Rows[0]["DiscountCard"].ToString();
+            this.txtDiscountTotal.Text = objData.Rows[0]["DiscountTotal"].ToString();
+            this.txtDiscount.Text = objData.Rows[0]["Discount"].ToString();
+            this.txtDiscountAdv.Text = objData.Rows[0]["DiscountAdv"].ToString();
+            lblImg1.Text = "<img width = \"263px\" height = \"123px\" src = \"/Images/Partner/" + objData.Rows[0]["Image"].ToString() + "\">";
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
     }
     #endregion
 
@@ -130,86 +125,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
     } 
     #endregion
 
-    #region method getProductCountById
-    public int getProductCountById(string PartnerId)
-    {
-        int CountItem = 0;
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblProduct WHERE PartnerId = @PartnerId";
-            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            CountItem = ds.Tables[0].Rows.Count;
-        }
-        catch
-        {
 
-        }
-        return CountItem;
-    }
-    #endregion
-
-    #region method getProductVIPCountById
-    public int getProductVIPCountById(string PartnerId)
-    {
-        int CountItem = 0;
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblProduct WHERE PartnerId = @PartnerId AND VIP = 1";
-            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            CountItem = ds.Tables[0].Rows.Count;
-        }
-        catch
-        {
-
-        }
-        return CountItem;
-    }
-    #endregion
-
-    #region method getProductBestSaleCountById
-    public int getProductBestSaleCountById(string PartnerId)
-    {
-        int CountItem = 0;
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblProduct WHERE PartnerId = @PartnerId AND BestSale = 1";
-            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            CountItem = ds.Tables[0].Rows.Count;
-        }
-        catch
-        {
-
-        }
-        return CountItem;
-    }
-    #endregion
 
     #region method getProductBillCountById
     public int getProductBillCountById(string PartnerId)
