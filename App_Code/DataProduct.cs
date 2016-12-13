@@ -147,8 +147,8 @@ public class DataProduct
     }
     #endregion
 
-    #region Method getCountProductById
-    public int getCountProductById(int Id)
+    #region Method getProductByPartnerId
+    public DataTable getProductByPartnerId(int PartnerId)
     {
         try
         {
@@ -156,8 +156,41 @@ public class DataProduct
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT COUNT(*) FROM tblProduct WHERE Id = @Id";
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            Cmd.CommandText = "SELECT 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE PartnerId = @PartnerId";
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+    }
+    #endregion
+
+    #region Method getCountProductByPartnerId
+    public int getCountProductByPartnerId(int PartnerId)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT COUNT(*) FROM tblProduct WHERE PartnerId = @PartnerId";
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
 
             int ret = (int)Cmd.ExecuteScalar();
             sqlCon.Close();
@@ -172,8 +205,8 @@ public class DataProduct
     }
     #endregion
 
-    #region Method getProductVIPCountById
-    public int getProductVIPCountById(int Id)
+    #region Method getProductVIPCountByPartnerId
+    public int getProductVIPCountByPartnerId(int PartnerId)
     {
         try
         {
@@ -182,7 +215,7 @@ public class DataProduct
             SqlCommand Cmd = sqlCon.CreateCommand();
 
             Cmd.CommandText = "SELECT COUNT(*) FROM tblProduct WHERE PartnerId = @PartnerId AND VIP = 1";
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = PartnerId;
 
             int ret = (int)Cmd.ExecuteScalar();
             sqlCon.Close();
@@ -197,8 +230,8 @@ public class DataProduct
     }
     #endregion
 
-    #region Method getProductBestSaleCountById
-    public int getProductBestSaleCountById(int Id)
+    #region Method getProductBestSaleCountByPartnerId
+    public int getProductBestSaleCountByPartnerId(int PartnerId)
     {
         try
         {
@@ -207,7 +240,7 @@ public class DataProduct
             SqlCommand Cmd = sqlCon.CreateCommand();
 
             Cmd.CommandText = "SELECT COUNT(*) FROM tblProduct WHERE PartnerId = @PartnerId AND BestSale = 1";
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = PartnerId;
 
             int ret = (int)Cmd.ExecuteScalar();
             sqlCon.Close();

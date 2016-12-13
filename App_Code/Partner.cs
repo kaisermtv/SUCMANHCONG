@@ -1030,36 +1030,35 @@ public class Partner
     }
     #endregion
 
-    #region method getProductBillCountById
-    public int getProductBillCountById(string PartnerId)
+
+    #region Method getProductBillCountByPartnerId
+    public int getProductBillCountByPartnerId(int PartnerId)
     {
-        int CountItem = 0;
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblPartnerCustomer WHERE PartnerId = @PartnerId";
+
+            Cmd.CommandText = "SELECT COUNT(*) FROM tblPartnerCustomer WHERE PartnerId = @PartnerId";
             Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
+
+            int ret = (int)Cmd.ExecuteScalar();
             sqlCon.Close();
             sqlCon.Dispose();
-            CountItem = ds.Tables[0].Rows.Count;
+
+            return ret;
         }
         catch
         {
-
+            return 0;
         }
-        return CountItem;
     }
     #endregion
 
 
-    #region method getProductDoanhSoById
-    public double getProductDoanhSoById(string PartnerId)
+    #region method getProductDoanhSoByPartnerId
+    public double getProductDoanhSoByPartnerId(int PartnerId)
     {
         double TotalMoney = 0;
         try

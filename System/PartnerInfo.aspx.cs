@@ -35,11 +35,11 @@ public partial class System_PartnerInfo : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             this.getPartner();
-            this.SoSanPham = this.objProduct.getCountProductById(this.itemId);
-            this.SoSanPhamVIP = this.objProduct.getProductVIPCountById(this.itemId);
-            this.SoSanPhamBanChay = this.objProduct.getProductBestSaleCountById(this.itemId);
-            this.SoGiaoDich = this.getProductBillCountById(this.itemId.ToString());
-            this.TongDoanhSo = this.getProductDoanhSoById(this.itemId.ToString());
+            this.SoSanPham = this.objProduct.getCountProductByPartnerId(this.itemId);
+            this.SoSanPhamVIP = this.objProduct.getProductVIPCountByPartnerId(this.itemId);
+            this.SoSanPhamBanChay = this.objProduct.getProductBestSaleCountByPartnerId(this.itemId);
+            this.SoGiaoDich = this.objPartner.getProductBillCountByPartnerId(this.itemId);
+            this.TongDoanhSo = this.objPartner.getProductDoanhSoByPartnerId(this.itemId);
             if (this.txtAccount.Text.Trim() == "")
             {
                 this.btnCreate.Enabled = true;
@@ -119,21 +119,6 @@ public partial class System_PartnerInfo : System.Web.UI.Page
         }
         catch { }
     } 
-    #endregion
-
-    #region method getProductBillCountById
-    public int getProductBillCountById(string PartnerId)
-    {
-        return  objPartner.getProductBillCountById(PartnerId);
-
-    }
-    #endregion
-
-    #region method getProductDoanhSoById
-    public double getProductDoanhSoById(string PartnerId)
-    {
-        return objPartner.getProductDoanhSoById(PartnerId);
-    }
     #endregion
 
     #region method btnUpdate_Click

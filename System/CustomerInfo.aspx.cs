@@ -109,7 +109,7 @@ public partial class System_CustomerInfo : System.Web.UI.Page
         try{
             int id = Int32.Parse(PartnerId);
 
-            return this.objProducts.getCountProductById(id);
+            return this.objProducts.getCountProductByPartnerId(id);
         } catch {
             return 0;
         }
@@ -122,7 +122,7 @@ public partial class System_CustomerInfo : System.Web.UI.Page
         try{
             int id = Int32.Parse(PartnerId);
 
-            return this.objProducts.getProductVIPCountById(id);
+            return this.objProducts.getProductVIPCountByPartnerId(id);
         } catch {
             return 0;
         }
@@ -135,7 +135,7 @@ public partial class System_CustomerInfo : System.Web.UI.Page
         try{
             int id =  Int32.Parse(PartnerId);
 
-            return this.objProducts.getProductBestSaleCountById(id);
+            return this.objProducts.getProductBestSaleCountByPartnerId(id);
         } catch {
             return 0;
         }
