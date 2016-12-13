@@ -86,13 +86,13 @@ public class DataGroupAcc
             sqlCon1.Open();
             SqlCommand Cmd1 = sqlCon1.CreateCommand();
             string sqlQuery1 = "";
-            sqlQuery1 += "INSERT INTO tblGroupAcc([Name],[Status],[Per],[DelEnable]) VALUES(@Name,@Status,@Per,0)";
+            sqlQuery1 += "INSERT INTO tblGroupAcc([Name],[Status],[Per],[DelEnable]) VALUES(@Name,@Status,@Per,0) SELECT CAST(scope_identity() AS int) ";
             Cmd1.CommandText = sqlQuery1;
             Cmd1.Parameters.Add("Name", SqlDbType.NVarChar).Value = name;
             Cmd1.Parameters.Add("Status", SqlDbType.Bit).Value = status;
             Cmd1.Parameters.Add("Per", SqlDbType.NVarChar).Value = per;
-            ret = Cmd1.ExecuteNonQuery();
-            //ret = (int)Cmd1.ExecuteScalar();
+            //ret = Cmd1.ExecuteNonQuery();
+            ret = (int)Cmd1.ExecuteScalar();
             sqlCon1.Close();
             sqlCon1.Dispose();
         } catch
