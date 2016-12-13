@@ -1056,6 +1056,26 @@ public class Partner
     }
     #endregion
 
+    #region method getTopPartner        || return top 4 partner
+    public DataTable getTopPartner()
+    {
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        sqlCon.Open();
+        SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = "SELECT TOP 4 0 AS TT, * FROM tblPartner";
+        SqlDataAdapter da = new SqlDataAdapter();
+        da.SelectCommand = Cmd;
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        sqlCon.Close();
+        sqlCon.Dispose();
+        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        {
+            ds.Tables[0].Rows[i]["TT"] = (i + 1);
+        }
+        return ds.Tables[0];
+    }
+    #endregion
 
     #region method getProductDoanhSoByPartnerId
     public double getProductDoanhSoByPartnerId(int PartnerId)
