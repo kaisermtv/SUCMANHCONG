@@ -255,7 +255,6 @@ public class DataProduct
     }
     #endregion
 
-
     #region Method getDataByPartner
     public DataTable getDataByPartner(string Account)
     {

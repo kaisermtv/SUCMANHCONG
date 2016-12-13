@@ -6,6 +6,8 @@
         {
             border:solid 0px red;
         }
+        .
+
     </style>
     <div class="container">
         <div style="width: 100%; margin: auto; display: table; margin-bottom: 10px; margin-top: 0px;">
