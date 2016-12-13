@@ -193,7 +193,7 @@ public class DataAccount
             sqlQuery1 += "ELSE BEGIN SELECT CAST(0 AS int)  END";
             Cmd1.CommandText = sqlQuery1;
             Cmd1.Parameters.Add("UserName", SqlDbType.NVarChar).Value = UserName;
-            Cmd1.Parameters.Add("PassWord", SqlDbType.NVarChar).Value = Password;
+            Cmd1.Parameters.Add("PassWord", SqlDbType.NVarChar).Value = objFunc.CryptographyMD5( Password);
             Cmd1.Parameters.Add("FullName", SqlDbType.NVarChar).Value = FullName;
             Cmd1.Parameters.Add("Status", SqlDbType.SmallInt).Value = Status;
             Cmd1.Parameters.Add("UGroup", SqlDbType.VarChar).Value = Ugroup;
