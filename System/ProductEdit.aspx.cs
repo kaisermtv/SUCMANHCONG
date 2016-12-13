@@ -125,51 +125,40 @@ public partial class ProductEdit : System.Web.UI.Page
     }
     #endregion
 
-    #region method setProduct
-    public void setProduct()
-    {
-        try
-        {
-            if (upImage1.PostedFile.FileName != "")
-                if (!saveImage1())
-                {
-                    return;
-                }
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            string sqlQuery = "";
-            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblProduct WHERE Id = @Id)";
-            sqlQuery += "BEGIN INSERT INTO tblProduct(Name,Price,Discount,Content,Image,GroupId,BestSale,VIP,State,PartnerId) VALUES(@Name,@Price,@Discount,@Content,@Image,@GroupId,@BestSale,@VIP,@State,@PartnerId) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblProduct SET Name = @Name, Price = @Price, Discount = @Discount, Content = @Content, Image = @Image, BestSale = @BestSale, VIP = @VIP, State = @State, GroupId = @GroupId, PartnerId = @PartnerId WHERE Id = @Id END";
-            Cmd.CommandText = sqlQuery;
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = this.itemId;
-            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = this.txtName.Text;
-            Cmd.Parameters.Add("Price", SqlDbType.Float).Value = this.txtPrice.Text;
-            Cmd.Parameters.Add("Discount", SqlDbType.Float).Value = this.txtDiscount.Text;
-            Cmd.Parameters.Add("Content", SqlDbType.NText).Value = this.txtContent.Text;
-            Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = this.txtImage.Text;
-            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = this.ckbBestSale.Checked;
-            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = this.ckbVIP.Checked;
-            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = this.ckbState.Checked;
-            Cmd.Parameters.Add("GroupId", SqlDbType.Int).Value = this.ddlProductGroup.SelectedValue.ToString();
-            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = this.ddlPartner.SelectedValue.ToString();
-            Cmd.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
-            Response.Redirect("Product.aspx");
-        }
-        catch
-        {
-
-        }
-    }
-    #endregion
-
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        this.setProduct();
+        if (upImage1.PostedFile.FileName != "")
+            if (!saveImage1())
+            {
+                return;
+            }
+
+        float Price = 0;
+        try{
+            Price = Int32.Parse(this.txtPrice.Text);
+        } catch {}
+
+        float Discount = 0;
+        try{
+            Discount = Int32.Parse(this.txtDiscount.Text);
+        } catch {}
+
+        int GroupId = 0;
+        try{
+            GroupId = Int32.Parse(this.ddlProductGroup.SelectedValue.ToString());
+        } catch {}
+
+        int PartnerId = 0;
+        try{
+            PartnerId = Int32.Parse(this.ddlPartner.SelectedValue.ToString());
+        } catch {}
+
+        int ret = this.objProduct.UpdateOrInsertProductById(this.itemId, this.txtName.Text, Price, Discount, this.txtContent.Text, this.txtImage.Text, this.ckbBestSale.Checked, this.ckbVIP.Checked, this.ckbState.Checked,GroupId,PartnerId);
+        if(ret > 0)
+        {
+            Response.Redirect("Product.aspx");
+        }
     } 
     #endregion
 
