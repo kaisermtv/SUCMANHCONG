@@ -43,7 +43,7 @@ public partial class System_GroupDel : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("ListGroupAcc.aspx");
+            Response.Redirect("~/System/ListGroupAcc.aspx");
         }
 
     }
@@ -52,18 +52,15 @@ public partial class System_GroupDel : System.Web.UI.Page
     #region method btnSave_Click
     protected void btnOk_Click(object sender, EventArgs e)
     {
-        //this.getid();
-
         objDataGroupAcc.DelGroup(this.itemId);
-
-        Response.Redirect("ListGroupAcc.aspx");
+        Response.Redirect("~/System/ListGroupAcc.aspx");
     }
     #endregion
 
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ListGroupAcc.aspx");
+        Response.Redirect("~/System/ListGroupAcc.aspx");
     }
     #endregion
 }

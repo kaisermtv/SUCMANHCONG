@@ -7,11 +7,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class PartnerEdit : System.Web.UI.Page
+public partial class ProductEdit : System.Web.UI.Page
 {
     #region declare objects
+    private DataProduct objProduct = new DataProduct();
     private Partner objPartner = new Partner();
-    private DataBusiness objBusiness = new DataBusiness();
 
     private int itemId = 0;
     #endregion
@@ -37,6 +37,10 @@ public partial class PartnerEdit : System.Web.UI.Page
             new object[] { "TextColor", "BGColor" },
             new object[] { "Maximize", "ShowBlocks", "-", "About" }
         };
+
+        CKFinder.FileBrowser _FileBrowser = new CKFinder.FileBrowser();
+        _FileBrowser.BasePath = "../ckfinder";
+        _FileBrowser.SetupCKEditor(this.txtContent);
         try
         {
             this.itemId = int.Parse(Request["id"].ToString());
@@ -47,26 +51,34 @@ public partial class PartnerEdit : System.Web.UI.Page
         }
         if (!Page.IsPostBack)
         {
-            this.getBusiness();
+            this.getProductGroup();
             this.getPartner();
+            this.getProduct();
         }
     }
     #endregion
 
-    #region method getPartner
-    public void getPartner()
+    #region method getProduct
+    public void getProduct()
     {
-        DataTable objData = this.objPartner.getPartnerById(this.itemId);
-        if (objData.Rows.Count > 0)
+        DataTable objData = this.objProduct.getProductById(this.itemId);
+        if(objData.Rows.Count > 0)
         {
             this.txtName.Text = objData.Rows[0]["Name"].ToString();
-            this.txtAddress.Text = objData.Rows[0]["Address"].ToString();
-            this.txtManager.Text = objData.Rows[0]["Manager"].ToString();
-            this.txtPhone.Text = objData.Rows[0]["Phone"].ToString();
-            this.txtTaxCode.Text = objData.Rows[0]["TaxCode"].ToString();
-            this.ddlBusiness.SelectedValue = objData.Rows[0]["Business"].ToString();
+            this.txtPrice.Text = objData.Rows[0]["Price"].ToString();
+            this.txtDiscount.Text = objData.Rows[0]["Discount"].ToString();
             this.txtContent.Text = objData.Rows[0]["Content"].ToString();
             this.txtImage.Text = objData.Rows[0]["Image"].ToString();
+            this.ddlProductGroup.SelectedValue = objData.Rows[0]["GroupId"].ToString();
+            this.ddlPartner.SelectedValue = objData.Rows[0]["PartnerId"].ToString();
+            if (objData.Rows[0]["State"].ToString() == "True")
+            {
+                this.ckbState.Checked = true;
+            }
+            else
+            {
+                this.ckbState.Checked = false;
+            }
             if (objData.Rows[0]["BestSale"].ToString() == "True")
             {
                 this.ckbBestSale.Checked = true;
@@ -83,65 +95,78 @@ public partial class PartnerEdit : System.Web.UI.Page
             {
                 this.ckbVIP.Checked = false;
             }
-            if (objData.Rows[0]["State"].ToString() == "True")
-            {
-                this.ckbState.Checked = true;
-            }
-            else
-            {
-                this.ckbState.Checked = false;
-            }
-            this.txtDiscount.Text = objData.Rows[0]["Discount"].ToString();
-            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Partner/" + objData.Rows[0]["Image"].ToString() + "\">";
+            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Products/" + objData.Rows[0]["Image"].ToString() + "\">";
         }
     }
     #endregion
 
-    #region method setPartner
-    public void setPartner()
+    #region method getProductGroup
+    public void getProductGroup()
     {
-        try
+        DataTable objData = this.objProduct.getProductGroupIdUpperName();
+        if(objData.Rows.Count > 0)
         {
-            if (upImage1.PostedFile.FileName != "")
-                if (!saveImage1())
-                {
-                    return;
-                }
-            int Business = 0;
-            try{
-                Business = Int32.Parse(this.ddlBusiness.SelectedValue.ToString());
-            } catch{}
-
-            float Discount = 0;
-            try{
-                Discount = Int32.Parse(this.txtDiscount.Text);
-            } catch{}
-
-            int ret = this.objPartner.UpdateOrInsertPartner(this.itemId, this.txtName.Text, this.txtAddress.Text, this.txtPhone.Text, this.txtManager.Text, this.txtTaxCode.Text, Business, this.ckbBestSale.Checked, this.ckbVIP.Checked, this.ckbState.Checked, Discount, this.txtContent.Text, this.txtImage.Text);
-            if (ret > 0)
-            {
-                Response.Redirect("Partner.aspx");
-            }
+            this.ddlProductGroup.DataSource = objData;
+            this.ddlProductGroup.DataTextField = "Name";
+            this.ddlProductGroup.DataValueField = "Id";
+            this.ddlProductGroup.DataBind();
         }
-        catch
-        {
+    }
+    #endregion
 
-        }
+    #region method getPartner
+    public void getPartner()
+    {
+        DataTable objData = this.objPartner.getPartnerIdUpperName();
+        this.ddlPartner.DataSource = objData;
+        this.ddlPartner.DataTextField = "Name";
+        this.ddlPartner.DataValueField = "Id";
+        this.ddlPartner.DataBind();
     }
     #endregion
 
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        this.setPartner();
-    }
+        if (upImage1.PostedFile.FileName != "")
+            if (!saveImage1())
+            {
+                return;
+            }
+
+        float Price = 0;
+        try{
+            Price = Int32.Parse(this.txtPrice.Text);
+        } catch {}
+
+        float Discount = 0;
+        try{
+            Discount = Int32.Parse(this.txtDiscount.Text);
+        } catch {}
+
+        int GroupId = 0;
+        try{
+            GroupId = Int32.Parse(this.ddlProductGroup.SelectedValue.ToString());
+        } catch {}
+
+        int PartnerId = 0;
+        try{
+            PartnerId = Int32.Parse(this.ddlPartner.SelectedValue.ToString());
+        } catch {}
+
+        int ret = this.objProduct.UpdateOrInsertProductById(this.itemId, this.txtName.Text, Price, Discount, this.txtContent.Text, this.txtImage.Text, this.ckbBestSale.Checked, this.ckbVIP.Checked, this.ckbState.Checked,GroupId,PartnerId);
+        if(ret > 0)
+        {
+            Response.Redirect("~/System/Product.aspx");
+        }
+    } 
     #endregion
 
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Partner.aspx");
-    }
+        Response.Redirect("/System/Product.aspx");
+    } 
     #endregion
 
     #region method saveImage1
@@ -150,7 +175,7 @@ public partial class PartnerEdit : System.Web.UI.Page
         string strBaseLoactionImg = "";
         try
         {
-            strBaseLoactionImg = Server.MapPath(System.Configuration.ConfigurationSettings.AppSettings["PARTNER"].ToString());
+            strBaseLoactionImg = Server.MapPath(System.Configuration.ConfigurationSettings.AppSettings["PRODUCTIMAGE"].ToString());
             if (upImage1.PostedFile.ContentLength > 5048576)
             {
                 return false;
@@ -164,7 +189,7 @@ public partial class PartnerEdit : System.Web.UI.Page
                 strBaseLoactionImg = strBaseLoactionImg.Replace("/", "\\");
                 upImage1.PostedFile.SaveAs(strBaseLoactionImg);
                 this.txtImage.Text = sFileName + strEx;
-                this.lblImg1.Text = "<img width = \"125px\" height = \"100px\"  src = \"../Images/Partner/" + sFileName + strEx + "\">";
+                this.lblImg1.Text = "<img width = \"125px\" height = \"100px\"  src = \"../Images/Products/" + sFileName + strEx + "\">";
                 return true;
             }
         }
@@ -174,17 +199,5 @@ public partial class PartnerEdit : System.Web.UI.Page
         }
         return false;
     }
-    #endregion
-
-    #region method getBusiness
-    public void getBusiness()
-    {
-        DataTable objData = this.objBusiness.getBusiness();
-
-        this.ddlBusiness.DataSource = objData;
-        this.ddlBusiness.DataTextField = "Name";
-        this.ddlBusiness.DataValueField = "Id";
-        this.ddlBusiness.DataBind();
-    }
-    #endregion
+    #endregion   
 }

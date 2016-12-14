@@ -7,11 +7,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class ProductEdit : System.Web.UI.Page
+public partial class TopicEdit : System.Web.UI.Page
 {
     #region declare objects
-    private DataProduct objProduct = new DataProduct();
-    private Partner objPartner = new Partner();
+    DataTopic objTopic = new DataTopic();
 
     private int itemId = 0;
     #endregion
@@ -21,6 +20,7 @@ public partial class ProductEdit : System.Web.UI.Page
     {
         txtContent.config.toolbar = new object[]
         {
+            #region what ?? 
             new object[] { "Source", "-", "Save", "NewPage", "Preview", "-", "Templates" },
             new object[] { "Cut", "Copy", "Paste", "PasteText", "PasteFromWord", "-", "Print", "SpellChecker", "Scayt" },
             new object[] { "Undo", "Redo", "-", "Find", "Replace", "-", "SelectAll", "RemoveFormat" },
@@ -37,10 +37,12 @@ public partial class ProductEdit : System.Web.UI.Page
             new object[] { "TextColor", "BGColor" },
             new object[] { "Maximize", "ShowBlocks", "-", "About" }
         };
+#endregion
 
         CKFinder.FileBrowser _FileBrowser = new CKFinder.FileBrowser();
         _FileBrowser.BasePath = "../ckfinder";
         _FileBrowser.SetupCKEditor(this.txtContent);
+
         try
         {
             this.itemId = int.Parse(Request["id"].ToString());
@@ -51,26 +53,23 @@ public partial class ProductEdit : System.Web.UI.Page
         }
         if (!Page.IsPostBack)
         {
-            this.getProductGroup();
-            this.getPartner();
-            this.getProduct();
+            this.getTopicGroup();
+            this.getTopic();
         }
     }
     #endregion
 
-    #region method getProduct
-    public void getProduct()
+    #region method getTopic
+    public void getTopic()
     {
-        DataTable objData = this.objProduct.getProductById(this.itemId);
+        DataTable objData = this.objTopic.getTopicById(this.itemId);
         if(objData.Rows.Count > 0)
         {
-            this.txtName.Text = objData.Rows[0]["Name"].ToString();
-            this.txtPrice.Text = objData.Rows[0]["Price"].ToString();
-            this.txtDiscount.Text = objData.Rows[0]["Discount"].ToString();
+            this.txtTitle.Text = objData.Rows[0]["Title"].ToString();
+            this.txtShortContent.Text = objData.Rows[0]["ShortContent"].ToString();
             this.txtContent.Text = objData.Rows[0]["Content"].ToString();
             this.txtImage.Text = objData.Rows[0]["Image"].ToString();
-            this.ddlProductGroup.SelectedValue = objData.Rows[0]["GroupId"].ToString();
-            this.ddlPartner.SelectedValue = objData.Rows[0]["PartnerId"].ToString();
+            this.ddlTopicGroup.SelectedValue = objData.Rows[0]["GroupId"].ToString();
             if (objData.Rows[0]["State"].ToString() == "True")
             {
                 this.ckbState.Checked = true;
@@ -79,49 +78,20 @@ public partial class ProductEdit : System.Web.UI.Page
             {
                 this.ckbState.Checked = false;
             }
-            if (objData.Rows[0]["BestSale"].ToString() == "True")
-            {
-                this.ckbBestSale.Checked = true;
-            }
-            else
-            {
-                this.ckbBestSale.Checked = false;
-            }
-            if (objData.Rows[0]["VIP"].ToString() == "True")
-            {
-                this.ckbVIP.Checked = true;
-            }
-            else
-            {
-                this.ckbVIP.Checked = false;
-            }
-            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Products/" + objData.Rows[0]["Image"].ToString() + "\">";
+            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/" + objData.Rows[0]["Image"].ToString() + "\">";
         }
     }
     #endregion
 
-    #region method getProductGroup
-    public void getProductGroup()
+    #region method getTopicGroup
+    public void getTopicGroup()
     {
-        DataTable objData = this.objProduct.getProductGroupIdUpperName();
-        if(objData.Rows.Count > 0)
-        {
-            this.ddlProductGroup.DataSource = objData;
-            this.ddlProductGroup.DataTextField = "Name";
-            this.ddlProductGroup.DataValueField = "Id";
-            this.ddlProductGroup.DataBind();
-        }
-    }
-    #endregion
+        DataTable objData = this.objTopic.getTopicGroup();
 
-    #region method getPartner
-    public void getPartner()
-    {
-        DataTable objData = this.objPartner.getPartnerIdUpperName();
-        this.ddlPartner.DataSource = objData;
-        this.ddlPartner.DataTextField = "Name";
-        this.ddlPartner.DataValueField = "Id";
-        this.ddlPartner.DataBind();
+        this.ddlTopicGroup.DataSource = objData;
+        this.ddlTopicGroup.DataTextField = "Name";
+        this.ddlTopicGroup.DataValueField = "Id";
+        this.ddlTopicGroup.DataBind();
     }
     #endregion
 
@@ -134,38 +104,23 @@ public partial class ProductEdit : System.Web.UI.Page
                 return;
             }
 
-        float Price = 0;
-        try{
-            Price = Int32.Parse(this.txtPrice.Text);
-        } catch {}
-
-        float Discount = 0;
-        try{
-            Discount = Int32.Parse(this.txtDiscount.Text);
-        } catch {}
-
         int GroupId = 0;
         try{
-            GroupId = Int32.Parse(this.ddlProductGroup.SelectedValue.ToString());
-        } catch {}
+            GroupId = Int32.Parse(this.ddlTopicGroup.SelectedValue.ToString());
+            int ret = this.objTopic.setTopic(this.itemId,this.txtTitle.Text,this.txtShortContent.Text,this.txtContent.Text,this.txtImage.Text,this.ckbState.Checked,GroupId);
+            if(ret > 0)
+            {
+                Response.Redirect("~/System/Topic.aspx");
+            }
+        }catch{}
 
-        int PartnerId = 0;
-        try{
-            PartnerId = Int32.Parse(this.ddlPartner.SelectedValue.ToString());
-        } catch {}
-
-        int ret = this.objProduct.UpdateOrInsertProductById(this.itemId, this.txtName.Text, Price, Discount, this.txtContent.Text, this.txtImage.Text, this.ckbBestSale.Checked, this.ckbVIP.Checked, this.ckbState.Checked,GroupId,PartnerId);
-        if(ret > 0)
-        {
-            Response.Redirect("Product.aspx");
-        }
     } 
     #endregion
 
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Product.aspx");
+        Response.Redirect("~/System/Topic.aspx");
     } 
     #endregion
 
@@ -175,7 +130,7 @@ public partial class ProductEdit : System.Web.UI.Page
         string strBaseLoactionImg = "";
         try
         {
-            strBaseLoactionImg = Server.MapPath(System.Configuration.ConfigurationSettings.AppSettings["PRODUCTIMAGE"].ToString());
+            strBaseLoactionImg = Server.MapPath(System.Configuration.ConfigurationSettings.AppSettings["NEWSIMAGE"].ToString());
             if (upImage1.PostedFile.ContentLength > 5048576)
             {
                 return false;
@@ -189,7 +144,7 @@ public partial class ProductEdit : System.Web.UI.Page
                 strBaseLoactionImg = strBaseLoactionImg.Replace("/", "\\");
                 upImage1.PostedFile.SaveAs(strBaseLoactionImg);
                 this.txtImage.Text = sFileName + strEx;
-                this.lblImg1.Text = "<img width = \"125px\" height = \"100px\"  src = \"../Images/Products/" + sFileName + strEx + "\">";
+                this.lblImg1.Text = "<img width = \"125px\" height = \"100px\"  src = \"../Images/" + sFileName + strEx + "\">";
                 return true;
             }
         }

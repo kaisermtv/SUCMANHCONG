@@ -52,7 +52,7 @@ public partial class System_AccountAdd : System.Web.UI.Page
         
         if(ret > 0)
         {
-            Response.Redirect("ListAccount.aspx");
+            Response.Redirect("~/System/ListAccount.aspx");
         }
     }
     #endregion
@@ -60,7 +60,7 @@ public partial class System_AccountAdd : System.Web.UI.Page
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ListAccount.aspx");
+        Response.Redirect("~/System/ListAccount.aspx");
     }
     #endregion
 }

@@ -58,7 +58,7 @@ public partial class VideoEdit : System.Web.UI.Page
         int ret = this.objVideo.setVideo(this.itemId, this.txtUrl.Text, this.txtName.Text, this.ckbState.Checked);
         if(ret > 0)
         {
-            Response.Redirect("Video.aspx");
+            Response.Redirect("~/System/Video.aspx");
         }
     } 
     #endregion
@@ -66,7 +66,7 @@ public partial class VideoEdit : System.Web.UI.Page
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Video.aspx");
+        Response.Redirect("~/System/Video.aspx");
     } 
     #endregion
 }

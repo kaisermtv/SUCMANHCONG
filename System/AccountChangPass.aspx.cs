@@ -49,12 +49,10 @@ public partial class System_AccountChangPass : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("ListAccount.aspx");
+            Response.Redirect("~/System/ListAccount.aspx");
         }
     }
     #endregion
-
-
 
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
@@ -77,7 +75,7 @@ public partial class System_AccountChangPass : System.Web.UI.Page
 
         if(ret > 0)
         {
-            Response.Redirect("Account.aspx?id=" + this.itemId.ToString());
+            Response.Redirect("~/System/Account.aspx?id=" + this.itemId.ToString());
         }
         else
         {
@@ -89,7 +87,7 @@ public partial class System_AccountChangPass : System.Web.UI.Page
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Account.aspx?id="+this.itemId.ToString());
+        Response.Redirect("~/System/Account.aspx?id=" + this.itemId.ToString());
     }
     #endregion
 }

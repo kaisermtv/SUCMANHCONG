@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div style="width: 100%; height: 32px; line-height: 30px; background-color: #dde8ec; font-family: Arial; font-size: 13px; font-weight: bold; text-transform: uppercase;">
         <div style="float: left;">&nbsp;&nbsp;Thành viên</div>
-        <div style="float: right;"><a href="CustomerEdit.aspx"><span style="border: solid 1px #f8fbfc; padding: 5px; font-size: 11px; font-weight: bold; padding-left: 20px; padding-right: 20px;">Thêm mới</span></a>&nbsp;</div>
+        <div style="float: right;"><a href="Edit/CustomerEdit.aspx"><span style="border: solid 1px #f8fbfc; padding: 5px; font-size: 11px; font-weight: bold; padding-left: 20px; padding-right: 20px;">Thêm mới</span></a>&nbsp;</div>
     </div>
     <table cellpadding="0" cellspacing="0" border="0" style="margin: 0px; width: 99.9%; height: 30px;">
         <tr>
@@ -88,13 +88,13 @@
                     </td>
                     <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 13px; color: #262626; background-color: #FFF; width: 5%;">
                         <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: center; vertical-align: middle; font-size: 13px; border-bottom: solid 1px #808080; font-weight: bold;">
-                            <a href="CustomerEdit.aspx?Id=<%# Eval("Id") %>">Sửa
+                            <a href="Edit/CustomerEdit.aspx?Id=<%# Eval("Id") %>">Sửa
                             </a>
                         </div>
                     </td>
                     <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 13px; color: #262626; background-color: #FFF; width: 5%;">
                         <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: center; vertical-align: middle; font-size: 13px; border-bottom: solid 1px #808080; font-weight: bold;">
-                            <a href="#">Xóa
+                            <a href="Del/DelCustomer.aspx?Id=<%# Eval("Id") %>">Xóa
                             </a>
                         </div>
                     </td>

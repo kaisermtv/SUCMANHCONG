@@ -64,7 +64,7 @@ public partial class ProductGroupEdit : System.Web.UI.Page
         int ret = this.objProduct.setProductGroup(this.itemId, this.txtDescription.Text, this.txtName.Text, this.ckbState.Checked);
         if(ret > 0)
         {
-            Response.Redirect("ProductGroup.aspx");
+            Response.Redirect("~/System/ProductGroup.aspx");
         }
     } 
     #endregion
@@ -72,7 +72,7 @@ public partial class ProductGroupEdit : System.Web.UI.Page
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ProductGroup.aspx");
+        Response.Redirect("~/System/ProductGroup.aspx");
     } 
     #endregion
 }

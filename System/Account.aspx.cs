@@ -70,7 +70,7 @@ public partial class Account : System.Web.UI.Page
         }
         else
         {
-            Response.Redirect("AccountAdd.aspx");
+            Response.Redirect("~/System/AccountAdd.aspx");
         }
     }
     #endregion
@@ -78,21 +78,21 @@ public partial class Account : System.Web.UI.Page
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ListAccount.aspx");
+        Response.Redirect("~/System/ListAccount.aspx");
     }
     #endregion
 
     #region method btn_ChangPass
     protected void btn_ChangPass(object sender, EventArgs e)
     {
-        Response.Redirect("AccountChangPass.aspx?id=" + this.itemId.ToString());
+        Response.Redirect("~/System/AccountChangPass.aspx?id=" + this.itemId.ToString());
     }
     #endregion
 
     #region method btnedit_Click
     protected void btnedit_Click(object sender, EventArgs e)
     {
-        Response.Redirect("AccountEdit.aspx?id=" + this.itemId.ToString());
+        Response.Redirect("~/System/AccountEdit.aspx?id=" + this.itemId.ToString());
     }
     #endregion
 }

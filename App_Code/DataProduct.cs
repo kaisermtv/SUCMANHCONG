@@ -319,6 +319,35 @@ public class DataProduct
     }
     #endregion
 
+    #region method removeProduct
+    public int removeProduct(int Id)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            string sqlQuery = "";
+            sqlQuery = "IF  EXISTS (SELECT * FROM tblProduct WHERE Id = @Id)";
+            sqlQuery += "BEGIN DELETE FROM tblProduct  WHERE Id = @Id END ";
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            int ret = Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return 1;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+    #endregion
+
+
+    // Different Table
+
     #region Table Product Group
 
     #region method getProductGroup
@@ -480,4 +509,29 @@ public class DataProduct
     }
     #endregion
 
+    #region method removeGroupProduct
+    public int removeGroupProduct(int Id)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            string sqlQuery = "";
+            sqlQuery = "IF  EXISTS (SELECT * FROM tblProductGroup WHERE Id = @Id)";
+            sqlQuery += "BEGIN DELETE FROM tblProductGroup  WHERE Id = @Id END ";
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            int ret = Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return 1;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+    #endregion
 }

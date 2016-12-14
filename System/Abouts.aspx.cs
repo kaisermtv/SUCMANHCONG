@@ -70,7 +70,7 @@ public partial class Abouts : System.Web.UI.Page
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Topic.aspx");
+        Response.Redirect("~/System/Topic.aspx");
     } 
     #endregion
 }

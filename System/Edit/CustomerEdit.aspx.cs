@@ -114,13 +114,14 @@ public partial class CustomerEdit : System.Web.UI.Page
     protected void btnSave_Click(object sender, EventArgs e)
     {
         this.setCustomer();
+        Response.Redirect("~/System/Customer.aspx");
     } 
     #endregion
 
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Customer.aspx");
+        Response.Redirect("~/System/Customer.aspx");
     } 
     #endregion
 

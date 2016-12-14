@@ -101,4 +101,32 @@ public class DataSlideImage
         }
     }
     #endregion
+
+
+    #region method removeSlideImage
+    public int removeSlideImage(int Id)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            string sqlQuery = "";
+            sqlQuery = "IF  EXISTS (SELECT * FROM tblSlideImage WHERE Id = @Id)";
+            sqlQuery += "BEGIN DELETE FROM tblSlideImage  WHERE Id = @Id END ";
+             Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            int ret = Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return 1;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+    #endregion
+
 }

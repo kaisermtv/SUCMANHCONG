@@ -276,4 +276,29 @@ public class Customers
     #endregion
 
     #endregion
+
+    #region method removeCustomer  || delelte customer with id
+    public int removeCustomer(int id)
+    {
+        if (id == 0) return 1;
+        try
+        {
+            SqlConnection sqlCon1 = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon1.Open();
+            SqlCommand Cmd1 = sqlCon1.CreateCommand();
+            string sqlQuery1 = "";
+            sqlQuery1 += "DELETE FROM tblCustomers   WHERE ID=@id";
+            Cmd1.CommandText = sqlQuery1;
+            Cmd1.Parameters.Add("id", SqlDbType.Int).Value = id;
+            Cmd1.ExecuteNonQuery();
+            sqlCon1.Close();
+            sqlCon1.Dispose();
+        }
+        catch
+        {
+            return -1;
+        }
+        return 1;
+    }
+    #endregion
 }

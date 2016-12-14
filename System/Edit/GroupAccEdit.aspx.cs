@@ -79,7 +79,7 @@ public partial class System_GroupAccEdit : System.Web.UI.Page
 
         if(ret > 0)
         {
-            Response.Redirect("ListGroupAcc.aspx");
+            Response.Redirect("/System/ListGroupAcc.aspx");
         }
     }
     #endregion
@@ -95,7 +95,7 @@ public partial class System_GroupAccEdit : System.Web.UI.Page
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ListGroupAcc.aspx");
+        Response.Redirect("/System/ListGroupAcc.aspx");
     }
     #endregion
 }

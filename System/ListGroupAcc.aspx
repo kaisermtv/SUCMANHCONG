@@ -7,7 +7,7 @@
     
     <div style="width: 100%; height: 32px; line-height: 30px; background-color: #dde8ec; font-family: Arial; font-size: 13px; font-weight: bold; text-transform: uppercase;">
         <div style="float: left;">&nbsp;&nbsp;Danh sách nhóm tài khoản</div>
-        <div style="float: right;"><a href="GroupAccEdit.aspx"><span style="border: solid 1px #f8fbfc; padding: 5px; font-size: 11px; font-weight: bold; padding-left: 20px; padding-right: 20px;">Thêm mới</span></a>&nbsp;</div>
+        <div style="float: right;"><a href="Edit/GroupAccEdit.aspx"><span style="border: solid 1px #f8fbfc; padding: 5px; font-size: 11px; font-weight: bold; padding-left: 20px; padding-right: 20px;">Thêm mới</span></a>&nbsp;</div>
     </div>
 
     <table cellpadding="0" cellspacing="0" border="0" style="margin: 0px; width: 99.9%; height: 30px;">
@@ -64,13 +64,16 @@
                     </td>
                     <td class="page_table_item" style="width: 5%;">
                         <div class="page_table_item center">
-                            <a href="GroupAccEdit.aspx?Id=<%# Eval("Id") %>">Sửa
+                            <a href="Edit/GroupAccEdit.aspx?Id=<%# Eval("Id") %>">
+                                Sửa
                             </a>
                         </div>
                     </td>
+
                     <td class="page_table_item" style="width: 5%;">
                         <div class="page_table_item center">
-                            <a href="GroupDel.aspx?Id=<%# Eval("Id") %>">Xóa
+                            <a href="Del/GroupDel.aspx?Id=<%# Eval("Id") %>">
+                                Xóa
                             </a>
                         </div>
                     </td>

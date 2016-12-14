@@ -56,14 +56,14 @@ public partial class System_AccountDel : System.Web.UI.Page
 
         objDataAccount.DelAccount(this.itemId);
 
-        Response.Redirect("ListAccount.aspx");
+        Response.Redirect("~/System/ListAccount.aspx");
     }
     #endregion
 
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ListAccount.aspx");
+        Response.Redirect("~/System/ListAccount.aspx");
     }
     #endregion
 }

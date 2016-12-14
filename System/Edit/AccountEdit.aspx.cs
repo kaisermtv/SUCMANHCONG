@@ -79,7 +79,7 @@ public partial class System_AccountEdit : System.Web.UI.Page
 
         if (this.itemId == 0)
         {
-            Response.Redirect("AccountAdd.aspx");
+            Response.Redirect("~/System/AccountAdd.aspx");
         }
         else
         {
@@ -109,23 +109,23 @@ public partial class System_AccountEdit : System.Web.UI.Page
 
         if (ret > 0)
         {
-            Response.Redirect("ListAccount.aspx");
+            Response.Redirect("~/System/ListAccount.aspx");
         }
     }
     #endregion
-
 
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
         this.setAccount();
+        Response.Redirect("~/System/ListAccount.aspx");
     }
     #endregion
 
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("ListAccount.aspx");
+        Response.Redirect("~/System/ListAccount.aspx");
     }
     #endregion
 }

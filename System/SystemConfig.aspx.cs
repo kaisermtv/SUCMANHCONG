@@ -124,7 +124,7 @@ public partial class SystemConfig : System.Web.UI.Page
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("Customer.aspx");
+        Response.Redirect("~/System/Customer.aspx");
     } 
     #endregion
 }

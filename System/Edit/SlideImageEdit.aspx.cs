@@ -65,7 +65,7 @@ public partial class SlideImageEdit : System.Web.UI.Page
         int ret = this.objSlideImage.setSlideImage(this.itemId, this.txtUrl.Text, this.txtImage.Text, this.ckbState.Checked);
         if(ret > 0)
         {
-            Response.Redirect("SlideImage.aspx");
+            Response.Redirect("~/System/SlideImage.aspx");
         }
     } 
     #endregion
@@ -73,7 +73,7 @@ public partial class SlideImageEdit : System.Web.UI.Page
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("SlideImage.aspx");
+        Response.Redirect("~/System/SlideImage.aspx");
     } 
     #endregion
 
