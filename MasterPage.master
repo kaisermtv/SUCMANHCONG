@@ -79,7 +79,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "Employee.aspx">Nhân viên - Cộng tác viên</a>
                 </div>
                  <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "Topic.aspx">Tin tức</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "Topic.aspx">Tin tức - Topic</a>
                 </div>
                  <div class = "SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "ProductGroup.aspx">Nhóm sản phẩm</a>

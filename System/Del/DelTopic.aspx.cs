@@ -27,14 +27,14 @@ public partial class System_Del_DelTopic : System.Web.UI.Page
     {
         this.objTopic.removeTopicImage(itemId);
 
-        Response.Redirect("~/System/Video.aspx");
+        Response.Redirect("~/System/Topic.aspx");
     }
     #endregion
             
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/System/Video.aspx");
+        Response.Redirect("~/System/Topic.aspx");
     }
     #endregion
 }

@@ -220,6 +220,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+
+
+                <!----->
                 <div class="menu">
                     <a href="/ProductsVIP.aspx"><i class="glyphicon glyphicon-th-list"></i>
                         <br />
@@ -252,6 +255,8 @@
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold; text-transform: uppercase; color: #01a44b;">ĐÀO TẠO</span></a>
                 </div>
+                    <!----->
+
             </div>
         </div>
 
@@ -260,7 +265,7 @@
                 <div class="col-md-3">
                     <h2 class="StoreVIPLink">
                         <a href="ProductsVIP.aspx">SẢN PHẨM BÁN CHẠY VIP</a>
-                    </h2>
+                    </h2> 
                 </div>
                 <div class="col-md-9">
                     &nbsp;
