@@ -95,7 +95,7 @@
                     </td>
                     <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 13px; color: #262626; background-color: #FFF; width: 5%;">
                         <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: center; vertical-align: middle; font-size: 13px; border-bottom: solid 1px #808080; font-weight: bold;">
-                            <a href="Del/Partner.aspx?Id=<%# Eval("Id") %>">Xóa
+                            <a href="Del/DelPartner.aspx?Id=<%# Eval("Id") %>">Xóa
                             </a>
                         </div>
                     </td>

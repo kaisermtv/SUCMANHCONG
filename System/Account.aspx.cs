@@ -92,7 +92,7 @@ public partial class Account : System.Web.UI.Page
     #region method btnedit_Click
     protected void btnedit_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/System/AccountEdit.aspx?id=" + this.itemId.ToString());
+        Response.Redirect("~/System/Edit/AccountEdit.aspx?id=" + this.itemId.ToString());
     }
     #endregion
 }

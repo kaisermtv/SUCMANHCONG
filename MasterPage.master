@@ -49,19 +49,19 @@
                     &nbsp;&nbsp;+ CẤU HÌNH HỆ THỐNG
                 </div>
                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "SystemConfig.aspx">Cấu hình hệ thống</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/SystemConfig.aspx">Cấu hình hệ thống</a>
                 </div>
                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "MenuModifier.aspx">Cấu hình Menu</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/MenuModifier.aspx">Cấu hình Menu</a>
                 </div>
                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "Abouts.aspx">Thông tin đơn vị</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Abouts.aspx">Thông tin đơn vị</a>
                 </div>
                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "ListGroupAcc.aspx">Nhóm tài khoản</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/ListGroupAcc.aspx">Nhóm tài khoản</a>
                 </div>
                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "ListAccount.aspx">Tài khoản người dùng</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/ListAccount.aspx">Tài khoản người dùng</a>
                 </div>
                 <div style ="background-color:#fff; height:1px; line-height:1px; display:table; margin-bottom:-1px;">
                     &nbsp;
@@ -70,28 +70,28 @@
                     &nbsp;&nbsp;+ QUẢN TRỊ NỘI DUNG
                 </div>
                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "Partner.aspx">Cửa hàng - đối tác</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Partner.aspx">Cửa hàng - đối tác</a>
                 </div>
                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "Customer.aspx">Thành viên</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Customer.aspx">Thành viên</a>
                 </div>
                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "Employee.aspx">Nhân viên - Cộng tác viên</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Employee.aspx">Nhân viên - Cộng tác viên</a>
                 </div>
                  <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "Topic.aspx">Tin tức - Topic</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Topic.aspx">Tin tức - Topic</a>
                 </div>
                  <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "ProductGroup.aspx">Nhóm sản phẩm</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/ProductGroup.aspx">Nhóm sản phẩm</a>
                 </div>
                  <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "Product.aspx">Sản phẩm</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Product.aspx">Sản phẩm</a>
                 </div>
                   <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "SlideImage.aspx">Slide - Banner</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/SlideImage.aspx">Slide - Banner</a>
                 </div>
                  <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "Video.aspx">Video - Media</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Video.aspx">Video - Media</a>
                 </div>
             </div>
             <div style="width: 79%; float: right; padding-left:5px; padding-right:5px;">

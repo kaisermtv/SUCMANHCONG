@@ -72,7 +72,7 @@
 
                     <td class="page_table_item" style="width: 5%;">
                         <div class="page_table_item center">
-                            <a href="Del/GroupDel.aspx?Id=<%# Eval("Id") %>">
+                            <a href="Del/DelGroup.aspx?Id=<%# Eval("Id") %>">
                                 Xóa
                             </a>
                         </div>

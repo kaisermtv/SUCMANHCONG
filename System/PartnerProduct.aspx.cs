@@ -14,7 +14,7 @@ public partial class System_PartnerProduct : System.Web.UI.Page
     private Partner objPartner = new Partner();
     private TVSFunc objFunc = new TVSFunc();
 
-    private int itemId = 0;
+    public int itemId = 0;
     public int SoSanPham = 0, SoSanPhamVIP = 0, SoSanPhamBanChay = 0, SoGiaoDich = 0;
     public double TongDoanhSo = 0;
     public string strName = "";

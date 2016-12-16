@@ -153,28 +153,44 @@
                             }
                         </style>
 
-                        <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px; width: 1140px; height: 238px; overflow: hidden; visibility: hidden;">
+                        <div id="jssor_1" style="position: relative; margin: 0 auto; top: 0px; left: 0px;
+                            width: 1140px; height: 238px; overflow: hidden; visibility: hidden;">
                             <!-- Loading Screen -->
                             <div data-u="loading" style="position: absolute; top: 0px; left: 0px;">
-                                <div style="filter: alpha(opacity=70); opacity: 0.7; position: absolute; display: block; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
-                                <div style="position: absolute; display: block; background: url('img/loading.gif') no-repeat center center; top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+                                <div style="filter: alpha(opaci ty=70); opacity: 0.7; position: absolute; display: block;
+                                    top: 0px; left: 0px; width: 100%; height: 100%;"></div>
+                                <div style="position: absolute; display: block; background: url('img/loading.gif') no-repeat center center;
+                                    top: 0px; left: 0px; width: 100%; height: 100%;"></div>
                             </div>
-                            <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px; width: 1140px; height: 238px; overflow: hidden;">
+                            <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px;
+                                width: 1140px; height: 238px; overflow: hidden;">
                                 <div data-p="112.50" style="display: none;">
                                     <img data-u="image" src="images/slide.jpg" />
-                                    <div data-u="caption" data-t="0" style="position: absolute; top: 320px; left: 30px; width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">SUCMANHCONG.COM - SLIDE DEMO</div>
+                                    <div data-u="caption" data-t="0" style="position: absolute; top: 320px; left: 30px;
+                                        width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
+                                        color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">SUCMANHCONG.COM
+                                        - SLIDE DEMO</div>
                                 </div>
                                 <div data-p="112.50" style="display: none;">
                                     <img data-u="image" src="images/slide.jpg" />
-                                    <div data-u="caption" data-t="1" data-3d="1" style="position: absolute; top: -50px; left: 125px; width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">SUCMANHCONG.COM - SLIDE DEMO</div>
+                                    <div data-u="caption" data-t="1" data-3d="1" style="position: absolute; top: -50px;
+                                        left: 125px; width: 350px; height: 30px; background-color: rgba(235,81,0,0.5);
+                                        font-size: 20px; color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">
+                                        SUCMANHCONG.COM - SLIDE DEMO</div>
                                 </div>
                                 <div data-p="112.50" style="display: none;">
                                     <img data-u="image" src="images/slide.jpg" />
-                                    <div data-u="caption" data-t="2" style="position: absolute; top: 30px; left: -380px; width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">SUCMANHCONG.COM - SLIDE DEMO</div>
+                                    <div data-u="caption" data-t="2" style="position: absolute; top: 30px; left: -380px;
+                                        width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
+                                        color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">SUCMANHCONG.COM
+                                        - SLIDE DEMO</div>
                                 </div>
                                 <div data-p="112.50" style="display: none;">
                                     <img data-u="image" src="images/slide.jpg" />
-                                    <div data-u="caption" data-t="3" style="position: absolute; top: 30px; left: 30px; width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px; color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">SUCMANHCONG.COM - SLIDE DEMO</div>
+                                    <div data-u="caption" data-t="3" style="position: absolute; top: 30px; left: 30px;
+                                        width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
+                                        color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">SUCMANHCONG.COM
+                                        - SLIDE DEMO</div>
                                 </div>
                                 <div data-p="112.50" style="display: none;">
                                     <img data-u="image" src="images/slide.jpg" />

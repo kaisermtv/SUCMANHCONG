@@ -26,7 +26,8 @@ public partial class _Default : Page
     {
         if (!Page.IsPostBack)
         {
-        this.objTableProductGroup = objProduct.getProductGroup();
+        this.objTableProductGroup = objProduct.getProductGroup();          // Lấy nội dung từng phần hiển thị .
+
         if (this.objTableProductGroup.Rows.Count > 0)
         {
             for (int i = 0; i < this.objTableProductGroup.Rows.Count; i++)
@@ -34,7 +35,9 @@ public partial class _Default : Page
                 this.ProductGroup[i] = this.objTableProductGroup.Rows[i]["Name"].ToString();
             }
         }
-        this.objTableNews = objTopic.getTopTopic();
+     
+            
+        this.objTableNews = objTopic.getTopTopic();     
         this.objTableProductVIP = objProduct.getTopProductVIP();
         this.dtlBestSale.DataSource = objProduct.getProductBestSale();
         this.dtlBestSale.DataBind();

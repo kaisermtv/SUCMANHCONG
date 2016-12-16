@@ -25,10 +25,7 @@ public partial class System_AccountDel : System.Web.UI.Page
         {
         }
 
-        if (this.itemId == 0)
-        {
-            Response.Redirect("ListAccount.aspx");
-        }
+       
     }
     #endregion
 
@@ -43,7 +40,7 @@ public partial class System_AccountDel : System.Web.UI.Page
             this.name = objTable.Rows[0]["UserName"].ToString();
         } else
         {
-            Response.Redirect("ListAccount.aspx");
+            Response.Redirect("~/System/ListAccount.aspx");
         }
 
     }
