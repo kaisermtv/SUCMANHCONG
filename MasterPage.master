@@ -52,7 +52,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "SystemConfig.aspx">Cấu hình hệ thống</a>
                 </div>
                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "#">Cấu hình Menu</a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "MenuModifier.aspx">Cấu hình Menu</a>
                 </div>
                 <div class = "SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "Abouts.aspx">Thông tin đơn vị</a>
