@@ -575,11 +575,11 @@
                         </div>
 
                         <div class="col-md-3">
-                            <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
+                            <a href="ListStore.aspx?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
                                 <img src="images/Partner/<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Image"].ToString()); else Response.Write("noImg.png"); %>" alt="" />
                             </a>
                             <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                                <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
+                                <a href="ListStore.aspx?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
                                     <% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Name"].ToString()); else Response.Write("&nbsp;"); %>
                                 </a>
                             </h4>
@@ -590,11 +590,11 @@
                         </div>
                         
                         <div class="col-md-3">
-                            <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
+                            <a href="ListStore.aspx?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
                                 <img src="images/Partner/<% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Image"].ToString()); else Response.Write("noImg.png"); %>" alt="" />
                             </a>
                             <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                                <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Id"].ToString()); else Response.Write("0"); %>">
+                                <a href="ListStore.aspx?id=<% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Id"].ToString()); else Response.Write("0"); %>">
                                     <% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Name"].ToString()); else Response.Write("&nbsp;"); %>
                                 </a>
                             </h4>
@@ -605,11 +605,11 @@
                         </div>
 
                         <div class="col-md-3">  
-                            <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
+                            <a href="ListStore.aspx?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
                                 <img src="images/Partner/<% if (this.objTablePartner.Rows.Count > 3) Response.Write(this.objTablePartner.Rows[3]["Image"].ToString()); else Response.Write("noImg.png"); %>" alt="" />
                             </a>
                             <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                                <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Id"].ToString()); else Response.Write("0"); %>">
+                                <a href="ListStore.aspx?id=<% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Id"].ToString()); else Response.Write("0"); %>">
                                     <% if (this.objTablePartner.Rows.Count > 3) Response.Write(this.objTablePartner.Rows[3]["Name"].ToString()); else Response.Write("&nbsp;"); %>
                                 </a>
                             </h4>

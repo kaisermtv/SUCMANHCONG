@@ -18,6 +18,7 @@ public partial class SiteMaster : MasterPage
     public string strHeader = "", currPartnerId = "";
     private TVSFunc objFunc = new TVSFunc();
     public string[] ProductGroup = new string[7] { "", "", "", "", "", "", "" };
+    public int[] ProductGroupId = new int[7] { 0, 0, 0, 0, 0, 0, 0 };
     private DataTable objTableProductGroup = new DataTable();
     #endregion
 
@@ -102,7 +103,9 @@ public partial class SiteMaster : MasterPage
         {
             for (int i = 0; i < this.objTableProductGroup.Rows.Count; i++)
             {
+
                 this.ProductGroup[i] = this.objTableProductGroup.Rows[i]["Name"].ToString();
+                this.ProductGroupId[i] =int.Parse(this.objTableProductGroup.Rows[i]["Id"].ToString());
             }
         }
     } 

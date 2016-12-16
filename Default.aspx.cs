@@ -30,10 +30,10 @@ public partial class _Default : Page
 
         if (this.objTableProductGroup.Rows.Count > 0)
         {
-            for (int i = 0; i < this.objTableProductGroup.Rows.Count; i++)
+            for (int i = 0; i < this.objTableProductGroup.Rows.Count; i++)      
             {
-                this.ProductGroup[i] = this.objTableProductGroup.Rows[i]["Name"].ToString();
-            }
+                this.ProductGroup[i] = this.objTableProductGroup.Rows[i]["Name"].ToString();        
+            }   
         }
      
             

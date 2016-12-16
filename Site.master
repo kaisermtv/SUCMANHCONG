@@ -162,25 +162,25 @@
                                         <a href="../Products/?id=0" class="col-centered"><i class="fa fa-desktop" style="width: 100%;"></i>
                                             <p>Tất cả</p>
                                         </a>
-                                        <a href="../Products/?id=0"><i class="fa fa-mobile" style="width: 100%;"></i>
+                                        <a href="../Products/?id=<% Response.Write(this.ProductGroupId[0].ToString()); %>"><i class="fa fa-mobile" style="width: 100%;"></i>
                                             <p><% Response.Write(this.ProductGroup[0].ToString()); %></p>
                                         </a>
-                                        <a href="../Products/?id=0"><i class="fa fa-laptop" style="width: 100%;"></i>
+                                         <a href="../Products/?id=<% Response.Write(this.ProductGroupId[0].ToString()); %>"><i class="fa fa-laptop" style="width: 100%;"></i>
                                             <p><% Response.Write(this.ProductGroup[1].ToString()); %></p>
                                         </a>
-                                        <a href="../Products/?id=0"><i class="fa fa-television" style="width: 100%;"></i>
+                                        <a href="../Products/?id=<% Response.Write(this.ProductGroupId[0].ToString()); %>"><i class="fa fa-television" style="width: 100%;"></i>
                                             <p><% Response.Write(this.ProductGroup[2].ToString()); %></p>
                                         </a>
-                                        <a href="../Products/?id=0"><i class="fa fa-camera" style="width: 100%;"></i>
+                                         <a href="../Products/?id=<% Response.Write(this.ProductGroupId[0].ToString()); %>"><i class="fa fa-camera" style="width: 100%;"></i>
                                             <p><% Response.Write(this.ProductGroup[3].ToString()); %></p>
                                         </a>
-                                        <a href="../Products/?id=0"><i class="fa fa-car" style="width: 100%;"></i>
+                                         <a href="../Products/?id=<% Response.Write(this.ProductGroupId[0].ToString()); %>"><i class="fa fa-car" style="width: 100%;"></i>
                                             <p><% Response.Write(this.ProductGroup[4].ToString()); %></p>
                                         </a>
-                                        <a href="../Products/?id=0"><i class="fa fa-shopping-bag" style="width: 100%;"></i>
+                                       <a href="../Products/?id=<% Response.Write(this.ProductGroupId[0].ToString()); %>"><i class="fa fa-shopping-bag" style="width: 100%;"></i>
                                             <p><% Response.Write(this.ProductGroup[5].ToString()); %></p>
                                         </a>
-                                        <a href="../Products/?id=0"><i class="fa fa-child" style="width: 100%;"></i>
+                                        <a href="../Products/?id=<% Response.Write(this.ProductGroupId[0].ToString()); %>"><i class="fa fa-child" style="width: 100%;"></i>
                                             <p><% Response.Write(this.ProductGroup[6].ToString()); %></p>
                                         </a>
                                     </div>

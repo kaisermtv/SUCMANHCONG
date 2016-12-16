@@ -12,7 +12,7 @@ public partial class System_MenuModifier : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
- 
+        
     
         if (!Page.IsPostBack)
         {
@@ -25,6 +25,7 @@ public partial class System_MenuModifier : System.Web.UI.Page
         }
     }
    
+
 
     #region method getTopic
     public DataTable getTopic()
