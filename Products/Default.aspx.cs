@@ -11,36 +11,27 @@ public partial class Products_Default : System.Web.UI.Page
 {
     #region declare objects
     public DataTable objTableProductVIP = new DataTable();
+    public DataProduct objProduct = new DataProduct();
     #endregion
 
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
+        try
+        {
+            int itemId = int.Parse(Request.QueryString["filter"]);
+            this.objTableProductVIP = objProduct.getFilterTopProductVIP(itemId);
+        }
+        catch
+        {
+            this.objTableProductVIP = objProduct.getTopProductVIP();
+        }
         if (!Page.IsPostBack)
         {
-            this.objTableProductVIP = this.getProductVIP();
+           
         }
     } 
     #endregion
 
-    #region method getProductVIP
-    public DataTable getProductVIP()
-    {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT TOP 4 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        sqlCon.Close();
-        sqlCon.Dispose();
-        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-        {
-            ds.Tables[0].Rows[i]["TT"] = (i + 1);
-        }
-        return ds.Tables[0];
-    }
-    #endregion
+   
 }
