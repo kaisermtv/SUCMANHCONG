@@ -347,55 +347,42 @@
         function calMoney() {
             var totalItem = document.getElementById('MainContent_txtTotalItem').value;
             var totalMoney = 0;
-            for (var i = 0; i < totalItem; i++)
-            {
-                totalMoney += ((document.getElementById('txtNumber' + i).value).replace('.', '') * 1) * ((document.getElementById('txtPrice' + i).value).replace('.', '') * 1);
+            for (var i = 0; i < totalItem; i++) {
+                totalMoney += ((document.getElementById('txtNumber' + i).value).replace(',', '') * 1) * ((document.getElementById('txtPrice' + i).value).replace(',', '') * 1);
             }
 
             document.getElementById('MainContent_txtTotalMoneyDiscount').value = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
         }
 
         function MyNumberFormat(object) {
-            var totalMoney = document.getElementById(object).value*1;
+            var totalMoney = document.getElementById(object).value * 1;
             document.getElementById(object).value = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
         }
 
-        function formatMoney()
-        {
+        function formatMoney() {
             var totalMoneyBill = 0;
             totalMoneyBill = new Number((document.getElementById('MainContent_txtTotalMoney').value).replace(',', '').trim().replace(',', '').replace(',', '').replace(',', '').replace(',', '')) * 1;
 
-            if (!isNaN(totalMoneyBill))
-            {
+            if (!isNaN(totalMoneyBill)) {
                 document.getElementById('MainContent_txtTotalMoney').value = totalMoneyBill.toLocaleString('en-US', { minimumFractionDigits: 0 });
             }
         }
 
-        function calTotalMoney()
-        {
+        function calTotalMoney() {
             document.getElementById('MainContent_lblMsg1').textContent = '-:-';
-            
-            if (document.getElementById('MainContent_txtTotalMoney').value.trim() == '')
-            {
+
+            if (document.getElementById('MainContent_txtTotalMoney').value.trim() == '') {
                 document.getElementById('MainContent_lblMsg1').textContent = 'Chưa xác định tổng tiền đơn hàng';
                 document.getElementById("MainContent_txtTotalMoney").focus();
                 return;
             }
             var TotalMoney = (document.getElementById('MainContent_txtTotalMoney').value).replace(',', '') * 1;
 
- 
             var totalItem = document.getElementById('MainContent_txtTotalItem').value;
             var totalMoney = 0;
             for (var i = 0; i < totalItem; i++) {
-
-                totalMoney += ((document.getElementById('txtNumber' + i).value).replace('.', '') * 1) * ((document.getElementById('txtPrice' + i).value).replace('.', '') * 1);
-
+                totalMoney += ((document.getElementById('txtNumber' + i).value).replace(',', '') * 1) * ((document.getElementById('txtPrice' + i).value).replace(',', '') * 1);
             }
-            
-            //document.getElementById('out_tonggiamgia').innerText = totalMoney.toString();
-            
-
-            //console.log(totalMoney.toString());
 
             document.getElementById('MainContent_txtTotalMoneyDiscount').value = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
 
@@ -409,14 +396,11 @@
                 document.getElementById("txtDiscountLevel").focus();
                 return;
             }
-            //console.log(totalMoney.toString() + ":" + TotalMoney.toString());
-
 
             //Kiem tra tong tien hoa don co nho hon tong tien giam gia khong?
-            //if (document.getElementById('MainContent_txtTotalMoneyDiscount').value.replace(',', '') * 1 > TotalMoney
-            if (totalMoney > TotalMoney)
-            {
-                document.getElementById('MainContent_lblMsg1').textContent =  'Tổng tiền chiết khấu lớn hơn tổng tiền hoá đơn';
+            //if (document.getElementById('MainContent_txtTotalMoneyDiscount').value.replace(',', '') * 1 > TotalMoney)
+            if (totalMoney > TotalMoney) {
+                document.getElementById('MainContent_lblMsg1').textContent = 'Tổng tiền chiết khấu lớn hơn tổng tiền hoá đơn';
                 return;
             }
             var totalMoneyBill = 0;
@@ -430,8 +414,7 @@
             document.getElementById('MainContent_btnSaveByCard').disabled = false;
 
             document.getElementById('MainContent_btnPrint').disabled = true;
-        }
-
+        }y
 
     </script>
 </asp:Content>
