@@ -9,7 +9,8 @@
                     display: table; vertical-align: middle;">
                     CỬA HÀNG BÁN CHẠY VIP
                     <br />
-                    <span style="font-size: 12px; font-weight: normal;">Hiện tại có    <%Response.Write(this.objTableStoreVip.Rows.Count); %> cửa hàng bán chạy
+                    <span style="font-size: 12px; font-weight: normal;">Hiện tại có  <%Response.Write(this.objTableStoreVip.Rows.Count); %>
+                        cửa hàng bán chạy
                         VIP
                     </span>
                 </div>
@@ -36,9 +37,6 @@
         </div>
         <hr />
     </div>
-
-
-
     <div class="container">
         <% int k = 1;  %>
         <%for (int i = 0; i < this.objTableStoreVip.Rows.Count; i++)
@@ -52,24 +50,24 @@
             <div class="col-md-3">
                 <div style="border: solid 1px #f6f6f6; height: 262px;">
                     <div style="text-align: center;">
-                            <%if (this.objTableStoreVip.Rows[i]["Name"].ToString().Length > 17)
-                              {
-                                  Response.Write("<h4 style='font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;text-align: center; text-transform: uppercase;'>");
-                                  Response.Write("<marquee behavior='scroll' direction='left 'style='font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;text-align: center; text-transform: uppercase;' > ");
-                                 Response.Write((this.objTableStoreVip.Rows[i]["Name"].ToString()));
-                                 Response.Write("</marquee>");
-                                 Response.Write("</h4>");
-                              }
-                              else
-                              { %>
+                        <%if (this.objTableStoreVip.Rows[i]["Name"].ToString().Length > 17)
+                          {
+                              Response.Write("<h4 style='font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;text-align: center; text-transform: uppercase;'>");
+                              Response.Write("<marquee behavior='scroll' direction='left 'style='font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;text-align: center; text-transform: uppercase;' > ");
+                              Response.Write((this.objTableStoreVip.Rows[i]["Name"].ToString()));
+                              Response.Write("</marquee>");
+                              Response.Write("</h4>");
+                          }
+                          else
+                          { %>
                         <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;
                             text-align: center; text-transform: uppercase;">
                             <%Response.Write(this.objTableStoreVip.Rows[i]["Name"].ToString());
-                              } %>
+                          } %>
                         </h4>
                         <a href="/Store/?id=1">
-                            <img src="../Images/Partner/<%Response.Write(this.objTableStoreVip.Rows[i]["Image"].ToString()); %>" alt="Cua hang" style="width: 95%; margin-left: auto;
-                                margin-right: auto;" /></a>
+                            <img src="../Images/Partner/<%Response.Write(this.objTableStoreVip.Rows[i]["Image"].ToString()); %>"
+                                alt="Cua hang" style="width: 95%; margin-left: auto; margin-right: auto;" /></a>
                     </div>
                     <div style="font-family: Arial; font-size: 13px; text-align: justify; padding: 5px;
                         color: #414441; height: 40px; overflow: hidden;">
@@ -82,7 +80,7 @@
                     <div style="text-align: center;">
                         <div style="margin-left: 5px; float: left; width: 47%; background-color: #337ab7;
                             color: #fff; height: 30px; line-height: 30px; display: table; vertical-align: middle;">
-                            Nghệ An
+                            <%Response.Write(this.objTableStoreVip.Rows[i]["Local"].ToString()); %>
                         </div>
                         <div style="margin-right: 5px; float: right; width: 47%; background-color: #ffc000;
                             color: #fff; height: 30px; line-height: 30px; display: block; vertical-align: middle;"
@@ -99,7 +97,7 @@
         <% if (k % 4 == 0 || k == 0)
            {
                Response.Write(" </div>");  // hết 1 dòng
-               }
+           }
            k++;
           }  %>
     </div>
@@ -121,32 +119,6 @@
     </div>
 
 
-    <style> 
-       
 
-.textAmination {  
-    position: relative;
-    -webkit-animation: myfirst 5s linear 2s infinite alternate; /* Safari 4.0 - 8.0 */
-    animation: myfirst 10s linear 2s infinite alternate;
-}
-
-/* Safari 4.0 - 8.0 */
-@-webkit-keyframes myfirst {
-    0%   { left:0px; top:0px;}
-    25%  { left:200px; top:0px;}
-    50%  { left:200px; top:0;}
-    75%  { left:0px; top:0;}
-    100% { left:0px; top:0px;}
-}
-
-/* Standard syntax */
-@keyframes myfirst {
-    0%   { left:0px; top:0px;}
-    25%  { left:200px; top:0px;}
-    50%  {left:200px; top:0;}
-    75%  { left:0px; top:0;}
-    100% { left:0px; top:0px;}
-}
-</style>
 </asp:Content>
 

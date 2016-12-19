@@ -66,7 +66,7 @@
                         <span style="font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;">
                             <%Response.Write(this.objTableProductBestSale.Rows[i]["Price"].ToString()); %>&nbsp;<sup><u>đ</u></sup></span>
                         <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat;
-                            font-size: 20px; color: #fff;">&nbsp; -
+                            font-size: 15px; color: #fff;">&nbsp; -
                                 <%Response.Write(this.objTableProductBestSale.Rows[i]["Discount"].ToString()); %>%
                             &nbsp;</span>
                     </p>

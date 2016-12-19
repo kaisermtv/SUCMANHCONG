@@ -1030,7 +1030,6 @@ public class Partner
     }
     #endregion
 
-
     #region Method getProductBillCountByPartnerId
     public int getProductBillCountByPartnerId(int PartnerId)
     {
@@ -1083,7 +1082,28 @@ public class Partner
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT TOP "+filter+" 0 AS TT, * FROM tblPartner";
+        Cmd.CommandText = "SELECT TOP  "+ filter +" 0 AS TT,tblLocation.Name AS Local,  tblPartner.* FROM tblPartner LEFT JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId ";
+        SqlDataAdapter da = new SqlDataAdapter();
+        da.SelectCommand = Cmd;
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        sqlCon.Close();
+        sqlCon.Dispose();
+        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        {
+            ds.Tables[0].Rows[i]["TT"] = (i + 1);
+        }
+        return ds.Tables[0];
+    }
+    #endregion
+
+    #region method getTopPartner        || return top number partner fromto 
+    public DataTable getTopPartner(int from, int to)
+    {
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        sqlCon.Open();
+        SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = "SELECT TOP   0 AS TT, * FROM tblPartner LIMIT "+from+" OFFSET "+to+" ";
         SqlDataAdapter da = new SqlDataAdapter();
         da.SelectCommand = Cmd;
         DataSet ds = new DataSet();
