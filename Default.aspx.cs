@@ -18,6 +18,7 @@ public partial class _Default : Page
     private DataTopic objTopic = new DataTopic();
     public DataTable objTablePartner = new DataTable();
     public Partner objPartner = new Partner();
+    public DataTable objTableBestSale = new DataTable();
 
     #endregion
 
@@ -35,12 +36,9 @@ public partial class _Default : Page
                 this.ProductGroup[i] = this.objTableProductGroup.Rows[i]["Name"].ToString();        
             }   
         }
-     
-            
         this.objTableNews = objTopic.getTopTopic();     
         this.objTableProductVIP = objProduct.getTopProductVIP();
-        this.dtlBestSale.DataSource = objProduct.getProductBestSale();
-        this.dtlBestSale.DataBind();
+        objTableBestSale = objProduct.getProductBestSale();
         this.objTablePartner = objPartner.getTopPartner();
         }
     }
