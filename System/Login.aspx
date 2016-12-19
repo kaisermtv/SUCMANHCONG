@@ -39,16 +39,18 @@
 <body>
     <form id="form1" runat="server" method="POST">
         <div class="container">
-            <h4 style="text-align: center; margin-top: 30px;">Trang quản trị hệ thống</h4>
+            <h1 style="text-align: center; margin-top: 30px;">Trang đăng nhập quản trị hệ thống</h1>
             <div class="row" style="margin-top: 0px;">
                 <div class="col-md-4 col-md-offset-4">
                     <%--<form method="POST" action="#" accept-charset="UTF-8" role="form" id="loginform" class="form-signin">--%>
                     <input name="_token" type="hidden" value="et5P8piiFzRANKXE78lAIjiKZUGcpFTrXJqDQvZf" />
                     <fieldset>
                         <h3 class="sign-up-title" style="color: dimgray; text-align: center; font-size: 20px;">Xin mời đăng nhập vào hệ thống</h3>
-
+                        <p style ="text-align:center;">
+                            <asp:Label ID="lblMsg" runat="server" Text="-:-" ForeColor ="Red" Font-Size="14px"></asp:Label>
+                        </p>
                         <hr class="colorgraph" />
-                        <input class="form-control email-title" placeholder="Account" id="txtAccount" name="email" type="text" runat="server" style="text-transform: uppercase;" />
+                        <input class="form-control email-title" placeholder="Account" id="txtAccount" name="email" type="text" runat="server" />
                         <br />
                         <input class="form-control" placeholder="Password" name="password" id="txtPassWord" type="password" value="" runat="server" />
 
