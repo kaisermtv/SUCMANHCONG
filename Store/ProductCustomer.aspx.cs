@@ -707,7 +707,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
 
             if (rowsAffected == 1)
             {
-                //string ret = this.SendSMS(this.strCusPhone,"SMC gửi mã kích hoạt OTP: " + strOTP);
+                string ret = this.SendSMS(this.strCusPhone,"SMC gửi mã kích hoạt OTP: " + strOTP);
                 //string ret = this.SendSMS("01667762419", strOTP);
 
                 this.btnSave.Enabled = false;

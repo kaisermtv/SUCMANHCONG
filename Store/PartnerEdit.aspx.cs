@@ -88,6 +88,8 @@ public partial class Store_PartnerEdit : System.Web.UI.Page
                 this.ckbState.Checked = false;
             }
             lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Partner/" + objDataPartner.Rows[0]["Image"].ToString() + "\">";
+
+            this.txtImage.Text = objDataPartner.Rows[0]["Image"].ToString();
         }
     }
     #endregion

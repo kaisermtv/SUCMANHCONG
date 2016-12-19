@@ -49,6 +49,8 @@ public partial class SlideImageEdit : System.Web.UI.Page
                 this.ckbState.Checked = false;
             }
             lblImg1.Text = "<img width = \"100%\" height = \"120px\" src = \"/Images/Slides/" + objData.Rows[0]["Image"].ToString() + "\">";
+
+            this.txtImage.Text = objData.Rows[0]["Image"].ToString();
         }
     }
     #endregion

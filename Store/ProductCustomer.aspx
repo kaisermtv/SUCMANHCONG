@@ -414,8 +414,7 @@
             document.getElementById('MainContent_btnSaveByCard').disabled = false;
 
             document.getElementById('MainContent_btnPrint').disabled = true;
-        }y
-
+        }
     </script>
 </asp:Content>
 

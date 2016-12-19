@@ -39,7 +39,7 @@ public partial class ProductEdit : System.Web.UI.Page
         };
 
         CKFinder.FileBrowser _FileBrowser = new CKFinder.FileBrowser();
-        _FileBrowser.BasePath = "../ckfinder";
+        _FileBrowser.BasePath = "../../ckfinder";
         _FileBrowser.SetupCKEditor(this.txtContent);
         try
         {
@@ -96,6 +96,7 @@ public partial class ProductEdit : System.Web.UI.Page
                 this.ckbVIP.Checked = false;
             }
             lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Products/" + objData.Rows[0]["Image"].ToString() + "\">";
+            this.txtImage.Text = objData.Rows[0]["Image"].ToString();
         }
     }
     #endregion

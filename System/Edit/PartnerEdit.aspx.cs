@@ -98,6 +98,8 @@ public partial class PartnerEdit : System.Web.UI.Page
             }
             this.txtDiscount.Text = objData.Rows[0]["Discount"].ToString();
             lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Partner/" + objData.Rows[0]["Image"].ToString() + "\">";
+
+            this.txtImage.Text = objData.Rows[0]["Image"].ToString();
         }
     }
     #endregion

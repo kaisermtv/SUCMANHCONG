@@ -103,6 +103,8 @@ public partial class Store_ProductEdit : System.Web.UI.Page
                 this.ckbVIP.Checked = false;
             }
             lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Products/" + objDataProduct.Rows[0]["Image"].ToString() + "\">";
+
+            this.txtImage.Text = objDataProduct.Rows[0]["Image"].ToString();
         }
     }
     #endregion
