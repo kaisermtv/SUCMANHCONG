@@ -250,7 +250,6 @@
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold; text-transform: uppercase; color: #01a44b;">
                             SẢN PHẨM BÁN CHẠY</span>
-
                     </a>
                     <a href="/StoreVIP.aspx"><i class="glyphicon glyphicon-tower"></i>
                         <br />
@@ -381,6 +380,98 @@
 
             </div>
         </div>
+           <div class="row">
+            <div class="sanpham">
+                <div class="col-md-3">
+                    <div style="background-color: #f9faf5; height: 375px; padding: 5px;">
+                        <a href="/detailt.aspx?id=<% if (this.objTableProductVIP.Rows.Count > 0) Response.Write(this.objTableProductVIP.Rows[0]["Id"].ToString()); else Response.Write("0"); %>">
+                            <img src="images/Products/<% if (this.objTableProductVIP.Rows.Count > 0) Response.Write(this.objTableProductVIP.Rows[0]["Image"].ToString()); else Response.Write("NoImg.png"); %>" alt="San pham VIP" /></a>
+                        <p class="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;">
+                            <a href="/detailt.aspx?id=<% if (this.objTableProductVIP.Rows.Count > 0) Response.Write(this.objTableProductVIP.Rows[0]["Id"].ToString()); else Response.Write("0"); %>"><%if (this.objTableProductVIP.Rows.Count > 0) Response.Write(this.objTableProductVIP.Rows[0]["Name"].ToString()); else Response.Write(""); %></a>
+                        </p>
+                        <div style="text-align: right; margin-top: -2px;">
+                            <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal; padding-top: 0px; padding-left: 25px;">
+                                <img src="images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
+                                122
+                            </div>
+                        </div>
+                        <p style="font-family: Arial; font-size: 14px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; margin-top: -4px;">
+                            <span style="font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;"><% if (this.objTableProductVIP.Rows.Count > 0) Response.Write(this.objTableProductVIP.Rows[0]["Price"].ToString()); else Response.Write("0"); %>&nbsp;<sup><u>đ</u></sup></span>
+                            <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat; font-size: 20px; color: #fff;">&nbsp; -<% if (this.objTableProductVIP.Rows.Count > 0) Response.Write(this.objTableProductVIP.Rows[0]["Discount"].ToString()); else Response.Write("0"); %>% &nbsp;</span>
+                        </p>
+
+                        <input type="button" value="Đã mua: 123" style="margin-top: -46px;" />
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div style="background-color: #f9faf5; height: 375px; padding: 5px;">
+                        <a href="/detailt.aspx?id=<%if (this.objTableProductVIP.Rows.Count > 1) Response.Write(this.objTableProductVIP.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
+                            <img src="images/Products/<% if (this.objTableProductVIP.Rows.Count > 1) Response.Write(this.objTableProductVIP.Rows[1]["Image"].ToString()); else Response.Write("NoImg.png");%>" alt="San pham VIP" /></a>
+                        <p class="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;">
+                            <a href="/detailt.aspx?id=<%if (this.objTableProductVIP.Rows.Count > 1) Response.Write(this.objTableProductVIP.Rows[1]["Id"].ToString()); else Response.Write("0");%>"><%if (this.objTableProductVIP.Rows.Count > 1) Response.Write(this.objTableProductVIP.Rows[1]["Name"].ToString()); else Response.Write(""); %></a>
+                        </p>
+                        <div style="text-align: right; margin-top: -2px;">
+                            <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal; padding-top: 0px; padding-left: 25px;">
+                                <img src="images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
+                                328
+                            </div>
+                        </div>
+                        <p style="font-family: Arial; font-size: 14px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; margin-top: -4px;">
+                            <span style="font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;"><%if (this.objTableProductVIP.Rows.Count > 1) Response.Write(this.objTableProductVIP.Rows[1]["Price"].ToString()); else Response.Write("0"); %>&nbsp;<sup><u>đ</u></sup></span>
+                            <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat; font-size: 20px; color: #fff;">&nbsp; -<%if (this.objTableProductVIP.Rows.Count > 1) Response.Write(this.objTableProductVIP.Rows[1]["Discount"].ToString()); else Response.Write("0"); %>% &nbsp;</span>
+                        </p>
+
+                        <input type="button" value="Đã mua: 58" style="margin-top: -46px;" />
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div style="background-color: #f9faf5; height: 375px; padding: 5px;">
+                        <a href="/detailt.aspx?id=<%if (this.objTableProductVIP.Rows.Count > 2) Response.Write(this.objTableProductVIP.Rows[2]["Id"].ToString()); else Response.Write("0");%>">
+                            <img src="images/Products/<%Response.Write(this.objTableProductVIP.Rows[2]["Image"].ToString()); %>" alt="San pham VIP" /></a>
+                        <p class="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;">
+                            <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[2]["Id"].ToString()); %>"><%Response.Write(this.objTableProductVIP.Rows[2]["Name"].ToString()); %></a>
+                        </p>
+                        <div style="text-align: right; margin-top: -2px;">
+                            <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal; padding-top: 0px; padding-left: 25px;">
+                                <img src="images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
+                                53
+                            </div>
+                        </div>
+                        <p style="font-family: Arial; font-size: 14px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; margin-top: -4px;">
+                            <span style="font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;"><%Response.Write(this.objTableProductVIP.Rows[2]["Price"].ToString()); %>&nbsp;<sup><u>đ</u></sup></span>
+                            <%--<span style ="background-image:url('/images/DiscountBg.png'); background-repeat:no-repeat; font-size:20px; color:#fff;">&nbsp; -<%Response.Write(this.objTableProductVIP.Rows[2]["Discount"].ToString()); %>% &nbsp;</span>--%>
+                        </p>
+
+                        <input type="button" value="Đã mua: 88" style="margin-top: -46px;" />
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div style="background-color: #f9faf5; height: 375px; padding: 5px;">
+                        <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[3]["Id"].ToString()); %>">
+                            <img src="images/Products/<%Response.Write(this.objTableProductVIP.Rows[3]["Image"].ToString()); %>" alt="San pham VIP" /></a>
+                        <p class="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;">
+                            <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[3]["Id"].ToString()); %>"><%Response.Write(this.objTableProductVIP.Rows[3]["Name"].ToString()); %></a>
+                        </p>
+                        <div style="text-align: right; margin-top: -2px;">
+                            <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal; padding-top: 0px; padding-left: 25px;">
+                                <img src="images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
+                                126
+                            </div>
+                        </div>
+                        <p style="font-family: Arial; font-size: 14px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; margin-top: -4px;">
+                            <span style="font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;"><%Response.Write(this.objTableProductVIP.Rows[3]["Price"].ToString()); %>&nbsp;<sup><u>đ</u></sup></span>
+                            <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat; font-size: 20px; color: #fff;">&nbsp; -<%Response.Write(this.objTableProductVIP.Rows[3]["Discount"].ToString()); %>% &nbsp;</span>
+                        </p>
+
+                        <input type="button" value="Đã mua: 208" style="margin-top: -46px;" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
 
         <div class="part">
             <div class="row">
@@ -404,7 +495,7 @@
                                 <td><a href="">1</a></td>
                                 <td><a href="">2</a></td>
                                 <td><a href="">3</a></td>
-                                <td><a href=""><i class="fa fa-angle-right"></i></a></td>
+                                <td><a href="">All<i class="fa fa-angle-right"></i></a></td>
                             </tr>
                         </table>
                     </div>
@@ -438,6 +529,7 @@
                         </ItemTemplate>
                     </asp:DataList>
                 </div>
+               
             </div>
         </div>
 
@@ -461,7 +553,7 @@
                                 <td><a href="">1</a></td>
                                 <td><a href="">2</a></td>
                                 <td><a href="">3</a></td>
-                                <td><a href=""><i class="fa fa-angle-right"></i></a></td>
+                                <td><a href="">All<i class="fa fa-angle-right"></i></a></td>
                             </tr>
                         </table>
                     </div>
@@ -551,7 +643,7 @@
                                     <td><a href="">1</a></td>
                                     <td><a href="">2</a></td>
                                     <td><a href="">3</a></td>
-                                    <td><a href=""><i class="fa fa-angle-right"></i></a></td>
+                                    <td><a href="">Tất cả<i class="fa fa-angle-right"></i></a></td>
                                 </tr>
                             </table>
                         </div>

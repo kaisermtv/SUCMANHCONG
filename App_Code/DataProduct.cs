@@ -467,6 +467,27 @@ public class DataProduct
 
     #endregion
 
+    #region method getProductVIP        || Return  all Products
+    public DataTable getProductVIP()
+    {
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        sqlCon.Open();
+        SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = "SELECT TOP 24 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct";
+        SqlDataAdapter da = new SqlDataAdapter();
+        da.SelectCommand = Cmd;
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        sqlCon.Close();
+        sqlCon.Dispose();
+        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        {
+            ds.Tables[0].Rows[i]["TT"] = (i + 1);
+        }
+        return ds.Tables[0];
+    }
+    #endregion
+
     #region method getProductVIP || return 4 product
     public DataTable getTopProductVIP()
     {
@@ -474,6 +495,29 @@ public class DataProduct
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
         Cmd.CommandText = "SELECT TOP 4 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct";
+        SqlDataAdapter da = new SqlDataAdapter();
+        da.SelectCommand = Cmd;
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        sqlCon.Close();
+        sqlCon.Dispose();
+        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        {
+            ds.Tables[0].Rows[i]["TT"] = (i + 1);
+        }
+        return ds.Tables[0];
+    }
+    #endregion
+
+    #region method getFilterProductVIPByGroupId || return 15 Products Data Table 
+    public DataTable getFilterTopProductVIP(int groupId)
+    {
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        sqlCon.Open();
+        SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = "SELECT TOP 15 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct";
+        Cmd.CommandText += " WHERE GroupId = @groupId ";
+        Cmd.Parameters.Add("@groupid",SqlDbType.Int).Value = groupId;
         SqlDataAdapter da = new SqlDataAdapter();
         da.SelectCommand = Cmd;
         DataSet ds = new DataSet();
@@ -534,4 +578,5 @@ public class DataProduct
         }
     }
     #endregion
+
 }
