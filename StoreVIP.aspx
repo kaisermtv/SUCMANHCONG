@@ -50,7 +50,7 @@
             <div class="col-md-3">
                 <div style="border: solid 1px #f6f6f6; height: 262px;">
                     <div style="text-align: center;">
-                        <%if (this.objTableStoreVip.Rows[i]["Name"].ToString().Length > 17)
+                        <%if (this.objTableStoreVip.Rows[i]["Name"].ToString().Length > 25)
                           {
                               Response.Write("<h4 style='font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;text-align: center; text-transform: uppercase;'>");
                               Response.Write("<marquee behavior='scroll' direction='left 'style='font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;text-align: center; text-transform: uppercase;' > ");
