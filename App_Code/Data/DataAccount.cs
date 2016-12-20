@@ -57,7 +57,7 @@ public class DataAccount
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblAcc WHERE [UserName] = @UserName";
+            Cmd.CommandText = "SELECT * FROM tblAcc WHERE [UserName] = @UserName AND [DelEnable] = 0";
             Cmd.Parameters.Add("UserName", SqlDbType.NVarChar).Value = accout;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;

@@ -52,18 +52,20 @@ public partial class System_Login : System.Web.UI.Page
     public int Login(string Acct, string Pass)
     {
         DataAccount dtac = new DataAccount();
-
         DataTable acct = dtac.getAccountByAccount(Acct.Trim());
+
         if (acct.Rows.Count == 0)
         {
             return 1;
         }
 
 
-        if (acct.Rows[0]["PassWord"].ToString() != this.CryptographyMD5(Pass.Trim()))
+        if (acct.Rows[0]["PassWord"].ToString() != this.CryptographyMD5(Pass))
         {
             return 2;
         }
+
+
 
         Session["ADMINLOGIN"] = (int)acct.Rows[0]["Id"];
 
