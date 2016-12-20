@@ -90,6 +90,9 @@
                  <div class = "SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Product.aspx">Sản phẩm</a>
                 </div>
+                 <div class = "SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/ListBrand.aspx">Nhãn hiệu</a>
+                </div>
                   <div class = "SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/SlideImage.aspx">Slide - Banner</a>
                 </div>

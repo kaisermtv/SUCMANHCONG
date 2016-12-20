@@ -6,7 +6,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="title_post_from">
         <div style="float: left; text-align: left;">
-            Bạn xác nhận xóa thương hiệu
+            Bạn xác nhận xóa nhãn hiệu
         </div>
         <div style="float: right; width: 25%; text-align: right;">
             <asp:Button ID="btnOk" runat="server" Text="Xác nhận" class="btn_post_from" Style="margin-right: -2px;" OnClick="btnOk_Click" />
