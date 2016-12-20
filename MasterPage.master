@@ -70,6 +70,9 @@
                     &nbsp;&nbsp;+ QUẢN TRỊ NỘI DUNG
                 </div>
                 <div class = "SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/ListBusiness.aspx">Nhóm kinh doanh</a>
+                </div>
+                <div class = "SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Partner.aspx">Cửa hàng - đối tác</a>
                 </div>
                 <div class = "SystemLeftMenu">
@@ -100,5 +103,6 @@
             </div>
         </div>
     </form>
+    <iframe src ="/System/NoPage.html" style ="width:100px; height:100px;"></iframe>
 </body>
 </html>

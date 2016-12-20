@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 public partial class Store_Register : System.Web.UI.Page
 {
     #region declare objects
-    private Business objBusiness = new Business();
+    private DataBusiness objBusiness = new DataBusiness();
     private Location objLocation = new Location();
     private Partner objPartner = new Partner();
     #endregion

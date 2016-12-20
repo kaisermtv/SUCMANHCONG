@@ -11,7 +11,7 @@ public partial class Store_PartnerEdit : System.Web.UI.Page
 {    
     #region declare objects
     private Partner objPartner = new Partner();
-    private Business objBusiness = new Business();
+    private DataBusiness objBusiness = new DataBusiness();
     #endregion
 
     #region method Page_Load

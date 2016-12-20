@@ -1,41 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="DelVideo.aspx.cs" Inherits="System_Del_DelSlide" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <style type="text/css">
-        body
-        {
-
-              font-family: Arial; 
-        }
-        .warning-title
-        {
-
-        }
-
-        .message
-        {
-
-        }
-        .warning
-        {
-            width: 100%; height: 35px; line-height: 35px; margin-top: 10px; text-align:center; color:red;
-
-        }
-        .row-warning
-        {
-            width: 100%;
-             height: 32px;
-             line-height: 30px;
-              background-color: #dde8ec;
-             
-               font-size: 13px;
-                font-weight: bold; 
-                text-transform: uppercase;
-
-        }
-
-    </style>
-
+ 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
       <div class="row-warning">
