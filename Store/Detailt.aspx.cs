@@ -16,15 +16,14 @@ public partial class Store_Detailt : System.Web.UI.Page
     public DataTable objTablePartner = new DataTable();
     public DataTable objTable = new DataTable();
     private int itemId = 0, itemProductId = 0;
+   
+
     #endregion
 
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["ACCOUNT"] == null)
-        {
-            Response.Redirect("/");
-        }
+       
         try
         {
             this.itemId = int.Parse(Request["id"].ToString());

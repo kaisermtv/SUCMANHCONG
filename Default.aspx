@@ -483,7 +483,7 @@
                             alt="" />
                     </a>
                     <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                        <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Id"].ToString()); else Response.Write("0"); %>">
+                        <a href="/Store/Detailt.aspx?id=<% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Id"].ToString()); else Response.Write("0"); %>">
                             <% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Name"].ToString()); else Response.Write("&nbsp;"); %>
                         </a>
                     </h4>
@@ -501,7 +501,7 @@
                             alt="" />
                     </a>
                     <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                        <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
+                        <a href="/Store/Detailt.aspx?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
                             <% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Name"].ToString()); else Response.Write("&nbsp;"); %>
                         </a>
                     </h4>
@@ -519,7 +519,7 @@
                             alt="" />
                     </a>
                     <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                        <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Id"].ToString()); else Response.Write("0"); %>">
+                        <a href="/Store/Detailt.aspx?id=<% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Id"].ToString()); else Response.Write("0"); %>">
                             <% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Name"].ToString()); else Response.Write("&nbsp;"); %>
                         </a>
                     </h4>
@@ -537,7 +537,7 @@
                             alt="" />
                     </a>
                     <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                        <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Id"].ToString()); else Response.Write("0"); %>">
+                        <a href="/Store/Detailt.aspx?id=<% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Id"].ToString()); else Response.Write("0"); %>">
                             <% if (this.objTablePartner.Rows.Count > 3) Response.Write(this.objTablePartner.Rows[3]["Name"].ToString()); else Response.Write("&nbsp;"); %>
                         </a>
                     </h4>
@@ -550,166 +550,179 @@
                 </div>
             </div>
         </div>
-
-        <div class="part">
-            <div class="row">
-                <div class="col-md-3">
-                    <h2 class="StoreVIPLink">
-                        <a href="StoreBestSale.aspx">CỬA HÀNG BÁN CHẠY</a>
-                    </h2>
-                </div>
-                <div class="line">
-                    <div class="col-md-7">
-                        <img src="images/line.jpg" alt="" />
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="sotrang">
-                        <table>
-                            <tr>
-                                <td><a href=""><i class="fa fa-angle-left"></i></a></td>
-                                <td><a href="">1</a></td>
-                                <td><a href="">2</a></td>
-                                <td><a href="">3</a></td>
-                                <td><a href="">>>| </a></td>
-                            </tr>
-                        </table>
-                    </div>
+    </div>
+    <div class="part">
+        <div class="row">
+            <div class="col-md-3">
+                <h2 class="StoreVIPLink">
+                    <a href="StoreBestSale.aspx">CỬA HÀNG BÁN CHẠY</a>
+                </h2>
+            </div>
+            <div class="line">
+                <div class="col-md-7">
+                    <img src="images/line.jpg" alt="" />
                 </div>
             </div>
-            <div class="row">
-                <div class="sanpham">
-                    <% for (int i = 0; i < this.objTablePartner.Rows.Count; i++)
-                       { %>
+            <div class="col-md-2">
+                <div class="sotrang">
+                    <table>
+                        <tr>
+                            <td><a href=""><i class="fa fa-angle-left"></i></a></td>
+                            <td><a href="">1</a></td>
+                            <td><a href="">2</a></td>
+                            <td><a href="">3</a></td>
+                            <td><a href="">>>| </a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="sanpham">
+                <% for (int i = 0; i < this.objTablePartner.Rows.Count; i++)
+                   { %>
 
-                    <div class="col-md-3">
-                        <a href="/Store/?id=<%  Response.Write(this.objTablePartner.Rows[i]["Id"].ToString());  %>">
-                            <img src="images/Partner/<% Response.Write(this.objTablePartner.Rows[i]["Image"].ToString()); %>"
-                                alt="" />
+                <div class="col-md-3">
+                    <a href="/Store/Detailt.aspx?id=<%  Response.Write(this.objTablePartner.Rows[i]["Id"].ToString());  %>">
+                        <img src="images/Partner/<% Response.Write(this.objTablePartner.Rows[i]["Image"].ToString()); %>"
+                            alt="" />
+                    </a>
+                    <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
+                        <a href="/Store/Detailt.aspx?id=<% Response.Write(this.objTablePartner.Rows[i]["Id"].ToString());  %>">
+                            <% Response.Write(this.objTablePartner.Rows[i]["Name"].ToString());  %>
                         </a>
-                        <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                            <a href="/Store/?id=<% Response.Write(this.objTablePartner.Rows[i]["Id"].ToString());  %>">
-                                <% Response.Write(this.objTablePartner.Rows[i]["Name"].ToString());  %>
-                            </a>
-                        </h4>
-                        <p style="text-align: justify;">
-                            <% Response.Write(this.objTablePartner.Rows[i]["Address"].ToString());  %>
-                        </p>
-                        <p>
-                            Điện thoại: <%Response.Write(this.objTablePartner.Rows[i]["Phone"].ToString());  %>
-                        </p>
-                    </div>
-                    <%} %>
+                    </h4>
+                    <p style="text-align: justify;">
+                        <% Response.Write(this.objTablePartner.Rows[i]["Address"].ToString());  %>
+                    </p>
+                    <p>
+                        Điện thoại: <%Response.Write(this.objTablePartner.Rows[i]["Phone"].ToString());  %>
+                    </p>
                 </div>
-            </div>
-        </div>
-
-        <div class="part">
-            <div class="row">
-                <div class="col-md-3">
-                    <h2 style="font-family: Arial; font-size: 18px; font-weight: bold; color: black;
-                        padding-top: 18px; padding-left: 25px; color: #4e4e57;">ĐỒNG THƯƠNG HIỆU</h2>
-                </div>
-                <div class="line">
-                    <div class="col-md-7">
-                        <img src="images/line.jpg" alt="" />
-                    </div>
-                </div>
-                <div class="col-lg-2" style="text-align: right; margin-top: 42px;">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-danger">Xem tất cả</button>
-                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="thuonghieu">
-
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="images/dongthuonghieubg.png" alt="" />
-                    </div>
-                    <div class="col-md-3">
-                        <img src="images/dth1.JPG" alt="" style="border: solid 1px #f4f4f4; padding: 10px;" />
-                        <img src="images/dth2.JPG" alt="" style="border: solid 1px #f4f4f4; padding: 10px;
-                            margin-top: 10px;" />
-                    </div>
-                    <div class="col-md-3">
-                        <img src="images/dth3.JPG" alt="" style="border: solid 1px #f4f4f4; padding: 10px;" />
-                        <img src="images/dth4.JPG" alt="" style="border: solid 1px #f4f4f4; padding: 10px;
-                            margin-top: 10px;" />
-                    </div>
-                    <div class="col-md-3">
-                        <img src="images/dth5.JPG" alt="" style="border: solid 1px #f4f4f4; padding: 10px;" />
-                        <img src="images/dth6.JPG" alt="" style="border: solid 1px #f4f4f4; padding: 10px;
-                            margin-top: 10px;" />
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="part">
-            <div class="row">
-                <div class="col-md-3">
-                    <h2 style="font-family: Arial; font-size: 18px; font-weight: bold; color: black;
-                        padding-top: 18px; padding-left: 25px; color: #4e4e57;">THƯƠNG HIỆU NỔI BẬT</h2>
-                </div>
-                <div class="line">
-                    <div class="col-md-7">
-                        <img src="images/line.jpg" alt="" />
-                    </div>
-                </div>
-                <div class="col-lg-2" style="text-align: right; margin-top: 42px;">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-danger">Xem tất cả</button>
-                        <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="thuonghieu">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="images/thnb1.JPG" style="border: solid 1px #dedee3; padding: 10px;" alt="" />
-                    </div>
-                    <div class="col-md-3">
-                        <img src="images/thnb2.JPG" style="border: solid 1px #dedee3; padding: 10px;" alt="" />
-                    </div>
-                    <div class="col-md-3">
-                        <img src="images/thnb3.JPG" style="border: solid 1px #dedee3; padding: 10px;" alt="" />
-                    </div>
-                    <div class="col-md-3">
-                        <img src="images/thnb4.JPG" style="border: solid 1px #dedee3; padding: 10px;" alt="" />
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="part">
-            <div class="row">
-                <iframe src="brand.html" style="width: 100%; border: none; overflow: hidden;"></iframe>
+                <%} %>
             </div>
         </div>
     </div>
+
+    <div class="part">
+        <div class="row">
+            <div class="col-md-3">
+                <h2 style="font-family: Arial; font-size: 18px; font-weight: bold; color: black;
+                    padding-top: 18px; padding-left: 25px; color: #4e4e57;">ĐỒNG THƯƠNG HIỆU</h2>
+            </div>
+            <div class="line">
+                <div class="col-md-7">
+                    <img src="images/line.jpg" alt="" />
+                </div>
+            </div>
+            <div class="col-lg-2" style="text-align: right; margin-top: 42px;">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger">Xem tất cả</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="thuonghieu">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="images/dongthuonghieubg.png" alt="" />
+                </div>
+                <% if (this.objTableBrand.Rows.Count > 6)
+                   { %>
+                <%for (int i = 0; i < 6; i += 2)
+                  {  %>
+                <div class="col-md-3">
+                    <img src="Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>"
+                        alt="" style="border: solid 1px #f4f4f4; padding: 10px;" />
+                    <img src="Images/<%Response.Write(this.objTableBrand.Rows[i + 1]["Logo"].ToString()); %>"
+                        alt="" style="border: solid 1px #f4f4f4; padding: 10px; margin-top: 10px;" />
+                </div>
+                <% }%>
+
+                <%}
+                   else
+                   {%>
+                <%
+                           Response.Write("");
+
+                       } %>
+            </div>
+        </div>
+    </div>
+
+    <div class="part">
+        <div class="row">
+            <div class="col-md-3">
+                <h2 style="font-family: Arial; font-size: 18px; font-weight: bold; color: black;
+                    padding-top: 18px; padding-left: 25px; color: #4e4e57;">THƯƠNG HIỆU NỔI BẬT</h2>
+            </div>
+            <div class="line">
+                <div class="col-md-7">
+                    <img src="images/line.jpg" alt="" />
+                </div>
+            </div>
+            <div class="col-lg-2" style="text-align: right; margin-top: 42px;">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-danger">Xem tất cả</button>
+                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="thuonghieu">
+            <div class="row">
+                <% if (this.objTableBrand.Rows.Count > 4)
+                   { %>
+                <%for (int i = 0; i < 4; i += 1)
+                  {  %>
+                <div class="col-md-3">
+                    <img src="Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>"
+                        style="border: solid 1px #dedee3; padding: 10px;" alt="<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>" />
+                </div>
+                <% }%>
+
+                <%}
+                   else
+                   {%>
+                <%
+                           Response.Write("");
+
+                       } %>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="part">
+        <div class="row">
+            <iframe src="brand.html" style="width: 100%; border: none; overflow: hidden;"></iframe>
+        </div>
+    </div>
+
+
 
     <div style="margin-top: -40px; width: 98%; margin-left: 0px; margin-right: 0px;">
         <div class="row" style="text-align: center;">
@@ -720,103 +733,46 @@
         </div>
     </div>
 
-  
+
 
     <div class="container">
         <div class="row" style="margin-top: 20px;">
+            <% if (this.objTableNews.Rows.Count >= 3)
+               { %>
+            <% for (int i = 0; i < 3; i++)  %>
+            <% { %>
             <div class="col-md-4">
                 <div>
-                    <a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[0]["Id"].ToString()); %>">
-                        <img src="images/<% Response.Write(objTableNews.Rows[0]["Image"].ToString()); %>"
+                    <a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[i]["Id"].ToString()); %>">
+                        <img src="Images/<% Response.Write(objTableNews.Rows[i]["Image"].ToString()); %>"
                             alt="" style="border: solid 1px #beddeb;" /></a>
                 </div>
                 <div style="width: 100%;">
                     <div style="float: left; width: 20%; text-align: center; font-family: Arial; font-size: 18px;
                         font-weight: bold; padding: 9px; padding-left: 0px;">
                         <div style="border: solid 1px #f4f4f4; margin-top: 11px;">
-                            <% Response.Write(DateTime.Parse(objTableNews.Rows[0]["DayCreate"].ToString()).ToString("dd/MM")); %>
+                            <% Response.Write(DateTime.Parse(objTableNews.Rows[i]["DayCreate"].ToString()).ToString("dd/MM")); %>
                         </div>
                         <div style="border: solid 1px #f4f4f4; border-top: none; font-size: 22px; height: 40px;
                             padding-top: 1px;">
-                            <% Response.Write(DateTime.Parse(objTableNews.Rows[0]["DayCreate"].ToString()).ToString("yyyy")); %>
+                            <% Response.Write(DateTime.Parse(objTableNews.Rows[i]["DayCreate"].ToString()).ToString("yyyy")); %>
                         </div>
                     </div>
                     <div style="float: right; width: 80%; text-align: justify; padding: 9px;">
                         <div style="vertical-align: top; height: 50px; overflow: hidden;">
                             <h5 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57;
                                 text-transform: uppercase; margin-top: -22px;"
-                                class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[0]["Id"].ToString()); %>">
-                                    <% Response.Write(objTableNews.Rows[0]["Title"].ToString()); %></a></h5>
+                                class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[i]["Id"].ToString()); %>">
+                                    <% Response.Write(objTableNews.Rows[i]["Title"].ToString()); %></a></h5>
                         </div>
                         <div style="font-family: Arial; font-size: 14px; color: #4e4e57; height: 80px; overflow: hidden;">
-                            <% Response.Write(objTableNews.Rows[0]["ShortContent"].ToString()); %>
+                            <% Response.Write(objTableNews.Rows[i]["ShortContent"].ToString()); %>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div>
-                    <a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[1]["Id"].ToString()); %>">
-                        <img src="images/<% Response.Write(objTableNews.Rows[1]["Image"].ToString()); %>"
-                            alt="" style="border: solid 1px #beddeb;" /></a>
-                </div>
-                <div style="width: 100%;">
-                    <div style="float: left; width: 20%; text-align: center; font-family: Arial; font-size: 18px;
-                        font-weight: bold; padding: 9px; padding-left: 0px;">
-                        <div style="border: solid 1px #f4f4f4; margin-top: 11px;">
-                            <% Response.Write(DateTime.Parse(objTableNews.Rows[1]["DayCreate"].ToString()).ToString("dd/MM")); %>
-                        </div>
-                        <div style="border: solid 1px #f4f4f4; border-top: none; font-size: 22px; height: 40px;
-                            padding-top: 1px;">
-                            <% Response.Write(DateTime.Parse(objTableNews.Rows[1]["DayCreate"].ToString()).ToString("yyyy")); %>
-                        </div>
-                    </div>
-                    <div style="float: right; width: 80%; text-align: justify; padding: 9px;">
-                        <div style="vertical-align: top; height: 50px; overflow: hidden;">
-                            <h5 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57;
-                                text-transform: uppercase; margin-top: -22px;"
-                                class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[1]["Id"].ToString()); %>">
-                                    <% Response.Write(objTableNews.Rows[1]["Title"].ToString()); %></a></h5>
-                        </div>
-                        <div style="font-family: Arial; font-size: 14px; color: #4e4e57; height: 80px; overflow: hidden;">
-                            <% Response.Write(objTableNews.Rows[1]["ShortContent"].ToString()); %>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div>
-                    <a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[2]["Id"].ToString()); %>">
-                        <img src="images/<% Response.Write(objTableNews.Rows[2]["Image"].ToString()); %>"
-                            alt="" style="border: solid 1px #beddeb;" /></a>
-                </div>
-                <div style="width: 100%;">
-                    <div style="float: left; width: 20%; text-align: center; font-family: Arial; font-size: 18px;
-                        font-weight: bold; padding: 9px; padding-left: 0px;">
-                        <div style="border: solid 1px #f4f4f4; margin-top: 11px;">
-                            <% Response.Write(DateTime.Parse(objTableNews.Rows[2]["DayCreate"].ToString()).ToString("dd/MM")); %>
-                        </div>
-                        <div style="border: solid 1px #f4f4f4; border-top: none; font-size: 22px; height: 40px;
-                            padding-top: 1px;">
-                            <% Response.Write(DateTime.Parse(objTableNews.Rows[2]["DayCreate"].ToString()).ToString("yyyy")); %>
-                        </div>
-                    </div>
-                    <div style="float: right; width: 80%; text-align: justify; padding: 9px;">
-                        <div style="vertical-align: top; height: 50px; overflow: hidden;">
-                            <h5 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57;
-                                text-transform: uppercase; margin-top: -22px;"
-                                class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[2]["Id"].ToString()); %>">
-                                    <% Response.Write(objTableNews.Rows[2]["Title"].ToString()); %></a></h5>
-                        </div>
-                        <div style="font-family: Arial; font-size: 14px; color: #4e4e57; height: 80px; overflow: hidden;">
-                            <% Response.Write(objTableNews.Rows[2]["ShortContent"].ToString()); %>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <% }
+                   }%>
         </div>
     </div>
-
 </asp:Content>
