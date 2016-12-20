@@ -36,7 +36,7 @@
                     </div>
                     <div style="float: right; margin-right: 8px;">
                         <asp:Button type="button" ID="btnGiamGia" class="btn btn-danger " runat="server"
-                            OnClick="btnGiamGia_Click" Text="Giảm giá" />
+                            OnClick="btnGiamGia_Click" Text="Giảm giá nhiều" />
 
                     </div>
 
@@ -45,8 +45,8 @@
         </div>
         <hr />
     </div>
-    <div class="container">
-        <div class="row">
+    <div class="container" runat="server" id="con">
+        <div class="row" >
 
 
             <% if (this.objTablePartner.Rows.Count > 0)
@@ -124,8 +124,9 @@
         </div>
     </div>
     <div class="container">
+        
         <div class="row">
-            <%// Response.Write(this.htmlCard); %>
+            <% Response.Write(""); %>
        
     <% Response.Write(this.htmtStr); %>
         </div>

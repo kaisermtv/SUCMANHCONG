@@ -46,13 +46,13 @@ public partial class Store_Detailt : System.Web.UI.Page
     
     #endregion
 
-    public void getCard(int id)
+    public string getCard()
     {
-        this.objTablePartner = this.objPartner.getPartnerInforById(id);
+        this.objTablePartner = this.objPartner.getPartnerInforById(this.itemId);
         if (this.objTablePartner.Rows.Count > 0)
         {
 
-            htmlCard += "      <div class='col-md-3'>" +
+            htmlCard += "  <div class='sanpham'>     <div class='col-md-3'>" +
                    "<div style='width: 100%; background-color: #f6f6f6; border: solid 1px #c6c6c6;'>" +
                       " <div style='padding: 5px;'>"
                         + "  <h5>THÔNG TIN LIÊN HỆ</h5>" +
@@ -62,16 +62,17 @@ public partial class Store_Detailt : System.Web.UI.Page
                            "<br />" +
                            "Website:www.sucmanhcong.com" +
                        "</div>" +
-                        "<img style ='width:98%; padding-left:5px; margin-bottom:10px;' src ='/Images/Partner/" + this.objTablePartner.Rows[0]["Image"] + "' alt = 'Hinh dai dien' />" +
-                  " </div> </div> ";
-                  
+                        "<img style ='width:98%; padding-left:5px; margin-bottom:10px;' style='width: 100%; height:250px' src ='/Images/Partner/"
+                        + this.objTablePartner.Rows[0]["Image"] + "' alt = 'Hinh dai dien' />" +
+                  " </div> </div></div> ";              
         }
-
+        return htmlCard;
     }
 
     protected void btnMoicapnhat_Click(object sender, EventArgs e)
     {
-        getCard(this.itemId);
+        con.Visible = false;
+
         pnlContent.Visible = false;
         this.objTableSelect = this.objProduct.getProductByIdWithJoinAndRecentlyUpdate();
         if (this.objTableSelect.Rows.Count > 0) {
@@ -80,9 +81,12 @@ public partial class Store_Detailt : System.Web.UI.Page
                       {
                           if (this.objTableSelect.Rows[i]["Id"].ToString() == "") { break; }
                           if (j % 4 == 0 || j == 1)   // hết 1 dòng
-                          { htmtStr += " <div class='row'>"; }
+                          { htmtStr += " <div class='row'>";
+
+                          if (j == 1) { htmtStr += getCard(); }
+                          }
                  
-               
+                        
                 htmtStr += " " +
                    " <div class='sanpham'>" +
                     "<div class='col-md-3'>" +
@@ -127,6 +131,7 @@ public partial class Store_Detailt : System.Web.UI.Page
     }
     protected void btnHotnhat_Click(object sender, EventArgs e)
     {
+        con.Visible = false;
         pnlContent.Visible = false;
         this.objTableSelect = this.objProduct.getProductByIdWithJoinAndSortByPrice();
         if (this.objTableSelect.Rows.Count > 0)
@@ -136,8 +141,12 @@ public partial class Store_Detailt : System.Web.UI.Page
             {
                 if (this.objTableSelect.Rows[i]["Id"].ToString() == "") { break; }
                 if (j % 4 == 0 || j == 1)   // hết 1 dòng
-                { htmtStr += " <div class='row'>"; }
+                {
+                    htmtStr += " <div class='row'>";
 
+                    if (j == 1) { htmtStr += getCard(); }
+                }
+                 
 
                 htmtStr += " " +
                    " <div class='sanpham'>" +
@@ -184,6 +193,7 @@ public partial class Store_Detailt : System.Web.UI.Page
     }
     protected void btnGiaTot_Click(object sender, EventArgs e)
     {
+        con.Visible = false;
         pnlContent.Visible = false;
         this.objTableSelect = this.objProduct.getProductByIdWithJoinAndSortByPriceAsc();
         if (this.objTableSelect.Rows.Count > 0)
@@ -191,10 +201,14 @@ public partial class Store_Detailt : System.Web.UI.Page
             int j = 1;
             for (int i = 0; i < this.objTableSelect.Rows.Count; i++)
             {
-                if (this.objTableSelect.Rows[i]["Id"].ToString() == "") { goto TIEP; }  
-           
+                if (this.objTableSelect.Rows[i]["Id"].ToString() == "") { break; }
                 if (j % 4 == 0 || j == 1)   // hết 1 dòng
-                { htmtStr += " <div class='row'>"; }
+                {
+                    htmtStr += " <div class='row'>";
+
+                    if (j == 1) { htmtStr += getCard(); }
+                }
+                
                 htmtStr += " " +
                    " <div class='sanpham'>" +
                     "<div class='col-md-3'>" +
@@ -253,10 +267,14 @@ public partial class Store_Detailt : System.Web.UI.Page
             int j = 1;
             for (int i = 0; i < this.objTableSelect.Rows.Count; i++)
             {
-                if (this.objTableSelect.Rows[i]["Id"].ToString() == "") { goto TIEP; }
-
+                if (this.objTableSelect.Rows[i]["Id"].ToString() == "") { break; }
                 if (j % 4 == 0 || j == 1)   // hết 1 dòng
-                { htmtStr += " <div class='row'>"; }
+                {
+                    htmtStr += " <div class='row'>";
+
+                    if (j == 1) { htmtStr += getCard(); }
+                }
+                
                 htmtStr += " " +
                    " <div class='sanpham'>" +
                     "<div class='col-md-3'>" +
