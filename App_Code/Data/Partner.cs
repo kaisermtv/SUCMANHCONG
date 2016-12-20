@@ -1083,7 +1083,7 @@ public class Partner
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT TOP  "+ filter +" 0 AS TT,tblLocation.Name AS Local,  tblPartner.* FROM tblPartner LEFT JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId ";
+        Cmd.CommandText = "SELECT TOP  "+ filter +" 0 AS TT , tblLocation.Name AS [Local],  tblPartner.* FROM tblPartner LEFT JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId ";
         SqlDataAdapter da = new SqlDataAdapter();
         da.SelectCommand = Cmd;
         DataSet ds = new DataSet();

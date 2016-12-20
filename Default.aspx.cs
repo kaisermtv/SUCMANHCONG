@@ -18,8 +18,9 @@ public partial class _Default : Page
     private DataTopic objTopic = new DataTopic();
     public DataTable objTablePartner = new DataTable();
     public Partner objPartner = new Partner();
+    private Brand objBrand = new Brand();
     public DataTable objTableBestSale = new DataTable();
-
+    public DataTable objTableBrand = new DataTable();
     #endregion
 
     #region method Page_Load
@@ -40,6 +41,8 @@ public partial class _Default : Page
         this.objTableProductVIP = objProduct.getTopProductVIP();
         objTableBestSale = objProduct.getProductBestSale();
         this.objTablePartner = objPartner.getTopPartner();
+        this.objTableBrand = objBrand.getBrand();
+
         }
     }
     #endregion
