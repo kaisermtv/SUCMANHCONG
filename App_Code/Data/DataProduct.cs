@@ -117,8 +117,8 @@ public class DataProduct
     }
     #endregion
 
-    #region Method getProductById
-    public DataTable getProductById(int Id)
+    #region Method getProductByIdJoin
+    public DataTable getProductByIdJoin(int Id)
     {
         DataTable objTable = new DataTable();
         try
@@ -127,7 +127,7 @@ public class DataProduct
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT * FROM tblProduct WHERE Id = @Id";
+            Cmd.CommandText = "SELECT tblProduct.* , tblLocation.Name AS Location  FROM tblPartner LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE  tblPartner.Id = @Id ;";
             Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
 
             SqlDataAdapter da = new SqlDataAdapter();
@@ -146,6 +146,155 @@ public class DataProduct
         return objTable;
     }
     #endregion
+
+    #region Method getProductByIdWithJoinAndRecentlyUpdate
+    public DataTable getProductByIdWithJoinAndRecentlyUpdate()
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT TOP 15 tblProduct.* , tblLocation.Name AS Location  FROM tblPartner LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id   ;";
+           
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
+    #region Method getProductByIdWithJoinAndSortByPrice
+    public DataTable getProductByIdWithJoinAndSortByPrice()
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT TOP 15 tblProduct.* , tblLocation.Name AS Location  FROM tblPartner LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id  ORDER BY tblProduct.Price  DESC ;";
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
+    #region Method getProductByIdWithJoinAndSortByPriceAsc
+    public DataTable getProductByIdWithJoinAndSortByPriceAsc()
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT TOP 15  tblProduct.* , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  ORDER BY tblProduct.Price  , tblProduct.Id  ;";
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
+
+    #region Method getProductByIdWithJoinAndSortByDiscount
+    public DataTable getProductByIdWithJoinAndSortByDiscount()
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT TOP 15  tblProduct.* , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  ORDER BY tblProduct.Discount  , tblProduct.Id  ;";
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
+    
+    #region Method getProductById
+    public DataTable getProductById(int Id)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT * from tblProduct Where Id = @Id ;";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
 
     #region Method getProductByPartnerId
     public DataTable getProductByPartnerId(int PartnerId)

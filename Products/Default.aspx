@@ -22,6 +22,7 @@
                             <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %>">
                                 <%Response.Write(this.objTableProductVIP.Rows[i]["Name"].ToString()); %></a>
                         </p>
+
                         <div style="text-align: right; margin-top: -2px;">
                             <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal;
                                 padding-top: 0px; padding-left: 25px;">
