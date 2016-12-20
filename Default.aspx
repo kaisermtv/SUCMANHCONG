@@ -206,29 +206,37 @@
                                     <img data-u="image" src="images/slide.jpg" />
                                     <div data-u="caption" data-t="4" style="position: absolute; top: 30px; left: 30px;
                                         width: 350px; height: 30px; background-color: rgba(235,81,0,0.6); font-size: 20px;
-                                        color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">SUCMANHCONG.COM
-                                        - SLIDE DEMO</div>
+                                        color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">
+                                        SUCMANHCONG.COM
+                                        - SLIDE DEMO
+                                    </div>
                                 </div>
                                 <div data-p="112.50" style="display: none;">
                                     <img data-u="image" src="images/slide.jpg" />
                                     <div data-u="caption" data-t="5" style="position: absolute; top: 30px; left: 600px;
                                         width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
-                                        color: #ffffff; line-height: 30px; text-align: center;">SUCMANHCONG.COM - SLIDE
-                                        DEMO</div>
+                                        color: #ffffff; line-height: 30px; text-align: center;">
+                                        SUCMANHCONG.COM - SLIDE
+                                        DEMO
+                                    </div>
                                 </div>
                                 <div data-p="112.50" style="display: none;">
                                     <img data-u="image" src="images/slide.jpg" />
                                     <div data-u="caption" data-t="6" style="position: absolute; top: 30px; left: 30px;
                                         width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
-                                        color: #ffffff; line-height: 30px; text-align: center;">SUCMANHCONG.COM - SLIDE
-                                        DEMO</div>
+                                        color: #ffffff; line-height: 30px; text-align: center;">
+                                        SUCMANHCONG.COM - SLIDE
+                                        DEMO
+                                    </div>
                                 </div>
                                 <div data-b="0" data-p="112.50" style="display: none;">
                                     <img data-u="image" src="images/slide.jpg" />
                                     <div data-u="caption" data-t="7" style="position: absolute; top: -50px; left: 30px;
                                         width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
-                                        color: #ffffff; line-height: 30px; text-align: center;">SUCMANHCONG.COM - SLIDE
-                                        DEMO</div>
+                                        color: #ffffff; line-height: 30px; text-align: center;">
+                                        SUCMANHCONG.COM - SLIDE
+                                        DEMO
+                                    </div>
                                 </div>
                                 <div data-p="112.50" style="display: none;">
                                     <img data-u="image" src="images/slide.jpg" />
@@ -236,8 +244,10 @@
                                         left: 150px; width: 250px; height: 250px; background-color: rgba(40,177,255,0.6);
                                         overflow: hidden;">
                                         <div data-u="caption" data-t="9" style="position: absolute; top: 100px; left: 25px;
-                                            width: 200px; height: 50px; font-size: 24px; line-height: 50px;">SUCMANHCONG.COM
-                                            - SLIDE DEMO</div>
+                                            width: 200px; height: 50px; font-size: 24px; line-height: 50px;">
+                                            SUCMANHCONG.COM
+                                            - SLIDE DEMO
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -247,9 +257,11 @@
                             </div>
                             <!-- Arrow Navigator -->
                             <span data-u="arrowleft" class="jssora02l" style="top: 0px; left: 8px; width: 55px;
-                                height: 55px;" data-autocenter="2"></span>
+                                height: 55px;"
+                                data-autocenter="2"></span>
                             <span data-u="arrowright" class="jssora02r" style="top: 0px; right: 8px; width: 55px;
-                                height: 55px;" data-autocenter="2"></span>
+                                height: 55px;"
+                                data-autocenter="2"></span>
                         </div>
 
                         <script>
@@ -396,7 +408,7 @@
         </div>
         <div class="row">
 
-            <%for (int i = 0; i < this.objTableBestSale.Rows.Count ; i++)
+            <%for (int i = 0; i < this.objTableBestSale.Rows.Count; i++)
               {  %>
 
             <div class="sanpham">
@@ -708,7 +720,7 @@
         </div>
     </div>
 
-    </div>
+  
 
     <div class="container">
         <div class="row" style="margin-top: 20px;">
@@ -721,20 +733,24 @@
                 <div style="width: 100%;">
                     <div style="float: left; width: 20%; text-align: center; font-family: Arial; font-size: 18px;
                         font-weight: bold; padding: 9px; padding-left: 0px;">
-                        <div style="border: solid 1px #f4f4f4; margin-top: 11px;"><% Response.Write(DateTime.Parse(objTableNews.Rows[0]["DayCreate"].ToString()).ToString("dd/MM")); %>
+                        <div style="border: solid 1px #f4f4f4; margin-top: 11px;">
+                            <% Response.Write(DateTime.Parse(objTableNews.Rows[0]["DayCreate"].ToString()).ToString("dd/MM")); %>
                         </div>
                         <div style="border: solid 1px #f4f4f4; border-top: none; font-size: 22px; height: 40px;
-                            padding-top: 1px;"><% Response.Write(DateTime.Parse(objTableNews.Rows[0]["DayCreate"].ToString()).ToString("yyyy")); %>
+                            padding-top: 1px;">
+                            <% Response.Write(DateTime.Parse(objTableNews.Rows[0]["DayCreate"].ToString()).ToString("yyyy")); %>
                         </div>
                     </div>
                     <div style="float: right; width: 80%; text-align: justify; padding: 9px;">
                         <div style="vertical-align: top; height: 50px; overflow: hidden;">
                             <h5 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57;
-                                text-transform: uppercase; margin-top: -22px;" class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[0]["Id"].ToString()); %>">
+                                text-transform: uppercase; margin-top: -22px;"
+                                class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[0]["Id"].ToString()); %>">
                                     <% Response.Write(objTableNews.Rows[0]["Title"].ToString()); %></a></h5>
                         </div>
                         <div style="font-family: Arial; font-size: 14px; color: #4e4e57; height: 80px; overflow: hidden;">
-                            <% Response.Write(objTableNews.Rows[0]["ShortContent"].ToString()); %></div>
+                            <% Response.Write(objTableNews.Rows[0]["ShortContent"].ToString()); %>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -748,20 +764,24 @@
                 <div style="width: 100%;">
                     <div style="float: left; width: 20%; text-align: center; font-family: Arial; font-size: 18px;
                         font-weight: bold; padding: 9px; padding-left: 0px;">
-                        <div style="border: solid 1px #f4f4f4; margin-top: 11px;"><% Response.Write(DateTime.Parse(objTableNews.Rows[1]["DayCreate"].ToString()).ToString("dd/MM")); %>
+                        <div style="border: solid 1px #f4f4f4; margin-top: 11px;">
+                            <% Response.Write(DateTime.Parse(objTableNews.Rows[1]["DayCreate"].ToString()).ToString("dd/MM")); %>
                         </div>
                         <div style="border: solid 1px #f4f4f4; border-top: none; font-size: 22px; height: 40px;
-                            padding-top: 1px;"><% Response.Write(DateTime.Parse(objTableNews.Rows[1]["DayCreate"].ToString()).ToString("yyyy")); %>
+                            padding-top: 1px;">
+                            <% Response.Write(DateTime.Parse(objTableNews.Rows[1]["DayCreate"].ToString()).ToString("yyyy")); %>
                         </div>
                     </div>
                     <div style="float: right; width: 80%; text-align: justify; padding: 9px;">
                         <div style="vertical-align: top; height: 50px; overflow: hidden;">
                             <h5 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57;
-                                text-transform: uppercase; margin-top: -22px;" class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[1]["Id"].ToString()); %>">
+                                text-transform: uppercase; margin-top: -22px;"
+                                class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[1]["Id"].ToString()); %>">
                                     <% Response.Write(objTableNews.Rows[1]["Title"].ToString()); %></a></h5>
                         </div>
                         <div style="font-family: Arial; font-size: 14px; color: #4e4e57; height: 80px; overflow: hidden;">
-                            <% Response.Write(objTableNews.Rows[1]["ShortContent"].ToString()); %></div>
+                            <% Response.Write(objTableNews.Rows[1]["ShortContent"].ToString()); %>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -775,20 +795,24 @@
                 <div style="width: 100%;">
                     <div style="float: left; width: 20%; text-align: center; font-family: Arial; font-size: 18px;
                         font-weight: bold; padding: 9px; padding-left: 0px;">
-                        <div style="border: solid 1px #f4f4f4; margin-top: 11px;"><% Response.Write(DateTime.Parse(objTableNews.Rows[2]["DayCreate"].ToString()).ToString("dd/MM")); %>
+                        <div style="border: solid 1px #f4f4f4; margin-top: 11px;">
+                            <% Response.Write(DateTime.Parse(objTableNews.Rows[2]["DayCreate"].ToString()).ToString("dd/MM")); %>
                         </div>
                         <div style="border: solid 1px #f4f4f4; border-top: none; font-size: 22px; height: 40px;
-                            padding-top: 1px;"><% Response.Write(DateTime.Parse(objTableNews.Rows[2]["DayCreate"].ToString()).ToString("yyyy")); %>
+                            padding-top: 1px;">
+                            <% Response.Write(DateTime.Parse(objTableNews.Rows[2]["DayCreate"].ToString()).ToString("yyyy")); %>
                         </div>
                     </div>
                     <div style="float: right; width: 80%; text-align: justify; padding: 9px;">
                         <div style="vertical-align: top; height: 50px; overflow: hidden;">
                             <h5 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57;
-                                text-transform: uppercase; margin-top: -22px;" class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[2]["Id"].ToString()); %>">
+                                text-transform: uppercase; margin-top: -22px;"
+                                class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[2]["Id"].ToString()); %>">
                                     <% Response.Write(objTableNews.Rows[2]["Title"].ToString()); %></a></h5>
                         </div>
                         <div style="font-family: Arial; font-size: 14px; color: #4e4e57; height: 80px; overflow: hidden;">
-                            <% Response.Write(objTableNews.Rows[2]["ShortContent"].ToString()); %></div>
+                            <% Response.Write(objTableNews.Rows[2]["ShortContent"].ToString()); %>
+                        </div>
                     </div>
                 </div>
             </div>
