@@ -15,6 +15,7 @@ public partial class ProductEdit : System.Web.UI.Page
     private Location objLocation = new Location();
 
     private int itemId = 0;
+    private int partnerId = 0;
     #endregion
 
     #region method Page_Load
@@ -50,6 +51,16 @@ public partial class ProductEdit : System.Web.UI.Page
         {
             this.itemId = 0;
         }
+
+        try
+        {
+            this.partnerId = int.Parse(Request["partnerId"].ToString());
+        }
+        catch
+        {
+            this.partnerId = 0;
+        }
+
         if (!Page.IsPostBack)
         {
           

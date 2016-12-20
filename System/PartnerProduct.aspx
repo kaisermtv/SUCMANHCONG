@@ -18,7 +18,7 @@
                         STT
                     </div>
                 </td>
-                <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 74%;">
+                <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 64%;">
                     <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom: solid 1px #808080; font-weight: bold;">
                         Tên hàng
                     </div>
@@ -38,6 +38,16 @@
                         SP bán chạy
                     </div>
                 </td>
+                <td class="head_table_item" style="width: 5%;">
+                    <div class="head_table_item_mg">
+                        &nbsp;
+                    </div>
+                </td>
+                <td class="head_table_item" style="width: 5%;">
+                    <div class="head_table_item_mg">
+                        &nbsp;
+                    </div>
+                </td>
             </tr>
         </table>
         <asp:DataList ID="DataList2" runat="server" RepeatDirection="Horizontal" RepeatColumns="1" BorderWidth="0"
@@ -50,7 +60,7 @@
                                 <%# Eval("TT") %>
                             </div>
                         </td>
-                        <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 74%;">
+                        <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 64%;">
                             <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom: solid 1px #808080;">
                                 <a style="display: block; vertical-align: middle;" href="#">
                                     <%# Eval("Name") %>
@@ -75,6 +85,19 @@
                             <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: center; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom: solid 1px #808080;">
                                 <a style="display: block; vertical-align: middle;" href="#">
                                     <%# Eval("BESTSALE1") %>
+                                </a>
+                            </div>
+                        </td>
+                        <td class="page_table_item" style="width: 5%;">
+                            <div class="page_table_item center">
+                                <a href="Edit/ProductEdit.aspx?Id=<%# Eval("Id") %>">Sửa
+                                </a>
+                            </div>
+                        </td>
+
+                        <td class="page_table_item" style="width: 5%;">
+                            <div class="page_table_item center">
+                                <a href="Del/DelProduct.aspx?Id=<%# Eval("Id") %>">Xóa
                                 </a>
                             </div>
                         </td>
