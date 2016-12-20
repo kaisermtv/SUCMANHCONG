@@ -11,21 +11,25 @@
         <div style="float: left; width: 15%;">&nbsp;&nbsp;Thêm cửa hàng</div>
         <div style="float: right; width: 80.5%;">
 
-            <div style="float: left; width: 0%;">
+            <div style="float: left; width: 45%;">
                 &nbsp;
             </div>
-            <div style="float: right; width: 60%; text-align: right;">
+             <div style="float: left; width:25%; text-align: right;">
+                <asp:DropDownList ID="ddlLocation" runat="server"   Style="width: 99%; height: 26px;
+                    line-height: 26px; margin-top: 3px;"></asp:DropDownList>
+            </div>
+            <div style="float: right; width: 30%; text-align: right;">
                  <asp:Button ID="btnSave" runat="server" Text="Ghi nhận" Style = "height:28px; width:75px; padding-bottom:4px; font-weight:bold;" OnClick="btnSave_Click" />
                  <asp:Button ID="btnCancel" runat="server" Text="Thoát" Style="height: 28px; width: 75px; padding-bottom: 4px; font-weight: bold; margin-right: 6px;" OnClick="btnCancel_Click" />
             </div>
         </div>
     </div>
    
-    <div style="width: 99%; height: 30px; line-height: 30px;">
+    <div style="width: 100%; height: 30px; line-height: 30px;">
         <div style="width: 15%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
             &nbsp;&nbsp;Tên doanh nghiệp :
         </div>
-        <div style="width: 80.5%; height: 30px; line-height: 30px; float: right;">
+        <div style="width: 84.5%; height: 30px; line-height: 30px; float: right;">
             <asp:TextBox ID="txtName" runat="server" Style="height: 22px; line-height: 22px; width: 99%; font-size: 13px; font-family: Arial;"></asp:TextBox>
         </div>
     </div>
@@ -33,7 +37,7 @@
         <div style="width: 15%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
             &nbsp;&nbsp;Địa chỉ :
         </div>
-        <div style="width: 80.5%; height: 30px; line-height: 30px; float: right;">
+        <div style="width: 84.5%; height: 30px; line-height: 30px; float: right;">
             <asp:TextBox ID="txtAddress" runat="server" Style="height: 22px; line-height: 22px; width: 99%; font-size: 13px; font-family: Arial;"></asp:TextBox>
         </div>
     </div>
