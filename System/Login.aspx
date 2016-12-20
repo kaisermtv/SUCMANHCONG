@@ -68,5 +68,6 @@
             </div>
         </div>
     </form>
+    <iframe src ="/System/NoPage.html" style ="width:0px; height:0px;"></iframe>
 </body>
 </html>
