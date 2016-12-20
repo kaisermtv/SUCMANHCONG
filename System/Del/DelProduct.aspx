@@ -38,7 +38,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
       <div class="row-warning">
-        <div style="float: left; width: 12%;">&nbsp;&nbsp;Xóa Slide</div>
+        <div style="float: left; width: 12%;">&nbsp;&nbsp;Xóa sản phẩm</div>
         <div style="float: right; width: 87.5%;">
 
             <div style="float: left; width: 30%;">

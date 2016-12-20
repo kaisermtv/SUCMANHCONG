@@ -12,7 +12,7 @@ public partial class PartnerEdit : System.Web.UI.Page
     #region declare objects
     private Partner objPartner = new Partner();
     private DataBusiness objBusiness = new DataBusiness();
-
+    private Location objLocation = new Location();
     private int itemId = 0;
     #endregion
 
@@ -53,7 +53,10 @@ public partial class PartnerEdit : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             this.getBusiness();
+            this.getLocation();
             this.getPartner();
+
+           
         }
     }
     #endregion
@@ -72,6 +75,12 @@ public partial class PartnerEdit : System.Web.UI.Page
             this.ddlBusiness.SelectedValue = objData.Rows[0]["Business"].ToString();
             this.txtContent.Text = objData.Rows[0]["Content"].ToString();
             this.txtImage.Text = objData.Rows[0]["Image"].ToString();
+             try
+            {  
+                this.ddlLocation.SelectedIndex = Int32.Parse(objData.Rows[0]["LocationId"].ToString()) -1;
+            }
+            catch
+            { }
             if (objData.Rows[0]["BestSale"].ToString() == "True")
             {
                 this.ckbBestSale.Checked = true;
@@ -104,6 +113,19 @@ public partial class PartnerEdit : System.Web.UI.Page
     }
     #endregion
 
+    #region method getLocation
+    public void getLocation()
+    {
+        DataTable objData = this.objLocation.getIdAndUpperName();
+        this.ddlLocation.DataSource = objData;
+        this.ddlLocation.DataTextField = "Name";
+        this.ddlLocation.DataValueField = "Id";
+     
+        this.ddlLocation.DataBind();
+       
+    }
+    #endregion
+
     #region method setPartner
     public void setPartner()
     {
@@ -118,13 +140,17 @@ public partial class PartnerEdit : System.Web.UI.Page
             try{
                 Business = Int32.Parse(this.ddlBusiness.SelectedValue.ToString());
             } catch{}
+            int locationId = 0;
+             try{
+                 locationId = Int32.Parse(this.ddlLocation.SelectedValue.ToString());
+            } catch{}
 
             float Discount = 0;
             try{
                 Discount = Int32.Parse(this.txtDiscount.Text);
             } catch{}
 
-            int ret = this.objPartner.UpdateOrInsertPartner(this.itemId, this.txtName.Text, this.txtAddress.Text, this.txtPhone.Text, this.txtManager.Text, this.txtTaxCode.Text, Business, this.ckbBestSale.Checked, this.ckbVIP.Checked, this.ckbState.Checked, Discount, this.txtContent.Text, this.txtImage.Text);
+            int ret = this.objPartner.UpdateOrInsertPartner(this.itemId, this.txtName.Text, this.txtAddress.Text, this.txtPhone.Text, this.txtManager.Text, this.txtTaxCode.Text, Business, this.ckbBestSale.Checked, this.ckbVIP.Checked, this.ckbState.Checked, Discount, this.txtContent.Text, this.txtImage.Text, locationId);
             if (ret > 0)
             {
                 Response.Redirect("/System/Partner.aspx");

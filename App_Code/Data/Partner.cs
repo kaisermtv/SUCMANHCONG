@@ -105,7 +105,7 @@ public class Partner
 
     #region Method UpdateOrInsertPartner
     //*
-    public int UpdateOrInsertPartner(int Id, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, bool BestSale, bool VIP, bool State, float Discount, string Content, string Image)
+    public int UpdateOrInsertPartner(int Id, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, bool BestSale, bool VIP, bool State, float Discount, string Content, string Image,int locationId)
     {
         try
         {
@@ -113,8 +113,8 @@ public class Partner
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             string sqlQuery = "IF NOT EXISTS (SELECT * FROM tblPartner WHERE Id = @Id)";
-            sqlQuery += "BEGIN INSERT INTO tblPartner(Name,Address,Phone,Manager,Business,TaxCode,Content,Image,BestSale,VIP,State,Discount) VALUES(@Name,@Address,@Phone,@Manager,@Business,@TaxCode,@Content,@Image,@BestSale,@VIP,@State,@Discount) END ";
-            sqlQuery += "UPDATE tblPartner SET Name = @Name, Address = @Address, Phone = @Phone, Manager = @Manager, Business = @Business, TaxCode = @TaxCode, Content = @Content, Image = @Image, State = @State, BestSale = @BestSale, VIP = @VIP, Discount = @Discount WHERE Id = @Id";
+            sqlQuery += "BEGIN INSERT INTO tblPartner(Name,Address,Phone,Manager,Business,TaxCode,Content,Image,BestSale,VIP,State,Discount,LocationId) VALUES(@Name,@Address,@Phone,@Manager,@Business,@TaxCode,@Content,@Image,@BestSale,@VIP,@State,@Discount,@LocationId) END ";
+            sqlQuery += "UPDATE tblPartner SET Name = @Name, Address = @Address, Phone = @Phone, Manager = @Manager, Business = @Business, TaxCode = @TaxCode, Content = @Content, Image = @Image, State = @State, BestSale = @BestSale, VIP = @VIP, Discount = @Discount,LocationId = @LocationId WHERE Id = @Id";
             Cmd.CommandText = sqlQuery;
             Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
             Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
@@ -129,6 +129,7 @@ public class Partner
             Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = VIP;
             Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;
             Cmd.Parameters.Add("Discount", SqlDbType.Float).Value = Discount;
+            Cmd.Parameters.Add("LocationId", SqlDbType.Int).Value = locationId;
             int ret = Cmd.ExecuteNonQuery();
             sqlCon.Close();
             sqlCon.Dispose();
@@ -662,7 +663,7 @@ public class Partner
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT * FROM tblPartner WHERE Id = @Id";
+            Cmd.CommandText = "SELECT tblPartner.*,tblLocation.Name As Location FROM tblPartner LEFT JOIN tblLocation ON tblPartner.LocationId=tblLocation.Id WHERE tblPartner.Id = @Id ";
             Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
 
             SqlDataAdapter da = new SqlDataAdapter();

@@ -12,6 +12,7 @@ public partial class ProductEdit : System.Web.UI.Page
     #region declare objects
     private DataProduct objProduct = new DataProduct();
     private Partner objPartner = new Partner();
+    private Location objLocation = new Location();
 
     private int itemId = 0;
     #endregion
@@ -51,12 +52,14 @@ public partial class ProductEdit : System.Web.UI.Page
         }
         if (!Page.IsPostBack)
         {
+          
             this.getProductGroup();
             this.getPartner();
             this.getProduct();
         }
     }
     #endregion
+
 
     #region method getProduct
     public void getProduct()
@@ -118,6 +121,7 @@ public partial class ProductEdit : System.Web.UI.Page
     #region method getPartner
     public void getPartner()
     {
+      
         DataTable objData = this.objPartner.getPartnerIdUpperName();
         this.ddlPartner.DataSource = objData;
         this.ddlPartner.DataTextField = "Name";
@@ -125,6 +129,8 @@ public partial class ProductEdit : System.Web.UI.Page
         this.ddlPartner.DataBind();
     }
     #endregion
+
+  
 
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
