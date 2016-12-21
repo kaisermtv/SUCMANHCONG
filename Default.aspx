@@ -165,10 +165,13 @@
                                     top: 0px; left: 0px; width: 100%; height: 100%;">
                                 </div>
                             </div>
+
                             <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px;
                                 width: 1140px; height: 238px; overflow: hidden;">
+
+                                <% for (int i = 0; i < this.objTableSlide.Rows.Count; i ++ ) {%>
                                 <div data-p="112.50" style="display: none;">
-                                    <img data-u="image" src="images/slide.jpg" />
+                                    <img data-u="image" src="/Images/Slides/<% Response.Write( this.objTableSlide.Rows[i]["Image"].ToString()); %>" />
                                     <div data-u="caption" data-t="0" style="position: absolute; top: 320px; left: 30px;
                                         width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
                                         color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">
@@ -176,80 +179,10 @@
                                         - SLIDE DEMO
                                     </div>
                                 </div>
-                                <div data-p="112.50" style="display: none;">
-                                    <img data-u="image" src="images/slide.jpg" />
-                                    <div data-u="caption" data-t="1" data-3d="1" style="position: absolute; top: -50px;
-                                        left: 125px; width: 350px; height: 30px; background-color: rgba(235,81,0,0.5);
-                                        font-size: 20px; color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">
-                                        SUCMANHCONG.COM - SLIDE DEMO
-                                    </div>
-                                </div>
-                                <div data-p="112.50" style="display: none;">
-                                    <img data-u="image" src="images/slide.jpg" />
-                                    <div data-u="caption" data-t="2" style="position: absolute; top: 30px; left: -380px;
-                                        width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
-                                        color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">
-                                        SUCMANHCONG.COM
-                                        - SLIDE DEMO
-                                    </div>
-                                </div>
-                                <div data-p="112.50" style="display: none;">
-                                    <img data-u="image" src="images/slide.jpg" />
-                                    <div data-u="caption" data-t="3" style="position: absolute; top: 30px; left: 30px;
-                                        width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
-                                        color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">
-                                        SUCMANHCONG.COM
-                                        - SLIDE DEMO
-                                    </div>
-                                </div>
-                                <div data-p="112.50" style="display: none;">
-                                    <img data-u="image" src="images/slide.jpg" />
-                                    <div data-u="caption" data-t="4" style="position: absolute; top: 30px; left: 30px;
-                                        width: 350px; height: 30px; background-color: rgba(235,81,0,0.6); font-size: 20px;
-                                        color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">
-                                        SUCMANHCONG.COM
-                                        - SLIDE DEMO
-                                    </div>
-                                </div>
-                                <div data-p="112.50" style="display: none;">
-                                    <img data-u="image" src="images/slide.jpg" />
-                                    <div data-u="caption" data-t="5" style="position: absolute; top: 30px; left: 600px;
-                                        width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
-                                        color: #ffffff; line-height: 30px; text-align: center;">
-                                        SUCMANHCONG.COM - SLIDE
-                                        DEMO
-                                    </div>
-                                </div>
-                                <div data-p="112.50" style="display: none;">
-                                    <img data-u="image" src="images/slide.jpg" />
-                                    <div data-u="caption" data-t="6" style="position: absolute; top: 30px; left: 30px;
-                                        width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
-                                        color: #ffffff; line-height: 30px; text-align: center;">
-                                        SUCMANHCONG.COM - SLIDE
-                                        DEMO
-                                    </div>
-                                </div>
-                                <div data-b="0" data-p="112.50" style="display: none;">
-                                    <img data-u="image" src="images/slide.jpg" />
-                                    <div data-u="caption" data-t="7" style="position: absolute; top: -50px; left: 30px;
-                                        width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
-                                        color: #ffffff; line-height: 30px; text-align: center;">
-                                        SUCMANHCONG.COM - SLIDE
-                                        DEMO
-                                    </div>
-                                </div>
-                                <div data-p="112.50" style="display: none;">
-                                    <img data-u="image" src="images/slide.jpg" />
-                                    <div data-u="caption" data-t="8" data-3d="1" style="position: absolute; top: 25px;
-                                        left: 150px; width: 250px; height: 250px; background-color: rgba(40,177,255,0.6);
-                                        overflow: hidden;">
-                                        <div data-u="caption" data-t="9" style="position: absolute; top: 100px; left: 25px;
-                                            width: 200px; height: 50px; font-size: 24px; line-height: 50px;">
-                                            SUCMANHCONG.COM
-                                            - SLIDE DEMO
-                                        </div>
-                                    </div>
-                                </div>
+                                <%} %>
+
+
+                              
                             </div>
                             <!-- Bullet Navigator -->
                             <div data-u="navigator" class="jssorb01" style="bottom: 16px; right: 16px;">
@@ -344,31 +277,34 @@
                     <div style="background-color: #f9faf5; height: 375px; padding: 5px;">
                         <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %>">
                             <img src="images/Products/<%Response.Write(this.objTableProductVIP.Rows[i]["Image"].ToString()); %>"
-                            style=" height:255px ; width:100%"    alt=" Nổi bật" /></a>
+                                style="height: 255px; width: 100%" alt=" Nổi bật" /></a>
                         <p class="ProductLink" style="font-family: Arial; font-size: 17px; font-weight: bold;
-                            color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb; height:50px; overflow: hidden; ">
+                            color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;
+                            height: 50px; overflow: hidden;">
 
-                                       <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %> " >
-                                           <%Response.Write(this.objTableProductVIP.Rows[i]["Name"].ToString()); %>
-                                       </a>
-                                      
+                            <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %> ">
+                                <%Response.Write(this.objTableProductVIP.Rows[i]["Name"].ToString()); %>
+                            </a>
+
                         </p>
                         <div style="text-align: right; margin-top: -2px;">
                             <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal;
                                 padding-top: 0px; padding-left: 25px;">
                                 <img src="images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
-                               <%Response.Write(this.objTableProductVIP.Rows[i]["CountLike"].ToString()); %>
+                                <%Response.Write(this.objTableProductVIP.Rows[i]["CountLike"].ToString()); %>
                             </div>
                         </div>
                         <p style="font-family: Arial; font-size: 14px; font-weight: bold; color: #50505a;
                             padding: 5px; text-align: justify; margin-top: -4px;">
                             <span style="font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;">
                                 <%Response.Write(this.objTableProductVIP.Rows[i]["Price"].ToString()); %>&nbsp;<sup><u>đ</u></sup></span>
-                            <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat; font-size: 14px; color: #fff;">&nbsp; -
+                            <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat;
+                                font-size: 14px; color: #fff;">&nbsp; -
                                 <%Response.Write(this.objTableProductVIP.Rows[i]["Discount"].ToString()); %>% &nbsp;</span>
                         </p>
 
-                        <input type="button" value="Đã mua: <%Response.Write(this.objTableProductVIP.Rows[i]["CountBuy"].ToString()); %>" style="margin-top: -46px;" />
+                        <input type="button" value="Đã mua: <%Response.Write(this.objTableProductVIP.Rows[i]["CountBuy"].ToString()); %>"
+                            style="margin-top: -46px;" />
                     </div>
 
                 </div>
@@ -419,35 +355,38 @@
                         <a href="/detailt.aspx?id=<%Response.Write(this.objTableBestSale.Rows[i]["Id"].ToString()); %>">
                             <img src="images/Products/<%Response.Write(this.objTableBestSale.Rows[i]["Image"].ToString()); %>"
                                 alt=" Nổi bật" /></a>
-                          <!-- dang sua-->
+                        <!-- dang sua-->
                         <p class="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold;
-                            color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb; height:50px; overflow:hidden;">
+                            color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;
+                            height: 50px; overflow: hidden;">
 
-                        
-                                       <a href="/detailt.aspx?id=<%Response.Write(this.objTableBestSale.Rows[i]["Id"].ToString()); %>" >
-                                           <%Response.Write(this.objTableBestSale.Rows[i]["Name"].ToString()); %>
-                                       </a>
-                                
+
+                            <a href="/detailt.aspx?id=<%Response.Write(this.objTableBestSale.Rows[i]["Id"].ToString()); %>">
+                                <%Response.Write(this.objTableBestSale.Rows[i]["Name"].ToString()); %>
+                            </a>
+
                         </p>
-                          <!-- dang sua-->
-                        
+                        <!-- dang sua-->
+
                         <div style="text-align: right; margin-top: -2px;">
                             <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal;
                                 padding-top: 0px; padding-left: 25px;">
                                 <img src="images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
-                                <%Response.Write(this.objTableProductVIP.Rows[i]["CountLike"].ToString()); %>
+                                <%Response.Write(this.objTableBestSale.Rows[i]["CountLike"].ToString()); %>
                             </div>
                         </div>
                         <p style="font-family: Arial; font-size: 14px; font-weight: bold; color: #50505a;
-                            padding: 5px; text-align: justify; margin-top: -4px; overflow:hidden;height:50px;  ">
+                            padding: 5px; text-align: justify; margin-top: -4px; overflow: hidden; height: 50px;">
                             <span style="font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;">
                                 <%Response.Write(this.objTableBestSale.Rows[i]["Price"].ToString()); %>&nbsp;<sup><u>đ</u></sup></span>
-                            <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat; font-size: 14px; color: #fff;">&nbsp; -
+                            <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat;
+                                font-size: 14px; color: #fff;">&nbsp; -
                                 <%Response.Write(this.objTableBestSale.Rows[i]["Discount"].ToString()); %>% &nbsp;</span>
                         </p>
 
-                      
-                        <input type="button" value="Đã mua: <%Response.Write(this.objTableProductVIP.Rows[i]["CountBuy"].ToString()); %>" style="margin-top: -46px;" />
+
+                        <input type="button" value="Đã mua: <%Response.Write(this.objTableBestSale.Rows[i]["CountBuy"].ToString()); %>"
+                            style="margin-top: -46px;" />
                     </div>
 
                 </div>
@@ -496,7 +435,7 @@
                             <% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Name"].ToString()); else Response.Write("&nbsp;"); %>
                         </a>
                     </h4>
-                    <p style="text-align: justify;  height:20px ; overflow:hidden; ">
+                    <p style="text-align: justify; height: 20px; overflow: hidden;">
                         <% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Address"].ToString()); else Response.Write("&nbsp;"); %>
                     </p>
                     <p>
@@ -514,7 +453,7 @@
                             <% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Name"].ToString()); else Response.Write("&nbsp;"); %>
                         </a>
                     </h4>
-                       <p style="text-align: justify;  height:20px ; overflow:hidden; ">
+                    <p style="text-align: justify; height: 20px; overflow: hidden;">
                         <% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Address"].ToString()); else Response.Write("&nbsp;"); %>
                     </p>
                     <p>
@@ -532,7 +471,7 @@
                             <% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Name"].ToString()); else Response.Write("&nbsp;"); %>
                         </a>
                     </h4>
-                        <p style="text-align: justify;  height:20px ; overflow:hidden; ">
+                    <p style="text-align: justify; height: 20px; overflow: hidden;">
                         <% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Address"].ToString()); else Response.Write("&nbsp;"); %>
                     </p>
                     <p>
@@ -550,7 +489,7 @@
                             <% if (this.objTablePartner.Rows.Count > 3) Response.Write(this.objTablePartner.Rows[3]["Name"].ToString()); else Response.Write("&nbsp;"); %>
                         </a>
                     </h4>
-                        <p style="text-align: justify;  height:20px ; overflow:hidden; ">
+                    <p style="text-align: justify; height: 20px; overflow: hidden;">
                         <% if (this.objTablePartner.Rows.Count > 3) Response.Write(this.objTablePartner.Rows[3]["Address"].ToString()); else Response.Write("&nbsp;"); %>
                     </p>
                     <p>
@@ -594,14 +533,14 @@
                 <div class="col-md-3">
                     <a href="/Store/Detailt.aspx?id=<%  Response.Write(this.objTablePartner.Rows[i]["Id"].ToString());  %>">
                         <img src="images/Partner/<% Response.Write(this.objTablePartner.Rows[i]["Image"].ToString()); %>  "
-                            style="height:253px ; width:100%" alt="" />
+                            style="height: 253px; width: 100%" alt="" />
                     </a>
                     <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
                         <a href="/Store/Detailt.aspx?id=<% Response.Write(this.objTablePartner.Rows[i]["Id"].ToString());  %>">
                             <% Response.Write(this.objTablePartner.Rows[i]["Name"].ToString());  %>
                         </a>
                     </h4>
-                        <p style="text-align: justify;  height:20px ; overflow:hidden; ">
+                    <p style="text-align: justify; height: 20px; overflow: hidden;">
                         <% Response.Write(this.objTablePartner.Rows[i]["Address"].ToString());  %>
                     </p>
                     <p>
@@ -753,8 +692,8 @@
             <div class="col-md-4">
                 <div>
                     <a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[i]["Id"].ToString()); %>">
-                        <img src="Images/<% Response.Write(objTableNews.Rows[i]["Image"].ToString()); %>"            
-                     alt=""    style="border: solid 1px #beddeb;  height:253px ; width:100%" /></a>
+                        <img src="Images/<% Response.Write(objTableNews.Rows[i]["Image"].ToString()); %>"
+                            alt="" style="border: solid 1px #beddeb; height: 253px; width: 100%" /></a>
                 </div>
                 <div style="width: 100%;">
                     <div style="float: left; width: 20%; text-align: center; font-family: Arial; font-size: 18px;

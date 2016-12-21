@@ -19,8 +19,11 @@ public partial class _Default : Page
     public DataTable objTablePartner = new DataTable();
     public Partner objPartner = new Partner();
     private Brand objBrand = new Brand();
+    private DataSlideImage objSlide = new DataSlideImage();
     public DataTable objTableBestSale = new DataTable();
     public DataTable objTableBrand = new DataTable();
+    public DataTable objTableSlide = new DataTable();
+
     #endregion
 
     #region method Page_Load
@@ -37,12 +40,13 @@ public partial class _Default : Page
                 this.ProductGroup[i] = this.objTableProductGroup.Rows[i]["Name"].ToString();        
             }   
         }
+
         this.objTableNews = objTopic.getTopTopic();     
         this.objTableProductVIP = objProduct.getTopProductVIP();
         objTableBestSale = objProduct.getProductBestSale();
         this.objTablePartner = objPartner.getTopPartner();
         this.objTableBrand = objBrand.getBrand();
-
+        this.objTableSlide = objSlide.getSlideImage();
         }
     }
     #endregion

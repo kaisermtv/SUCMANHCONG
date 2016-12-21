@@ -102,7 +102,6 @@ public class DataSlideImage
     }
     #endregion
 
-
     #region method removeSlideImage
     public int removeSlideImage(int Id)
     {

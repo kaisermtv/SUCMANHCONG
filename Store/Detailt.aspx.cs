@@ -256,10 +256,7 @@ public partial class Store_Detailt : System.Web.UI.Page
 
         }
     }
-    protected void btnSaphethan_Click(object sender, EventArgs e)
-    {
-
-    }
+  
     protected void btnGiamGia_Click(object sender, EventArgs e)
     {
         con.Visible = false;

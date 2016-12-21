@@ -29,11 +29,7 @@
                         <asp:Button type="button" ID="btnGiaTot" class="btn btn-info " runat="server" OnClick="btnGiaTot_Click"
                             Text="Giá tốt" />
                     </div>
-                    <div style="float: left; margin-right: 8px;">
-                        <asp:Button type="button" ID="btnSaphethan" class="btn btn-warning " runat="server"
-                            OnClick="btnSaphethan_Click" Text="Sắp hết hạn" />
-
-                    </div>
+                  
                     <div style="float: right; margin-right: 8px;">
                         <asp:Button type="button" ID="btnGiamGia" class="btn btn-danger " runat="server"
                             OnClick="btnGiamGia_Click" Text="Giảm giá nhiều" />
