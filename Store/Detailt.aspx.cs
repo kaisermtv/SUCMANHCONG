@@ -74,7 +74,7 @@ public partial class Store_Detailt : System.Web.UI.Page
         con.Visible = false;
 
         pnlContent.Visible = false;
-        this.objTableSelect = this.objProduct.getProductByIdWithJoinAndRecentlyUpdate();
+        this.objTableSelect = this.objProduct.getProductByIdWithJoinAndRecentlyUpdate(this.itemId);
         if (this.objTableSelect.Rows.Count > 0) {
                  int j =1;
                  for (int i = 0; i < this.objTableSelect.Rows.Count; i++)
@@ -133,7 +133,7 @@ public partial class Store_Detailt : System.Web.UI.Page
     {
         con.Visible = false;
         pnlContent.Visible = false;
-        this.objTableSelect = this.objProduct.getProductByIdWithJoinAndSortByPrice();
+        this.objTableSelect = this.objProduct.getProductByIdWithJoinAndSortByPrice(this.itemId);
         if (this.objTableSelect.Rows.Count > 0)
         {
             int j = 1;
@@ -195,7 +195,7 @@ public partial class Store_Detailt : System.Web.UI.Page
     {
         con.Visible = false;
         pnlContent.Visible = false;
-        this.objTableSelect = this.objProduct.getProductByIdWithJoinAndSortByPriceAsc();
+        this.objTableSelect = this.objProduct.getProductByIdWithJoinAndSortByPriceAsc(this.itemId);
         if (this.objTableSelect.Rows.Count > 0)
         {
             int j = 1;
@@ -261,7 +261,7 @@ public partial class Store_Detailt : System.Web.UI.Page
     protected void btnGiamGia_Click(object sender, EventArgs e)
     {
         pnlContent.Visible = false;
-        this.objTableSelect = this.objProduct.getProductByIdWithJoinAndSortByDiscount();
+        this.objTableSelect = this.objProduct.getProductByIdWithJoinAndSortByDiscount(this.itemId);
         if (this.objTableSelect.Rows.Count > 0)
         {
             int j = 1;

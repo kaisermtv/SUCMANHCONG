@@ -85,7 +85,7 @@
                         <div style="margin-right: 5px; float: right; width: 47%; background-color: #ffc000;
                             color: #fff; height: 30px; line-height: 30px; display: block; vertical-align: middle;"
                             class="DetailtLink">
-                            <a href="/Store.aspx/?id=1">Chi tiết</a>
+                            <a href="/Store/Detailt.aspx?id=<%Response.Write(this.objTableStoreVip.Rows[i]["Id"].ToString()); %>">Chi tiết</a>
                         </div>
                     </div>
                 </div>
@@ -102,21 +102,7 @@
           }  %>
     </div>
 
-    <div class="row" style="margin-left: 45%">
-        <div class="col-md-2">
-            <div class="sotrang">
-                <table>
-                    <tr>
-                        <td><a href="" style="move-to: normal"><i class="fa fa-angle-left"></i></a></td>
-                        <td><a href="">1</a></td>
-                        <td><a href="">2</a></td>
-                        <td><a href="">3</a></td>
-                        <td><a href="">All</a></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
+    
 
 
 

@@ -74,7 +74,7 @@
                 <%  for (int i = 0; i < loop; i++) %>
                 <% {  %>
 
-                <div style="border: solid 1px #f6f6f6; height: 382px;">
+                <div style="border: solid 1px #f6f6f6; height: 150px;">
                     <div>
                         <img src="/Images/Products/<% Response.Write(this.objTable.Rows[i]["Image"].ToString());%>"
                             alt="San pham 1" style="width: 100%; height: 150px" />
