@@ -95,7 +95,7 @@
                     </div>
 
                 <div class="col-md-3" style="float: left; width: 25%; height: 100%; vertical-align: top;">
-                      <div style="width: 95%; height:355px background-color: #f6f6f6; border: solid 1px #c6c6c6;">
+                      <div style="width: 95%; height:355px; background-color: #f6f6f6; border: solid 1px #c6c6c6;">
                         <div style="padding: 5px;">
                             <h5>THÔNG TIN LIÊN HỆ</h5>
                             Điện thoại:      <% Response.Write(this.objTablePartner.Rows[0]["Phone"].ToString()); %>
