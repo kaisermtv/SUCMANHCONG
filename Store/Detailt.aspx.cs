@@ -39,7 +39,7 @@ public partial class Store_Detailt : System.Web.UI.Page
         {
             this.objTablePartner = this.objPartner.getPartnerInforById(this.itemId);
             this.objTable = this.objProduct.getProductByIdJoin(this.itemId);
-            this.ddlLeft.DataSource = this.objProduct.getProductByIdWithJoinAndSortByDiscount(this.itemId);
+            this.ddlLeft.DataSource = this.objProduct.getProductByIdWithJoinAndSortByLike(this.itemId);
             this.ddlLeft.DataBind();
         }
     }
