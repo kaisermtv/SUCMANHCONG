@@ -169,9 +169,10 @@
                             <div data-u="slides" style="cursor: default; position: relative; top: 0px; left: 0px;
                                 width: 1140px; height: 238px; overflow: hidden;">
 
-                                <% for (int i = 0; i < this.objTableSlide.Rows.Count; i ++ ) {%>
+                                <% for (int i = 0; i < this.objTableSlide.Rows.Count; i++)
+                                   {%>
                                 <div data-p="112.50" style="display: none;">
-                                    <img data-u="image" src="/Images/Slides/<% Response.Write( this.objTableSlide.Rows[i]["Image"].ToString()); %>" />
+                                    <img data-u="image" src="/Images/Slides/<% Response.Write(this.objTableSlide.Rows[i]["Image"].ToString()); %>" />
                                     <div data-u="caption" data-t="0" style="position: absolute; top: 320px; left: 30px;
                                         width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
                                         color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">
@@ -180,9 +181,6 @@
                                     </div>
                                 </div>
                                 <%} %>
-
-
-                              
                             </div>
                             <!-- Bullet Navigator -->
                             <div data-u="navigator" class="jssorb01" style="bottom: 16px; right: 16px;">
