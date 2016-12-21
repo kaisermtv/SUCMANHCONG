@@ -148,7 +148,7 @@ public class DataProduct
     #endregion
 
     #region Method getProductByIdWithJoinAndRecentlyUpdate
-    public DataTable getProductByIdWithJoinAndRecentlyUpdate()
+    public DataTable getProductByIdWithJoinAndRecentlyUpdate(int Id)
     {
         DataTable objTable = new DataTable();
         try
@@ -157,8 +157,8 @@ public class DataProduct
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT TOP 15 tblProduct.* , tblLocation.Name AS Location  FROM tblPartner LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id   ;";
-           
+            Cmd.CommandText = "SELECT TOP 15 tblProduct.* , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id   WHERE tblPartner.Id = @PartnerId ;";
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = Id;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -177,7 +177,7 @@ public class DataProduct
     #endregion
 
     #region Method getProductByIdWithJoinAndSortByPrice
-    public DataTable getProductByIdWithJoinAndSortByPrice()
+    public DataTable getProductByIdWithJoinAndSortByPrice(int Id)
     {
         DataTable objTable = new DataTable();
         try
@@ -186,8 +186,8 @@ public class DataProduct
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT TOP 15 tblProduct.* , tblLocation.Name AS Location  FROM tblPartner LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id  ORDER BY tblProduct.Price  DESC ;";
-
+            Cmd.CommandText = "SELECT TOP 15 tblProduct.* , tblLocation.Name AS Location  FROM tblPartner LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblPartner.Id = @PartnerId  ORDER BY tblProduct.Price   DESC ;";
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = Id;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -206,7 +206,7 @@ public class DataProduct
     #endregion
 
     #region Method getProductByIdWithJoinAndSortByPriceAsc
-    public DataTable getProductByIdWithJoinAndSortByPriceAsc()
+    public DataTable getProductByIdWithJoinAndSortByPriceAsc(int Id)
     {
         DataTable objTable = new DataTable();
         try
@@ -215,8 +215,8 @@ public class DataProduct
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT TOP 15  tblProduct.* , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  ORDER BY tblProduct.Price  , tblProduct.Id  ;";
-
+            Cmd.CommandText = "SELECT TOP 15  tblProduct.* , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  AND tblPartner.Id = @PartnerId  ORDER BY tblProduct.Price  , tblProduct.Id  ;";
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = Id;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -236,7 +236,7 @@ public class DataProduct
 
 
     #region Method getProductByIdWithJoinAndSortByDiscount
-    public DataTable getProductByIdWithJoinAndSortByDiscount()
+    public DataTable getProductByIdWithJoinAndSortByDiscount(int Id)
     {
         DataTable objTable = new DataTable();
         try
@@ -245,8 +245,8 @@ public class DataProduct
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT TOP 15  tblProduct.* , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  ORDER BY tblProduct.Discount  , tblProduct.Id  ;";
-
+            Cmd.CommandText = "SELECT TOP 15  tblProduct.* , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  AND tblPartner.Id = @PartnerId  ORDER BY tblProduct.Discount  , tblProduct.Id  ;";
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = Id;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();

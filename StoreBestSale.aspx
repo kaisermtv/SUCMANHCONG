@@ -89,21 +89,7 @@
           }  %>
     </div>
 
-    <div class="row" style="margin-left: 45%">
-        <div class="col-md-2">
-            <div class="sotrang">
-                <table>
-                    <tr>
-                        <td><a href="" style="move-to: normal"><i class="fa fa-angle-left"></i></a></td>
-                        <td><a href="">1</a></td>
-                        <td><a href="">2</a></td>
-                        <td><a href="">3</a></td>
-                        <td><a href="">All</a></td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-    </div>
+  
 
 
 </asp:Content>
