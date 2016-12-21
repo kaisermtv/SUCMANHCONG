@@ -49,7 +49,23 @@
                     <div style="text-align: center;">
                         <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;
                             text-align: center; text-transform: uppercase;">
-                            <%Response.Write(this.objTableStoreBestSale.Rows[i]["Name"].ToString()); %>
+
+                           <%if (this.objTableStoreBestSale.Rows[i]["Name"].ToString().Length > 25)
+                          {
+                              Response.Write("<h4 style='font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;text-align: center; text-transform: uppercase;'>");
+                              Response.Write("<marquee behavior='scroll' direction='left 'style='font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;text-align: center; text-transform: uppercase;' > ");
+                              Response.Write((this.objTableStoreBestSale.Rows[i]["Name"].ToString()));
+                              Response.Write("</marquee>");
+                              Response.Write("</h4>");
+                          }
+                          else
+                          { %>
+                        <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;
+                            text-align: center; text-transform: uppercase;">
+                            <%Response.Write(this.objTableStoreBestSale.Rows[i]["Name"].ToString());
+                          } %>
+                        </h4>
+                          
                         </h4>
                         <a href="/Store/?id=1">
                             <img src="../Images/Partner/<%Response.Write(this.objTableStoreBestSale.Rows[i]["Image"].ToString()); %>"

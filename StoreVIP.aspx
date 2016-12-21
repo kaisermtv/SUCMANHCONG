@@ -2,6 +2,9 @@
     CodeFile="StoreVIP.aspx.cs" Inherits="StoreVIP" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+
+
+
     <div class="container">
         <div class="row" style="margin-top: 20px;">
             <div class="col-md-6">
@@ -37,33 +40,17 @@
         </div>
         <hr />
     </div>
-    <div class="container">
-        <% int k = 1;  %>
+   
+        
+         <div class="container sanpham">
         <%for (int i = 0; i < this.objTableStoreVip.Rows.Count; i++)
           {  %>
-        <% if (k % 4 == 0 || k == 1)   // hết 1 dòng
-           {
-               Response.Write(" <div class='row'>");
-           }
-        %>
-        <div class="">
             <div class="col-md-3">
                 <div style="border: solid 1px #f6f6f6; height: 262px;">
                     <div style="text-align: center;">
-                        <%if (this.objTableStoreVip.Rows[i]["Name"].ToString().Length > 25)
-                          {
-                              Response.Write("<h4 style='font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;text-align: center; text-transform: uppercase;'>");
-                              Response.Write("<marquee behavior='scroll' direction='left 'style='font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;text-align: center; text-transform: uppercase;' > ");
-                              Response.Write((this.objTableStoreVip.Rows[i]["Name"].ToString()));
-                              Response.Write("</marquee>");
-                              Response.Write("</h4>");
-                          }
-                          else
-                          { %>
                         <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;
-                            text-align: center; text-transform: uppercase;">
-                            <%Response.Write(this.objTableStoreVip.Rows[i]["Name"].ToString());
-                          } %>
+                       height:39px; overflow:hidden;      text-align: center; text-transform: uppercase;">
+                            <%Response.Write(this.objTableStoreVip.Rows[i]["Name"].ToString()); %>
                         </h4>
                         <a href="/Store/?id=1">
                             <img src="../Images/Partner/<%Response.Write(this.objTableStoreVip.Rows[i]["Image"].ToString()); %>"
@@ -91,18 +78,9 @@
                 </div>
                 <br />
             </div>
-        </div>
+        <% } %>
 
-        <%  %>
-        <% if (k % 4 == 0 || k == 0)
-           {
-               Response.Write(" </div>");  // hết 1 dòng
-           }
-           k++;
-          }  %>
-    </div>
-
-    
+             </div>
 
 
 
