@@ -13,5 +13,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             Response.Redirect("/system/login");
         }
+        Session["ADMINLOGIN"] = Session["ADMINLOGIN"];
     }
 }

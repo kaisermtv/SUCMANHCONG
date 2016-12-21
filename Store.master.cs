@@ -85,6 +85,7 @@ public partial class Store : MasterPage
         {
             Response.Redirect("../");
         }
+        Session["ACCOUNT"] = Session["ACCOUNT"];
         this.getPartner();
         this.strFullName = "Xin chào " + Session["ACCOUNT"].ToString() + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href = \"../Logout.aspx\">Thoát</a>";
     } 
