@@ -41,7 +41,7 @@ public partial class ProductEdit : System.Web.UI.Page
         };
 
         CKFinder.FileBrowser _FileBrowser = new CKFinder.FileBrowser();
-        _FileBrowser.BasePath = "../../ckfinder";
+        _FileBrowser.BasePath = "/ckfinder";
         _FileBrowser.SetupCKEditor(this.txtContent);
         try
         {

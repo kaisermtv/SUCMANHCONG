@@ -40,7 +40,7 @@ public partial class TopicEdit : System.Web.UI.Page
 #endregion
 
         CKFinder.FileBrowser _FileBrowser = new CKFinder.FileBrowser();
-        _FileBrowser.BasePath = "../ckfinder";
+        _FileBrowser.BasePath = "/ckfinder";
         _FileBrowser.SetupCKEditor(this.txtContent);
 
         try
