@@ -48,30 +48,21 @@
 
         
         <div style="width: 100%; margin: auto; display: table; margin-bottom: 10px; margin-top: 0px;">
-            <div class="row">
-                <div id="contentText" runat="server" class="col-md-9" style="float: right; width: 70%; height: 100%; vertical-align: top;
+            <div class="row"> 
+                  <div id="contentRight2" runat="server" class="col-md-9" style="float: right; width: 70%; height: 100%; vertical-align: top;
                         text-align: justify;">
-                        <h3 style="text-align: justify; font-family: Arial; font-size: 16px; font-weight: bold;
-                            padding-top: 0px;">
-                            <% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Name"].ToString()); %>
-                        </h3>
-                        <hr style="width: 98%; color: #00ffff;" />
-                        <div style="width: 100%; text-align: justify; margin-top: 0px;">
-                            <% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Content"].ToString()); %>
-                        </div>
-                    </div>
-                     <div id="contentText1" runat="server" class="col-md-9" style="float: right; width: 70%; height: 100%; vertical-align: top; text-align: justify;">
-                       <asp:DataList ID="ddlRight" runat="server" RepeatDirection="Horizontal" RepeatColumns="1" Width="100%" ItemStyle-BorderStyle="None" BorderStyle="Dashed" Style="margin-left: -10px;">
+                <asp:DataList ID="ddlRight" runat="server" RepeatDirection="Vertical" RepeatColumns="3" Width="100%" ItemStyle-BorderStyle="None" Style="margin-left: -10px;">
                         <ItemTemplate>
-                            <div style="background-color: #f9faf5; height: 375px; padding: 5px; margin-bottom:15px;">
+                              <div style="width: 100%; background-color:#f9faf5; border: solid 1px #c6c6c6;">
+                                <div style="height: 350px; padding: 0px;  background-color: #f5f6f6;  margin-bottom:15px; float:left  ">
                                 <a href="/detailt.aspx?id=<%# Eval("Id") %>">
-                                    <img src="/images/Products/<%# Eval("Image") %>" alt="San pham VIP" style="width: 253px; height: 252px;" /></a>
-                                <p class ="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; height:54px; overflow:hidden; border-bottom: solid 2px #f0f0fb;">
+                                    <img src="/images/Products/<%# Eval("Image") %>" alt="San pham VIP" style="width: 100%; height: 252px;" /></a>
+                                <p class ="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; height:50px; overflow:hidden; border-bottom: solid 2px #f0f0fb;">
                                     <a style="display: block; vertical-align: middle;" href="#">
                                         <%# Eval("Name") %>
                                     </a>
                                 </p>
-                                <div style="text-align: right; margin-top: -2px;">
+                                <div style="text-align: right; margin-top: -4px;">
                                     <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal; padding-top: 0px; padding-left: 25px;">
                                         <img src="/images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
                                       <%# Eval("CountLike") %>
@@ -84,14 +75,27 @@
 
                                 <input type="button" value="Đã mua:   <%# Eval("CountBuy") %>" style="margin-top: -82px; margin-left:155px; font-size:12px; background-color :#ff7a00; border-color:#ff7a00;" class="btn btn-success" />
                             </div>
+                                  </div>
                         </ItemTemplate>
                     </asp:DataList>
+                </div>
+
+                  <div id="contentText" runat="server" class="col-md-9" style="float: right; width: 70%; height: 100%; vertical-align: top;
+                        text-align: justify;">
+                        <h3 style="text-align: justify; font-family: Arial; font-size: 16px; font-weight: bold;
+                            padding-top: 0px;">
+                            <% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Name"].ToString()); %>
+                        </h3>
+                        <hr style="width: 98%; color: #00ffff;" />
+                        <div style="width: 100%; text-align: justify; margin-top: 0px;">
+                            <% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Content"].ToString()); %>
+                        </div>
+                       
                     
                     </div>
 
                 <div class="col-md-3" style="float: left; width: 25%; height: 100%; vertical-align: top;">
-                    <h3 style="font-family: Arial; font-size: 18px; font-weight: bold; margin-top: px; margin-bottom:13px;">SẢN PHẨM TIÊU BIỂU</h3>
-                     <div style="width: 100%; background-color: #f6f6f6; border: solid 1px #c6c6c6;">
+                      <div style="width: 95%; height:355px background-color: #f6f6f6; border: solid 1px #c6c6c6;">
                         <div style="padding: 5px;">
                             <h5>THÔNG TIN LIÊN HỆ</h5>
                             Điện thoại:      <% Response.Write(this.objTablePartner.Rows[0]["Phone"].ToString()); %>
@@ -104,17 +108,17 @@
                             alt="Hinh dai dien" />
                     </div>
 
-                    <asp:DataList ID="ddlLeft" runat="server" RepeatDirection="Horizontal" RepeatColumns="1" Width="100%" ItemStyle-BorderStyle="None" BorderStyle="Dashed" Style="margin-left: -10px;">
+                    <asp:DataList ID="ddlLeft" runat="server" RepeatDirection="Horizontal" RepeatColumns="1" Width="100%" ItemStyle-BorderStyle="None" Style="margin-left: -7px;" >
                         <ItemTemplate>
-                            <div style="background-color: #f9faf5; height: 375px; padding: 5px; margin-bottom:15px;">
-                                <a href="/detailt.aspx?id=<%# Eval("Id") %>">
-                                    <img src="/images/Products/<%# Eval("Image") %>" alt="San pham VIP" style="width: 253px; height: 252px;" /></a>
+                            <div style="height: 355px; padding: 0px; margin-bottom:15px; float:left  ">
+                                <a href="/detailt.aspx?id=<%# Eval("Id") %>" style="width: 100%; height: 252px;"  >
+                                    <img src="/images/Products/<%# Eval("Image") %>" alt="San pham VIP" style="width: 100%; height: 252px;" /></a>
                                 <p class ="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; height:54px; overflow:hidden; border-bottom: solid 2px #f0f0fb;">
                                     <a style="display: block; vertical-align: middle;" href="#">
                                         <%# Eval("Name") %>
                                     </a>
                                 </p>
-                                <div style="text-align: right; margin-top: -2px;">
+                               <div style="text-align: right; margin-top: -4px;">
                                     <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal; padding-top: 0px; padding-left: 25px;">
                                         <img src="/images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
                                       <%# Eval("CountLike") %>
@@ -127,6 +131,8 @@
 
                                 <input type="button" value="Đã mua:   <%# Eval("CountBuy") %>" style="margin-top: -82px; margin-left:155px; font-size:12px; background-color :#ff7a00; border-color:#ff7a00;" class="btn btn-success" />
                             </div>
+                            <br />
+                            <br />
                         </ItemTemplate>
                     </asp:DataList>
 

@@ -264,6 +264,38 @@ public class DataProduct
     }
     #endregion
 
+
+    #region Method getProductByIdWithJoinAndSortByLike
+    public DataTable getProductByIdWithJoinAndSortByLike(int Id)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT TOP 4  tblProduct.* , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  AND tblPartner.Id = @PartnerId  ORDER BY tblProduct.CountLike  ;";
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = Id;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
+    
+
     
     #region Method getProductById
     public DataTable getProductById(int Id)
@@ -623,27 +655,6 @@ public class DataProduct
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
         Cmd.CommandText = "SELECT TOP 24 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        sqlCon.Close();
-        sqlCon.Dispose();
-        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-        {
-            ds.Tables[0].Rows[i]["TT"] = (i + 1);
-        }
-        return ds.Tables[0];
-    }
-    #endregion
-
-    #region method getProductVIP || return 4 product
-    public DataTable getTopProductVIP()
-    {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT TOP 4 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct";
         SqlDataAdapter da = new SqlDataAdapter();
         da.SelectCommand = Cmd;
         DataSet ds = new DataSet();
