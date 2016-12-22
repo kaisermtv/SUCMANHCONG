@@ -1107,10 +1107,14 @@ button, input, optgroup, select, textarea {
 
 .sanpham_price{
     font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;
+     float:left;
 }
 
 .sanpham_Discount{
     background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat; font-size: 14px; color: #fff;
+    height:30px;
+    float:left;
+    min-width:60px;
 }
 
 .fw{
