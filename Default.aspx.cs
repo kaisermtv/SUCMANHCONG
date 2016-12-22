@@ -10,15 +10,15 @@ using System.Web.UI.WebControls;
 public partial class _Default : Page
 {
     #region declare objects
-    public string[] ProductGroup = new string[20] { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
+    private DataProduct objProduct = new DataProduct();
+    public Partner objPartner = new Partner();
+    private Brand objBrand = new Brand();
+    private DataTopic objTopic = new DataTopic();
+
     private DataTable objTableProductGroup = new DataTable();
     public DataTable objTableProductVIP = new DataTable();
     public DataTable objTableNews = new DataTable();
-    private DataProduct objProduct = new DataProduct();
-    private DataTopic objTopic = new DataTopic();
     public DataTable objTablePartner = new DataTable();
-    public Partner objPartner = new Partner();
-    private Brand objBrand = new Brand();
     private DataSlideImage objSlide = new DataSlideImage();
     public DataTable objTableBestSale = new DataTable();
     public DataTable objTableBrand = new DataTable();
@@ -30,8 +30,8 @@ public partial class _Default : Page
     protected void Page_Load(object sender, EventArgs e)
     {
         this.objTableNews = objTopic.getTopTopic();     
-        this.objTableProductVIP = objProduct.getTopProductVIP();
-        objTableBestSale = objProduct.getProductBestSale();
+        this.objTableProductVIP = objProduct.getTopProductVIP(8);
+        objTableBestSale = objProduct.getProductBestSale(8);
         this.objTablePartner = objPartner.getTopPartner();
         this.objTableBrand = objBrand.getBrand();
         this.objTableSlide = objSlide.getSlideImage();

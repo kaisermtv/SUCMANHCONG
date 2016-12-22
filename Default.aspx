@@ -267,7 +267,7 @@
 
         <div class="sanpham">
             <%for (int i = 0; i < this.objTableProductVIP.Rows.Count && i < 8; i++) {  %>
-            <div class="col-md-3">
+            <div class="col-md-3" style="margin-top:10px">
                 <div class="sanpham_background">
                     <a class="fw" href="/detailt.aspx?id=<%= this.objTableProductVIP.Rows[i]["Id"].ToString() %>">
                         <img src="/images/Products/<%= this.objTableProductVIP.Rows[i]["Image"].ToString() %>" class="sanpham_avata" alt=" Nổi bật" />
@@ -283,16 +283,16 @@
                             <%= this.objTableProductVIP.Rows[i]["CountLike"].ToString() %>
                         </div>
                     </div>
-                    <p class="sanpham_price_line">
+                    <div class="sanpham_price_line">
                         <span class="sanpham_price">
                             <%= this.objTableProductVIP.Rows[i]["Price"].ToString() %>&nbsp;<sup><u>đ</u></sup>
                         </span>
-                        <span class="sanpham_Discount">&nbsp; -
+                        <div class="sanpham_Discount">&nbsp; -
                                 <%= this.objTableProductVIP.Rows[i]["Discount"].ToString() %>% &nbsp;
-                        </span>
-                    </p>
+                        </div>
+                        <input type="button" value="Đã mua: <%= this.objTableProductVIP.Rows[i]["CountBuy"].ToString() %>" style="float:right;" />
+                    </div>
 
-                    <input type="button" value="Đã mua: <%= this.objTableProductVIP.Rows[i]["CountBuy"].ToString() %>" style="margin-top: -46px;" />
                 </div>
 
             </div>
@@ -331,7 +331,7 @@
         <div class="sanpham">
             <%for (int i = 0; i < this.objTableBestSale.Rows.Count && i < 8; i++)
               {  %>
-            <div class="col-md-3">
+            <div class="col-md-3" style="margin-top:10px">
                 <div class="sanpham_background">
                     <a class="fw" href="/detailt.aspx?id=<%= this.objTableBestSale.Rows[i]["Id"].ToString() %>">
                         <img src="/images/Products/<%= this.objTableBestSale.Rows[i]["Image"].ToString() %>" class="sanpham_avata" alt=" Nổi bật" />
@@ -347,16 +347,15 @@
                             <%= this.objTableBestSale.Rows[i]["CountLike"].ToString() %>
                         </div>
                     </div>
-                    <p class="sanpham_price_line">
+                    <div class="sanpham_price_line">
                         <span class="sanpham_price">
                             <%= this.objTableBestSale.Rows[i]["Price"].ToString() %>&nbsp;<sup><u>đ</u></sup>
                         </span>
-                        <span class="sanpham_Discount">&nbsp; -
+                        <div class="sanpham_Discount">&nbsp; -
                                 <%= this.objTableBestSale.Rows[i]["Discount"].ToString() %>% &nbsp;
-                        </span>
-                    </p>
-
-                    <input type="button" value="Đã mua: <%= this.objTableBestSale.Rows[i]["CountBuy"].ToString() %>" style="margin-top: -46px;" />
+                        </div>
+                        <input type="button" value="Đã mua: <%= this.objTableBestSale.Rows[i]["CountBuy"].ToString() %>" style="float:right;" />
+                    </div>
                 </div>
 
             </div>
@@ -555,10 +554,8 @@
 
     </div>
 
-    <div class="part">
-        <div class="row">
-            <iframe src="brand.html" style="width: 100%; border: none; overflow: hidden;"></iframe>
-        </div>
+    <div class="row" style="padding: 0 -25px 0 -25px">
+        <iframe src="brand.html" style="width: 100%; border: none;"></iframe>
     </div>
 
 
