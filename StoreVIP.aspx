@@ -54,7 +54,7 @@
                         </h4>
                         <a href="/Store/?id=1">
                             <img src="../Images/Partner/<%Response.Write(this.objTableStoreVip.Rows[i]["Image"].ToString()); %>"
-                                alt="Cua hang" style="width: 95%; margin-left: auto; margin-right: auto;" /></a>
+                                alt="Cua hang" style="width: 99%; margin-left: auto; height:200px; margin-right: auto;" /></a>
                     </div>
                     <div style="font-family: Arial; font-size: 13px; text-align: justify; padding: 5px;
                         color: #414441; height: 40px; overflow: hidden;">
