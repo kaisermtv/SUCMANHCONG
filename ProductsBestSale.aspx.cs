@@ -19,7 +19,7 @@ public partial class ProductsBestSale : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            this.objTableProductBestSale = objProduct.getProductBestSale();
+            this.objTableProductBestSale = objProduct.getProductBestSaleWithNum(24);
         }
     }
 
