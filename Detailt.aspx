@@ -19,6 +19,7 @@
                         <% Response.Write(this.objTable.Rows[0]["Content"].ToString()); %>
                     </div>
                 </div>
+
                 <div class="col-md-3" style="float: right; width: 25%; height: 100%; vertical-align: top;">
                     <h3 style="font-family: Arial; font-size: 18px; font-weight: bold; margin-top: px; margin-bottom:13px;">SẢN PHẨM KHÁC</h3>
 
@@ -35,7 +36,7 @@
                                 <div style="text-align: right; margin-top: -2px;">
                                     <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal; padding-top: 0px; padding-left: 25px;">
                                         <img src="images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
-                                        126
+                                            <%# Eval("CountLike") %>
                                     </div>
                                 </div>
                                 <p style="font-family: Arial; font-size: 14px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; margin-top: -4px;">
@@ -43,7 +44,7 @@
                                     <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat; font-size: 20px; color: #fff;">&nbsp; -<%# Eval("Discount") %>% &nbsp;</span>
                                 </p>
 
-                                <input type="button" value="Đã mua: 208" style="margin-top: -82px; margin-left:155px; font-size:12px; background-color :#ff7a00; border-color:#ff7a00;" class="btn btn-success" />
+                                <input type="button" value="Đã mua:    <%# Eval("CountBuy") %>" style="margin-top: -82px; margin-left:155px; font-size:12px; background-color :#ff7a00; border-color:#ff7a00;" class="btn btn-success" />
                             </div>
                         </ItemTemplate>
                     </asp:DataList>
