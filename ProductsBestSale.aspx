@@ -49,6 +49,7 @@
                         <a style="height: 40px; overflow: hidden;" href="/detailt.aspx?id=<%Response.Write(this.objTableProductBestSale.Rows[i]["Id"].ToString()); %>">
                             <%Response.Write(this.objTableProductBestSale.Rows[i]["Name"].ToString()); %></a>
                     </p>
+
                     <div style="text-align: right; margin-top: -2px;">
                         <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal;
                             padding-top: 0px; padding-left: 25px;">
