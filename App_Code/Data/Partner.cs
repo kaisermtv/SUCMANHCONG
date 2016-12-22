@@ -1125,7 +1125,7 @@ public class Partner
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT TOP " + filter + " 0 AS TT, * FROM tblPartner WHERE [BestSale] = 1";
+        Cmd.CommandText = "SELECT TOP " + filter + " 0 AS TT, tblPartner.* , tblLocation.Name AS Location FROM tblPartner  LEFT JOIN  tblLocation ON tblPartner.LocationId = tblLocation.Id  WHERE [BestSale] = 1  ";
         SqlDataAdapter da = new SqlDataAdapter();
         da.SelectCommand = Cmd;
         DataSet ds = new DataSet();
