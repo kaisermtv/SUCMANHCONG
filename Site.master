@@ -42,9 +42,10 @@
         });
     </script>
 
-    <script type="text/javascript" src="http://www.sucmanhcong.com/js/dropdowncontent.js">
+    <script type="text/javascript" src="/js/dropdowncontent.js">
     </script>
 
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </head>
 <body>
     <script type='text/javascript'>window._sbzq || function (e) { e._sbzq = []; var t = e._sbzq; t.push(["_setAccount", 53047]); var n = e.location.protocol == "https:" ? "https:" : "http:"; var r = document.createElement("script"); r.type = "text/javascript"; r.async = true; r.src = n + "//static.subiz.com/public/js/loader.js"; var i = document.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i) }(window);</script>
@@ -154,7 +155,7 @@
                         <div class="container">
                             <div class="col-md-2">
                                 <a href="/">
-                                    <img src="/images/logo.jpg" alt="" style ="width:200px;" /></a>
+                                    <img src="/images/logo.jpg" alt="" style ="width:200px;height:60px" /></a>
                             </div>
                             <div class="wrapper">
                                 <div class="col-md-10">
