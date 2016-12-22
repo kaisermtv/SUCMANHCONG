@@ -101,7 +101,7 @@ public partial class SiteMaster : MasterPage
         this.objTableProductGroup = this.getProductGroup();
         if (this.objTableProductGroup.Rows.Count > 0)
         {
-            for (int i = 0; i < this.objTableProductGroup.Rows.Count; i++)
+            for (int i = 0; i < this.objTableProductGroup.Rows.Count && i<7; i++)
             {
 
                 this.ProductGroup[i] = this.objTableProductGroup.Rows[i]["Name"].ToString();

@@ -230,19 +230,19 @@
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">CỬA HÀNG BÁN CHẠY</span></a>
-                    <a href=""><i class="glyphicon glyphicon-check"></i>
+                    <a href="#"><i class="glyphicon glyphicon-check"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">ĐỒNG THƯƠNG HIỆU</span></a>
-                    <a href=""><i class="glyphicon glyphicon-stats"></i>
+                    <a href="#"><i class="glyphicon glyphicon-stats"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">THƯƠNG HIỆU NỔI BẬT</span></a>
-                    <a href=""><i class="glyphicon glyphicon-home"></i>
+                    <a href="#"><i class="glyphicon glyphicon-home"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">CHÚNG TÔI</span></a>
-                    <a href=""><i class="glyphicon glyphicon-book"></i>
+                    <a href="#"><i class="glyphicon glyphicon-book"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">ĐÀO TẠO</span></a>
@@ -265,56 +265,42 @@
             </div>
         </div>
 
-        <div class="row">
-
-            <%for (int i = 0; i < this.objTableProductVIP.Rows.Count; i++)
-              {  %>
-
-            <div class="sanpham">
-                <div class="col-md-3">
-                    <div style="background-color: #f9faf5; height: 375px; padding: 5px;">
-                        <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %>">
-                            <img src="images/Products/<%Response.Write(this.objTableProductVIP.Rows[i]["Image"].ToString()); %>"
-                                style="height: 255px; width: 100%" alt=" Nổi bật" /></a>
-                        <p class="ProductLink" style="font-family: Arial; font-size: 17px; font-weight: bold;
-                            color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;
-                            height: 50px; overflow: hidden;">
-
-                            <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %> ">
-                                <%Response.Write(this.objTableProductVIP.Rows[i]["Name"].ToString()); %>
-                            </a>
-
-                        </p>
-                        <div style="text-align: right; margin-top: -2px;">
-                            <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal;
-                                padding-top: 0px; padding-left: 25px;">
-                                <img src="images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
-                                <%Response.Write(this.objTableProductVIP.Rows[i]["CountLike"].ToString()); %>
-                            </div>
+        <div class="sanpham">
+            <%for (int i = 0; i < this.objTableProductVIP.Rows.Count && i < 8; i++) {  %>
+            <div class="col-md-3">
+                <div class="sanpham_background">
+                    <a class="fw" href="/detailt.aspx?id=<%= this.objTableProductVIP.Rows[i]["Id"].ToString() %>">
+                        <img src="/images/Products/<%= this.objTableProductVIP.Rows[i]["Image"].ToString() %>" class="sanpham_avata" alt=" Nổi bật" />
+                    </a>
+                    <p class="ProductLink sanpham_title">
+                        <a href="/detailt.aspx?id=<%= this.objTableProductVIP.Rows[i]["Id"].ToString() %> ">
+                            <%= this.objTableProductVIP.Rows[i]["Name"].ToString() %>
+                        </a>
+                    </p>
+                    <div style="text-align: right; margin-top: -2px;">
+                        <div class="sanpham_like" >
+                            <img src="/images/User.png" alt="So nguoi thich" class="sanpham_like_img" />
+                            <%= this.objTableProductVIP.Rows[i]["CountLike"].ToString() %>
                         </div>
-                        <p style="font-family: Arial; font-size: 14px; font-weight: bold; color: #50505a;
-                            padding: 5px; text-align: justify; margin-top: -4px;">
-                            <span style="font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;">
-                                <%Response.Write(this.objTableProductVIP.Rows[i]["Price"].ToString()); %>&nbsp;<sup><u>đ</u></sup></span>
-                            <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat;
-                                font-size: 14px; color: #fff;">&nbsp; -
-                                <%Response.Write(this.objTableProductVIP.Rows[i]["Discount"].ToString()); %>% &nbsp;</span>
-                        </p>
-
-                        <input type="button" value="Đã mua: <%Response.Write(this.objTableProductVIP.Rows[i]["CountBuy"].ToString()); %>"
-                            style="margin-top: -46px;" />
                     </div>
+                    <p class="sanpham_price_line">
+                        <span class="sanpham_price">
+                            <%= this.objTableProductVIP.Rows[i]["Price"].ToString() %>&nbsp;<sup><u>đ</u></sup>
+                        </span>
+                        <span class="sanpham_Discount">&nbsp; -
+                                <%= this.objTableProductVIP.Rows[i]["Discount"].ToString() %>% &nbsp;
+                        </span>
+                    </p>
 
+                    <input type="button" value="Đã mua: <%= this.objTableProductVIP.Rows[i]["CountBuy"].ToString() %>" style="margin-top: -46px;" />
                 </div>
+
             </div>
             <% } %>
         </div>
-
-
     </div>
 
-
-    <div class="part">
+    <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <h2 class="StoreVIPLink">
@@ -332,68 +318,53 @@
                 <div class="sotrang">
                     <table>
                         <tr>
-                            <td><a href=""><i class="fa fa-angle-left"></i></a></td>
-                            <td><a href="">1</a></td>
-                            <td><a href="">2</a></td>
-                            <td><a href="">3</a></td>
-                            <td><a href="">>>|</a></td>
+                            <td><a href="#"><i class="fa fa-angle-left"></i></a></td>
+                            <td><a href="#">1</a></td>
+                            <td><a href="#">2</a></td>
+                            <td><a href="#">3</a></td>
+                            <td><a href="#">>>|</a></td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="row">
-
-            <%for (int i = 0; i < this.objTableBestSale.Rows.Count; i++)
+        <div class="sanpham">
+            <%for (int i = 0; i < this.objTableBestSale.Rows.Count && i < 8; i++)
               {  %>
-
-            <div class="sanpham">
-                <div class="col-md-3">
-                    <div style="background-color: #f9faf5; height: 375px; padding: 5px;">
-                        <a href="/detailt.aspx?id=<%Response.Write(this.objTableBestSale.Rows[i]["Id"].ToString()); %>">
-                            <img src="images/Products/<%Response.Write(this.objTableBestSale.Rows[i]["Image"].ToString()); %>"
-                                alt=" Nổi bật" /></a>
-                        <!-- dang sua-->
-                        <p class="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold;
-                            color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;
-                            height: 50px; overflow: hidden;">
-
-
-                            <a href="/detailt.aspx?id=<%Response.Write(this.objTableBestSale.Rows[i]["Id"].ToString()); %>">
-                                <%Response.Write(this.objTableBestSale.Rows[i]["Name"].ToString()); %>
-                            </a>
-
-                        </p>
-                        <!-- dang sua-->
-
-                        <div style="text-align: right; margin-top: -2px;">
-                            <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal;
-                                padding-top: 0px; padding-left: 25px;">
-                                <img src="images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
-                                <%Response.Write(this.objTableBestSale.Rows[i]["CountLike"].ToString()); %>
-                            </div>
+            <div class="col-md-3">
+                <div class="sanpham_background">
+                    <a class="fw" href="/detailt.aspx?id=<%= this.objTableBestSale.Rows[i]["Id"].ToString() %>">
+                        <img src="/images/Products/<%= this.objTableBestSale.Rows[i]["Image"].ToString() %>" class="sanpham_avata" alt=" Nổi bật" />
+                    </a>
+                    <p class="ProductLink sanpham_title">
+                        <a href="/detailt.aspx?id=<%= this.objTableBestSale.Rows[i]["Id"].ToString() %> ">
+                            <%= this.objTableBestSale.Rows[i]["Name"].ToString() %>
+                        </a>
+                    </p>
+                    <div style="text-align: right; margin-top: -2px;">
+                        <div class="sanpham_like">
+                            <img src="/images/User.png" alt="So nguoi thich" class="sanpham_like_img" />
+                            <%= this.objTableBestSale.Rows[i]["CountLike"].ToString() %>
                         </div>
-                        <p style="font-family: Arial; font-size: 14px; font-weight: bold; color: #50505a;
-                            padding: 5px; text-align: justify; margin-top: -4px; overflow: hidden; height: 50px;">
-                            <span style="font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;">
-                                <%Response.Write(this.objTableBestSale.Rows[i]["Price"].ToString()); %>&nbsp;<sup><u>đ</u></sup></span>
-                            <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat;
-                                font-size: 14px; color: #fff;">&nbsp; -
-                                <%Response.Write(this.objTableBestSale.Rows[i]["Discount"].ToString()); %>% &nbsp;</span>
-                        </p>
-
-
-                        <input type="button" value="Đã mua: <%Response.Write(this.objTableBestSale.Rows[i]["CountBuy"].ToString()); %>"
-                            style="margin-top: -46px;" />
                     </div>
+                    <p class="sanpham_price_line">
+                        <span class="sanpham_price">
+                            <%= this.objTableBestSale.Rows[i]["Price"].ToString() %>&nbsp;<sup><u>đ</u></sup>
+                        </span>
+                        <span class="sanpham_Discount">&nbsp; -
+                                <%= this.objTableBestSale.Rows[i]["Discount"].ToString() %>% &nbsp;
+                        </span>
+                    </p>
 
+                    <input type="button" value="Đã mua: <%= this.objTableBestSale.Rows[i]["CountBuy"].ToString() %>" style="margin-top: -46px;" />
                 </div>
+
             </div>
             <% } %>
         </div>
     </div>
 
-    <div class="part">
+    <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <h2 class="StoreVIPLink">
@@ -409,95 +380,41 @@
                 <div class="sotrang">
                     <table>
                         <tr>
-                            <td><a href=""><i class="fa fa-angle-left"></i></a></td>
-                            <td><a href="">1</a></td>
-                            <td><a href="">2</a></td>
-                            <td><a href="">3</a></td>
-                            <td><a href="">>>|</a></td>
+                            <td><a href="#"><i class="fa fa-angle-left"></i></a></td>
+                            <td><a href="#">1</a></td>
+                            <td><a href="#">2</a></td>
+                            <td><a href="#">3</a></td>
+                            <td><a href="#">>>|</a></td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="sanpham">
-
-
-                <div class="col-md-3">
-                    <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Id"].ToString()); else Response.Write("0"); %>">
-                        <img src="images/Partner/<% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Image"].ToString()); else Response.Write("noImg.png"); %>"
-                            alt="" />
+        
+        <div class="sanpham">
+            <% for (int i = 0; i < this.objTablePartner.Rows.Count; i++)
+               { %>
+            <div class="col-md-3">
+                <a href="/Store/?id=<%= this.objTablePartner.Rows[i]["Id"].ToString() %>">
+                    <img src="images/Partner/<%= this.objTablePartner.Rows[i]["Image"].ToString() %>" alt="" />
+                </a>
+                <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
+                    <a href="/Store/Detailt.aspx?id=<%= this.objTablePartner.Rows[i]["Id"].ToString() %>">
+                        <%= this.objTablePartner.Rows[i]["Name"].ToString() %>
                     </a>
-                    <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                        <a href="/Store/Detailt.aspx?id=<% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Id"].ToString()); else Response.Write("0"); %>">
-                            <% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Name"].ToString()); else Response.Write("&nbsp;"); %>
-                        </a>
-                    </h4>
-                    <p style="text-align: justify; height: 20px; overflow: hidden;">
-                        <% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Address"].ToString()); else Response.Write("&nbsp;"); %>
-                    </p>
-                    <p>
-                        Điện thoại: <% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Phone"].ToString()); else Response.Write("&nbsp;"); %>
-                    </p>
-                </div>
-
-                <div class="col-md-3">
-                    <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
-                        <img src="images/Partner/<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Image"].ToString()); else Response.Write("noImg.png"); %>"
-                            alt="" />
-                    </a>
-                    <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                        <a href="/Store/Detailt.aspx?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
-                            <% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Name"].ToString()); else Response.Write("&nbsp;"); %>
-                        </a>
-                    </h4>
-                    <p style="text-align: justify; height: 20px; overflow: hidden;">
-                        <% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Address"].ToString()); else Response.Write("&nbsp;"); %>
-                    </p>
-                    <p>
-                        Điện thoại: <% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Phone"].ToString()); else Response.Write("&nbsp;"); %>
-                    </p>
-                </div>
-
-                <div class="col-md-3">
-                    <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
-                        <img src="images/Partner/<% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Image"].ToString()); else Response.Write("noImg.png"); %>"
-                            alt="" />
-                    </a>
-                    <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                        <a href="/Store/Detailt.aspx?id=<% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Id"].ToString()); else Response.Write("0"); %>">
-                            <% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Name"].ToString()); else Response.Write("&nbsp;"); %>
-                        </a>
-                    </h4>
-                    <p style="text-align: justify; height: 20px; overflow: hidden;">
-                        <% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Address"].ToString()); else Response.Write("&nbsp;"); %>
-                    </p>
-                    <p>
-                        Điện thoại: <% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Phone"].ToString()); else Response.Write("&nbsp;"); %>
-                    </p>
-                </div>
-
-                <div class="col-md-3">
-                    <a href="/Store/?id=<% if (this.objTablePartner.Rows.Count > 1) Response.Write(this.objTablePartner.Rows[1]["Id"].ToString()); else Response.Write("0"); %>">
-                        <img src="images/Partner/<% if (this.objTablePartner.Rows.Count > 3) Response.Write(this.objTablePartner.Rows[3]["Image"].ToString()); else Response.Write("noImg.png"); %>"
-                            alt="" />
-                    </a>
-                    <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                        <a href="/Store/Detailt.aspx?id=<% if (this.objTablePartner.Rows.Count > 2) Response.Write(this.objTablePartner.Rows[2]["Id"].ToString()); else Response.Write("0"); %>">
-                            <% if (this.objTablePartner.Rows.Count > 3) Response.Write(this.objTablePartner.Rows[3]["Name"].ToString()); else Response.Write("&nbsp;"); %>
-                        </a>
-                    </h4>
-                    <p style="text-align: justify; height: 20px; overflow: hidden;">
-                        <% if (this.objTablePartner.Rows.Count > 3) Response.Write(this.objTablePartner.Rows[3]["Address"].ToString()); else Response.Write("&nbsp;"); %>
-                    </p>
-                    <p>
-                        Điện thoại: <% if (this.objTablePartner.Rows.Count > 3) Response.Write(this.objTablePartner.Rows[3]["Phone"].ToString()); else Response.Write("&nbsp;"); %>
-                    </p>
-                </div>
+                </h4>
+                <p style="text-align: justify; height: 20px; overflow: hidden;">
+                    <%= this.objTablePartner.Rows[i]["Address"].ToString() %>
+                </p>
+                <p>
+                    Điện thoại: <%= this.objTablePartner.Rows[i]["Phone"].ToString() %>
+                </p>
             </div>
+            <% } %>
         </div>
     </div>
-    <div class="part">
+
+    <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <h2 class="StoreVIPLink">
@@ -513,44 +430,41 @@
                 <div class="sotrang">
                     <table>
                         <tr>
-                            <td><a href=""><i class="fa fa-angle-left"></i></a></td>
-                            <td><a href="">1</a></td>
-                            <td><a href="">2</a></td>
-                            <td><a href="">3</a></td>
-                            <td><a href="">>>| </a></td>
+                            <td><a href="#"><i class="fa fa-angle-left"></i></a></td>
+                            <td><a href="#">1</a></td>
+                            <td><a href="#">2</a></td>
+                            <td><a href="#">3</a></td>
+                            <td><a href="#">>>| </a></td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="sanpham">
-                <% for (int i = 0; i < this.objTablePartner.Rows.Count; i++)
-                   { %>
-
-                <div class="col-md-3">
-                    <a href="/Store/Detailt.aspx?id=<%  Response.Write(this.objTablePartner.Rows[i]["Id"].ToString());  %>">
-                        <img src="images/Partner/<% Response.Write(this.objTablePartner.Rows[i]["Image"].ToString()); %>  "
-                            style="height: 253px; width: 100%" alt="" />
+        <div class="sanpham">
+            <% for (int i = 0; i < this.objTablePartner.Rows.Count; i++)
+               { %>
+            <div class="col-md-3">
+                <a href="/Store/?id=<%= this.objTablePartner.Rows[i]["Id"].ToString() %>">
+                    <img src="images/Partner/<%= this.objTablePartner.Rows[i]["Image"].ToString() %>" alt="" />
+                </a>
+                <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
+                    <a href="/Store/Detailt.aspx?id=<%= this.objTablePartner.Rows[i]["Id"].ToString() %>">
+                        <%= this.objTablePartner.Rows[i]["Name"].ToString() %>
                     </a>
-                    <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                        <a href="/Store/Detailt.aspx?id=<% Response.Write(this.objTablePartner.Rows[i]["Id"].ToString());  %>">
-                            <% Response.Write(this.objTablePartner.Rows[i]["Name"].ToString());  %>
-                        </a>
-                    </h4>
-                    <p style="text-align: justify; height: 20px; overflow: hidden;">
-                        <% Response.Write(this.objTablePartner.Rows[i]["Address"].ToString());  %>
-                    </p>
-                    <p>
-                        Điện thoại: <%Response.Write(this.objTablePartner.Rows[i]["Phone"].ToString());  %>
-                    </p>
-                </div>
-                <%} %>
+                </h4>
+                <p style="text-align: justify; height: 20px; overflow: hidden;">
+                    <%= this.objTablePartner.Rows[i]["Address"].ToString() %>
+                </p>
+                <p>
+                    Điện thoại: <%= this.objTablePartner.Rows[i]["Phone"].ToString() %>
+                </p>
             </div>
+            <% } %>
         </div>
+
     </div>
 
-    <div class="part">
+    <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <h2 style="font-family: Arial; font-size: 18px; font-weight: bold; color: black;
@@ -558,7 +472,7 @@
             </div>
             <div class="line">
                 <div class="col-md-7">
-                    <img src="images/line.jpg" alt="" />
+                    <img src="/images/line.jpg" alt="" />
                 </div>
             </div>
             <div class="col-lg-2" style="text-align: right; margin-top: 42px;">
@@ -583,32 +497,22 @@
         <div class="thuonghieu">
             <div class="row">
                 <div class="col-md-3">
-                    <img src="images/dongthuonghieubg.png" alt="" />
+                    <img src="/images/dongthuonghieubg.png" alt="" />
                 </div>
-                <% if (this.objTableBrand.Rows.Count > 6)
-                   { %>
-                <%for (int i = 0; i < 6; i += 2)
-                  {  %>
+                <% for(int i=0;i< this.objTableBrand.Rows.Count && i < 3;i++){ %>
                 <div class="col-md-3">
-                    <img src="Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>"
+                    <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>"
                         alt="" style="border: solid 1px #f4f4f4; padding: 10px;" />
-                    <img src="Images/<%Response.Write(this.objTableBrand.Rows[i + 1]["Logo"].ToString()); %>"
+                    <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i + 3]["Logo"].ToString()); %>"
                         alt="" style="border: solid 1px #f4f4f4; padding: 10px; margin-top: 10px;" />
                 </div>
-                <% }%>
 
-                <%}
-                   else
-                   {%>
-                <%
-                       Response.Write("");
-
-                   } %>
+                <% } %>
             </div>
         </div>
     </div>
 
-    <div class="part">
+    <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <h2 style="font-family: Arial; font-size: 18px; font-weight: bold; color: black;
@@ -616,7 +520,7 @@
             </div>
             <div class="line">
                 <div class="col-md-7">
-                    <img src="images/line.jpg" alt="" />
+                    <img src="/images/line.jpg" alt="" />
                 </div>
             </div>
             <div class="col-lg-2" style="text-align: right; margin-top: 42px;">
@@ -640,23 +544,12 @@
 
         <div class="thuonghieu">
             <div class="row">
-                <% if (this.objTableBrand.Rows.Count > 4)
-                   { %>
-                <%for (int i = 0; i < 4; i += 1)
-                  {  %>
+                <% for(int i=0; i<this.objTableBrand.Rows.Count && i < 4; i++){ %>
                 <div class="col-md-3">
-                    <img src="Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>"
+                    <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>"
                         style="border: solid 1px #dedee3; padding: 10px;" alt="<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>" />
                 </div>
-                <% }%>
-
-                <%}
-                   else
-                   {%>
-                <%
-                       Response.Write("");
-
-                   } %>
+                <% } %>
             </div>
         </div>
 

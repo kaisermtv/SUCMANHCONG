@@ -297,9 +297,7 @@ ul.menu_head {
 		width: 100%;
 	}
 
-.sanpham img {
-	width: 100%;
-}
+
 
 
 .menu a {
@@ -403,9 +401,7 @@ h2 {
 		border: solid 1px red;
 	}
 
-	.sanpham span {
-		color: #3eaeed;
-	}
+
 
 td {
 	border: 1px solid #9999a5;
@@ -1079,3 +1075,57 @@ button, input, optgroup, select, textarea {
     padding-top:10px;
     padding-bottom:10px;
 }
+
+
+.sanpham_background{
+    background-color: #f9faf5; height: 375px; padding: 5px;
+}
+
+.sanpham_avata{
+    height: 260px; width: 100%
+}
+
+.sanpham_title{
+    font-family: Arial; font-size: 17px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb; height: 50px; overflow: hidden;
+}
+
+.sanpham_like_line{
+    text-align: right; margin-top: -2px;
+}
+
+.sanpham_like{
+    font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal; padding-top: 0px; padding-left: 25px;
+}
+
+.sanpham_like_img{
+    width: 20px; margin-top: -8px;
+}
+
+.sanpham_price_line{
+    font-family: Arial; font-size: 14px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; margin-top: -4px;
+}
+
+.sanpham_price{
+    font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;
+}
+
+.sanpham_Discount{
+    background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat; font-size: 14px; color: #fff;
+}
+
+.fw{
+    width: 100%
+}
+
+
+.right{
+    float:right;
+}
+
+
+
+
+
+
+
+

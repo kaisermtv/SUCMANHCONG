@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 public partial class _Default : Page
 {
     #region declare objects
-    public string[] ProductGroup = new string[7] { "", "", "", "", "", "", "" };
+    public string[] ProductGroup = new string[20] { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
     private DataTable objTableProductGroup = new DataTable();
     public DataTable objTableProductVIP = new DataTable();
     public DataTable objTableNews = new DataTable();
@@ -29,25 +29,12 @@ public partial class _Default : Page
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Page.IsPostBack)
-        {
-        this.objTableProductGroup = objProduct.getProductGroup();          // Lấy nội dung từng phần hiển thị .
-
-        if (this.objTableProductGroup.Rows.Count > 0)
-        {
-            for (int i = 0; i < this.objTableProductGroup.Rows.Count; i++)      
-            {
-                this.ProductGroup[i] = this.objTableProductGroup.Rows[i]["Name"].ToString();        
-            }   
-        }
-
         this.objTableNews = objTopic.getTopTopic();     
         this.objTableProductVIP = objProduct.getTopProductVIP();
         objTableBestSale = objProduct.getProductBestSale();
         this.objTablePartner = objPartner.getTopPartner();
         this.objTableBrand = objBrand.getBrand();
         this.objTableSlide = objSlide.getSlideImage();
-        }
     }
     #endregion
 }
