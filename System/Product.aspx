@@ -8,47 +8,63 @@
         <div style ="float:left;">&nbsp;&nbsp;Hàng hóa - Dịch vụ</div>
        
         <div style ="float:right;"><a href ="Edit/ProductEdit.aspx"><span style ="border:solid 1px #f8fbfc; padding:5px; font-size:11px; font-weight:bold; padding-left:20px; padding-right:20px;">Thêm mới</span></a>&nbsp;</div>
-          
-         <div style ="float:right; margin-right:1%">&nbsp;&nbsp;<asp:TextBox runat="server" ID="txtSearch"  placeholde="Tìm kiếm theo tên / Giá  " OnTextChanged="txtSearch_TextChanged" ></asp:TextBox></div>
+          <div style ="float:right; margin-right:1%">&nbsp;&nbsp;<asp:Button runat="server" ID="btnSearch"   OnClick="txtSearch_TextChanged"  Text="Tìm"  ></asp:Button></div>
+         
+         <div style ="float:right; margin-right:1%">&nbsp;&nbsp;<asp:TextBox runat="server" ID="txtSearch"    placeholder="Tìm kiếm theo Tên / Giá  "></asp:TextBox></div>
          
     
           </div>
     <div class="row">
      <table cellpadding="0" cellspacing="0" border="0" style="margin: 0px; font-family:'Comic Sans MS'; font-family:13px;  width: 99.9%; height: 30px;">
                 <tr>   
-                     <td style="text-align: center; vertical-align: middle; font-family: Arial;  color: #262626; background-color: #FFF; width: 4%;">
-                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: center; vertical-align: middle; font-size: 14px; border-bottom: solid 1px #808080; border-left: solid 1px #808080;">
-TT
+                     <td style="text-align: center; font-size:10px; vertical-align: middle; font-family: Arial;  color: #262626; background-color: #FFF; width: 4%;">
+                        <div style="float: left; display: table-cell;  line-height: 30px; width: 100%; height: 30px; text-align: center; vertical-align: middle; font-size: 14px; border-bottom: solid 1px #808080; border-left: solid 1px #808080;">
+                        TT
                         </div>
                     </td>
-                    <td style="text-align: center; vertical-align: middle; font-family: Arial;  color: #fff; background-color: #FFF; width: 68%;">
-                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify;  vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
+                    <td style="text-align: center; vertical-align: middle; font-family: Arial;  color: #fff; background-color: #FFF; width: 60%;">
+                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify;  vertical-align: middle; font-size: 13px; border-bottom:solid 1px #808080;">
                             <a style="display: block; vertical-align: middle;" href="#">
-                            TÊN <asp:Button runat="server" ID="btnShortByTen" OnClick="btnShortByTen_Click" Text="^" />
+                         <p style="font-size:11px; ">     TÊN <asp:Button runat="server" ID="btnShortByTen" OnClick="btnShortByTen_Click" Text="^" /></p>
                                 </a>
                         </div>
                     </td>
                     <td style="text-align: center; vertical-align: middle; font-family: Arial;color: #fff; background-color: #FFF; width: 6%;">
-                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify;  vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
+                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify;  vertical-align: middle; font-size: 13px; border-bottom:solid 1px #808080;">
                             <a style="display: block; vertical-align: middle;" href="#">
-                             GIÁ <asp:Button runat="server" ID="btnShortByGia" OnClick="btnShortByGia_Click" Text="^" />
+                       <p style="font-size:11px; ">        GIÁ <asp:Button runat="server" ID="btnShortByGia" OnClick="btnShortByGia_Click" Text="^" /></p>
                             </a>
                         </div>
                     </td>
-                    <td style="text-align: center; vertical-align: middle; font-family: Arial; color: #fff; background-color: #FFF; width: 10%; text-align:center">
-                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: left; vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
+                    <td style="text-align: center; vertical-align: middle; font-family: Arial; color: #fff; background-color: #FFF; width: 5%; text-align:center">
+                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: left; vertical-align: middle; font-size: 13px; border-bottom:solid 1px #808080;">
                             <a style="display: block; vertical-align: middle;" href="#">
-                            VIP(0/1) <asp:Button runat="server" ID="btnShortByVip" OnClick="btnShortByVip_Click" Text="^" />
+                           <p style="font-size:11px; ">   VIP <asp:Button runat="server" ID="btnShortByVip" OnClick="btnShortByVip_Click" Text="^" /></p>
                             </a>
                         </div>
                     </td>
-                    <td style="text-align: center; vertical-align: middle; font-family: Arial;  color: #fff; background-color: #FFF; width: 16%;">
-                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: left;  vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
-                            <a style="display: block; vertical-align: middle;" href="#">
-                          BÁN CHẠY <asp:Button runat="server" ID="btnShortByBestSale" OnClick="btnShortByBestSale_Click" Text="^" />
+                    <td style="text-align: center; vertical-align: middle; font-family: Arial;  color: #fff; background-color: #FFF; width: 6%; margin-left:1px">
+                        <div style="float: right; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: left;  vertical-align: middle; font-size: 13px; border-bottom:solid 1px #808080;">
+                            <a style="display: block; font-size:13px; vertical-align: middle;" href="#">
+                        <p style="font-size:11px; ">  BÁN  <asp:Button runat="server" ID="btnShortByBestSale" OnClick="btnShortByBestSale_Click" Text="^" /></p>
                             </a>
                         </div>
                     </td>
+                    <td style="text-align: left; vertical-align: middle; font-family: Arial;  color: #fff; background-color: #FFF; width: 4%;">
+                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: left;  vertical-align: middle; font-size: 13px; border-bottom:solid 1px #808080;">
+                            <a style="display: block; font-size:13px; vertical-align: middle;" href="#">
+                        <p style="font-size:11px; float:left ">  Mua <asp:Button runat="server"  ID="btnShortByBuy"  OnClick="btnShortByBuy_Click" Text="^" /></p>
+                            </a>
+                        </div>
+                    </td>
+                     <td style="text-align: left; vertical-align: middle; font-family: Arial;  color: #fff; background-color: #FFF; width:5%;">
+                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: left;  vertical-align: middle; font-size: 13px; border-bottom:solid 1px #808080;">
+                            <a style="display: block; font-size:13px; vertical-align: middle;" href="#">
+                        <p style="font-size:11px; ">  Thích <asp:Button runat="server"  ID="btnShortByLike"  OnClick="btnShortByLike_Click" Text="^" /></p>
+                            </a>
+                        </div>
+                    </td>
+                    
                     <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 13px; color: #262626; background-color: #FFF; width: 5%;">
                         <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: center; vertical-align: middle; font-size: 13px; border-bottom: solid 1px #808080; font-weight:bold;">
                             
@@ -72,11 +88,11 @@ TT
                             <%# Eval("TT")  %>|
                         </div>
                     </td>
-                    <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 68%;">
+                    <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 60%;">
                         <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
-                            <a style="display: block; vertical-align: middle;" href="#">
+                            <a style="display: block; vertical-align: middle;" href="Edit/ProductEdit.aspx?Id=<%# Eval("Id")  %>">
                                 <%# Eval("Name")  %>
-                            </a>
+                            </>
                         </div>
                     </td>
                     <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 6%;">
@@ -86,7 +102,7 @@ TT
                             </a>
                         </div>
                     </td>
-                    <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 6%;">
+                    <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 5%;">
                         <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
                             <a style="display: block; vertical-align: middle;" href="#">
                                 <%# Eval("VIP1") %>
@@ -97,6 +113,20 @@ TT
                         <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
                             <a style="display: block; vertical-align: middle;" href="#">
                                 <%# Eval("BESTSALE1")  %>
+                            </a>
+                        </div>
+                    </td>
+                    <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 4%;">
+                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
+                            <a style="display: block; vertical-align: middle;" href="#">
+                                <%# Eval("CountBuy")  %>
+                            </a>
+                        </div>
+                    </td>
+                     <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 5%;">
+                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
+                            <a style="display: block; vertical-align: middle;" href="#">
+                                <%# Eval("CountLike")  %>
                             </a>
                         </div>
                     </td>

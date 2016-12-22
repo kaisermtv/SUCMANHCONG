@@ -324,6 +324,66 @@ public class DataProduct
     }
     #endregion
 
+    #region Method getAllProductSortByBuy
+    public DataTable getAllProductSortByBuy()
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText += " SELECT 0 AS TT,Name,Price,Id,CountLike,CountBuy , REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1   from tblProduct  ORDER BY tblProduct.CountBuy   DESC ;";
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+    }
+    #endregion
+
+    #region Method getAllProductSortByLike
+    public DataTable getAllProductSortByLike()
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText += " SELECT 0 AS TT,Name,Price,Id,CountLike,CountBuy , REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1   from tblProduct  ORDER BY tblProduct.CountLike   DESC ;";
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+    }
+    #endregion
+
     #region Method getAllProductSortBySALE
     public DataTable getAllProductSortByName()
     {
@@ -363,10 +423,15 @@ public class DataProduct
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText += " SELECT TOP 150 0 AS TT, tblProduct.*   from tblProduct WHERE tblProduct.Name LIKE N'%@Name%'  ORDER BY tblProduct.Name   DESC ;";
-            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = name;
+
+          //  Cmd.CommandText = "SELECT * FROM tblProduct WHERE UPPER(RTRIM(LTRIM(Name))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' ORDER BY Id DESC";
+
+            Cmd.CommandText = " SELECT TOP 150 0 AS TT, tblProduct.*  , REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1  from tblProduct ";
+            Cmd.CommandText += " WHERE UPPER(RTRIM(LTRIM(Name))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@Name)))+'%'   OR    UPPER(RTRIM(LTRIM(Price))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@Name)))+'%'  ORDER BY tblProduct.Name   DESC ;";
+              Cmd.Parameters.Add("@Name",SqlDbType.NVarChar).Value = name;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
+          
             DataSet ds = new DataSet();
             da.Fill(ds);
             sqlCon.Close();

@@ -17,14 +17,20 @@ public partial class System_Product : System.Web.UI.Page
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
+
+       
+
         if (!Page.IsPostBack)
         {
             CollectionPager2.MaxPages = 1000;
             CollectionPager2.PageSize = 120;
-            CollectionPager2.DataSource = getProduct().DefaultView;
+            CollectionPager2.DataSource = this.getProduct().DefaultView;
             CollectionPager2.BindToControl = DataList2;
             DataList2.DataSource = CollectionPager2.DataSourcePaged;
             DataList2.DataBind();
+
+          
+
         }
     }
     #endregion
@@ -32,7 +38,7 @@ public partial class System_Product : System.Web.UI.Page
     #region method getProduct
     public DataTable getProduct()
     {
-        DataTable objData = this.objProduct.getPartProduct();       //  vì bảng sản phầm nhiều cột , nên chỉ lấy những cột cần thiết , tránh bị die 
+         objData = this.objProduct.getPartProduct();       //  vì bảng sản phầm nhiều cột , nên chỉ lấy những cột cần thiết , tránh bị die 
         if (objData.Rows.Count < 120)
         {
             this.tblABC.Visible = false;
@@ -99,4 +105,27 @@ public partial class System_Product : System.Web.UI.Page
         DataList2.DataSource = CollectionPager2.DataSourcePaged;
         DataList2.DataBind();
     }
+
+protected void btnShortByBuy_Click(object sender, EventArgs e)
+{
+    objData = this.objProduct.getAllProductSortByBuy();
+
+    CollectionPager2.MaxPages = 1000;
+    CollectionPager2.PageSize = 120;
+    CollectionPager2.DataSource = objData.DefaultView;
+    CollectionPager2.BindToControl = DataList2;
+    DataList2.DataSource = CollectionPager2.DataSourcePaged;
+    DataList2.DataBind();
+}
+protected void btnShortByLike_Click(object sender, EventArgs e)
+{
+    objData = this.objProduct.getAllProductSortByLike();
+
+    CollectionPager2.MaxPages = 1000;
+    CollectionPager2.PageSize = 120;
+    CollectionPager2.DataSource = objData.DefaultView;
+    CollectionPager2.BindToControl = DataList2;
+    DataList2.DataSource = CollectionPager2.DataSourcePaged;
+    DataList2.DataBind();
+}
 }
