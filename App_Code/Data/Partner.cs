@@ -1080,27 +1080,35 @@ public class Partner
     #region method getTopPartner        || return top number partner input
     public DataTable getTopPartner(int filter)
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT TOP  "+ filter +" 0 AS TT , tblLocation.Name AS [Local],  tblPartner.* FROM tblPartner LEFT JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId ";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        sqlCon.Close();
-        sqlCon.Dispose();
-        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        try
         {
-            ds.Tables[0].Rows[i]["TT"] = (i + 1);
-        }
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT TOP  " + filter + " 0 AS TT , tblLocation.Name AS [Local],  tblPartner.* FROM tblPartner LEFT JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId  WHERE tblPartner.VIP = 1  AND tblPartner.State = 1 ";
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+       
         return ds.Tables[0];
+        }
+        catch {
+            return new DataTable();
+        }
     }
     #endregion
 
     #region method getTopPartner        || return top number partner fromto 
     public DataTable getTopPartner(int from, int to)
     {
+        try { 
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
@@ -1116,6 +1124,11 @@ public class Partner
             ds.Tables[0].Rows[i]["TT"] = (i + 1);
         }
         return ds.Tables[0];
+            }
+        catch
+        {
+            return new DataTable();
+        }
     }
     #endregion
 
