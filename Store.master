@@ -138,6 +138,6 @@
             </div>
         </div>
     </form>
-    <iframe src ="/Store/AutoRefresh.html" width ="0" height="0" style ="border:none;"></iframe>
+    <iframe src ="/Nopage.aspx" width ="0" height="0" style ="border:none;"></iframe>
 </body>
 </html>
