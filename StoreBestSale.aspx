@@ -42,34 +42,28 @@
         <%for (int i = 0; i < this.objTableStoreBestSale.Rows.Count; i++)
           {  %>
         <div class="col-md-3">
-            <div style="border: solid 1px #f6f6f6; height: 262px;">
-                <div style="text-align: center;">
-                    <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;
-                        height: 39px; overflow: hidden; text-align: center; text-transform: uppercase;">
-                        <%Response.Write(this.objTableStoreBestSale.Rows[i]["Name"].ToString()); %>
+            <div class="fw" style="border: solid 1px #f6f6f6; height: 320px;">
+                <div class="fw" style="text-align: center;">
+                    <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial; height: 39px; overflow: hidden; text-align: center; text-transform: uppercase;">
+                        <%= this.objTableStoreBestSale.Rows[i]["Name"].ToString() %>
                     </h4>
-                    <a href="/Store/?id=1">
-                        <img src="../Images/Partner/<%Response.Write(this.objTableStoreBestSale.Rows[i]["Image"].ToString()); %>"
-                            alt="Cua hang" style="width: 95%; margin-left: auto; margin-right: auto;" /></a>
+                    <a class="fw" href="/Store/Detailt.aspx?id=<%= this.objTableStoreBestSale.Rows[i]["Id"].ToString() %>">
+                        <img src="/Images/Partner/<%= this.objTableStoreBestSale.Rows[i]["Image"].ToString() %>"
+                            alt="Cua hang" style="width: 95%; margin-left: auto; margin-right: auto;height:145px" /></a>
                 </div>
-                <div style="font-family: Arial; font-size: 13px; text-align: justify; padding: 5px;
-                    color: #414441; height: 40px; overflow: hidden;">
-                    <%Response.Write(this.objTableStoreBestSale.Rows[i]["Address"].ToString()); %>
+                <div style="font-family: Arial; font-size: 13px; text-align: justify; padding: 5px; color: #414441; height: 40px; overflow: hidden;">
+                    <%= this.objTableStoreBestSale.Rows[i]["Address"].ToString() %>
                 </div>
-                <div style="font-family: Arial; font-size: 13px; font-weight: bold; text-align: justify;
-                    padding: 5px; color: #414441; height: 30px; overflow: hidden;">
-                    Điện thoại :      <%Response.Write(this.objTableStoreBestSale.Rows[i]["Phone"].ToString()); %>
+                <div style="font-family: Arial; font-size: 13px; font-weight: bold; text-align: justify; padding: 5px; color: #414441; height: 30px; overflow: hidden;">
+                    Điện thoại :      <%= this.objTableStoreBestSale.Rows[i]["Phone"].ToString() %>
                 </div>
                 <div style="text-align: center;">
-                    <div style="margin-left: 5px; float: left; width: 47%; background-color: #337ab7;
-                        color: #fff; height: 30px; line-height: 30px; display: table; vertical-align: middle;">
-                        <%Response.Write(this.objTableStoreBestSale.Rows[i]["Location"].ToString()); %>
+                    <div style="margin-left: 5px; float: left; width: 47%; background-color: #337ab7; color: #fff; height: 30px; line-height: 30px; display: table; vertical-align: middle;">
+                        <%= this.objTableStoreBestSale.Rows[i]["Location"].ToString() %>
                     </div>
-                    <div style="margin-right: 5px; float: right; width: 47%; background-color: #ffc000;
-                        color: #fff; height: 30px; line-height: 30px; display: block; vertical-align: middle;"
+                    <div style="margin-right: 5px; float: right; width: 47%; background-color: #ffc000; color: #fff; height: 30px; line-height: 30px; display: block; vertical-align: middle;"
                         class="DetailtLink">
-                        <a href="/Store/Detailt.aspx?id=<%Response.Write(this.objTableStoreBestSale.Rows[i]["Id"].ToString()); %>">
-                            Chi tiết</a>
+                        <a href="/Store/Detailt.aspx?id=<%= this.objTableStoreBestSale.Rows[i]["Id"].ToString() %>">Chi tiết</a>
                     </div>
                 </div>
             </div>
