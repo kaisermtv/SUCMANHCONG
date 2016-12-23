@@ -11,7 +11,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
         if (Session["ADMINLOGIN"] == null || (int)Session["ADMINLOGIN"] == 0)
         {
-            Response.Redirect("/system/login");
+          Response.Redirect("/system/login");
         }
         int buf = (int)Session["ADMINLOGIN"];
 

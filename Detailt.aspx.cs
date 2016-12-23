@@ -71,6 +71,7 @@ public partial class Detailt : System.Web.UI.Page
     }
     #endregion
 
+
     #region method getProduct
     public DataTable getProduct(string Id)
     {
