@@ -38,7 +38,16 @@
 
     <div style="width: 100%; height: 35px; line-height: 35px;">
         <div style="width: 12%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
-            &nbsp;&nbsp;
+            <br />
+            Hình đại diện
+            <br />
+            <asp:Label ID="lblImg1" Text="Ảnh minh hoạ" CssClass="MQTT_Normal_Text" runat="server"></asp:Label>
+            <br />
+            <asp:TextBox ID="txtImage" runat="server" Width="10px" Visible="false"></asp:TextBox>
+            <label class="file-upload" style="margin-top: -12px;">
+                <span><strong>Upload Image</strong></span>
+                <asp:FileUpload ID="upImage1" runat="server" Width="100px" CssClass="FileUploadImage" Height="22px" />
+            </label>
         </div>
         <div style="width: 87.5%; height: 30px; line-height: 30px; float: right; font-family: Arial; font-size: 12px;">
             <asp:CheckBox ID="ckbState" Text="  Trạng thái" runat="server" />

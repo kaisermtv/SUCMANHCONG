@@ -48,6 +48,10 @@ public partial class ProductGroupEdit : System.Web.UI.Page
             {
                 this.ckbState.Checked = false;
             }
+
+            lblImg1.Text = "<img width = \"50px\" height = \"50px\" src = \"/Images/" + objData.Rows[0]["icon"].ToString() + "\">";
+
+            this.txtImage.Text = objData.Rows[0]["icon"].ToString();
         }
     }
     #endregion
@@ -55,13 +59,19 @@ public partial class ProductGroupEdit : System.Web.UI.Page
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
+        if (upImage1.PostedFile.FileName != "")
+            if (!saveImage1())
+            {
+                return;
+            }
+
         if (this.txtName.Text.Trim() == "")
         {
             this.txtName.Focus();
             return;
         }
 
-        int ret = this.objProduct.setProductGroup(this.itemId, this.txtDescription.Text, this.txtName.Text, this.ckbState.Checked);
+        int ret = this.objProduct.setProductGroup(this.itemId, this.txtDescription.Text, this.txtName.Text, this.ckbState.Checked, this.txtImage.Text);
         if(ret > 0)
         {
             Response.Redirect("~/System/ProductGroup.aspx");
@@ -74,5 +84,37 @@ public partial class ProductGroupEdit : System.Web.UI.Page
     {
         Response.Redirect("~/System/ProductGroup.aspx");
     } 
+    #endregion
+
+    #region method saveImage1
+    private bool saveImage1()
+    {
+        string strBaseLoactionImg = "";
+        try
+        {
+            strBaseLoactionImg = Server.MapPath(System.Configuration.ConfigurationSettings.AppSettings["NEWSIMAGE"].ToString());
+            if (upImage1.PostedFile.ContentLength > 5048576)
+            {
+                return false;
+            }
+            else
+            {
+                string sFileName = "A" + DateTime.Now.Day.ToString() + DateTime.Now.Month.ToString() + DateTime.Now.Year.ToString() + "-" + DateTime.Now.Hour.ToString() + DateTime.Now.Minute.ToString() + DateTime.Now.Second + DateTime.Now.Millisecond.ToString();
+                string strEx = System.IO.Path.GetFileName(upImage1.PostedFile.FileName);
+                strEx = strEx.Substring(strEx.LastIndexOf("."), strEx.Length - strEx.LastIndexOf("."));
+                strBaseLoactionImg += sFileName + strEx;
+                strBaseLoactionImg = strBaseLoactionImg.Replace("/", "\\");
+                upImage1.PostedFile.SaveAs(strBaseLoactionImg);
+                this.txtImage.Text = sFileName + strEx;
+                this.lblImg1.Text = "<img width = \"125px\" height = \"100px\"  src = \"/Images/" + sFileName + strEx + "\">";
+                return true;
+            }
+        }
+        catch (Exception ex)
+        {
+            HttpContext.Current.Response.Write(ex.Message);
+        }
+        return false;
+    }
     #endregion
 }
