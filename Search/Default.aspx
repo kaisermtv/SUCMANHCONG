@@ -23,7 +23,8 @@
                         </h4>
                         <a href="/Store/?id=1">
                             <img src="../Images/Partner/<%Response.Write(this.objTableStoreVip.Rows[i]["Image"].ToString()); %>"
-                                alt="Cua hang" style="width: 99%; margin-left: auto; height:200px;  margin-right: auto;  onerror=" this.src='/Images/card.jpg' /></a>
+                                alt="Cua hang" style="width: 99%; margin-left: auto; height:200px;  margin-right: auto;"  
+                                onerror="this.onerror = null; this.src = '../img/noImg.jpg';" /></a>
                     </div>
                     <div style="font-family: Arial; font-size: 13px; text-align: justify; padding: 5px;
                         color: #414441; height: 40px; overflow: hidden;">
