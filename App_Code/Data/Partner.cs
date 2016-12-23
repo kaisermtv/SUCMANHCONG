@@ -1172,30 +1172,7 @@ public class Partner
     }
     #endregion
 
-    #region method getTopPartnerBestSale        || return top number partner input
-    public DataTable getTopPartnerBestSale1(int filter)
-    {
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP " + filter + " *  FROM tblPartner  WHERE [BestSale] = 1 AND [State] = 1 ORDER BY [Id] DESC  ";
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            return ds.Tables[0];
-        }
-        catch
-        {
-            return new DataTable();
-        }
-
-    }
-    #endregion
+   
 
     #region method getTopPartnerVIP        || return top number partner input
     public DataTable getTopPartnerVIP(int filter = 4)
@@ -1219,6 +1196,56 @@ public class Partner
             return new DataTable();
         }
         
+    }
+    #endregion
+
+    #region method getTopPartnerVIPShowHome
+    public DataTable getTopPartnerVIPShowHome(int filter = 4)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT TOP " + filter + " [Id],[Name],[Address],[Phone],[Image],[Discount] FROM tblPartner WHERE [VIP] = 1 AND [State] = 1  ORDER BY [Id] DESC";
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+
+    }
+    #endregion
+
+    #region method getTopPartnerBestSaleShowHome
+    public DataTable getTopPartnerBestSaleShowHome(int filter)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT TOP " + filter + " [Id],[Name],[Address],[Phone],[Image],[Discount]  FROM tblPartner  WHERE [BestSale] = 1 AND [State] = 1 ORDER BY [Id] DESC  ";
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+
     }
     #endregion
 

@@ -52,7 +52,7 @@
 </head>
 <body>
     <script type='text/javascript'>window._sbzq || function (e) { e._sbzq = []; var t = e._sbzq; t.push(["_setAccount", 53047]); var n = e.location.protocol == "https:" ? "https:" : "http:"; var r = document.createElement("script"); r.type = "text/javascript"; r.async = true; r.src = n + "//static.subiz.com/public/js/loader.js"; var i = document.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i) }(window);</script>
-    <form runat="server" method="post">
+    
         <div class="top_header">
             <div class="container">
                 <div class="top_logo">
@@ -81,12 +81,14 @@
                             </div>
                         </div>
                         <div class="col-md-4" style="text-align: right; height:100%">
-                            <div class="input-group" style="text-align: right; margin-left: 42px; height:100%">
-                                <input id="txtQ" runat="server" type="text" class="form-control" placeholder="Tìm kiếm" name="q" style="width: 280px; height: 30px; line-height: 30px; margin-top: 3px;">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default" type="submit" name="txtSearch" style="width: 40px; height: 30px; margin-top:1px"><i class="glyphicon glyphicon-search"></i></button>
+                            <form method="get" action="/Search/Default.aspx">
+                                <div class="input-group" style="text-align: right; margin-left: 42px; height: 100%">
+                                    <input type="text" class="form-control" placeholder="Tìm kiếm" name="search" style="width: 280px; height: 30px; line-height: 30px; margin-top: 3px;">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-default" type="submit" style="width: 40px; height: 30px; margin-top: 1px"><i class="glyphicon glyphicon-search"></i></button>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                         </div>
 
                         <div class="col-md-5" style="text-align: right; float: right;">
@@ -106,7 +108,7 @@
                                     + <a href="/Customer/CustomerBill.aspx">Doanh số tiêu dùng</a>
                                 </p>
                                 <p style="width: 100%; margin-top: 0px; margin-bottom: 0px; font-weight: bold;">
-                                    + <a href="../Logout.aspx">Thoát</a>
+                                    + <a href="/Logout.aspx">Thoát</a>
                                 </p>
                                 <script type="text/javascript">
                                     dropdowncontent.init("searchlink0", "left-bottom", 1000, "mouseover")
@@ -129,7 +131,7 @@
                                     + <a href="/Store/ProductCustomer.aspx">Quản trị bán hàng</a>
                                 </p>
                                 <p style="width: 100%; margin-top: 0px; margin-bottom: 0px; font-weight: bold;">
-                                    + <a href="../Logout.aspx">Thoát</a>
+                                    + <a href="/Logout.aspx">Thoát</a>
                                 </p>
                                 <script type="text/javascript">
                                     dropdowncontent.init("searchlink", "left-bottom", 1000, "mouseover")
@@ -183,7 +185,7 @@
                 </div>
             </div>
         </div>
-
+        <form runat="server" method="post">
         <div style="background-color: #f4f4f4;">
             <div class="container">
                 <div class="row">

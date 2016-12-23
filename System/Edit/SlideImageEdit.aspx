@@ -18,18 +18,26 @@
     </div>
     <div style="width: 100%; height: 35px; line-height: 35px;">
         <div style="width: 12%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
+            &nbsp;&nbsp;Tiêu đề :
+        </div>
+        <div style="width: 87.5%; height: 30px; line-height: 30px; float: right;">
+            <asp:TextBox ID="Name" runat="server" Style="height: 22px; line-height: 22px; width: 99%; font-size: 13px; font-family: Arial;"></asp:TextBox>
+        </div>
+    </div>
+    <div style="width: 100%; height: 35px; line-height: 35px;">
+        <div style="width: 12%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
             &nbsp;&nbsp;Liên kết :
         </div>
         <div style="width: 87.5%; height: 30px; line-height: 30px; float: right;">
             <asp:TextBox ID="txtUrl" runat="server" Style="height: 22px; line-height: 22px; width: 99%; font-size: 13px; font-family: Arial;"></asp:TextBox>
         </div>
     </div>
-    <div style="width: 100%; height: 130px; line-height: 130px; margin-top:0px;">
+    <div style="width: 100%; height: 150px; line-height: 130px; margin-top:0px;">
         <div style="width: 12%; height: 30px; line-height: 20px; float: left; font-size: 13px; font-family: Arial;">
             &nbsp;&nbsp;Hình ảnh
         </div>
-        <div style="width: 87.5%; height: 30px; line-height: 30px; float: right;">
-            <asp:Label ID="lblImg1" Text="Ảnh minh hoạ" CssClass="MQTT_Normal_Text" runat="server"></asp:Label>
+        <div style="width: 87.5%; height: 150px; line-height: 30px; float: right;">
+            <asp:Label ID="lblImg1" Text="Ảnh minh hoạ" CssClass="MQTT_Normal_Text" runat="server" Style="height:150px"></asp:Label>
         </div>
     </div>
 

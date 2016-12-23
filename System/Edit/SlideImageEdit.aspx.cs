@@ -38,6 +38,7 @@ public partial class SlideImageEdit : System.Web.UI.Page
         DataTable objData = this.objSlideImage.getSlideImageById(this.itemId);
         if(objData.Rows.Count > 0)
         {
+            this.Name.Text = objData.Rows[0]["Name"].ToString();
             this.txtUrl.Text = objData.Rows[0]["Url"].ToString();
             this.txtImage.Text = objData.Rows[0]["Image"].ToString();
             if (objData.Rows[0]["State"].ToString() == "True")
@@ -64,7 +65,7 @@ public partial class SlideImageEdit : System.Web.UI.Page
                 return;
             }
 
-        int ret = this.objSlideImage.setSlideImage(this.itemId, this.txtUrl.Text, this.txtImage.Text, this.ckbState.Checked);
+        int ret = this.objSlideImage.setSlideImage(this.itemId, this.Name.Text, this.txtUrl.Text, this.txtImage.Text, this.ckbState.Checked);
         if(ret > 0)
         {
             Response.Redirect("~/System/SlideImage.aspx");

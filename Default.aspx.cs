@@ -30,11 +30,11 @@ public partial class _Default : Page
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.objTableNews = objTopic.getTopTopic();     
-        this.objTableProductVIP = objProduct.getTopProductVIP(8);
-        this.objTableBestSale = objProduct.getProductBestSale(8);
-        this.objTablePartner = objPartner.getTopPartnerVIP(8);
-        this.objTablePartnerBestSale = objPartner.getTopPartnerBestSale1(8);
+        this.objTableNews = objTopic.getTopTopic();
+        this.objTableProductVIP = objProduct.getTopProductVIPShowHome(8);
+        this.objTableBestSale = objProduct.getProductBestSaleShowHome(8);
+        this.objTablePartner = objPartner.getTopPartnerVIPShowHome(8);
+        this.objTablePartnerBestSale = objPartner.getTopPartnerBestSaleShowHome(8);
         this.objTableBrand = objBrand.getBrand();
         this.objTableSlide = objSlide.getSlideImage();
     }

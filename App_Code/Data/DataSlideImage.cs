@@ -73,7 +73,7 @@ public class DataSlideImage
     #endregion
 
     #region method setSlideImage
-    public int setSlideImage(int Id, string Url, string Image, bool State)
+    public int setSlideImage(int Id,string name, string Url, string Image, bool State)
     {
         try
         {
@@ -82,10 +82,11 @@ public class DataSlideImage
             SqlCommand Cmd = sqlCon.CreateCommand();
             string sqlQuery = "";
             sqlQuery = "IF NOT EXISTS (SELECT * FROM tblSlideImage WHERE Id = @Id)";
-            sqlQuery += "BEGIN INSERT INTO tblSlideImage(Image,Url,State) VALUES(@Image,@Url,@State) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblSlideImage SET Image = @Image, Url = @Url, State = @State WHERE Id = @Id END";
+            sqlQuery += "BEGIN INSERT INTO tblSlideImage(Name,Image,Url,State) VALUES(@Name,@Image,@Url,@State) END ";
+            sqlQuery += "ELSE BEGIN UPDATE tblSlideImage SET Name=@Name,Image = @Image, Url = @Url, State = @State WHERE Id = @Id END";
             Cmd.CommandText = sqlQuery;
             Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = name;
             Cmd.Parameters.Add("Url", SqlDbType.NVarChar).Value = Url;
             Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = Image;
             Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;

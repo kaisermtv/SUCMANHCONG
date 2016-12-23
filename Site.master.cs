@@ -80,13 +80,6 @@ public partial class SiteMaster : MasterPage
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (IsPostBack)
-        {
-            Response.Redirect("/Search/Default.aspx?search=" + this.txtQ.Value.ToString());
-            return;
-        }
-
-
         if (Session["ACCOUNT"] == null || Session["ACCOUNT"].ToString() == "")
         {
             strHeader = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"#\" id=\"searchlink1\" rel=\"subcontent1\">Đăng kí &nbsp;|&nbsp; </a><a href=\"../login.aspx\">&nbsp;Đăng nhập</a>";
@@ -148,5 +141,6 @@ public partial class SiteMaster : MasterPage
         Context.GetOwinContext().Authentication.SignOut();
     } 
     #endregion
+
 
 }

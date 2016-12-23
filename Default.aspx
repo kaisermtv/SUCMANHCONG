@@ -176,8 +176,9 @@
                                     <div data-u="caption" data-t="0" style="position: absolute; top: 320px; left: 30px;
                                         width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
                                         color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">
-                                        SUCMANHCONG.COM
-                                        - SLIDE DEMO
+                                        <a href="<%= this.objTableSlide.Rows[i]["Url"] %>">
+                                        <%= this.objTableSlide.Rows[i]["Name"] %>
+                                        </a>
                                     </div>
                                 </div>
                                 <%} %>
@@ -269,7 +270,7 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
                 <div class="item active">
-                    <%for (int i = 0; i < this.objTableProductVIP.Rows.Count && i < 8; i++){  %>
+                    <%for (int i = 0; i < this.objTableProductVIP.Rows.Count; i++){  %>
                     <% if(i%4 == 0 && i != 0){ %>
                     </div>
                     <div class="item">
@@ -335,20 +336,6 @@
                     <img src="images/line.jpg" alt="" />
                 </div>
             </div>
-
-            <div class="col-md-2">
-                <div class="sotrang">
-                    <table>
-                        <tr>
-                            <td><a href="#"><i class="fa fa-angle-left"></i></a></td>
-                            <td><a href="#">1</a></td>
-                            <td><a href="#">2</a></td>
-                            <td><a href="#">3</a></td>
-                            <td><a href="#">>>|</a></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
         </div>
 
         <div class="sanpham">
@@ -399,6 +386,20 @@
             <div class="line">
                 <div class="col-md-7">
                     <img src="images/line.jpg" alt="" />
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="sotrang">
+                    <table>
+                        <tr>
+                            <td><a href="#"><i class="fa fa-angle-left"></i></a></td>
+                            <td><a href="#">1</a></td>
+                            <td><a href="#">2</a></td>
+                            <td><a href="#">3</a></td>
+                            <td><a href="#">>>|</a></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -471,7 +472,7 @@
                 </a>
                 <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial; height:35px;overflow:hidden;">
                     <a href="/Store/Detailt.aspx?id=<%= this.objTablePartnerBestSale.Rows[i]["Id"].ToString() %>">
-                        <%= this.objTablePartnerBestSale.Rows[i]["Name"].ToString()+"(-"+ this.objTablePartner.Rows[i]["Discount"] +"%)"  %>
+                        <%= this.objTablePartnerBestSale.Rows[i]["Name"].ToString()+"(-"+ this.objTablePartnerBestSale.Rows[i]["Discount"].ToString() +"%)"  %>
                     </a>
                 </h4>
                 <p style="text-align: justify; height: 20px; overflow: hidden;">
@@ -497,6 +498,21 @@
                     <img src="/images/line.jpg" alt="" />
                 </div>
             </div>
+
+            <div class="col-md-2">
+                <div class="sotrang">
+                    <table>
+                        <tr>
+                            <td><a href="#"><i class="fa fa-angle-left"></i></a></td>
+                            <td><a href="#">1</a></td>
+                            <td><a href="#">2</a></td>
+                            <td><a href="#">3</a></td>
+                            <td><a href="#">>>|</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
             <div class="col-lg-2" style="text-align: right; margin-top: 42px;">
                 <div class="btn-group">
                     <button type="button" class="btn btn-danger">Xem tất cả</button>
