@@ -351,60 +351,41 @@
             </div>
         </div>
 
-        <div id="myCarousel1" class="sanpham carousel slide" data-ride="carousel">
-            <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <%for (int i = 0; i < this.objTableBestSale.Rows.Count && i < 8; i++){  %>
-                    <% if(i%4 == 0 && i != 0){ %>
-                    </div>
-                    <div class="item">
-                    <% } %>
-                    <div class="col-md-3" style="margin-top: 10px">
-                        <div class="sanpham_background">
-                            <a class="fw" href="/detailt.aspx?id=<%= this.objTableBestSale.Rows[i]["Id"].ToString() %>">
-                                <img src="/images/Products/<%= this.objTableBestSale.Rows[i]["Image"].ToString() %>" class="sanpham_avata" alt=" Nổi bật" />
-                            </a>
-                            <p class="ProductLink sanpham_title">
-                                <a href="/detailt.aspx?id=<%= this.objTableBestSale.Rows[i]["Id"].ToString() %> ">
-                                    <%= this.objTableBestSale.Rows[i]["Name"].ToString() %>
-                                </a>
-                            </p>
-                            <div style="text-align: right; margin-top: -2px;">
-                                <div class="sanpham_like">
-                                    <img src="/images/User.png" alt="So nguoi thich" class="sanpham_like_img" style="width:20px"/>
-                                    <%= this.objTableBestSale.Rows[i]["CountLike"].ToString() %>
-                                </div>
-                            </div>
-                            <div class="sanpham_price_line">
-                                <span class="sanpham_price">
-                                    <%= this.objTableBestSale.Rows[i]["Price"].ToString() %>&nbsp;<sup><u>đ</u></sup>
-                                </span>
-                                <div class="sanpham_Discount">
-                                    &nbsp; -
-                                <%= this.objTableBestSale.Rows[i]["Discount"].ToString() %>% &nbsp;
-                                </div>
-                                <input type="button" value="Đã mua: <%= this.objTableBestSale.Rows[i]["CountBuy"].ToString() %>" style="float: right;" />
-                            </div>
-
+        <div class="sanpham">
+            <%for (int i = 0; i < this.objTableBestSale.Rows.Count && i < 8; i++) {  %>
+            <div class="col-md-3" style="margin-top: 10px">
+                <div class="sanpham_background">
+                    <a class="fw" href="/detailt.aspx?id=<%= this.objTableBestSale.Rows[i]["Id"].ToString() %>">
+                        <img src="/images/Products/<%= this.objTableBestSale.Rows[i]["Image"].ToString() %>" class="sanpham_avata" alt=" Nổi bật" />
+                    </a>
+                    <p class="ProductLink sanpham_title">
+                        <a href="/detailt.aspx?id=<%= this.objTableBestSale.Rows[i]["Id"].ToString() %> ">
+                            <%= this.objTableBestSale.Rows[i]["Name"].ToString() %>
+                        </a>
+                    </p>
+                    <div style="text-align: right; margin-top: -2px;">
+                        <div class="sanpham_like">
+                            <img src="/images/User.png" alt="So nguoi thich" class="sanpham_like_img" style="width: 20px" />
+                            <%= this.objTableBestSale.Rows[i]["CountLike"].ToString() %>
                         </div>
-
                     </div>
-                    <% } %>
+                    <div class="sanpham_price_line">
+                        <span class="sanpham_price">
+                            <%= this.objTableBestSale.Rows[i]["Price"].ToString() %>&nbsp;<sup><u>đ</u></sup>
+                        </span>
+                        <div class="sanpham_Discount">
+                            &nbsp; -
+                                <%= this.objTableBestSale.Rows[i]["Discount"].ToString() %>% &nbsp;
+                        </div>
+                        <input type="button" value="Đã mua: <%= this.objTableBestSale.Rows[i]["CountBuy"].ToString() %>" style="float: right;" />
+                    </div>
+
                 </div>
 
             </div>
-
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel1" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>    
-            <a class="right carousel-control" href="#myCarousel1" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+            <% } %>
         </div>
+
 
     </div>
 
