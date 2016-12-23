@@ -65,7 +65,7 @@
                     <div class="nav_menu">
                         <div class="container">
                             <div class="col-md-3" style="margin-right: 8px; z-index: 2;">
-                                <a href="/">
+                                <a href="/Customer/">
                                     <img src="/images/logo.png" alt="" /></a>
                             </div>
                             <div class="wrapper" style="margin-top: 10px; text-align: left;">
