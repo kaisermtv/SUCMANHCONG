@@ -1062,7 +1062,7 @@ public class Partner
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT TOP 4 0 AS TT, * FROM tblPartner";
+        Cmd.CommandText = "SELECT TOP 6 0 AS TT, * FROM tblPartner";
         SqlDataAdapter da = new SqlDataAdapter();
         da.SelectCommand = Cmd;
         DataSet ds = new DataSet();
@@ -1223,5 +1223,49 @@ public class Partner
         }
     }
     #endregion
+
+
+    // tim kiem 
+    #region Method getAllPartnerSearchByName
+    public DataTable getAllPartnerSearchByName(string name)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            //  Cmd.CommandText = "SELECT * FROM tblProduct WHERE UPPER(RTRIM(LTRIM(Name))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' ORDER BY Id DESC";
+
+            Cmd.CommandText = "   SELECT TOP 12 0 AS TT, tblPartner.* ,tblLocation.Name   as Location  ";
+            Cmd.CommandText += "  from tblPartner    LEFT JOIN tblLocation ON tblPartner.LocationId = tblLocation.Id WHERE ";
+            Cmd.CommandText += "  UPPER(RTRIM(LTRIM(tblPartner.Name)))      LIKE  N'%'+UPPER(RTRIM(LTRIM(@Name)))+'%' ";
+            Cmd.CommandText += "   OR    UPPER(RTRIM(LTRIM([Address]))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@Name)))+'%'  ";
+            Cmd.CommandText += "	OR    UPPER(RTRIM(LTRIM(Phone)))     LIKE  N'%'+UPPER(RTRIM(LTRIM(@Name))) +'%' ";
+            Cmd.CommandText += "	ORDER BY tblPartner.Name   DESC  ";
+            Cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = name;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+    }
+    #endregion
+
+
 
 }
