@@ -18,7 +18,7 @@ public partial class ProductsVIP : System.Web.UI.Page
     {
         if (!Page.IsPostBack)
         {
-            this.objTableProductVIP = objProduct.getProductVIP();
+            this.objTableProductVIP = objProduct.getTopProductVIP(12);
         }
     }
 

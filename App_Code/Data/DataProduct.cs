@@ -544,10 +544,12 @@ public class DataProduct
     #region method getTopProductVIP || return 4 product
     public DataTable getTopProductVIP(int limit = 4)
    {
+        try
+        { 
        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
       sqlCon.Open();
        SqlCommand Cmd = sqlCon.CreateCommand();
-       Cmd.CommandText = "SELECT TOP " + limit.ToString() + " 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE VIP=1";
+       Cmd.CommandText = "SELECT TOP " + limit.ToString() + " 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE tblProduct.VIP = 1 AND tblProduct.State = 1";
        SqlDataAdapter da = new SqlDataAdapter();
         da.SelectCommand = Cmd;
         DataSet ds = new DataSet();
@@ -559,7 +561,14 @@ public class DataProduct
             ds.Tables[0].Rows[i]["TT"] = (i + 1);
         }
         return ds.Tables[0];
-    }
+    
+        }
+        catch
+        {
+            return new DataTable();
+        }
+   }
+
     #endregion
     
     #region Method getProductById
@@ -917,10 +926,12 @@ public class DataProduct
     #region method getProductVIP        || Return  all Products
     public DataTable getProductVIP()
     {
+        try
+        { 
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT TOP 24 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE tblProduct.VIP =1 AND tblProduct.State = 1 ";
+        Cmd.CommandText = "SELECT TOP 24 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE tblProduct.VIP = 1 AND tblProduct.State = 1 ";
         SqlDataAdapter da = new SqlDataAdapter();
         da.SelectCommand = Cmd;
         DataSet ds = new DataSet();
@@ -932,6 +943,11 @@ public class DataProduct
             ds.Tables[0].Rows[i]["TT"] = (i + 1);
         }
         return ds.Tables[0];
+            }
+        catch
+        {
+            return new DataTable();
+        }
     }
     #endregion
 
