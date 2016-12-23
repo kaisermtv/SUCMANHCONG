@@ -19,6 +19,7 @@ public partial class _Default : Page
     public DataTable objTableProductVIP = new DataTable();
     public DataTable objTableNews = new DataTable();
     public DataTable objTablePartner = new DataTable();
+    public DataTable objTablePartnerBestSale = new DataTable();
     private DataSlideImage objSlide = new DataSlideImage();
     public DataTable objTableBestSale = new DataTable();
     public DataTable objTableBrand = new DataTable();
@@ -31,8 +32,9 @@ public partial class _Default : Page
     {
         this.objTableNews = objTopic.getTopTopic();     
         this.objTableProductVIP = objProduct.getTopProductVIP(8);
-        objTableBestSale = objProduct.getProductBestSale(8);
-        this.objTablePartner = objPartner.getTopPartner();
+        this.objTableBestSale = objProduct.getProductBestSale(8);
+        this.objTablePartner = objPartner.getTopPartnerVIP(8);
+        this.objTablePartnerBestSale = objPartner.getTopPartnerBestSale1(8);
         this.objTableBrand = objBrand.getBrand();
         this.objTableSlide = objSlide.getSlideImage();
     }

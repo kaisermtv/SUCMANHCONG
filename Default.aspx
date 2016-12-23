@@ -402,28 +402,51 @@
                 </div>
             </div>
         </div>
-        
-        <div class="sanpham">
-            <% for (int i = 0; i < this.objTablePartner.Rows.Count; i++)
-               { %>
-            <div class="col-md-3">
-                <a href="/Store/?id=<%= this.objTablePartner.Rows[i]["Id"].ToString() %>">
-                    <img src="images/Partner/<%= this.objTablePartner.Rows[i]["Image"].ToString() %>" alt="" />
-                </a>
-                <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                    <a href="/Store/Detailt.aspx?id=<%= this.objTablePartner.Rows[i]["Id"].ToString() %>">
-                        <%= this.objTablePartner.Rows[i]["Name"].ToString() %>
-                    </a>
-                </h4>
-                <p style="text-align: justify; height: 20px; overflow: hidden;">
-                    <%= this.objTablePartner.Rows[i]["Address"].ToString() %>
-                </p>
-                <p>
-                    Điện thoại: <%= this.objTablePartner.Rows[i]["Phone"].ToString() %>
-                </p>
+
+
+        <div id="myCarousel1" class="sanpham carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <%for (int i = 0; i < this.objTablePartner.Rows.Count && i < 8; i++)
+                      {  %>
+                    <% if (i % 4 == 0 && i != 0)
+                       { %>
+                </div>
+                <div class="item">
+                    <% } %>
+                    <div class="col-md-3">
+                        <a class="fw" href="/Store/Detailt.aspx?id=<%= this.objTablePartner.Rows[i]["Id"].ToString() %>">
+                            <img style="height:145px;width:100%" src="images/Partner/<%= this.objTablePartner.Rows[i]["Image"].ToString() %>" alt="" />
+                        </a>
+                        <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial; height:35px;overflow:hidden;">
+                            <a href="/Store/Detailt.aspx?id=<%= this.objTablePartner.Rows[i]["Id"].ToString() %>">
+                                <%= this.objTablePartner.Rows[i]["Name"].ToString()+"(-"+ this.objTablePartner.Rows[i]["Discount"] +"%)"  %>
+                            </a>
+                        </h4>
+                        <p style="text-align: justify; height: 20px; overflow: hidden;">
+                            <%= this.objTablePartner.Rows[i]["Address"].ToString() %>
+                        </p>
+                        <p>
+                            Điện thoại: <%= this.objTablePartner.Rows[i]["Phone"].ToString() %>
+                        </p>
+                    </div>
+                    <% } %>
+                </div>
+
             </div>
-            <% } %>
+
+            <!-- Left and right controls -->
+            <a class="left carousel-control" href="#myCarousel1" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel1" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
+
     </div>
 
     <div class="container">
@@ -440,22 +463,22 @@
             </div>
         </div>
         <div class="sanpham">
-            <% for (int i = 0; i < this.objTablePartner.Rows.Count; i++)
+            <% for (int i = 0; i < this.objTablePartnerBestSale.Rows.Count; i++)
                { %>
             <div class="col-md-3">
-                <a href="/Store/?id=<%= this.objTablePartner.Rows[i]["Id"].ToString() %>">
-                    <img src="images/Partner/<%= this.objTablePartner.Rows[i]["Image"].ToString() %>" alt="" />
+                <a class="fw" href="/Store/?id=<%= this.objTablePartnerBestSale.Rows[i]["Id"].ToString() %>">
+                    <img style="height:145px;width:100%" src="images/Partner/<%= this.objTablePartnerBestSale.Rows[i]["Image"].ToString() %>" alt="" />
                 </a>
-                <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;">
-                    <a href="/Store/Detailt.aspx?id=<%= this.objTablePartner.Rows[i]["Id"].ToString() %>">
-                        <%= this.objTablePartner.Rows[i]["Name"].ToString() %>
+                <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial; height:35px;overflow:hidden;">
+                    <a href="/Store/Detailt.aspx?id=<%= this.objTablePartnerBestSale.Rows[i]["Id"].ToString() %>">
+                        <%= this.objTablePartnerBestSale.Rows[i]["Name"].ToString()+"(-"+ this.objTablePartner.Rows[i]["Discount"] +"%)"  %>
                     </a>
                 </h4>
                 <p style="text-align: justify; height: 20px; overflow: hidden;">
-                    <%= this.objTablePartner.Rows[i]["Address"].ToString() %>
+                    <%= this.objTablePartnerBestSale.Rows[i]["Address"].ToString() %>
                 </p>
                 <p>
-                    Điện thoại: <%= this.objTablePartner.Rows[i]["Phone"].ToString() %>
+                    Điện thoại: <%= this.objTablePartnerBestSale.Rows[i]["Phone"].ToString() %>
                 </p>
             </div>
             <% } %>
