@@ -373,7 +373,34 @@
             <% } %>
         </div>
 
+        <div class="col-md-12">
+                <div class="sotrang">
+                    <table>
+                        <tr>
+                            <td><a href="<%= "?PageProduct="+ ((this.PageProduct-1 > 0)?(this.PageProduct-1):1) +"&PagePartner="+this.PagePartner.ToString() %>"><i class="fa fa-angle-left"></i></a></td>
+                            <% if (this.PageProduct != 1){ %>
+                            <td><a href="<%= "?PageProduct=1&PagePartner="+this.PagePartner.ToString() %>">1</a></td>
+                            <% } %>
 
+                            <% for (int i = ((this.PageProduct-4 > 1)?(this.PageProduct-4):2 ); i < this.PageProduct; i++) { %>
+                            <td><a href="<%= "?PageProduct="+i.ToString()+"&PagePartner="+this.PagePartner.ToString() %>"><%=i.ToString() %></a></td>
+                            <% } %>
+
+                            <td><%=this.PageProduct.ToString() %></td>
+
+                            <% for (int i = (this.PageProduct + 1); i < this.CountPageProduct && i < (this.PageProduct + 6); i++){ %>
+                            <td><a href="<%= "?PageProduct="+i.ToString()+"&PagePartner="+this.PagePartner.ToString() %>"><%=i.ToString() %></a></td>
+                            <% } %>
+
+                            <% if (this.PageProduct < this.CountPageProduct){ %>
+                            <td><a href="<%= "?PageProduct="+ this.CountPageProduct.ToString() +"&PagePartner="+this.PagePartner.ToString() %>"><%= this.CountPageProduct.ToString() %></a></td>
+                            <% } %>
+                            <td><a href="<%= "?PageProduct="+ ((this.PageProduct+1 < this.CountPageProduct)?(this.PageProduct+1):this.CountPageProduct) +"&PagePartner="+this.PagePartner.ToString() %>"><i class="fa fa-angle-right"></i></a></td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
     </div>
 
     <div class="container">
@@ -389,19 +416,7 @@
                 </div>
             </div>
 
-            <div class="col-md-2">
-                <div class="sotrang">
-                    <table>
-                        <tr>
-                            <td><a href="#"><i class="fa fa-angle-left"></i></a></td>
-                            <td><a href="#">1</a></td>
-                            <td><a href="#">2</a></td>
-                            <td><a href="#">3</a></td>
-                            <td><a href="#">>>|</a></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+            
         </div>
 
 
@@ -484,7 +499,38 @@
             </div>
             <% } %>
         </div>
+        <div class="col-md-12">
+                <div class="sotrang">
+                    <table>
+                        <tr>
+                            <td><a href="<%= "?PagePartner="+ ((this.PagePartner-1 > 0)?(this.PagePartner-1):1) +"&PageProduct="+this.PageProduct.ToString() %>"><i class="fa fa-angle-left"></i></a></td>
+                            <% if (this.PagePartner != 1)
+                               { %>
+                            <td><a href="<%= "?PagePartner=1&PageProduct="+this.PageProduct.ToString() %>">1</a></td>
+                            <% } %>
 
+                            <% for (int i = ((this.PagePartner - 4 > 1) ? (this.PagePartner - 4) : 2); i < this.PagePartner; i++)
+                               { %>
+                            <td><a href="<%= "?PagePartner="+i.ToString()+"&PageProduct="+this.PageProduct.ToString() %>"><%=i.ToString() %></a></td>
+                            <% } %>
+
+                            <td><%=this.PagePartner.ToString() %></td>
+
+                            <% for (int i = (this.PagePartner + 1); i < this.CountPagePartner && i < (this.PagePartner + 6); i++)
+                               { %>
+                            <td><a href="<%= "?PagePartner="+i.ToString()+"&PageProduct="+this.PageProduct.ToString() %>"><%=i.ToString() %></a></td>
+                            <% } %>
+
+                            <% if (this.PagePartner < this.CountPagePartner)
+                               { %>
+                            <td><a href="<%= "?PagePartner="+ this.CountPagePartner.ToString() +"&PageProduct="+this.PageProduct.ToString() %>"><%= this.CountPagePartner.ToString() %></a></td>
+                            <% } %>
+                            <td><a href="<%= "?PagePartner="+ ((this.PagePartner+1 < this.CountPagePartner)?(this.PagePartner+1):this.CountPagePartner) +"&PageProduct="+this.PageProduct.ToString() %>"><i class="fa fa-angle-right"></i></a></td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
     </div>
 
     <div class="container">
@@ -499,19 +545,7 @@
                 </div>
             </div>
 
-            <div class="col-md-2">
-                <div class="sotrang">
-                    <table>
-                        <tr>
-                            <td><a href="#"><i class="fa fa-angle-left"></i></a></td>
-                            <td><a href="#">1</a></td>
-                            <td><a href="#">2</a></td>
-                            <td><a href="#">3</a></td>
-                            <td><a href="#">>>|</a></td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+            
 
             <div class="col-lg-2" style="text-align: right; margin-top: 42px;">
                 <div class="btn-group">

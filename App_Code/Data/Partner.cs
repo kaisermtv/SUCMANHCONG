@@ -1200,14 +1200,14 @@ public class Partner
     #endregion
 
     #region method getTopPartnerVIPShowHome
-    public DataTable getTopPartnerVIPShowHome(int filter = 4)
+    public DataTable getTopPartnerVIPShowHome(int limit = 4,int offset = 0)
     {
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP " + filter + " [Id],[Name],[Address],[Phone],[Image],[Discount] FROM tblPartner WHERE [VIP] = 1 AND [State] = 1  ORDER BY [Id] DESC";
+            Cmd.CommandText = "SELECT [Id],[Name],[Address],[Phone],[Image],[Discount] FROM tblPartner WHERE [VIP] = 1 AND [State] = 1  ORDER BY [Id] DESC OFFSET " + offset.ToString() + " ROWS FETCH NEXT " + limit.ToString() + " ROWS ONLY";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -1224,15 +1224,39 @@ public class Partner
     }
     #endregion
 
-    #region method getTopPartnerBestSaleShowHome
-    public DataTable getTopPartnerBestSaleShowHome(int filter)
+    #region Method getCountTopPartnerBestSaleShowHome
+    public int getCountTopPartnerBestSaleShowHome()
     {
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP " + filter + " [Id],[Name],[Address],[Phone],[Image],[Discount]  FROM tblPartner  WHERE [BestSale] = 1 AND [State] = 1 ORDER BY [Id] DESC  ";
+
+            Cmd.CommandText = "SELECT COUNT(*) FROM tblPartner WHERE BestSale = 1  AND [State] = 1";
+
+            int ret = (int)Cmd.ExecuteScalar();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+    #endregion
+
+    #region method getTopPartnerBestSaleShowHome
+    public DataTable getTopPartnerBestSaleShowHome(int limit = 4, int offset = 0)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT [Id],[Name],[Address],[Phone],[Image],[Discount]  FROM tblPartner  WHERE [BestSale] = 1 AND [State] = 1 ORDER BY [Id] DESC OFFSET " + offset.ToString() + " ROWS FETCH NEXT " + limit.ToString() + " ROWS ONLY";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();

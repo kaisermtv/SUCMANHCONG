@@ -1000,14 +1000,14 @@ public class DataProduct
     #endregion
 
     #region method getTopProductVIPShowHome || return 15 Products Data Table
-    public DataTable getTopProductVIPShowHome(int limit = 4)
+    public DataTable getTopProductVIPShowHome(int limit = 4, int offset = 0)
     {
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP " + limit.ToString() + " [Id],[Name],[Image],[Discount],[CountLike],[CountBuy],[Price] FROM tblProduct WHERE VIP = 1 AND [State] = 1 ORDER BY [Id] DESC";
+            Cmd.CommandText = "SELECT  [Id],[Name],[Image],[Discount],[CountLike],[CountBuy],[Price] FROM tblProduct WHERE VIP = 1 AND [State] = 1 ORDER BY [Id] DESC OFFSET " + offset.ToString() + " ROWS FETCH NEXT " + limit.ToString() + " ROWS ONLY";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -1024,15 +1024,39 @@ public class DataProduct
     }
     #endregion
 
-    #region method getProductBestSaleShowHome
-    public DataTable getProductBestSaleShowHome(int limit = 4)
+    #region Method getCountProductBestSaleShowHome
+    public int getCountProductBestSaleShowHome()
     {
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP " + limit.ToString() + " [Id],[Name],[Image],[Discount],[CountLike],[CountBuy],[Price] FROM tblProduct WHERE BestSale = 1  AND [State] = 1 ORDER BY [Id] DESC";
+
+            Cmd.CommandText = "SELECT COUNT(*) FROM tblProduct WHERE BestSale = 1  AND [State] = 1";
+
+            int ret = (int)Cmd.ExecuteScalar();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+    #endregion
+
+    #region method getProductBestSaleShowHome
+    public DataTable getProductBestSaleShowHome(int limit = 4,int offset=0)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT [Id],[Name],[Image],[Discount],[CountLike],[CountBuy],[Price] FROM tblProduct WHERE BestSale = 1  AND [State] = 1 ORDER BY [Id] DESC OFFSET "+ offset.ToString() +" ROWS FETCH NEXT "+ limit.ToString() +" ROWS ONLY";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();

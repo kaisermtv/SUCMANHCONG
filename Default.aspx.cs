@@ -25,16 +25,58 @@ public partial class _Default : Page
     public DataTable objTableBrand = new DataTable();
     public DataTable objTableSlide = new DataTable();
 
+
+    public int CountPageProduct = 1;
+    public int PageProduct = 1;
+
+    public int CountPagePartner = 1;
+    public int PagePartner = 1;
     #endregion
 
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
+        try
+        {
+            this.PageProduct = int.Parse(Request["PageProduct"].ToString());
+        }
+        catch
+        {
+        }
+        int ncount;
+        ncount = objProduct.getCountProductBestSaleShowHome();
+        this.CountPageProduct = ncount / 8;
+        if (ncount % 8 != 0)
+        {
+            this.CountPageProduct++;
+        }
+        if (this.CountPageProduct == 0) this.CountPageProduct = 1;
+        if (this.PageProduct > this.CountPageProduct) this.PageProduct = this.CountPageProduct;
+
+
+        try
+        {
+            this.PagePartner = int.Parse(Request["PagePartner"].ToString());
+        }
+        catch
+        {
+        }
+        ncount = objPartner.getCountTopPartnerBestSaleShowHome();
+        this.CountPagePartner = ncount / 8;
+        if (ncount % 8 != 0)
+        {
+            this.CountPagePartner++;
+        }
+        if (this.CountPagePartner == 0) this.CountPagePartner = 1;
+        if (this.PagePartner > this.CountPagePartner) this.PagePartner = this.CountPagePartner;
+        
+
+
         this.objTableNews = objTopic.getTopTopic();
         this.objTableProductVIP = objProduct.getTopProductVIPShowHome(8);
-        this.objTableBestSale = objProduct.getProductBestSaleShowHome(8);
+        this.objTableBestSale = objProduct.getProductBestSaleShowHome(8, (this.PageProduct-1)*8);
         this.objTablePartner = objPartner.getTopPartnerVIPShowHome(8);
-        this.objTablePartnerBestSale = objPartner.getTopPartnerBestSaleShowHome(8);
+        this.objTablePartnerBestSale = objPartner.getTopPartnerBestSaleShowHome(8, (this.PagePartner-1)*8);
         this.objTableBrand = objBrand.getBrand();
         this.objTableSlide = objSlide.getSlideImage();
     }
