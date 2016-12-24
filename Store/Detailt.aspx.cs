@@ -16,6 +16,9 @@ public partial class Store_Detailt : System.Web.UI.Page
     public DataTable objTablePartner = new DataTable();
     public DataTable objTable = new DataTable();
     public DataTable objTableSelect = new DataTable();
+
+
+    public DataTable objTableRight = new DataTable();
     private int itemId = 0, itemProductId = 0;
 
     public string htmtStr = "", htmlCard = "";
@@ -49,41 +52,46 @@ public partial class Store_Detailt : System.Web.UI.Page
 
     protected void btnMoicapnhat_Click(object sender, EventArgs e)
     {
+       
         contentText.Visible = false;
         contentRight2.Visible = true;
         this.objTablePartner = this.objPartner.getPartnerInforById(this.itemId);
-        ddlRight.Visible = true;
-        ddlRight.DataSource = this.objProduct.getProductByIdWithJoinAndRecentlyUpdate(25);
-        ddlRight.DataBind();
+      
+
+        objTableRight = this.objProduct.getProductByIdWithJoinAndRecentlyUpdate(25);
+       
      
     }
     protected void btnHotnhat_Click(object sender, EventArgs e)
     {
+     
         contentText.Visible = false;
         contentRight2.Visible = true;
         this.objTablePartner = this.objPartner.getPartnerInforById(this.itemId);
-        ddlRight.Visible = true;
-        ddlRight.DataSource = this.objProduct.getProductByIdWithJoinAndSortByPrice(25);
-        ddlRight.DataBind();
+       
+        objTableRight = this.objProduct.getProductByIdWithJoinAndSortByPrice(25);
+      
     }
     protected void btnGiaTot_Click(object sender, EventArgs e)
     {
+       
         contentText.Visible = false;
         contentRight2.Visible = true;
         this.objTablePartner = this.objPartner.getPartnerInforById(this.itemId);
-        ddlRight.Visible = true;
-        ddlRight.DataSource = this.objProduct.getProductByIdWithJoinAndSortByPriceAsc(25);
-        ddlRight.DataBind();
+
+        objTableRight = this.objProduct.getProductByIdWithJoinAndSortByPriceAsc(25);
+     
     }
   
     protected void btnGiamGia_Click(object sender, EventArgs e)
     {
+       
         contentText.Visible = false;
         contentRight2.Visible = true;
         this.objTablePartner = this.objPartner.getPartnerInforById(this.itemId);
-        ddlRight.Visible = true;
-        ddlRight.DataSource = this.objProduct.getProductByIdWithJoinAndSortByDiscount(25);
-        ddlRight.DataBind();
+      
+        objTableRight = this.objProduct.getProductByIdWithJoinAndSortByDiscount(25);
+       
 
     }
 }

@@ -52,9 +52,10 @@
                        height:39px; overflow:hidden;      text-align: center; text-transform: uppercase;">
                             <%Response.Write(this.objTableStoreVip.Rows[i]["Name"].ToString()); %>
                         </h4>
-                        <a href="/Store/?id=1">
+                        <a href="/Store/Detailt.aspx?id= <%Response.Write(this.objTableStoreVip.Rows[i]["Id"].ToString()); %>">
                             <img src="../Images/Partner/<%Response.Write(this.objTableStoreVip.Rows[i]["Image"].ToString()); %>"
-                                alt="Cua hang" style="width: 99%; margin-left: auto; height:200px; margin-right: auto;" /></a>
+                                alt="Cua hang" style="width: 99%; margin-left: auto; height:200px; margin-right: auto;"
+                                 onerror=" this.onerror = null  ; this.src = '../img/noImg.jpg'" /></a>
                     </div>
                     <div style="font-family: Arial; font-size: 13px; text-align: justify; padding: 5px;
                         color: #414441; height: 40px; overflow: hidden;">

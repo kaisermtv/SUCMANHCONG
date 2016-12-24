@@ -49,7 +49,8 @@
                     </h4>
                     <a class="fw" href="/Store/Detailt.aspx?id=<%= this.objTableStoreBestSale.Rows[i]["Id"].ToString() %>">
                         <img src="/Images/Partner/<%= this.objTableStoreBestSale.Rows[i]["Image"].ToString() %>"
-                            alt="Cua hang" style="width: 95%; margin-left: auto; margin-right: auto;height:145px" /></a>
+                            alt="Cua hang" style="width: 99%; margin-left: auto; margin-right: auto; height:145px" 
+                             onerror="this.onerror = null; this.src = '../img/noImg.jpg';"  /></a>
                 </div>
                 <div style="font-family: Arial; font-size: 13px; text-align: justify; padding: 5px; color: #414441; height: 40px; overflow: hidden;">
                     <%= this.objTableStoreBestSale.Rows[i]["Address"].ToString() %>

@@ -23,7 +23,7 @@
                         </h4>
                         <a href="/Store/?id=1">
                             <img src="../Images/Partner/<%Response.Write(this.objTableStoreVip.Rows[i]["Image"].ToString()); %>"
-                                alt="Cua hang" style="width: 99%; margin-left: auto; height:200px;  margin-right: auto;"  
+                                alt="Cua hang" style="width: 100%; height:180px;  margin-right: auto;"  
                                 onerror="this.onerror = null; this.src = '../img/noImg.jpg';" /></a>
                     </div>
                     <div style="font-family: Arial; font-size: 13px; text-align: justify; padding: 5px;
@@ -61,28 +61,30 @@
                 
                       <%for (int i = 0; i < this.objTableProductVIP.Rows.Count; i++)
                  {  %>
-                <div class="col-md-3" style="margin-bottom:15px">
+                <div class="col-md-3" style="margin-bottom:10px">
                     <div style="background-color: #f9faf5; height: 375px; padding: 5px;">
                         <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %>">
-                            <img src="images/Products/<%Response.Write(this.objTableProductVIP.Rows[i]["Image"].ToString()); %>" alt="San pham VIP" /></a>
-                        <p class="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;">
+                            <img src="images/Products/<%Response.Write(this.objTableProductVIP.Rows[i]["Image"].ToString()); %>" style="width: 100%; margin-left: auto; height:254px;"
+                                 alt="San pham VIP"   onerror="this.onerror = null; this.src = '../img/noImg.jpg';"  /></a>
+                        <p class="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #50505a; height:50px; overflow:hidden; 
+                             padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;" >
                             <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %>">
                                 <%Response.Write(this.objTableProductVIP.Rows[i]["Name"].ToString()); %></a>
                         </p>
                         <div style="text-align: right; margin-top: -2px;">
                             <div style="font-family: Arial; font-size: 12px; color: #00a84b; font-weight: normal; padding-top: 0px; padding-left: 25px;">
-                                <img src="images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
-                                126
+                                <img src="/images/User.png" alt="So nguoi thich" style="width: 20px; margin-top: -8px;" />
+                                  <%Response.Write(this.objTableProductVIP.Rows[i]["CountLike"].ToString()); %>
                             </div>
                         </div>
                         <p style="font-family: Arial; font-size: 14px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; margin-top: -4px;">
                             <span style="font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;">
-                                <%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %>&nbsp;<sup><u>đ</u></sup></span>
-                            <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat; font-size: 20px; color: #fff;">&nbsp; -
-                                <%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %>% &nbsp;</span>
+                                <%Response.Write(this.objTableProductVIP.Rows[i]["Price"].ToString()); %>&nbsp;<sup><u>đ</u></sup></span>
+                            <span style="background-image: url('/Images/DiscountBg.png'); background-repeat: no-repeat; font-size: 14px; color: #fff;">&nbsp; -
+                                <%Response.Write(this.objTableProductVIP.Rows[i]["Discount"].ToString()); %>% &nbsp;</span>
                         </p>
 
-                        <input type="button" value="Đã mua: 208" style="margin-top: -46px;" />
+                        <input type="button" value="Đã mua:   <%Response.Write(this.objTableProductVIP.Rows[i]["CountBuy"].ToString()); %>" style="margin-top: -46px;" />
                     </div>
                 </div>
                 <%} %>
