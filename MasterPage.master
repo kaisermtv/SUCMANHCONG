@@ -99,10 +99,8 @@
                  <div class = "SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Video.aspx">Video - Media</a>
                 </div>
-                <div class = "SystemLeftMenu" style="margin-top:20px; color:palevioletred">
-                 
-
-
+                <div class = "SystemLeftMenu" style="margin-top:10px;">
+                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "mailto:hieuxinhe94@gmail.com">Báo cáo - Phản hồi</a>
 
                 </div>
 
