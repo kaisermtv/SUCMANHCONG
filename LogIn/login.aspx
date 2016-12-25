@@ -43,7 +43,7 @@
                     <input class="form-control email-title" placeholder="Account" id="txtAccount" name="email" type="text" runat="server" Style = "text-transform:uppercase;">
                     <br />  
                     <input class="form-control" placeholder="Password" name="password" id="txtPassWord" type="password" value="" runat="server">
-                    <a class="pull-right" href="http://bootsnipp.com/password">Quên mật khẩu?</a>
+                    <a class="pull-right" href="PasswordRecover.aspx" style="margin-top:10px;">Quên mật khẩu?</a>
                     <div class="checkbox" style="width: 140px;">
                         <label>
                             <input name="remember" type="checkbox" value="Remember Me">
@@ -52,7 +52,7 @@
                     <asp:Button ID="btnLogin" runat="server" Text="ĐĂNG NHẬP" class="btn btn-lg btn-success btn-block" OnClick="btnLogin_Click" />
                     <br>
 
-                    <p class="text-center"><a href="http://bootsnipp.com/register">Đăng ký tài khoản?</a></p>
+                    <p class="text-center"><a href="Register.aspx">Đăng ký tài khoản?</a></p>
                 </fieldset>
                 <%--</form>--%>
             </div>

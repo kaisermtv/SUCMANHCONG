@@ -54,12 +54,12 @@ public partial class login : System.Web.UI.Page
             if (Account.Substring(0, 3).ToUpper() == this.objFunc.getPartnerAccount().Trim().ToUpper())
             {
                 Cmd.CommandText = "SELECT * FROM tblPartner WHERE State = 1 AND Account = @Account AND AccountPass = @AccountPass";
-                strDefault = "Store/";
+                strDefault = "/Store/";
             }
             else
             {
                 Cmd.CommandText = "SELECT * FROM tblCustomers WHERE State = 1 AND Account = @Account AND AccountPass = @AccountPass";
-                strDefault = "Customer/Default.aspx";
+                strDefault = "/Customer/Default.aspx";
             }
             Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
             Cmd.Parameters.Add("AccountPass", SqlDbType.NVarChar).Value =  this.objFunc.CryptographyMD5(AccountPass);
