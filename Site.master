@@ -41,12 +41,21 @@
 
         });
 
+        $(function () {
+            $("#addClass").click(function () {
+                $('#qnimate').addClass('popup-box-on');
+            });
 
+            $("#removeClass").click(function () {
+                $('#qnimate').removeClass('popup-box-on');
+            });
+        })
     </script>
 
     <script type="text/javascript" src="/js/dropdowncontent.js">
        
     </script>
+    <link href="css/ChatSupportStyle.css" rel="stylesheet" />
 
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </head>
@@ -94,7 +103,10 @@
                         <div class="col-md-5" style="text-align: right; float: right;">
                             <span style="color: red; font-family: 'Arial'; font-size: 12px; font-weight: bold;">
                                 Hotline: 09 3636 9090</span>
-                            &nbsp;<a href="#">Hỗ trợ trực tuyến</a>
+                          
+                            
+                    <a href="#" id="addClass"><span class="glyphicon glyphicon-comment"></span>Hỗ trợ trực tuyến </a>
+                             
                             <% Response.Write(strHeader); %>
                             <div id="subcontent0" style="position: absolute; visibility: hidden; text-align: justify;
                                 border: 0px solid orange; margin-top: 0px; background-color: white; width: 180px;
@@ -286,7 +298,52 @@
             </div>
         </div>
 
-        <div class="sub-footer" style="background-color: #e9e5e5;">
+
+
+            <div class="popup-box chat-popup" id="qnimate">
+                <div class="popup-head">
+                    <div class="popup-head-left pull-left">
+                        <img src="img/company.png" alt="iamgurdeeposahan">
+                        Hỗ trợ trực tuyến </div>
+                    <div class="popup-head-right pull-right">
+                        <div class="btn-group">
+                         
+                        </div>
+                        <button data-widget="remove" id="removeClass" class="chat-header-button pull-right"
+                            type="button"><i class="glyphicon glyphicon-off"></i></button>
+                    </div>
+                </div>
+                <div class="popup-messages">
+                    <div class="direct-chat-messages">
+                        <div class="direct-chat-msg doted-border">
+                            <div class="direct-chat-info clearfix">
+                                <span class="direct-chat-name pull-left">Sucmanhcong.com</span>
+                            </div>
+                            <img alt="message user image" src="img/company.png" class="direct-chat-img"><!-- /.direct-chat-img -->
+                            <div class="direct-chat-text">
+                            Xin chào , chúng tôi có thể giúp gì cho bạn ?
+                            </div>
+                        </div>
+                        <div class="chat-box-single-line">
+                            <abbr class="timestamp">25/12/2016  15:40:44</abbr>
+                        </div>
+
+                        </div>
+                        </div>
+                <div class="popup-messages-footer">
+                    <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40"
+                        name="message"></textarea>
+                    <div class="btn-footer">
+                        <button class="bg_none"><i class="glyphicon glyphicon-film"></i></button>
+                        <button class="bg_none"><i class="glyphicon glyphicon-camera"></i></button>
+                        <button class="bg_none"><i class="glyphicon glyphicon-paperclip"></i></button>
+                        <button class="bg_none pull-right"><i class="glyphicon glyphicon-thumbs-up"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sub-footer" style="background-color: #e9e5e5;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
