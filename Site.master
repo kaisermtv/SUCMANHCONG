@@ -105,7 +105,7 @@
                                 Hotline: 09 3636 9090</span>
                           
                             
-                    <a href="#" id="addClass"><span class="glyphicon glyphicon-comment"></span>Hỗ trợ trực tuyến </a>
+                    <a href="#" id="addClass"><span class="glyphicon"></span>Hỗ trợ trực tuyến </a>
                              
                             <% Response.Write(strHeader); %>
                             <div id="subcontent0" style="position: absolute; visibility: hidden; text-align: justify;
@@ -303,7 +303,7 @@
             <div class="popup-box chat-popup" id="qnimate">
                 <div class="popup-head">
                     <div class="popup-head-left pull-left">
-                        <img src="img/company.png" alt="iamgurdeeposahan">
+                        <img src="../img/company.png" alt="iamgurdeeposahan">
                         Hỗ trợ trực tuyến </div>
                     <div class="popup-head-right pull-right">
                         <div class="btn-group">
@@ -319,7 +319,7 @@
                             <div class="direct-chat-info clearfix">
                                 <span class="direct-chat-name pull-left">Sucmanhcong.com</span>
                             </div>
-                            <img alt="message user image" src="img/company.png" class="direct-chat-img"><!-- /.direct-chat-img -->
+                            <img alt="message user image" src="../img/company.png" class="direct-chat-img"><!-- /.direct-chat-img -->
                             <div class="direct-chat-text">
                             Xin chào , chúng tôi có thể giúp gì cho bạn ?
                             </div>
@@ -342,6 +342,7 @@
                     </div>
                 </div>
             </div>
+
 
             <div class="sub-footer" style="background-color: #e9e5e5;">
             <div class="container">

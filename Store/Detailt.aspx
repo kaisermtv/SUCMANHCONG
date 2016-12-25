@@ -140,7 +140,7 @@
                                     <span style="font-family: Arial; font-size: 22px; color: #00a84b; font-weight: normal;"><%# Eval("Price") %>&nbsp;<sup><u>đ</u></sup></span>
                                     <span style="background-image: url('/images/DiscountBg.png'); background-repeat: no-repeat; font-size: 14px; color: #fff;">&nbsp; -<%# Eval("Discount") %>% &nbsp;</span>
                                 </p>
-                                <input type="button" value="Đã mua:   <%# Eval("CountBuy") %>" style="margin-top: -82px; margin-left:155px; font-size:12px; background-color :#ff7a00; border-color:#ff7a00;" class="btn btn-success" />
+                                <input type="button" value="Đã mua:   <%# Eval("CountBuy") %>" style="margin-top: -40px; margin-left:155px; font-size:12px; background-color :#ff7a00; border-color:#ff7a00;" class="btn btn-success" />
                             </div>
                             <br />
                             <br />

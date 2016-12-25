@@ -58,7 +58,7 @@ public partial class Store_Detailt : System.Web.UI.Page
         this.objTablePartner = this.objPartner.getPartnerInforById(this.itemId);
       
 
-        objTableRight = this.objProduct.getProductByIdWithJoinAndRecentlyUpdate(25);
+        objTableRight = this.objProduct.getProductByIdWithJoinAndRecentlyUpdate(this.itemId);
        
      
     }
@@ -68,8 +68,8 @@ public partial class Store_Detailt : System.Web.UI.Page
         contentText.Visible = false;
         contentRight2.Visible = true;
         this.objTablePartner = this.objPartner.getPartnerInforById(this.itemId);
-       
-        objTableRight = this.objProduct.getProductByIdWithJoinAndSortByPrice(25);
+
+        objTableRight = this.objProduct.getProductByIdWithJoinAndSortByPrice(this.itemId);
       
     }
     protected void btnGiaTot_Click(object sender, EventArgs e)
@@ -79,7 +79,7 @@ public partial class Store_Detailt : System.Web.UI.Page
         contentRight2.Visible = true;
         this.objTablePartner = this.objPartner.getPartnerInforById(this.itemId);
 
-        objTableRight = this.objProduct.getProductByIdWithJoinAndSortByPriceAsc(25);
+        objTableRight = this.objProduct.getProductByIdWithJoinAndSortByPriceAsc(this.itemId);
      
     }
   
@@ -89,8 +89,8 @@ public partial class Store_Detailt : System.Web.UI.Page
         contentText.Visible = false;
         contentRight2.Visible = true;
         this.objTablePartner = this.objPartner.getPartnerInforById(this.itemId);
-      
-        objTableRight = this.objProduct.getProductByIdWithJoinAndSortByDiscount(25);
+
+        objTableRight = this.objProduct.getProductByIdWithJoinAndSortByDiscount(this.itemId);
        
 
     }
