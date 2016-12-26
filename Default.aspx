@@ -214,11 +214,11 @@
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">CỬA HÀNG BÁN CHẠY</span></a>
-                    <a href="#"><i class="glyphicon glyphicon-check"></i>
+                    <a href="/Brands.aspx"><i class="glyphicon glyphicon-check"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">ĐỒNG THƯƠNG HIỆU</span></a>
-                    <a href="#"><i class="glyphicon glyphicon-stats"></i>
+                    <a href="/TopBrands.aspx"><i class="glyphicon glyphicon-stats"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">THƯƠNG HIỆU NỔI BẬT</span></a>

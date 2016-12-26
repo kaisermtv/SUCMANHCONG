@@ -4,10 +4,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
-      <div style ="float:left;">&nbsp;&nbsp;Danh Sách Menu</div>
-        <div style ="float:right;"><a href ="AddMenu.aspx"><span style ="border:solid 1px #f8fbfc; padding:5px; font-size:15px;background-color:palegreen; font-weight:bold; padding-left:20px; padding-right:20px;">Thêm mới</span></a>&nbsp;</div>
-   
+    <div style ="width:100%; height:32px; line-height:30px; background-color:#dde8ec; font-family:Arial; font-size:13px; font-weight:bold; text-transform:uppercase;">
+        <div style ="float:left;">&nbsp;&nbsp;Danh Sách Menu</div>
+        <div style ="float:right;"><a href ="Edit/AddMenu.aspx"><span style ="border:solid 1px #f8fbfc; padding:5px; font-size:11px; font-weight:bold; padding-left:20px; padding-right:20px;">Thêm mới</span></a>&nbsp;</div>
+    </div>
+      
     <asp:DataList ID="ddlMenu" runat="server" CssClass="table  " RepeatDirection="Horizontal" RepeatColumns="1"
         Width="80%">
         <ItemTemplate>
@@ -21,14 +22,14 @@
                     <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 56%;">
                         <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
                             <a style="display: block; vertical-align: middle;" href="#">
-                                <%# Eval("Name") %>
+                              |  <%# Eval("Name") %>
                             </a>
                         </div>
                     </td>
                     <td style="text-align: left; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 6%;">
                         <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
                             <a style="display: block; vertical-align: middle;" href="#">
-                                <%# Eval("place") %>
+                                <%# Eval("Position") %>
                             </a>
                         </div>
                     </td>
@@ -36,7 +37,7 @@
                     <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 10%;">
                         <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
                             <a style="display: block; vertical-align: middle;" href="#">
-                                <%# Eval("type") %>
+                                <%# Eval("Position_col") %>
                             </a>
                         </div>
                     </td>
