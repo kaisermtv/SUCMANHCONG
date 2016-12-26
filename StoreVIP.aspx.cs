@@ -16,7 +16,7 @@ public partial class StoreVIP : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
 
-        this.objTableStoreVip = objStoreVip.getTopPartner(24);
+        this.objTableStoreVip = objStoreVip.getTopPartnerVIP(24);
 
     }
 

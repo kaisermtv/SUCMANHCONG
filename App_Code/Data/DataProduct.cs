@@ -146,8 +146,8 @@ public class DataProduct
     }
     #endregion
 
-    #region Method getProductByIdJoin
-    public DataTable getProductByIdJoin(int Id)
+    #region Method getProductByIdJoin   
+    public DataTable getProductByIdJoin(int Id)                  
     {
         DataTable objTable = new DataTable();
         try
@@ -176,7 +176,7 @@ public class DataProduct
     }
     #endregion
 
-    #region Method getProductByIdWithJoinAndRecentlyUpdate
+    #region Method getProductByIdWithJoinAndRecentlyUpdate      || hạn chế lấy cột content
     public DataTable getProductByIdWithJoinAndRecentlyUpdate(int Id)
     {
         DataTable objTable = new DataTable();
@@ -186,7 +186,8 @@ public class DataProduct
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT TOP 15 tblProduct.* , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id   WHERE tblPartner.Id = @PartnerId ;";
+            Cmd.CommandText = " SELECT TOP 15 tblProduct.[Id],tblProduct.[Name],tblProduct.[Price],tblProduct.[Discount],tblProduct.[Image],tblProduct.[GroupId],tblProduct.[CountLike],tblProduct.[CountBuy],tblProduct.[BestSale],tblProduct.[VIP],tblProduct.[State],tblProduct.[PartnerId],tblProduct.[BrandId], tblLocation.Name AS Location ";
+            Cmd.CommandText += "  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id   WHERE tblPartner.Id = @PartnerId ;";
             Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = Id;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -205,7 +206,7 @@ public class DataProduct
     }
     #endregion
 
-    #region Method getProductByIdWithJoinAndSortByPrice
+    #region Method getProductByIdWithJoinAndSortByPrice  ||  ! Không lấy cột content
     public DataTable getProductByIdWithJoinAndSortByPrice(int Id)
     {
         DataTable objTable = new DataTable();
@@ -214,7 +215,8 @@ public class DataProduct
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText += "SELECT TOP 15 tblProduct.* , tblLocation.Name AS Location  FROM tblPartner LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblPartner.Id = @PartnerId  ORDER BY tblProduct.Price   DESC ;";
+            Cmd.CommandText += " SELECT TOP 15 tblProduct.[Id],tblProduct.[Name],tblProduct.[Price],tblProduct.[Discount],tblProduct.[Image],tblProduct.[GroupId],tblProduct.[CountLike],tblProduct.[CountBuy],tblProduct.[BestSale],tblProduct.[VIP],tblProduct.[State],tblProduct.[PartnerId],tblProduct.[BrandId], tblLocation.Name AS Location ";
+            Cmd.CommandText += " FROM tblPartner LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblPartner.Id = @PartnerId  ORDER BY tblProduct.Price   DESC ;";
             Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = Id;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -235,7 +237,7 @@ public class DataProduct
 
     // sap xem 
 
-    #region Method getAllProductSortByPrice
+    #region Method getAllProductSortByPrice ||  ! Không lấy cột content
     public DataTable getAllProductSortByPrice()
     {
         DataTable objTable = new DataTable();
@@ -264,7 +266,7 @@ public class DataProduct
     }
     #endregion
 
-    #region Method getAllProductSortByVIP
+    #region Method getAllProductSortByVIP       ||  ! Không lấy cột content
     public DataTable getAllProductSortByVIP()
     {
         DataTable objTable = new DataTable();
@@ -294,7 +296,7 @@ public class DataProduct
     }
     #endregion
 
-    #region Method getAllProductSortBySALE
+    #region Method getAllProductSortBySALE ||  ! Không lấy cột content
     public DataTable getAllProductSortBySALE()
     {
         DataTable objTable = new DataTable();
@@ -324,7 +326,7 @@ public class DataProduct
     }
     #endregion
 
-    #region Method getAllProductSortByBuy
+    #region Method getAllProductSortByBuy  ||  ! Không lấy cột content
     public DataTable getAllProductSortByBuy()
     {
         DataTable objTable = new DataTable();
@@ -426,7 +428,7 @@ public class DataProduct
 
           //  Cmd.CommandText = "SELECT * FROM tblProduct WHERE UPPER(RTRIM(LTRIM(Name))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' ORDER BY Id DESC";
 
-            Cmd.CommandText = " SELECT TOP 150 0 AS TT, tblProduct.*  , REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1  from tblProduct ";
+            Cmd.CommandText = " SELECT TOP 150 0 AS TT, tblProduct.[Id],tblProduct.[Name],tblProduct.[Price],tblProduct.[Discount],tblProduct.[Image],tblProduct.[GroupId],tblProduct.[CountLike],tblProduct.[CountBuy],tblProduct.[BestSale],tblProduct.[VIP],tblProduct.[State],tblProduct.[PartnerId],tblProduct.[BrandId], REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1  from tblProduct ";
             Cmd.CommandText += " WHERE UPPER(RTRIM(LTRIM(Name))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@Name)))+'%'   OR    UPPER(RTRIM(LTRIM(Price))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@Name)))+'%'  ORDER BY tblProduct.Name   DESC ;";
               Cmd.Parameters.Add("@Name",SqlDbType.NVarChar).Value = name;
             SqlDataAdapter da = new SqlDataAdapter();
@@ -450,9 +452,8 @@ public class DataProduct
     }
     #endregion
 
-
     // jon to show 
-    #region Method getProductByIdWithJoinAndSortByPriceAsc
+    #region Method getProductByIdWithJoinAndSortByPriceAsc  ||  ! Không lấy cột content
     public DataTable getProductByIdWithJoinAndSortByPriceAsc(int Id)
     {
         DataTable objTable = new DataTable();
@@ -462,7 +463,7 @@ public class DataProduct
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT TOP 15  tblProduct.* , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  AND tblPartner.Id = @PartnerId  ORDER BY tblProduct.Price  , tblProduct.Id  ;";
+            Cmd.CommandText = "SELECT TOP 15  tblProduct.[Id],tblProduct.[Name],tblProduct.[Price],tblProduct.[Discount],tblProduct.[Image],tblProduct.[GroupId],tblProduct.[CountLike],tblProduct.[CountBuy],tblProduct.[BestSale],tblProduct.[VIP],tblProduct.[State],tblProduct.[PartnerId],tblProduct.[BrandId] , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  AND tblPartner.Id = @PartnerId  ORDER BY tblProduct.Price  , tblProduct.Id  ;";
             Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = Id;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -481,8 +482,7 @@ public class DataProduct
     }
     #endregion
 
-
-    #region Method getProductByIdWithJoinAndSortByDiscount
+    #region Method getProductByIdWithJoinAndSortByDiscount      ||  ! Không lấy cột content
     public DataTable getProductByIdWithJoinAndSortByDiscount(int Id)
     {
         DataTable objTable = new DataTable();
@@ -492,7 +492,7 @@ public class DataProduct
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT TOP 15  tblProduct.* , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  AND tblPartner.Id = @PartnerId  ORDER BY tblProduct.Discount  , tblProduct.Id  ;";
+            Cmd.CommandText = "SELECT TOP 15  tblProduct.[Id],tblProduct.[Name],tblProduct.[Price],tblProduct.[Discount],tblProduct.[Image],tblProduct.[GroupId],tblProduct.[CountLike],tblProduct.[CountBuy],tblProduct.[BestSale],tblProduct.[VIP],tblProduct.[State],tblProduct.[PartnerId],tblProduct.[BrandId] , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  AND tblPartner.Id = @PartnerId  ORDER BY tblProduct.Discount  DESC , tblProduct.Id    ;";
             Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = Id;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -511,8 +511,7 @@ public class DataProduct
     }
     #endregion
 
-
-    #region Method getProductByIdWithJoinAndSortByLike
+    #region Method getProductByIdWithJoinAndSortByLike      ||  ! Không lấy cột content
     public DataTable getProductByIdWithJoinAndSortByLike(int Id)
     {
         DataTable objTable = new DataTable();
@@ -522,7 +521,7 @@ public class DataProduct
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT TOP 4  tblProduct.* , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  AND tblPartner.Id = @PartnerId  ORDER BY tblProduct.CountLike  ;";
+            Cmd.CommandText = "SELECT TOP 4  tblProduct.[Id],tblProduct.[Name],tblProduct.[Price],tblProduct.[Discount],tblProduct.[Image],tblProduct.[GroupId],tblProduct.[CountLike],tblProduct.[CountBuy],tblProduct.[BestSale],tblProduct.[VIP],tblProduct.[State],tblProduct.[PartnerId],tblProduct.[BrandId] , tblLocation.Name AS Location  FROM tblPartner  LEFT JOIN tblLocation  ON tblPartner.LocationId = tblLocation.Id  LEFT JOIN  tblProduct ON tblProduct.PartnerId =  tblPartner.Id WHERE tblProduct.Id IS NOT NULL  AND tblPartner.Id = @PartnerId  AND tblProduct.State =1  ORDER BY tblProduct.CountLike  ;";
             Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = Id;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -547,7 +546,7 @@ public class DataProduct
        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
       sqlCon.Open();
        SqlCommand Cmd = sqlCon.CreateCommand();
-       Cmd.CommandText = "SELECT TOP " + limit.ToString() + " 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE VIP=1";
+       Cmd.CommandText = "SELECT TOP " + limit.ToString() + " 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE tblProduct.VIP=1  AND tblProduct.State =1  ";
        SqlDataAdapter da = new SqlDataAdapter();
         da.SelectCommand = Cmd;
         DataSet ds = new DataSet();
@@ -591,7 +590,6 @@ public class DataProduct
         return objTable;
     }
     #endregion
-
 
     #region Method getProductByPartnerId
     public DataTable getProductByPartnerId(int PartnerId)
@@ -791,7 +789,6 @@ public class DataProduct
     }
     #endregion
 
-
     // Different Table
 
     #region Table Product Group
@@ -951,8 +948,11 @@ public class DataProduct
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP 15 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct";
-            Cmd.CommandText += " WHERE GroupId = @groupId ";
+            Cmd.CommandText = " IF  EXISTS (SELECT tblProductGroup.Id FROM tblProductGroup WHERE Id = @groupId ) ";
+            Cmd.CommandText += " BEGIN  SELECT TOP 16 0 AS TT, tblProduct.[Id],tblProduct.[Name],tblProduct.[Price],tblProduct.[Discount],tblProduct.[Image],tblProduct.[GroupId],tblProduct.[CountLike],tblProduct.[CountBuy],tblProduct.[BestSale],tblProduct.[VIP],tblProduct.[State],tblProduct.[PartnerId],tblProduct.[BrandId], REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 ";
+            Cmd.CommandText+= " FROM tblProduct   ";
+            Cmd.CommandText += " WHERE GroupId = @groupId AND tblProduct.State =1  ORDER BY tblProduct.VIP END ";
+            Cmd.CommandText += " ELSE BEGIN  SELECT TOP 16 0 AS TT, tblProduct.[Id],tblProduct.[Name],tblProduct.[Price],tblProduct.[Discount],tblProduct.[Image],tblProduct.[GroupId],tblProduct.[CountLike],tblProduct.[CountBuy],tblProduct.[BestSale],tblProduct.[VIP],tblProduct.[State],tblProduct.[PartnerId],tblProduct.[BrandId], REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1  FROM tblProduct WHERE  tblProduct.State =1  ORDER BY tblProduct.VIP   END  ";
             Cmd.Parameters.Add("@groupid", SqlDbType.Int).Value = groupId;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -1079,7 +1079,7 @@ public class DataProduct
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT TOP  " + filter +" 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE BestSale = 1";
+        Cmd.CommandText = "SELECT TOP  " + filter +" 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE BestSale = 1 AND tblProduct.State = 1 ";
         SqlDataAdapter da = new SqlDataAdapter();
         da.SelectCommand = Cmd;
         DataSet ds = new DataSet();

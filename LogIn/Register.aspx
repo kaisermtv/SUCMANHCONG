@@ -17,12 +17,11 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-xs-3 col-md-6">
-                           
-                              <a href="../Store/Register.aspx" class="btn btn-primary btn-lg" role="button">    <img src="../img/company.png" style="height:150px; width:100%; margin-left:1px;" /> <br/>Cửa hàng - Đối tác </a>
+                        <div class="col-xs-6 col-md-6" style="align-content:center">
+                              <a href="../Store/Register.aspx" class="btn btn-primary btn-lg" style=" width:60%; margin-left:20%" role="button">    <img src="../img/company.png" style="height:150px; width:100%; margin-left:1px;" /> <br/>Cửa hàng - Đối tác </a>
                         </div>
-                        <div class="col-xs-6 col-md-6">
-                           <a href="../Customer/Register.aspx" class="btn btn-primary btn-lg" role="button"><img src="../img/customer-logo.png" style="height:150px; width:100%; margin-left:1px;" /> <br/>Thành viên </a>
+                        <div class="col-xs-3 col-md-6"  style="padding-left:10px">
+                           <a href="../Customer/Register.aspx" class="btn btn-primary btn-lg" style=" width:60%; margin-left:20%" role="button"><img src="../img/customer-logo.png" style="height:150px; width:100%; margin-left:1px;" /> <br/>Thành viên </a>
                         </div>
                     </div>
                     <a href="../LogIn/login.aspx" class="btn btn-success btn-lg btn-block" style="" role="button"><span class="glyphicon glyphicon-globe"></span> Đã có tài khoản ? Đăng nhập  </a>

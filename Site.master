@@ -210,7 +210,7 @@
                             <div class="wrapper">
                                 <div class="col-md-10">
                                     <div class="main-menu">
-                                        <a href="../Products/?filter=1" class="col-centered"><i class="fa fa-desktop" style="width: 100%;">
+                                        <a href="../Products/?filter=0" class="col-centered"><i class="fa fa-desktop" style="width: 100%;">
                                         </i>
                                             <p>Tất cả</p>
                                         </a>

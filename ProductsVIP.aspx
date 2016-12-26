@@ -42,7 +42,7 @@
                 <div style="background-color: #f9faf5; height: 375px; padding: 5px;">
                     <a style="width: 100%" href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %>">
                         <img style="height: 250px; width: 100%"
-                             src="/images/Products/<%Response.Write(this.objTableProductVIP.Rows[i]["Image"].ToString()); %>"
+                             src="/Images/Products/<%Response.Write(this.objTableProductVIP.Rows[i]["Image"].ToString()); %>"
                         onerror="this.onerror = null; this.src = '../img/noImg.jpg';"     alt=" Nổi bật" /></a>
                     <p class="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold;
                         color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;">

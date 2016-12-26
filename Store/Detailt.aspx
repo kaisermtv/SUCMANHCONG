@@ -57,8 +57,9 @@
                     <div class="col-md-4" style="margin-bottom:10px ; margin-left:-10px;">
                 <div style="background-color: #f9faf5; height: 375px; padding: 5px;">
                     <a style="width: 100%" href="/detailt.aspx?id=<%Response.Write(this.objTableRight.Rows[i]["Id"].ToString()); %>">
+                     
                         <img style="height: 256px; width: 100%"
-                             src="/Images/Products/<%Response.Write(this.objTableRight.Rows[i]["Image"].ToString()); %>"
+                             src="../Images/Products/<%Response.Write(this.objTableRight.Rows[i]["Image"].ToString()); %>"
                         onerror="this.onerror = null; this.src = '../img/noImg.jpg';"     alt=" Nổi bật" /></a>
                     <p class="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold;
                         color: #50505a; padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;">

@@ -1151,7 +1151,7 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP " + filter + " 0 AS TT, tblPartner.* , tblLocation.Name AS Location FROM tblPartner  LEFT JOIN  tblLocation ON tblPartner.LocationId = tblLocation.Id  WHERE [BestSale] = 1  ";
+            Cmd.CommandText = "SELECT TOP " + filter + " 0 AS TT, tblPartner.* , tblLocation.Name AS Location FROM tblPartner  LEFT JOIN  tblLocation ON tblPartner.LocationId = tblLocation.Id  WHERE [BestSale] = 1 AND tblPartner.State = 1  ";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -1182,7 +1182,7 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP " + filter + " * FROM tblPartner WHERE [VIP] = 1 AND [State] = 1  ORDER BY [Id] DESC";
+            Cmd.CommandText = "SELECT TOP "+filter+" tblPartner.* , tblLocation.Name AS [Local],  tblPartner.* FROM tblPartner   JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId WHERE [VIP] = 1 AND tblPartner.State = 1  ORDER BY tblPartner.Id DESC";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
