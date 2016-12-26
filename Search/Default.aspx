@@ -64,7 +64,7 @@
                 <div class="col-md-3" style="margin-bottom:10px">
                     <div style="background-color: #f9faf5; height: 375px; padding: 5px;">
                         <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %>">
-                            <img src="images/Products/<%Response.Write(this.objTableProductVIP.Rows[i]["Image"].ToString()); %>" style="width: 100%; margin-left: auto; height:254px;"
+                            <img src="../Images/Products/<%Response.Write(this.objTableProductVIP.Rows[i]["Image"].ToString()); %>" style="width: 100%; margin-left: auto; height:254px;"
                                  alt="San pham VIP"   onerror="this.onerror = null; this.src = '../img/noImg.jpg';"  /></a>
                         <p class="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #50505a; height:50px; overflow:hidden; 
                              padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;" >
