@@ -17,8 +17,8 @@ public partial class SiteMaster : MasterPage
     private string _antiXsrfTokenValue;
     public string strHeader = "", currPartnerId = "";
     private TVSFunc objFunc = new TVSFunc();
-    public string[] ProductGroup = new string[7] { "", "", "", "", "", "", "" };
-    public int[] ProductGroupId = new int[7] { 0, 0, 0, 0, 0, 0, 0 };
+    public string[] ProductGroup = new string[8] { "", "", "", "", "", "", "","" };
+    public int[] ProductGroupId = new int[8] { 0, 0, 0, 0, 0, 0, 0,0 };
     private DataTable objTableProductGroup = new DataTable();
     #endregion
 
@@ -101,11 +101,11 @@ public partial class SiteMaster : MasterPage
         this.objTableProductGroup = this.getProductGroup();
         if (this.objTableProductGroup.Rows.Count > 0)
         {
-            for (int i = 0; i < this.objTableProductGroup.Rows.Count && i<7; i++)
+            for (int i = 0; i < this.objTableProductGroup.Rows.Count && i < 8; i++)
             {
 
                 this.ProductGroup[i] = this.objTableProductGroup.Rows[i]["Name"].ToString();
-                this.ProductGroupId[i] =int.Parse(this.objTableProductGroup.Rows[i]["Id"].ToString());
+                this.ProductGroupId[i] = int.Parse(this.objTableProductGroup.Rows[i]["Id"].ToString());
             }
         }
     } 
@@ -114,10 +114,10 @@ public partial class SiteMaster : MasterPage
     #region method getProductGroup
     public DataTable getProductGroup()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        try {         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT 0 AS TT, * FROM tblProductGroup";
+        Cmd.CommandText = " SELECT 0 AS TT , * FROM tblProductGroup ";
         SqlDataAdapter da = new SqlDataAdapter();
         da.SelectCommand = Cmd;
         DataSet ds = new DataSet();
@@ -130,6 +130,13 @@ public partial class SiteMaster : MasterPage
         }
         return ds.Tables[0];
     }
+        catch
+        {
+            return new DataTable();
+
+        }
+    }
+
     #endregion
 
 

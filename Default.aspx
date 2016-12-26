@@ -13,7 +13,6 @@
 
                         <script>
                             jssor_1_slider_init = function () {
-
                                 var jssor_1_SlideoTransitions = [
                                   [{ b: 0, d: 1140, y: -290, e: { y: 27 } }],
                                   [{ b: 0, d: 1000, y: 185 }, { b: 1000, d: 500, o: -1 }, { b: 1500, d: 500, o: 1 }, { b: 2000, d: 1500, r: 360 }, { b: 3500, d: 1000, rX: 30 }, { b: 4500, d: 500, rX: -30 }, { b: 5000, d: 1000, rY: 30 }, { b: 6000, d: 500, rY: -30 }, { b: 6500, d: 500, sX: 1 }, { b: 7000, d: 500, sX: -1 }, { b: 7500, d: 500, sY: 1 }, { b: 8000, d: 500, sY: -1 }, { b: 8500, d: 500, kX: 30 }, { b: 9000, d: 500, kX: -30 }, { b: 9500, d: 500, kY: 30 }, { b: 10000, d: 500, kY: -30 }, { b: 10500, d: 500, c: { x: 87.50, t: -87.50 } }, { b: 11000, d: 500, c: { x: -87.50, t: 87.50 } }],
@@ -27,7 +26,6 @@
                                   [{ b: 0, d: 500, x: -105 }, { b: 500, d: 500, x: 230 }, { b: 1000, d: 500, y: -120 }, { b: 1500, d: 500, x: -70, y: 120 }, { b: 2600, d: 500, y: -80 }, { b: 3100, d: 900, y: 160, e: { y: 24 } }],
                                   [{ b: 0, d: 1000, o: -0.4, rX: 2, rY: 1 }, { b: 1000, d: 1000, rY: 1 }, { b: 2000, d: 1000, rX: -1 }, { b: 3000, d: 1000, rY: -1 }, { b: 4000, d: 1000, o: 0.4, rX: -1, rY: -1 }]
                                 ];
-
                                 var jssor_1_options = {
                                     $AutoPlay: true,
                                     $Idle: 2000,
@@ -45,9 +43,7 @@
                                         $Class: $JssorBulletNavigator$
                                     }
                                 };
-
                                 var jssor_1_slider = new $JssorSlider$("jssor_1", jssor_1_options);
-
                                 //responsive code begin
                                 //you can remove responsive code if you don't want the slider scales while window resizing
                                 function ScaleSlider() {
@@ -80,7 +76,6 @@
                             .jssorb01 {
                                 position: absolute;
                             }
-
                                 .jssorb01 div, .jssorb01 div:hover, .jssorb01 .av {
                                     position: absolute;
                                     /* size of bullet elment */
@@ -92,23 +87,18 @@
                                     cursor: pointer;
                                     border: #000 1px solid;
                                 }
-
                                 .jssorb01 div {
                                     background-color: gray;
                                 }
-
                                     .jssorb01 div:hover, .jssorb01 .av:hover {
                                         background-color: #d3d3d3;
                                     }
-
                                 .jssorb01 .av {
                                     background-color: #fff;
                                 }
-
                                 .jssorb01 .dn, .jssorb01 .dn:hover {
                                     background-color: #555555;
                                 }
-
                             /* jssor slider arrow navigator skin 02 css */
                             /*
                             .jssora02l                  (normal)
@@ -128,27 +118,21 @@
                                 background: url('img/a02.png') no-repeat;
                                 overflow: hidden;
                             }
-
                             .jssora02l {
                                 background-position: -3px -33px;
                             }
-
                             .jssora02r {
                                 background-position: -63px -33px;
                             }
-
                             .jssora02l:hover {
                                 background-position: -123px -33px;
                             }
-
                             .jssora02r:hover {
                                 background-position: -183px -33px;
                             }
-
                             .jssora02l.jssora02ldn {
                                 background-position: -3px -33px;
                             }
-
                             .jssora02r.jssora02rdn {
                                 background-position: -63px -33px;
                             }
@@ -216,7 +200,6 @@
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">SẢN PHẨM VIP</span>
-
                     </a>
                     <a href="/ProductsBestSale.aspx"><i class="glyphicon glyphicon-th"></i>
                         <br />
@@ -249,10 +232,8 @@
                             text-transform: uppercase; color: #01a44b;">ĐÀO TẠO</span></a>
                 </div>
                 <!----->
-
             </div>
         </div>
-
         <div class="row">
             <div class="phan1">
                 <div class="col-md-3">
@@ -265,7 +246,6 @@
                 </div>
             </div>
         </div>
-
         <div id="myCarousel" class="sanpham carousel slide" data-ride="carousel">
             <!-- Wrapper for slides -->
             <div class="carousel-inner" role="listbox">
@@ -544,9 +524,6 @@
                     <img src="/images/line.jpg" alt="" />
                 </div>
             </div>
-
-            
-
             <div class="col-lg-2" style="text-align: right; margin-top: 42px;">
                 <div class="btn-group">
                     <button type="button" class="btn btn-danger">Xem tất cả</button>
@@ -641,9 +618,6 @@
             </div>
         </div>
     </div>
-
-
-
     <div class="container">
         <div class="row" style="margin-top: 20px;">
             <% if (this.objTableNews.Rows.Count >= 3)

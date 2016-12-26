@@ -346,7 +346,7 @@ h2 {
 
 .main-menu {
 	margin-top:-5px;
-	width: 100%;
+	width: 120%;
 	/*border-top:solid 2px red;*/
 	padding-top:0px;
 }
@@ -356,7 +356,7 @@ h2 {
 		text-decoration: none;
 		text-transform: capitalize;
 		text-align: center;
-		width: 12.076%;
+		width: 10.776%;
 	}
 
 		.main-menu a:nth-child(8) {
