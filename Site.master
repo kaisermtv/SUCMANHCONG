@@ -252,7 +252,7 @@
                                         </a>
                                         <a href="../Products/?filter=<% Response.Write(this.ProductGroupId[7].ToString()); %>" style="margin-left:-1%">
                                            
-                                            <img src="../img/icons/glyphicons-341-globe.png"  style="opacity:0.7 " />
+                                            <img src="../img/icons/glyphicons-341-globe.png"  style="opacity:0.5 " />
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[7].ToString()); %></p>
                                         </a>
                                     </div>
