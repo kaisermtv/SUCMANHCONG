@@ -8,7 +8,7 @@
                     <div class="panel panel-default" style="margin-top:0px;">
                         <div class="panel-heading"><b>THAY ĐỔI MẬT KHẨU</b></div>
                         <ul class="list-group">
-                            <li class="list-group-item">
+                            <li class="list-group-item" style="height:55px;">
                                 <div class="form-group pgrp_post">
                                     <label class="sr-only" for="exampleInputAmount">Mật khẩu cũ</label>
                                     <div class="input-group right">
@@ -18,7 +18,7 @@
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item">
+                            <li class="list-group-item" style="height:55px;">
                                 <div class="form-group pgrp_post">
                                     <label class="sr-only" for="exampleInputAmount">Mật khẩu mới</label>
                                     <div class="input-group right">
@@ -28,7 +28,7 @@
                                     </div>
                                 </div>
                             </li> 
-                            <li class="list-group-item">
+                            <li class="list-group-item" style="height:55px;">
                                 <div class="form-group pgrp_post">
                                     <label class="sr-only" for="exampleInputAmount">Nhập lại mật khẩu</label>
                                     <div class="input-group right">
@@ -38,14 +38,14 @@
                                     </div>
                                 </div>
                             </li> 
-                            <li class="list-group-item" style="background-color: #fff;">
+                            <li class="list-group-item" style="background-color: #fff;height:40px;">
                                 <div class="form-group pgrp2_post">
                                     <div class="input-group right" style="background-color: #fff; color:red;">
                                         <% Response.Write(this.strMsg); %>
                                     </div>
                                 </div>
                             </li>
-                            <li class="list-group-item" style="background-color: #fff;">
+                            <li class="list-group-item" style="background-color: #fff;height:55px;">
                                 <div class="form-group pgrp2_post">
                                     <label class="sr-only" for="exampleInputAmount" style="background-color: #fff;"></label>
                                     <div class="input-group right" style="background-color: #fff;">
