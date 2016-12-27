@@ -779,7 +779,7 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT [Id],[Name],[Address],[Phone],[Manager],[Business],[TaxCode],[Image],[BestSale],[VIP],[State],[Account],[AccountPass],[DayCreate],[LocationId],[DiscountCard],[Discount],[DiscountTotal],[DiscountAdv],[Email],[BankAccount],[BankAccountName] FROM tblPartner WHERE Account = @Account";
+            Cmd.CommandText = "SELECT * FROM tblPartner WHERE Account = @Account";
             Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -1175,8 +1175,7 @@ public class Partner
     }
     #endregion
 
-   
-
+  
     #region method getTopPartnerVIP        || return top number partner input
     public DataTable getTopPartnerVIP(int filter = 4)
     {

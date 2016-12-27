@@ -337,6 +337,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
 
             this.tongtienhang.InnerText = this.txtTotalMoney.Value.ToString().Trim();
             this.tonggiamgia.InnerText = this.txtTotalMoneyDiscount.Text;
+            
             this.tienphaitra.InnerText = this.txtTotalMoneyPayment.Text;
 
             DataTable data = objPartner.getPartnerBillDetail(BillId);
@@ -480,6 +481,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
         {
             this.txtTotalMoney.Value = String.Format("{0:0,0}", double.Parse(objTable.Rows[0]["TotalMoney"].ToString()));
             this.txtTotalMoneyDiscount.Text = String.Format("{0:0,0}", double.Parse(objTable.Rows[0]["TotalMoneyDiscount"].ToString()));
+          
             this.txtTotalMoneyPayment.Text = String.Format("{0:0,0}", double.Parse(objTable.Rows[0]["TotalPeyment"].ToString()));
         }
     }

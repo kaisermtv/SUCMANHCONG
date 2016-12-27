@@ -1,4 +1,4 @@
-﻿<%@ Page Title="SUCMANGCONG" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="SUCMANHCONG" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
