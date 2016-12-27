@@ -106,7 +106,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             {
                 return;
             }
-            TVSFunc objFunc = new TVSFunc();
+            //TVSFunc objFunc = new TVSFunc();
             string PartnerAccount = "";
             PartnerAccount = objFunc.getPartnerAccount();
 

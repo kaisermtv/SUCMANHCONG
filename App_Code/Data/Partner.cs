@@ -1018,9 +1018,12 @@ public class Partner
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "UPDATE tblPartner SET Account = @Account, DayCreate = getdate(), AccountPass = '123123' WHERE Id = @Id";
+        Cmd.CommandText = "UPDATE tblPartner SET Account = @Account, DayCreate = getdate(), AccountPass = @AccountPass WHERE Id = @Id";
         Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = partnerAcc + id.ToString("0000");
         Cmd.Parameters.Add("Id", SqlDbType.Int).Value = id;
+
+        TVSFunc objFunc = new TVSFunc();
+        Cmd.Parameters.Add("AccountPass", SqlDbType.NVarChar).Value = objFunc.CryptographyMD5("123");
         Cmd.ExecuteNonQuery();
             }
         catch
