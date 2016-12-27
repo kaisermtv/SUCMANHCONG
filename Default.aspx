@@ -157,10 +157,10 @@
                                    {%>
                                 <div data-p="112.50" style="display: none;">
                                     <img data-u="image" src="/Images/Slides/<% Response.Write(this.objTableSlide.Rows[i]["Image"].ToString()); %>" />
-                                    <div data-u="caption" data-t="0" style="position: absolute; top: 320px; left: 30px;
-                                        width: 350px; height: 30px; background-color: rgba(235,81,0,0.5); font-size: 20px;
-                                        color: #ffffff; line-height: 30px; text-align: center; font-size: 18px;">
-                                        <a href="<%= this.objTableSlide.Rows[i]["Url"] %>">
+                                    <div data-u="caption" data-t="0" style="position: absolute; top: 320px; left: 30px; font-family:'Comic Sans MS';
+                                        width: 350px; height: 30px; background-color:palegoldenrod; text-decoration-color:red; font-size: 40px; opacity:0.8;
+                                        color: #ffffff; line-height: 30px; text-align: center; font-size: 18px; border-radius:30px; ">
+                                        <a style="font-family:'Comic Sans MS';  font-size:20px; color:palevioletred; "   href="<%= this.objTableSlide.Rows[i]["Url"] %>">
                                         <%= this.objTableSlide.Rows[i]["Name"] %>
                                         </a>
                                     </div>
@@ -222,7 +222,7 @@
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">THƯƠNG HIỆU NỔI BẬT</span></a>
-                    <a href="#"><i class="glyphicon glyphicon-home"></i>
+                    <a href="/About.aspx"><i class="glyphicon glyphicon-home"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">CHÚNG TÔI</span></a>

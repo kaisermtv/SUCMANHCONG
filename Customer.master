@@ -66,7 +66,7 @@
                         <div class="container">
                             <div class="col-md-3" style="margin-right: 8px; z-index: 2;">
                                 <a href="/Customer/">
-                                    <img src="/images/logo.png" alt="SucManhCong.com" style="width: 200px; height: 60px" /></a>
+                                    <img src="../images/logo.jpg" alt="SucManhCong.com" style="width: 200px; height: 60px" /></a>
                             </div>
                             <div class="wrapper" style="margin-top: 10px; text-align: left;">
                                 <div class="container">
@@ -141,7 +141,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="/images/logo.png" alt="SUCMANHCONG.COM" style="width: 200px; height: 60px; margin-top: 6px;" />
+                        <img src="../images/logo.jpg" alt="SUCMANHCONG.COM" style="width: 200px; height: 60px; margin-top: 6px;" />
                     </div>
                     <div class="col-md-6">
                         <h6 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57;">CÔNG TY CỔ PHẦN ĐẦU TƯ THƯƠNG MẠI SỨC MẠNH CỘNG</h6>
