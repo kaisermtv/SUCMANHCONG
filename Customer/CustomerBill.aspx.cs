@@ -93,7 +93,7 @@ public partial class Customer_CustomerBill : System.Web.UI.Page
                     strHtml += "</div>";
 
                     strHtml += "<div style=\"width:5%; float: right; border:solid 1px #f3f1f1; border-left:none; text-align:center;border-top:none;height:26px; line-height:26px; color:#000;\">";
-                    strHtml += "<a href = \"BillNote.aspx?id=" + this.objTable.Rows[i]["Id"].ToString() + "\">Sửa</a>";
+                    strHtml += "<a href = \"BillNote.aspx?id=" + this.objTable.Rows[i]["Id"].ToString() + "\">Chi tiêt</a>";
                     strHtml += "</div>";
 
                     strHtml += "</div>";
