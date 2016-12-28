@@ -88,11 +88,11 @@ public partial class Customer_CustomerBill : System.Web.UI.Page
                     strHtml += string.Format("{0:0,0}", double.Parse(this.objTable.Rows[i]["TotalPeyment"].ToString()));
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width: 32%; float: left; border:solid 1px #f3f1f1; border-left:none; text-align:justify;border-top:none;height:26px; line-height:26px; color:#000;\">";
+                    strHtml += "<div style=\"width: 31%; float: left; border:solid 1px #f3f1f1; border-left:none; text-align:justify;border-top:none;height:26px; line-height:26px; color:#000;\">";
                     strHtml += this.objTable.Rows[i]["Note"].ToString();
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width:5%; float: right; border:solid 1px #f3f1f1; border-left:none; text-align:center;border-top:none;height:26px; line-height:26px; color:#000;\">";
+                    strHtml += "<div style=\"width:6%; float: right; border:solid 1px #f3f1f1; border-left:none; text-align:center;border-top:none;height:26px; line-height:26px; color:#000;\">";
                     strHtml += "<a href = \"BillNote.aspx?id=" + this.objTable.Rows[i]["Id"].ToString() + "\">Chi tiêt</a>";
                     strHtml += "</div>";
 

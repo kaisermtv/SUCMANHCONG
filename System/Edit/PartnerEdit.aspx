@@ -68,9 +68,16 @@
             <asp:DropDownList ID="ddlBusiness" runat="server" Style="width: 100%; height: 26px; line-height: 26px; margin-top: 3px;"></asp:DropDownList>
         </div>
     </div>
+    <div style="width: 100%; height: auto; margin-top: 5px;">
+        <div style="width: 12%; height: auto; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
+            &nbsp;&nbsp;Giới thiệu :
+        </div>
+        <div style="width: 87.5%; height: auto; line-height: 30px; float: right;">
+            <CKEditor:CKEditorControl ID="txtContent" CssClass="editor1" runat="server" Height="280" Width="99%" BasePath="~/ckeditor"></CKEditor:CKEditorControl>
+        </div>
+    </div>
     <div style="width: 100%; height: 425px; line-height: 425px; margin-top: 5px;">
         <div style="width: 12%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
-            &nbsp;&nbsp;Giới thiệu :
             <br />
             <br />
             Hình đại diện
@@ -82,9 +89,6 @@
                 <span><strong>Upload Image</strong></span>
             <asp:FileUpload ID="upImage1" runat="server" Width="100px" CssClass="FileUploadImage" Height="22px" />
                 </label>
-        </div>
-        <div style="width: 87.5%; height: 30px; line-height: 30px; float: right;">
-            <CKEditor:CKEditorControl ID="txtContent" CssClass="editor1" runat="server" Height="280" Width="99%" BasePath="~/ckeditor"></CKEditor:CKEditorControl>
         </div>
     </div>
 
