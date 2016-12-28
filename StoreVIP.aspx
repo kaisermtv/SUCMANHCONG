@@ -58,7 +58,7 @@
                     <div style="text-align: center;">
                         <div style="margin-left: 5px; float: left; width: 47%; background-color: #337ab7;
                             color: #fff; height: 30px; line-height: 30px; display: table; vertical-align: middle;">
-                            <%Response.Write(this.objTableStoreVip.Rows[i]["Local"].ToString()); %>
+                            <%Response.Write(this.objTableStoreVip.Rows[i]["Location"].ToString()); %>
                         </div>
                         <div style="margin-right: 5px; float: right; width: 47%; background-color: #ffc000;
                             color: #fff; height: 30px; line-height: 30px; display: block; vertical-align: middle;"

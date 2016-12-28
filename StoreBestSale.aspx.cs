@@ -11,7 +11,7 @@ public partial class StoreBestSale : System.Web.UI.Page
     #region declare 
     public Partner objStoreBestSale = new Partner();
     public DataTable objTableStoreBestSale = new DataTable();
-    private DataProduct objGroup = new DataProduct();
+    private DataBusiness objBusiness = new DataBusiness();
     #endregion
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -27,7 +27,7 @@ public partial class StoreBestSale : System.Web.UI.Page
     #region Set Store Type
     private void setStoreType()
     {
-        this.ddlStoreType.DataSource = objGroup.getProductGroup();
+        this.ddlStoreType.DataSource = objBusiness.getBusiness();
         this.ddlStoreType.DataTextField = "Name";
         this.ddlStoreType.DataValueField = "Id";
         this.ddlStoreType.DataBind();
@@ -41,7 +41,7 @@ public partial class StoreBestSale : System.Web.UI.Page
         int id = int.Parse( ddlStoreType.SelectedValue);
         if (id == 0) { return; }
         // get Id index
-        this.objTableStoreBestSale = objStoreBestSale.getTopPartnerVIPFilterByGroup(id);
+        this.objTableStoreBestSale = objStoreBestSale.getBestSalePartnerFilterByGroup(id);
         ddlStoreType.SelectedValue = ddlStoreType.SelectedValue;
     }
 }
