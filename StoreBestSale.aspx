@@ -14,7 +14,7 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4" style="float:right;" >
                 <div class="dropdown">
                     <asp:DropDownList runat="server" ID="ddlStoreType" OnSelectedIndexChanged ="ddlStoreType_SelectedIndexChanged" 
                         AutoPostBack="true" CssClass="form-control"  BackColor="White"    >
