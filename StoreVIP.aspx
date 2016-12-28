@@ -18,24 +18,14 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div style="float: right;">
-                    <div style="float: left; margin-right: 8px;">
-                        <button type="button" class="btn btn-warning">Điện thoại - Máy tính</button>
+            <div class="col-md-4" style="float:right">
+                <div class="dropdown">
+                    <asp:DropDownList runat="server" ID="ddlStoreType" OnSelectedIndexChanged ="ddlStoreType_SelectedIndexChanged" 
+                        AutoPostBack="true" CssClass="form-control"  BackColor="White"    >
+                       
+                    </asp:DropDownList>
                     </div>
-                    <div style="float: left; margin-right: 8px;">
-                        <button type="button" class="btn btn-success">Điện máy</button>
-                    </div>
-                    <div style="float: left; margin-right: 8px;">
-                        <button type="button" class="btn btn-info">Làm đẹp</button>
-                    </div>
-                    <div style="float: left; margin-right: 8px;">
-                        <button type="button" class="btn btn-primary">Ẩm thực</button>
-                    </div>
-                    <div style="float: right;">
-                        <button type="button" class="btn btn-secondary">Thời trang</button>
-                    </div>
-                </div>
+                   
             </div>
         </div>
         <hr />
