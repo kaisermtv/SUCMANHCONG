@@ -28,7 +28,6 @@ public partial class StoreVIP : System.Web.UI.Page
     private void setStoreType()
     {
         this.ddlStoreType.DataSource = objGroup.getProductGroup();
-      //  this.ddlStoreType.Items.Insert(1, new ListItem("Select a month", "0"));
         this.ddlStoreType.DataTextField = "Name";
         this.ddlStoreType.DataValueField = "Id";
         this.ddlStoreType.DataBind();
@@ -41,6 +40,7 @@ public partial class StoreVIP : System.Web.UI.Page
 
         int id = int.Parse( ddlStoreType.SelectedValue);
         // get Id index
+        if (id == 0) { return; }
         this.objTableStoreVip = objStoreVip.getTopPartnerVIPFilterByGroup(id);
         ddlStoreType.SelectedValue = ddlStoreType.SelectedValue;
     }

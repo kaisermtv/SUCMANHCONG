@@ -1202,8 +1202,8 @@ public class Partner
     #endregion
 
 
-    #region method getTopPartnerVIPFilterByGroup        || return top number partner input
-    public DataTable getTopPartnerVIPFilterByGroup( int business )
+    #region method getBestSalePartnerVIPFilterByGroup        || return top number partner input
+    public DataTable getBestSalePartnerVIPFilterByGroup(int business)
     {
         try
         {
@@ -1211,6 +1211,32 @@ public class Partner
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = "SELECT TOP " + 24 + " tblPartner.* , tblLocation.Name AS [Local]  FROM tblPartner   JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId WHERE tblPartner.Business = @Business AND [VIP] = 1 AND tblPartner.State = 1    ORDER BY tblPartner.Id DESC"; //
+            Cmd.Parameters.Add("Business", SqlDbType.Int).Value = business;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+
+    }
+    #endregion
+
+    #region method getTopPartnerVIPFilterByGroup        || return top number partner input
+    public DataTable getTopPartnerVIPFilterByGroup(int business)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT TOP " + 24 + " 0 AS TT, tblPartner.* , tblLocation.Name AS Location FROM tblPartner  LEFT JOIN  tblLocation ON tblPartner.LocationId = tblLocation.Id  WHERE [BestSale] = 1 AND tblPartner.Business = @Business AND  tblPartner.State = 1  "; //
             Cmd.Parameters.Add("Business", SqlDbType.Int).Value = business;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
