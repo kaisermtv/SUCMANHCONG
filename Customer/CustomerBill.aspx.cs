@@ -109,7 +109,7 @@ public partial class Customer_CustomerBill : System.Web.UI.Page
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT 0 AS TT, * FROM tblPartnerBill WHERE CustomerAccount = @CustomerAccount";
+        Cmd.CommandText = "SELECT 0 AS TT, * FROM tblPartnerBill WHERE CustomerAccount = @CustomerAccount ORDER BY [DayCreate] DESC ";
         Cmd.Parameters.Add("CustomerAccount",SqlDbType.NVarChar).Value = Session["ACCOUNT"].ToString();
         SqlDataAdapter da = new SqlDataAdapter();
         da.SelectCommand = Cmd;
