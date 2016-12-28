@@ -337,7 +337,6 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
 
             this.tongtienhang.InnerText = this.txtTotalMoney.Value.ToString().Trim();
             this.tonggiamgia.InnerText = this.txtTotalMoneyDiscount.Text;
-            
             this.tienphaitra.InnerText = this.txtTotalMoneyPayment.Text;
 
             DataTable data = objPartner.getPartnerBillDetail(BillId);
@@ -481,7 +480,6 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
         {
             this.txtTotalMoney.Value = String.Format("{0:0,0}", double.Parse(objTable.Rows[0]["TotalMoney"].ToString()));
             this.txtTotalMoneyDiscount.Text = String.Format("{0:0,0}", double.Parse(objTable.Rows[0]["TotalMoneyDiscount"].ToString()));
-          
             this.txtTotalMoneyPayment.Text = String.Format("{0:0,0}", double.Parse(objTable.Rows[0]["TotalPeyment"].ToString()));
         }
     }
@@ -512,7 +510,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                     strHtml += "</div>";
 
                     strHtml += "<div style=\"width: 8%; float: left; border:solid 1px #f3f1f1;overflow:hidden; height:30px;line-height:30px; text-align:right;\">";
-                    strHtml += "<input class = \"tvsInput\" onkeyup=\"calTotalMoney()\" type =\"text\" id = \"txtNumber" + i.ToString() + "\" name = \"txt#" + this.objTableProduct.Rows[i]["Id"].ToString() + "#" + this.objTableProduct.Rows[i]["Price"].ToString() + "\" value =\"" + this.objPartner.getPartnerBillProductNumber(this.strCurrBillId, this.objTableProduct.Rows[i]["Id"].ToString()) + "\" style =\"color:#000; text-align:right; padding-right:5px;\"/>";
+                    strHtml += "<input class = \"tvsInput\" type =\"text\" id = \"txtNumber" + i.ToString() + "\" name = \"txt#" + this.objTableProduct.Rows[i]["Id"].ToString() + "#" + this.objTableProduct.Rows[i]["Price"].ToString() + "\" value =\"" + this.objPartner.getPartnerBillProductNumber(this.strCurrBillId, this.objTableProduct.Rows[i]["Id"].ToString()) + "\" style =\"color:#000; text-align:right; padding-right:5px;\"/>";
                     strHtml += "</div>";
 
                     strHtml += "<div style=\"width: 10%; float: right; border:solid 1px #f3f1f1; overflow:hidden; height:30px;line-height:30px; text-align:right;\">";
@@ -534,7 +532,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                     strHtml += "</div>";
 
                     strHtml += "<div style=\"width: 8%; float: left; border:solid 1px #f3f1f1;overflow:hidden; height:30px;line-height:30px; text-align:right;\">";
-                    strHtml += "<input class = \"tvsInput\" onkeyup=\"calTotalMoney()\" type =\"text\" id = \"txtNumber" + i.ToString() + "\" name = \"txt#" + this.objTableProduct.Rows[i]["Id"].ToString() + "#" + this.objTableProduct.Rows[i]["Price"].ToString() + "\" value =\"" + this.objPartner.getPartnerBillProductNumber(this.strCurrBillId, this.objTableProduct.Rows[i]["Id"].ToString()) + "\" style =\"color:#000; text-align:right; padding-right:5px;\"/>";
+                    strHtml += "<input class = \"tvsInput\" type =\"text\" id = \"txtNumber" + i.ToString() + "\" name = \"txt#" + this.objTableProduct.Rows[i]["Id"].ToString() + "#" + this.objTableProduct.Rows[i]["Price"].ToString() + "\" value =\"" + this.objPartner.getPartnerBillProductNumber(this.strCurrBillId, this.objTableProduct.Rows[i]["Id"].ToString()) + "\" style =\"color:#000; text-align:right; padding-right:5px;\"/>";
                     strHtml += "</div>";
 
                     strHtml += "<div style=\"width: 10%; float: right; border:solid 1px #f3f1f1;overflow:hidden; height:30px;line-height:30px; text-align:right;\">";
@@ -898,5 +896,4 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
     #endregion
 
     #endregion
-    
 }
