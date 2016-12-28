@@ -69,7 +69,9 @@
                         </div>
                         <div class="panel panel-default">
                             <div class="panel-heading"><b>HOÁ ĐƠN THANH TOÁN</b> </>
-                                 <div style="float:right;"> <asp:CheckBox ID="chkAuto" CssClass="" runat="server" Checked="true"/> Tự động</div></div>
+                                 <div style="float:right;"> 
+                                     
+                                     <asp:CheckBox ID="chkAuto" CssClass="" runat="server" Checked="true"/> Tự động</div></div>
                             <div class="form-group bill_from_group">
                                 <input enableviewstate="false" type="text" class="form-control" id="txtTotalMoney"
                                     runat="server" placeholder="TỔNG TIỀN HOÁ ĐƠN" style="font-weight: bold; text-align: right;"
@@ -457,7 +459,7 @@
             if (document.getElementById('MainContent_txtTotalMoney').value.trim() == '') {
                 document.getElementById('MainContent_lblMsg1').textContent = 'Chưa xác định tổng tiền đơn hàng';
                 document.getElementById("MainContent_txtTotalMoney").focus();
-                return;
+              //  return;
             }
             var TotalMoney = (document.getElementById('MainContent_txtTotalMoney').value).replace(',', '') * 1;
 
@@ -482,16 +484,16 @@
             document.getElementById('MainContent_txtTotalMoneyDiscount').value = saleMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
 
             // tự động . thủ công 
-            if (document.getElementById('<%=chkAuto.ClientID%>').checked)
+            if (document.getElementById('MainContent_chkAuto').checked)
             {
-             
-                document.getElementById('MainContent_txtTotalMoney').textContent = (totalMoney + noDistCountMoney).toLocaleString('en-US', { minimumFractionDigits: 0 });
+                document.getElementById('MainContent_txtTotalMoney').value = (totalMoney + noDistCountMoney).toLocaleString('en-US', { minimumFractionDigits: 0 });
+
             }
            
             
             document.getElementById('MainContent_lblTongHangHoaDuocGiamGia').textContent = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
             document.getElementById('MainContent_lblTongHangHoaThuong').textContent = noDistCountMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
-
+        
 
 
             if (document.getElementById('MainContent_txtTotalMoneyDiscount').value.trim() == '' || document.getElementById('MainContent_txtTotalMoneyDiscount').value.trim() == '0') {
@@ -508,7 +510,7 @@
 
             //Kiem tra tong tien hoa don co nho hon tong tien giam gia khong?
             //if (document.getElementById('MainContent_txtTotalMoneyDiscount').value.replace(',', '') * 1 > TotalMoney)
-            if (totalMoney > TotalMoney + 1) {
+            if (totalMoney > (totalMoney + noDistCountMoney) + 1) {
                 document.getElementById('MainContent_lblMsg1').textContent = 'Tổng tiền chiết khấu lớn hơn tổng tiền hoá đơn';
                 return;
             }
@@ -533,9 +535,8 @@
 
             document.getElementById('MainContent_btnPrint').disabled = true;
 
-            if (document.getElementById('<%=chkAuto.ClientID%>').checked == false) {
-                alert('Cẩn thận khi tính toán thủ công ');
-            }
+            
+           
         }
         
         
