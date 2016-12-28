@@ -139,15 +139,11 @@ public partial class SiteMaster : MasterPage
 
     #endregion
 
-
- 
-
     #region method Unnamed_LoggingOut
     protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
     {
         Context.GetOwinContext().Authentication.SignOut();
     } 
     #endregion
-
 
 }

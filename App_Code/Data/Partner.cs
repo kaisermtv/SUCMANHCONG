@@ -1456,6 +1456,44 @@ public class Partner
     }
     #endregion
 
+    // tim kiem 
+    #region Method getAllPartnerSearchByLocation
+    public DataTable getAllPartnerSearchByLocation(string localtion)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            //  Cmd.CommandText = "SELECT * FROM tblProduct WHERE UPPER(RTRIM(LTRIM(Name))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' ORDER BY Id DESC";
+
+            Cmd.CommandText = "   SELECT TOP 24 0 AS TT, tblPartner.* ,tblLocation.Name  as Location  ";
+            Cmd.CommandText += "  FROM tblPartner  LEFT JOIN tblLocation ON tblPartner.LocationId = tblLocation.Id  ";
+            Cmd.CommandText += "  WHERE  UPPER(RTRIM(LTRIM(tblLocation.Name)))   LIKE  N'%'+UPPER(RTRIM(LTRIM(@Location)))+'%'  ";
+            Cmd.CommandText += " ORDER BY tblPartner.Name    DESC  ";
+            Cmd.Parameters.Add("@Location", SqlDbType.NVarChar).Value = localtion;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+    }
+    #endregion
 
 
 }

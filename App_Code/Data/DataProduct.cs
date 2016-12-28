@@ -451,6 +451,41 @@ public class DataProduct
         }
     }
     #endregion
+    #region Method getAllProductSearchByLocation
+    public DataTable getAllProductSearchByLocation(string location)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            //  Cmd.CommandText = "SELECT * FROM tblProduct WHERE UPPER(RTRIM(LTRIM(Name))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' ORDER BY Id DESC";
+
+            Cmd.CommandText = " SELECT TOP  36 0 AS TT, tblProduct.[Id],tblProduct.[Name],tblProduct.[Price],tblProduct.[Discount],tblProduct.[Image],tblProduct.[GroupId],tblProduct.[CountLike],tblProduct.[CountBuy],tblProduct.[BestSale],tblProduct.[VIP],tblProduct.[State],tblProduct.[PartnerId],tblProduct.[BrandId], REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1  from tblProduct ";
+            Cmd.CommandText += " WHERE   tblProduct.PartnerId  IN (SELECT tblPartner.Id FROM tblPartner LEFT JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId WHERE UPPER(RTRIM(LTRIM(tblLocation.Name)))   LIKE  N'%'+UPPER(RTRIM(LTRIM(@Location)))+'%'  ) ORDER BY tblProduct.Id   DESC ;";
+            Cmd.Parameters.Add("@Location", SqlDbType.NVarChar).Value = location;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+    }
+    #endregion
 
     // jon to show 
     #region Method getProductByIdWithJoinAndSortByPriceAsc  ||  ! Không lấy cột content
