@@ -311,8 +311,8 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
 
             this.strCurrBillId = BillId;
             this.lblMsg1.Text = "Thanh toán thành công đơn hàng!";
-            this.btnSave.Enabled = false;
-            this.btnSaveByCard.Enabled = false;
+            this.btnSave.Disabled = true;
+            this.btnSaveByCard.Disabled = true;
             this.getPartnerBillById(this.strCurrBillId);
             this.getProduct(Session["ACCOUNT"].ToString());
             this.btnCalTotalMoney.Disabled = true;
@@ -587,7 +587,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
             double tmpTodalMoneyDiscount = 0;
             tmpTodalMoneyDiscount = double.Parse(this.txtTotalMoneyDiscount.Text) * double.Parse(this.strDiscount) / 100;
             this.txtTotalMoneyPayment.Text = (double.Parse(this.txtTotalMoney.Value.ToString().Trim()) - tmpTodalMoneyDiscount).ToString();
-            this.btnSave.Enabled = true;
+            this.btnSave.Disabled = false;
 
         }
         catch
@@ -606,12 +606,12 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 }
                 if (double.Parse(this.strCustomerTotalDiscountCard) >= double.Parse(this.txtTotalMoneyPayment.Text))
                 {
-                    this.btnSaveByCard.Enabled = true;
+                    this.btnSaveByCard.Disabled = false;
                 }
             }
             catch
             {
-                this.btnSaveByCard.Enabled = false;
+                this.btnSaveByCard.Disabled = true;
             }
         }
         this.getProduct(Session["ACCOUNT"].ToString());
@@ -707,11 +707,11 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
 
             if (rowsAffected == 1)
             {
-                string ret = this.SendSMS(this.strCusPhone,"SMC gửi mã kích hoạt OTP: " + strOTP);
+                //string ret = this.SendSMS(this.strCusPhone,"SMC gửi mã kích hoạt OTP: " + strOTP);
                 //string ret = this.SendSMS("01667762419", strOTP);
 
-                this.btnSave.Enabled = false;
-                this.btnSaveByCard.Enabled = true;
+                this.btnSave.Disabled = true;
+                this.btnSaveByCard.Disabled = false;
                 this.txtOTPCode.Disabled = false;
 
                 this.lblMsg1.Text = "Mã OTP đã được gửi";
@@ -719,8 +719,8 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
             }
             else
             {
-                this.btnSave.Enabled = true;
-                this.btnSaveByCard.Enabled = true;
+                this.btnSave.Disabled = false;
+                this.btnSaveByCard.Disabled = false;
                 this.txtOTPCode.Disabled = true;
 
                 this.lblMsg1.Text = "Có lỗi xảy ra, xin thử lại";
@@ -738,8 +738,8 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
             DataTable ret = this.objCustomers.getCustomers_SMS_OTP(txtAccount.Value.ToString(), Session["ACCOUNT"].ToString(), this.txtOTPCode.Value.ToString(), "00:05:00.000");
             if (ret.Rows.Count > 0)
             {
-                this.btnSave.Enabled = true;
-                this.btnSaveByCard.Enabled = true;
+                this.btnSave.Disabled = false;
+                this.btnSaveByCard.Disabled = false;
                 this.txtOTPCode.Disabled = true;
 
                 this.setPartnerBill(true);
@@ -747,8 +747,8 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
             {
                 this.getProduct(Session["ACCOUNT"].ToString());
 
-                this.btnSave.Enabled = false;
-                this.btnSaveByCard.Enabled = true;
+                this.btnSave.Disabled = true;
+                this.btnSaveByCard.Disabled = false;
                 this.txtOTPCode.Disabled = false;
 
                 this.lblMsg1.Text = "Mã OTP không hợp lệ";
@@ -808,10 +808,11 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
 
         #endregion
 
-        this.btnSave.Enabled = false;
-        this.btnSaveByCard.Enabled = false;
+        this.btnSave.Disabled = true;
+        this.btnSaveByCard.Disabled = true;
         this.getPartnerInforByAccount(Session["ACCOUNT"].ToString());
         this.getProduct(Session["ACCOUNT"].ToString());
+        this.btnCalTotalMoney.Disabled = false;
     } 
     #endregion
 

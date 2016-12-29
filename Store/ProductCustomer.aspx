@@ -64,7 +64,7 @@
                             <div class="panel-heading">
                                 <b>HOÁ ĐƠN THANH TOÁN</b>
                                 <div style="float:right;">
-                                    <input type="checkbox" ID="chkAuto" name="vehicle" value="Bike"> Tự động
+                                    <input type="checkbox" ID="chkAuto" checked="checked" name="vehicle" value="Bike"> Tự động
                                 </div>
                             </div>
                             
@@ -278,11 +278,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12" style="margin-top: -10px;">
-                                <input disabled class="form-control" id="txtOTPCode" runat="server" placeholder="Mã OTP" />
-                            </div>
-                        </div>
                         <div class="row" style="margin-top: 9px;">
                             <div class="col-md-2">
                             <asp:Button ID="btnAdd" CssClass="btn btn-success" runat="server" style = "height:74px;" Text="Hóa đơn mới&nbsp;" OnClick="btnAdd_Click" />    
@@ -291,14 +286,58 @@
                             <input type ="button" id ="btnCalTotalMoney" class = "btn btn-success" style = "height:74px;" value ="&nbsp;&nbsp;&nbsp;&nbsp;Tính tiền&nbsp;&nbsp;&nbsp;" onclick ="calTotalMoney()" runat="server" />
                             </div>
                             <div class="col-md-3">
-                                <asp:Button ID="btnSave" Enabled="false" CssClass="btn btn-primary" runat="server" Text="&nbsp;Thanh toán tiền mặt&nbsp;&nbsp;&nbsp;" OnClick="btnSaveBill_Click" />
+                                <input type="button" id="btnSave" disabled="disabled" data-toggle="modal" data-target="#myModalok" class="btn btn-primary" runat="server" style="width: 170px" value="Thanh toán tiền mặt" />
+                                <!-- Modal -->
+                                <div id="myModalok" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Bạn xác nhận thanh toán bằng tiền mặt</h4>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <asp:Button CssClass="btn btn-default" Text="Xác nhận" runat="server" OnClick="btnSaveBill_Click" />
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- end -->
                                 <br />
-                                <asp:Button ID="btnSaveByCard" Enabled="false" CssClass="btn btn-primary" style = "margin-top:5px;" runat="server" Text="&nbsp;Thanh toán thẻ SMC&nbsp;&nbsp;" OnClick="btnSaveByCard_Click" />
+                                <input type="button" id="btnSaveByCard" disabled="disabled" data-toggle="modal" data-target="#myModalsms" class="btn btn-primary" runat="server" style="width: 170px;margin-top:5px; " value="Thanh toán thẻ SMC" />
+                                <!-- Modal -->
+                                <div id="myModalsms" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Bạn xác nhận thanh toán bằng thẻ SMC</h4>
+                                                <p>Để trống mã OPT để gửi tin nhắn tới khách hàng</p>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input disabled class="form-control" id="txtOTPCode" runat="server" placeholder="Mã OTP" />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <asp:Button CssClass="btn btn-default" Text="Xác nhận" runat="server" OnClick="btnSaveByCard_Click" />
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- end -->
                                 <br />
                             </div>
                             <div class="col-md-2">
                                 <!-- Bùi Hữu Tân Begin -->
-                                <input type ="button" ID ="btnPrint" class = "btn btn-success btn-lg" data-toggle="modal" data-target="#myModal" style = "height:74px;" value ="&nbsp;&nbsp;In hóa đơn&nbsp;&nbsp;" disabled runat="server" />
+                                <input type ="button" ID ="btnPrint" class = "btn btn-success btn-lg" data-toggle="modal" data-target="#myModal" style = "height:74px;" value ="In hóa đơn" disabled runat="server" />
                                 
                                 <!-- Modal -->
                                 <div id="myModal" class="modal fade" role="dialog">
@@ -367,8 +406,12 @@
         }
 
         function MyNumberFormat(object) {
-            var totalMoney = document.getElementById(object).value * 1;
-            document.getElementById(object).value = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
+            var NumPrice = 0;
+            NumPrice = new Number((document.getElementById(object).value).replace(',', '').trim().replace(',', '').replace(',', '').replace(',', '').replace(',', '')) * 1;
+
+            if (!isNaN(NumPrice)) {
+                document.getElementById(object).value = NumPrice.toLocaleString('en-US', { minimumFractionDigits: 0 });
+            }
         }
 
         function formatMoney() {
