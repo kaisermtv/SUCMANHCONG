@@ -28,9 +28,8 @@ public partial class System_PartnerInfo : System.Web.UI.Page
         }
         catch
         {
-            this.itemId = 0;
-            this.btnCreate.Enabled = false;
-            this.btnUpdate.Enabled = false;
+            Response.Redirect("/system/Partner");
+            return;
         }
         if (!Page.IsPostBack)
         {
@@ -100,12 +99,21 @@ public partial class System_PartnerInfo : System.Web.UI.Page
     #region method btnCreate_Click
     protected void btnCreate_Click(object sender, EventArgs e)
     {
+        if(this.txtAccount.Text != "")
+        {
+
+
+        }
+        else
+        {
+
+        }
+
+
+
         try
         {
-            if (this.itemId == 0)
-            {
-                return;
-            }
+            
             //TVSFunc objFunc = new TVSFunc();
             string PartnerAccount = "";
             PartnerAccount = objFunc.getPartnerAccount();

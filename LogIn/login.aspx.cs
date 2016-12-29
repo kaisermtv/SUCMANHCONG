@@ -10,80 +10,80 @@ using System.Web.UI.WebControls;
 public partial class login : System.Web.UI.Page
 {
     #region declare objects
-    private TVSFunc objFunc = new TVSFunc(); 
+    private TVSFunc objFunc = new TVSFunc();
     #endregion
 
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (this.txtAccount.Value.ToString() != "" || this.txtPassWord.Value.ToString() != "")
+        Session["ACCOUNT"] = null;
+
+        if (Page.IsPostBack)
         {
-            this.btnLogin_Click(sender, e);
+            if (this.txtAccount.Value.ToString() == "")
+            {
+                this.lblMsg.Text = "Tên đăng nhập không hợp lệ";
+                return;
+            }
+            if (this.txtPassWord.Value.ToString() == "")
+            {
+                this.lblMsg.Text = "Mật khẩu nhập không hợp lệ";
+                return;
+            }
+
+            DataTable accout = this.GetAccount(this.txtAccount.Value.ToString());
+            if(accout.Rows.Count == 0)
+            {
+                this.lblMsg.Text = "Tài khoản không tồn tại";
+                return;
+            }
+
+            if (accout.Rows[0]["Acct_Pass"].ToString() != this.objFunc.CryptographyMD5(this.txtPassWord.Value.ToString()))
+            {
+                this.lblMsg.Text = "Mật khẩu không chính xác";
+                return;
+            }
+
+            Session["ACCOUNT"] = accout.Rows[0]["Acct_Name"].ToString();
+            
+            int type = (int)accout.Rows[0]["Acct_Type"];
+            if (type  == 0)
+            {
+                Response.Redirect("/Store");
+            }
+            else if (type == 1)
+            {
+                Response.Redirect("/Customer");
+            }
         }
         
     } 
     #endregion
 
-    #region method btnLogin_Click
-    protected void btnLogin_Click(object sender, EventArgs e)
-    {
-        if (this.txtAccount.Value.ToString() == "")
-        {
-            this.lblMsg.Text = "Tên đăng nhập không hợp lệ";
-            return;
-        }
-        if (this.txtPassWord.Value.ToString() == "")
-        {
-            this.lblMsg.Text = "Mật khẩu nhập không hợp lệ";
-            return;
-        }
-
-        this.checkForLogin(this.txtAccount.Value.ToString(), this.txtPassWord.Value.ToString());
-    } 
-    #endregion
-
-    #region method checkForLogin
-    public void checkForLogin(string Account, string AccountPass)
+    #region method GetAccount
+    protected DataTable GetAccount(string account)
     {
         try
         {
-            string strDefault = "/";
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            if (Account.Substring(0, 3).ToUpper() == this.objFunc.getPartnerAccount().Trim().ToUpper())
-            {
-                Cmd.CommandText = "SELECT * FROM tblPartner WHERE State = 1 AND Account = @Account AND AccountPass = @AccountPass";
-                strDefault = "/Store/";
-            }
-            else
-            {
-                Cmd.CommandText = "SELECT * FROM tblCustomers WHERE State = 1 AND Account = @Account AND AccountPass = @AccountPass";
-                strDefault = "/Customer/Default.aspx";
-            }
-            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
-            Cmd.Parameters.Add("AccountPass", SqlDbType.NVarChar).Value =  this.objFunc.CryptographyMD5(AccountPass);
-            SqlDataReader Rd = Cmd.ExecuteReader();
-            while (Rd.Read())
-            {
-                Session["ACCOUNT"] = Account.ToUpper();
-            }
-            Rd.Close();
+            Cmd.CommandText = "SELECT * FROM tblAccount WHERE Acct_Name = @account";
+            Cmd.Parameters.Add("account", SqlDbType.NVarChar).Value = account;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
             sqlCon.Close();
             sqlCon.Dispose();
-            if (Session["ACCOUNT"] != null)
-            {
-                Response.Redirect(strDefault);
-            }
-            else
-            {
-                this.lblMsg.Text = "Thông tin đăng nhập không hợp lệ!";
-            }
+            return ds.Tables[0];
         }
         catch
         {
-
+            return new DataTable();
         }
-    }
+    } 
     #endregion
+
+
 }

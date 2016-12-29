@@ -49,7 +49,7 @@
                             <input name="remember" type="checkbox" value="Remember Me">
                             Nhớ mật khẩu</label>
                     </div>
-                    <asp:Button ID="btnLogin" runat="server" Text="ĐĂNG NHẬP" class="btn btn-lg btn-success btn-block" OnClick="btnLogin_Click" />
+                    <input type="submit" class="btn btn-lg btn-success btn-block" value="ĐĂNG NHẬP" />
                     <br>
 
                     <p class="text-center"><a href="Register.aspx">Đăng ký tài khoản?</a></p>
