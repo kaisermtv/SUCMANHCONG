@@ -433,7 +433,7 @@
                 totalMoney += ((document.getElementById('txtNumber' + i).value).replace(',', '') * 1) * ((document.getElementById('txtPrice' + i).value).replace(',', '') * 1);
             }
 
-            document.getElementById('out_tonggiamgia').innerText = totalMoney;
+            document.getElementById('out_tonggiamgia').innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
 
             //*
             var totalMoneybt = 0;
@@ -443,7 +443,7 @@
 
                 totalMoneybt += ((document.getElementById('MainContent_txtProductNumber' + i).value).replace(',', '') * 1) * ((document.getElementById('MainContent_txtProductPrice' + i).value).replace(',', '') * 1);
             }
-            document.getElementById('out_tonghangthuong').innerText = totalMoneybt;
+            document.getElementById('out_tonghangthuong').innerText = totalMoneybt.toLocaleString('en-US', { minimumFractionDigits: 0 });
 
             /**/
 

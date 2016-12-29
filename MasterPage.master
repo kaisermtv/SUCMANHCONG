@@ -76,6 +76,9 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Partner.aspx">Cửa hàng - đối tác</a>
                 </div>
                 <div class = "SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Customer.aspx">Khách hàng</a>
+                </div>
+                <div class = "SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Customer.aspx">Thành viên</a>
                 </div>
                 <div class = "SystemLeftMenu">
