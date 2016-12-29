@@ -11,7 +11,7 @@ public partial class StoreVIP : System.Web.UI.Page
     #region declare 
     public DataTable objTableStoreVip = new DataTable();
     private Partner objStoreVip = new Partner();
-    private DataProduct objGroup = new DataProduct();
+    private DataBusiness objBusiness = new DataBusiness();
     #endregion  
 
     protected void Page_Load(object sender, EventArgs e)
@@ -27,7 +27,7 @@ public partial class StoreVIP : System.Web.UI.Page
     #region Set Store Type
     private void setStoreType()
     {
-        this.ddlStoreType.DataSource = objGroup.getProductGroup();
+        this.ddlStoreType.DataSource = objBusiness.getBusiness();
         this.ddlStoreType.DataTextField = "Name";
         this.ddlStoreType.DataValueField = "Id";
         this.ddlStoreType.DataBind();
@@ -41,7 +41,7 @@ public partial class StoreVIP : System.Web.UI.Page
         int id = int.Parse( ddlStoreType.SelectedValue);
         // get Id index
         if (id == 0) { return; }
-        this.objTableStoreVip = objStoreVip.getTopPartnerVIPFilterByGroup(id);
+        this.objTableStoreVip = objStoreVip.getVIPPartnerFilterByGroup(id);
         ddlStoreType.SelectedValue = ddlStoreType.SelectedValue;
     }
 }

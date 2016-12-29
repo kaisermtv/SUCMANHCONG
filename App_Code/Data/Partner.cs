@@ -1184,7 +1184,7 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP "+filter+" tblPartner.* , tblLocation.Name AS [Local],  tblPartner.* FROM tblPartner   JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId WHERE [VIP] = 1 AND tblPartner.State = 1  ORDER BY tblPartner.Id DESC";
+            Cmd.CommandText = "SELECT TOP "+filter+" tblPartner.* , tblLocation.Name AS Location ,  tblPartner.* FROM tblPartner   JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId WHERE [VIP] = 1 AND tblPartner.State = 1  ORDER BY tblPartner.Id DESC";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -1202,15 +1202,15 @@ public class Partner
     #endregion
 
 
-    #region method getBestSalePartnerVIPFilterByGroup        || return top number partner input
-    public DataTable getBestSalePartnerVIPFilterByGroup(int business)
+    #region method getBestSalePartnerFilterByGroup        || return top number partner input
+    public DataTable getBestSalePartnerFilterByGroup(int business)
     {
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP " + 24 + " tblPartner.* , tblLocation.Name AS [Local]  FROM tblPartner   JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId WHERE tblPartner.Business = @Business AND [VIP] = 1 AND tblPartner.State = 1    ORDER BY tblPartner.Id DESC"; //
+            Cmd.CommandText = "SELECT TOP " + 24 + " tblPartner.* , tblLocation.Name AS Location  FROM tblPartner   JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId WHERE tblPartner.Business = @Business AND [BestSale] = 1 AND tblPartner.State = 1    ORDER BY tblPartner.Id DESC"; //
             Cmd.Parameters.Add("Business", SqlDbType.Int).Value = business;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -1228,15 +1228,15 @@ public class Partner
     }
     #endregion
 
-    #region method getTopPartnerVIPFilterByGroup        || return top number partner input
-    public DataTable getTopPartnerVIPFilterByGroup(int business)
+    #region method getVIPTopPartnerFilterByGroup        || return top number partner input
+    public DataTable getVIPPartnerFilterByGroup(int business)
     {
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP " + 24 + " 0 AS TT, tblPartner.* , tblLocation.Name AS Location FROM tblPartner  LEFT JOIN  tblLocation ON tblPartner.LocationId = tblLocation.Id  WHERE [BestSale] = 1 AND tblPartner.Business = @Business AND  tblPartner.State = 1  "; //
+            Cmd.CommandText = "SELECT TOP " + 24 + " 0 AS TT, tblPartner.* , tblLocation.Name AS Location FROM tblPartner  LEFT JOIN  tblLocation ON tblPartner.LocationId = tblLocation.Id  WHERE [VIP] = 1 AND tblPartner.Business = @Business AND  tblPartner.State = 1  "; //
             Cmd.Parameters.Add("Business", SqlDbType.Int).Value = business;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -1456,6 +1456,44 @@ public class Partner
     }
     #endregion
 
+    // tim kiem 
+    #region Method getAllPartnerSearchByLocation
+    public DataTable getAllPartnerSearchByLocation(string localtion)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            //  Cmd.CommandText = "SELECT * FROM tblProduct WHERE UPPER(RTRIM(LTRIM(Name))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' ORDER BY Id DESC";
+
+            Cmd.CommandText = "   SELECT TOP 24 0 AS TT, tblPartner.* ,tblLocation.Name  as Location  ";
+            Cmd.CommandText += "  FROM tblPartner  LEFT JOIN tblLocation ON tblPartner.LocationId = tblLocation.Id  ";
+            Cmd.CommandText += "  WHERE  UPPER(RTRIM(LTRIM(tblLocation.Name)))   LIKE  N'%'+UPPER(RTRIM(LTRIM(@Location)))+'%'  ";
+            Cmd.CommandText += " ORDER BY tblPartner.Name    DESC  ";
+            Cmd.Parameters.Add("@Location", SqlDbType.NVarChar).Value = localtion;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+    }
+    #endregion
 
 
 }
