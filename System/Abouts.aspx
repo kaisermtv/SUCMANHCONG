@@ -5,6 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
     <div style="width: 100%; height: 32px; line-height: 30px; background-color: #dde8ec; font-family: Arial; font-size: 13px; font-weight: bold; text-transform: uppercase;">
         <div style="float: left; width: 12%;">&nbsp;&nbsp;THÔNG TIN</div>
         <div style="float: right; width: 87.5%;">
@@ -18,6 +19,11 @@
             </div>
         </div>
     </div>
+    <% if(this.txtMessage != ""){ %>
+    <div style="width: 100%; height: 35px; line-height: 35px;text-align:center;">
+        <%= this.txtMessage %>
+    </div>
+    <% } %>
     <div style="width: 100%; height: 35px; line-height: 35px;">
         <div style="width: 12%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
             &nbsp;&nbsp;Đơn vị :

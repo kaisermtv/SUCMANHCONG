@@ -10,6 +10,8 @@ using System.Web;
 /// </summary>
 public class tblAbouts
 {
+    public string ErrorMessage = "";
+    public int ErrorCode = 0;
     public tblAbouts()
 	{
 		//
@@ -47,8 +49,8 @@ public class tblAbouts
     }
     #endregion
 
-    #region method setTopic
-    public int setTopic(string Name, string Address, string Phone, string Email, string Intro)
+    #region method setAbouts
+    public int setAbouts(string Name, string Address, string Phone, string Email, string Intro)
     {
         try
         {
@@ -56,7 +58,10 @@ public class tblAbouts
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             string sqlQuery = "";
-            sqlQuery += "UPDATE tblAbouts SET Name = @Name, Address = @Address, Phone = @Phone, Email = @Email, Intro = @Intro WHERE Id = 1";
+            sqlQuery += "IF NOT EXISTS (SELECT * FROM tblAbouts WHERE Id = 1)";
+            sqlQuery += "BEGIN INSERT INTO tblAbouts(Id,Name,Address,Phone,Email,Intro) VALUES(1,@Name,@Address,@Phone,@Email,@Intro) END ";
+            sqlQuery += "ELSE BEGIN UPDATE tblAbouts SET Name = @Name, Address = @Address, Phone = @Phone, Email = @Email, Intro = @Intro WHERE Id = 1 END";
+            
             Cmd.CommandText = sqlQuery;
             Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
             Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = Address;
@@ -69,8 +74,10 @@ public class tblAbouts
 
             return ret;
         }
-        catch
+        catch(Exception ex)
         {
+            this.ErrorMessage = ex.Message;
+            this.ErrorCode = ex.HResult;
             return 0;
         }
     }

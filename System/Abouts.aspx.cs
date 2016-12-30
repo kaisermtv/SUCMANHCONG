@@ -11,6 +11,7 @@ public partial class Abouts : System.Web.UI.Page
 {
     #region declare objects
     private tblAbouts objAbouts = new tblAbouts();
+    public string txtMessage = "";
     #endregion
 
     #region method Page_Load
@@ -63,7 +64,9 @@ public partial class Abouts : System.Web.UI.Page
     #region method btnSave_Click
     protected void btnSave_Click(object sender, EventArgs e)
     {
-        int ret = this.objAbouts.setTopic(this.txtName.Text, this.txtAddress.Text, this.txtPhone.Text, this.txtEmail.Text, this.txtIntro.Text);
+        int ret = this.objAbouts.setAbouts(this.txtName.Text, this.txtAddress.Text, this.txtPhone.Text, this.txtEmail.Text, this.txtIntro.Text);
+        this.txtMessage = this.objAbouts.ErrorMessage;
+    
     } 
     #endregion
 

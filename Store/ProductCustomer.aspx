@@ -355,7 +355,7 @@
                                                 <p>Điện thoại: <% Response.Write(this.strPhone); %></p><br/>
                                                 <h3>Hóa đơn thanh toán</h3>
                                                 <p>Khách hàng: <% Response.Write(this.strCusName); %></p>
-                                                <p>Mã số thẻ: <% Response.Write(this.strIdCard); %></p>
+                                                <p>Mã số thẻ: <% Response.Write(this.strCusAccount); %></p>
                                                 <p>Điện thoại: <% Response.Write(this.strCusPhone); %></p><br/>
                                                 <h3>Hàng hóa giảm giá</h3>
                                                 <table id="tbl_hgg" class="table-bordered">
@@ -364,12 +364,12 @@
                                                         <th>Hàng hóa</th>
                                                         <th>Số lượng</th>
                                                         <th>Đơn giá</th>
-                                                        <th>TT</th>
+                                                        <th>Thành tiền</th>
                                                     </tr>
                                                     <% Response.Write(this.strhtmlbill); %>
                                                 </table><br/>
                                                 <p>Tổng tiền hàng: <a id="tongtienhang" runat="server"></a></p>
-                                                <p>Chiết khấu: <a id="tonggiamgia" runat="server"></a></p>
+                                                <p>Tổng tiền hàng hóa chiết khấu: <a id="tonggiamgia" runat="server"></a></p>
                                                 <p>Tổng tiền thanh toán: <a id="tienphaitra" runat="server"></a></p>
                                                 <br/>
                                                 <p>Cảm ơn!</p>

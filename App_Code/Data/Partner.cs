@@ -114,7 +114,7 @@ public class Partner
             SqlCommand Cmd = sqlCon.CreateCommand();
             string sqlQuery = "IF NOT EXISTS (SELECT * FROM tblPartner WHERE Id = @Id)";
             sqlQuery += "BEGIN INSERT INTO tblPartner(Name,Address,Phone,Manager,Business,TaxCode,Content,Image,BestSale,VIP,State,Discount,LocationId) VALUES(@Name,@Address,@Phone,@Manager,@Business,@TaxCode,@Content,@Image,@BestSale,@VIP,@State,@Discount,@LocationId) END ";
-            sqlQuery += "UPDATE tblPartner SET Name = @Name, Address = @Address, Phone = @Phone, Manager = @Manager, Business = @Business, TaxCode = @TaxCode, Content = @Content, Image = @Image, State = @State, BestSale = @BestSale, VIP = @VIP, Discount = @Discount,LocationId = @LocationId WHERE Id = @Id";
+            sqlQuery += "ELSE BEGIN UPDATE tblPartner SET Name = @Name, Address = @Address, Phone = @Phone, Manager = @Manager, Business = @Business, TaxCode = @TaxCode, Content = @Content, Image = @Image, State = @State, BestSale = @BestSale, VIP = @VIP, Discount = @Discount,LocationId = @LocationId WHERE Id = @Id END";
             Cmd.CommandText = sqlQuery;
             Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
             Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
