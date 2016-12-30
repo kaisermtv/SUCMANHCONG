@@ -7,6 +7,12 @@ using System.Web;
 
 public class Partner
 {
+    #region method bien
+    public string ErrorMessage = "";
+    public int ErrorCode = 0;
+
+    #endregion
+
     #region method Partner
     public Partner()
     {
@@ -21,7 +27,7 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "INSERT INTO tblPartner(Name,Address,Phone,Manager,Business,TaxCode,BestSale,VIP,State.LocationId) VALUES(@Name,@Address,@Phone,@Manager,@Business,@TaxCode,@BestSale,@VIP,@State,@LocationId) SELECT CAST(scope_identity() AS int)";
+            Cmd.CommandText = "INSERT INTO tblPartner(Name,Address,Phone,Manager,Business,TaxCode,BestSale,VIP,State,LocationId) VALUES(@Name,@Address,@Phone,@Manager,@Business,@TaxCode,@BestSale,@VIP,@State,@LocationId) SELECT CAST(scope_identity() AS int)";
             Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
             Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = Address;
             Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = Phone;
@@ -40,8 +46,10 @@ public class Partner
 
             return ret;
         }
-        catch
+        catch (Exception ex)
         {
+            this.ErrorMessage = ex.Message;
+            this.ErrorCode = ex.HResult;
             return 0;
         }
     }
@@ -636,7 +644,7 @@ public class Partner
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT 0 AS TT, '' AS State1, * FROM tblPartner";
+            Cmd.CommandText = "SELECT 0 AS TT, '' AS State1, * FROM tblPartner ORDER BY [DayCreate] DESC";
 
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
