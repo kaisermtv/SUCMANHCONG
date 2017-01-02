@@ -69,8 +69,14 @@ public partial class Store_Register : System.Web.UI.Page
         catch { }
 
         int PartnerId = this.objPartner.addPartner(this.txtName.Value.ToString(), this.txtAddress.Value.ToString(), this.txtPhone.Value.ToString(), this.txtManager.Value.ToString(), this.txtTaxCode.Value.ToString(), Business, LocationId);
-
-        this.lblMsg.Text = this.objPartner.ErrorMessage;
+        if (PartnerId != 0)
+        {
+            Response.Redirect("/Register/");
+        }
+        else
+        {
+            this.lblMsg.Text = this.objPartner.ErrorMessage;
+        }
     }
     #endregion
 

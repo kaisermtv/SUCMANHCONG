@@ -10,6 +10,9 @@ using System.Web;
 /// </summary>
 public class DataProduct
 {
+    public string ErrorMessage = "";
+    public int ErrorCode = 0;
+
 
     #region method getProduct
     public DataTable getProduct()
@@ -1038,80 +1041,6 @@ public class DataProduct
     }
     #endregion
 
-    #region method getTopProductVIPShowHome || return 15 Products Data Table
-    public DataTable getTopProductVIPShowHome(int limit = 4, int offset = 0)
-    {
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT  [Id],[Name],[Image],[Discount],[CountLike],[CountBuy],[Price] FROM tblProduct WHERE VIP = 1 AND [State] = 1 ORDER BY [Id] DESC OFFSET " + offset.ToString() + " ROWS FETCH NEXT " + limit.ToString() + " ROWS ONLY";
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            return ds.Tables[0];
-        }
-        catch
-        {
-            return new DataTable();
-        }
-
-    }
-    #endregion
-
-    #region Method getCountProductBestSaleShowHome
-    public int getCountProductBestSaleShowHome()
-    {
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-
-            Cmd.CommandText = "SELECT COUNT(*) FROM tblProduct WHERE BestSale = 1  AND [State] = 1";
-
-            int ret = (int)Cmd.ExecuteScalar();
-            sqlCon.Close();
-            sqlCon.Dispose();
-
-            return ret;
-        }
-        catch
-        {
-            return 0;
-        }
-    }
-    #endregion
-
-    #region method getProductBestSaleShowHome
-    public DataTable getProductBestSaleShowHome(int limit = 4,int offset=0)
-    {
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT [Id],[Name],[Image],[Discount],[CountLike],[CountBuy],[Price] FROM tblProduct WHERE BestSale = 1  AND [State] = 1 ORDER BY [Id] DESC OFFSET "+ offset.ToString() +" ROWS FETCH NEXT "+ limit.ToString() +" ROWS ONLY";
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            return ds.Tables[0];
-        }
-        catch
-        {
-            return new DataTable();
-        }
-
-    }
-    #endregion
-
     #region method getProductBestSaleWithNum  || return number product with best Sale
     public DataTable getProductBestSaleWithNum(int filter)
     {
@@ -1158,5 +1087,100 @@ public class DataProduct
         }
     }
     #endregion
+
+
+    #region Method getProductOption
+    public DataTable getProductOption(int vipandsale = 0, int Group = 0, int limit = 0, int offset = 0, bool DESC = true)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "";
+            Cmd.CommandText += "SELECT [Id],[Name],[Image],[Discount],[CountLike],[CountBuy],[Price] FROM tblProduct WHERE [State] = 1";
+
+            if (vipandsale == 1)
+            {
+                Cmd.CommandText += " AND [VIP] = 1";
+            }
+            else if (vipandsale == 2)
+            {
+                Cmd.CommandText += " AND [BestSale] = 1";
+            }
+            if (Group != 0)
+            {
+                Cmd.CommandText += " AND [GroupId] = " + Group.ToString();
+            }
+            if (DESC)
+            {
+                Cmd.CommandText += " ORDER BY [Id] DESC";
+            }
+            Cmd.CommandText += " OFFSET " + offset.ToString() + " ROWS";
+            if (limit != 0)
+            {
+                Cmd.CommandText += " FETCH NEXT " + limit.ToString() + " ROWS ONLY";
+            }
+            //this.ErrorMessage = Cmd.CommandText;
+            //return new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            this.ErrorMessage = ex.Message;
+            this.ErrorCode = ex.HResult;
+
+            return new DataTable();
+        }
+    }
+    #endregion
+
+    #region Method getCountProductOption
+    public int getCountProductOption(int vipandsale = 0, int Group = 0)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "";
+            Cmd.CommandText += "SELECT COUNT(*)  FROM tblProduct WHERE [State] = 1 ";
+            if (vipandsale == 1)
+            {
+                Cmd.CommandText += " AND [VIP] = 1";
+            }
+            else if (vipandsale == 2)
+            {
+                Cmd.CommandText += " AND [BestSale] = 1";
+            }
+            if (Group != 0)
+            {
+                Cmd.CommandText += " AND [GroupId] = " + Group.ToString();
+            }
+            //this.ErrorMessage = Cmd.CommandText;
+
+            int ret = (int)Cmd.ExecuteScalar();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.ErrorMessage = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return 0;
+        }
+    }
+    #endregion
+
 
 }

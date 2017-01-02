@@ -392,7 +392,7 @@
             </div>
             <div class="line">
                 <div class="col-md-7">
-                    <img src="images/line.jpg" alt="" />
+                    <img src="/images/line.jpg" alt="" />
                 </div>
             </div>
 
@@ -462,7 +462,7 @@
             <% for (int i = 0; i < this.objTablePartnerBestSale.Rows.Count; i++)
                { %>
             <div class="col-md-3">
-                <a class="fw" href="/Store/?id=<%= this.objTablePartnerBestSale.Rows[i]["Id"].ToString() %>">
+                <a class="fw" href="/Store/Detailt.aspx?id=<%= this.objTablePartnerBestSale.Rows[i]["Id"].ToString() %>">
                     <img style="height:145px;width:100%" src="images/Partner/<%= this.objTablePartnerBestSale.Rows[i]["Image"].ToString() %>" alt="" />
                 </a>
                 <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial; height:35px;overflow:hidden;">

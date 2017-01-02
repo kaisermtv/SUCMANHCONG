@@ -51,8 +51,7 @@
                     Điện thoại :      <%= this.objTableStoreBestSale.Rows[i]["Phone"].ToString() %>
                 </div>
                 <div style="text-align: center;">
-                    <div style="margin-left: 5px; float: left; width: 47%; background-color: #337ab7;
-                        color: #fff; height: 30px; line-height: 30px; display: table; vertical-align: middle;">
+                    <div class="Sotre_Location" <%="style=\"background-color:#" + ((int)this.objTableStoreBestSale.Rows[i]["Color"]).ToString("X") + "\" " %>>
                         <%= this.objTableStoreBestSale.Rows[i]["Location"].ToString() %>
                     </div>
                     <div style="margin-right: 5px; float: right; width: 47%; background-color: #ffc000;

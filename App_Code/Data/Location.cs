@@ -10,9 +10,31 @@ using System.Web;
 /// </summary>
 public class Location
 {
-	public Location()
-	{
-	}
+
+    #region method getLocation
+    public DataTable getLocation()
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT *  FROM tblLocation";
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            return ds.Tables[0];
+        }
+        catch 
+        {
+            return new DataTable();
+        }
+
+    }
+    #endregion
 
     #region method getIdAndUpperName
     public DataTable getIdAndUpperName()
@@ -45,8 +67,6 @@ public class Location
     #region method getLocationName
     public String getLocationName(int id)
     {
-        DataTable objTable = new DataTable();
-
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
@@ -61,8 +81,6 @@ public class Location
             sqlCon.Close();
             sqlCon.Dispose();
             return ds.Tables[0].Rows[0]["Name"].ToString();
-          
-
         }
         catch { }
 

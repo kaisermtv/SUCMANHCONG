@@ -15,7 +15,7 @@
                       <%for (int i = 0; i < this.objTableStoreVip.Rows.Count; i++)
           {  %>
             <div class="col-md-3" style="padding-bottom:20px;">
-                <div style="border: solid 1px #f6f6f6; height: 262px;">
+                <div style="border: solid 1px #f6f6f6; height: 350px;">
                     <div style="text-align: center;">
                         <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;
                        height:39px; overflow:hidden;      text-align: center; text-transform: uppercase;">
@@ -35,8 +35,7 @@
                         Điện thoại :      <%Response.Write(this.objTableStoreVip.Rows[i]["Phone"].ToString()); %>
                     </div>
                     <div style="text-align: center;">
-                        <div style="margin-left: 5px; float: left; width: 47%; background-color: #337ab7;
-                            color: #fff; height: 30px; line-height: 30px; display: table; vertical-align: middle;">
+                        <div class="Sotre_Location" <%="style=\"background-color:#" + ((int)this.objTableStoreVip.Rows[i]["Color"]).ToString("X") + "\" " %>>
                             <%Response.Write(this.objTableStoreVip.Rows[i]["Location"].ToString()); %>
                         </div>
                         <div style="margin-right: 5px; float: right; width: 47%; background-color: #ffc000;
@@ -64,7 +63,7 @@
                 <div class="col-md-3" style="margin-bottom:10px">
                     <div style="background-color: #f9faf5; height: 375px; padding: 5px;">
                         <a href="/detailt.aspx?id=<%Response.Write(this.objTableProductVIP.Rows[i]["Id"].ToString()); %>">
-                            <img src="../Images/Products/<%Response.Write(this.objTableProductVIP.Rows[i]["Image"].ToString()); %>" style="width: 100%; margin-left: auto; height:254px;"
+                            <img src="/Images/Products/<%Response.Write(this.objTableProductVIP.Rows[i]["Image"].ToString()); %>" style="width: 100%; margin-left: auto; height:254px;"
                                  alt="San pham VIP"   onerror="this.onerror = null; this.src = '../img/noImg.jpg';"  /></a>
                         <p class="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #50505a; height:50px; overflow:hidden; 
                              padding: 5px; text-align: justify; border-bottom: solid 2px #f0f0fb;" >

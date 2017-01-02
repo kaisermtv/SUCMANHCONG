@@ -36,7 +36,7 @@
         <%for (int i = 0; i < this.objTableStoreVip.Rows.Count; i++)
           {  %>
             <div class="col-md-3">
-                <div style="border: solid 1px #f6f6f6; height: 262px;">
+                <div style="border: solid 1px #f6f6f6; height: 370px;">
                     <div style="text-align: center;">
                         <h4 style="font-size: 18px; font-weight: bold; color: #505068; font-family: Arial;
                        height:39px; overflow:hidden;      text-align: center; text-transform: uppercase;">
@@ -56,8 +56,7 @@
                         Điện thoại :      <%Response.Write(this.objTableStoreVip.Rows[i]["Phone"].ToString()); %>
                     </div>
                     <div style="text-align: center;">
-                        <div style="margin-left: 5px; float: left; width: 47%; background-color: #337ab7;
-                            color: #fff; height: 30px; line-height: 30px; display: table; vertical-align: middle;">
+                        <div class="Sotre_Location" <%="style=\"background-color:#" + ((int)this.objTableStoreVip.Rows[i]["Color"]).ToString("X") + "\" " %>>
                             <%Response.Write(this.objTableStoreVip.Rows[i]["Location"].ToString()); %>
                         </div>
                         <div style="margin-right: 5px; float: right; width: 47%; background-color: #ffc000;

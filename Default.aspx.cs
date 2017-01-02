@@ -44,7 +44,7 @@ public partial class _Default : Page
         {
         }
         int ncount;
-        ncount = objProduct.getCountProductBestSaleShowHome();
+        ncount = objProduct.getCountProductOption(2);
         this.CountPageProduct = ncount / 8;
         if (ncount % 8 != 0)
         {
@@ -61,7 +61,7 @@ public partial class _Default : Page
         catch
         {
         }
-        ncount = objPartner.getCountTopPartnerBestSaleShowHome();
+        ncount = objPartner.getCountPartnerOption(2);
         this.CountPagePartner = ncount / 8;
         if (ncount % 8 != 0)
         {
@@ -73,10 +73,10 @@ public partial class _Default : Page
 
 
         this.objTableNews = objTopic.getTopTopic();
-        this.objTableProductVIP = objProduct.getTopProductVIPShowHome(8);
-        this.objTableBestSale = objProduct.getProductBestSaleShowHome(8, (this.PageProduct-1)*8);
-        this.objTablePartner = objPartner.getTopPartnerVIPShowHome(8);
-        this.objTablePartnerBestSale = objPartner.getTopPartnerBestSaleShowHome(8, (this.PagePartner-1)*8);
+        this.objTableProductVIP = objProduct.getProductOption(1,0,8);
+        this.objTableBestSale = objProduct.getProductOption(2,0,8, (this.PageProduct - 1) * 8);
+        this.objTablePartner = objPartner.getPartnerOption(1,0,0,8);
+        this.objTablePartnerBestSale = objPartner.getPartnerOption(2,0,0,8, (this.PagePartner - 1) * 8);
         this.objTableBrand = objBrand.getBrand();
         this.objTableSlide = objSlide.getSlideImage();
     }

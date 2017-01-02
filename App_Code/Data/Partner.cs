@@ -1162,7 +1162,7 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP " + filter + " 0 AS TT, tblPartner.* , tblLocation.Name AS Location FROM tblPartner  LEFT JOIN  tblLocation ON tblPartner.LocationId = tblLocation.Id  WHERE [BestSale] = 1 AND tblPartner.State = 1  ";
+            Cmd.CommandText = "SELECT TOP " + filter + " 0 AS TT, tblPartner.* , tblLocation.Name AS Location,tblLocation.color as Color FROM tblPartner  LEFT JOIN  tblLocation ON tblPartner.LocationId = tblLocation.Id  WHERE [BestSale] = 1 AND tblPartner.State = 1  ";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -1192,7 +1192,7 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP "+filter+" tblPartner.* , tblLocation.Name AS Location ,  tblPartner.* FROM tblPartner   JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId WHERE [VIP] = 1 AND tblPartner.State = 1  ORDER BY tblPartner.Id DESC";
+            Cmd.CommandText = "SELECT TOP " + filter + " tblPartner.* , tblLocation.Name AS Location,tblLocation.color as Color ,  tblPartner.* FROM tblPartner   JOIN tblLocation ON tblLocation.Id = tblPartner.LocationId WHERE [VIP] = 1 AND tblPartner.State = 1  ORDER BY tblPartner.Id DESC";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -1273,55 +1273,6 @@ public class Partner
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = "SELECT [Id],[Name],[Address],[Phone],[Image],[Discount] FROM tblPartner WHERE [VIP] = 1 AND [State] = 1  ORDER BY [Id] DESC OFFSET " + offset.ToString() + " ROWS FETCH NEXT " + limit.ToString() + " ROWS ONLY";
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            return ds.Tables[0];
-        }
-        catch
-        {
-            return new DataTable();
-        }
-
-    }
-    #endregion
-
-    #region Method getCountTopPartnerBestSaleShowHome
-    public int getCountTopPartnerBestSaleShowHome()
-    {
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-
-            Cmd.CommandText = "SELECT COUNT(*) FROM tblPartner WHERE BestSale = 1  AND [State] = 1";
-
-            int ret = (int)Cmd.ExecuteScalar();
-            sqlCon.Close();
-            sqlCon.Dispose();
-
-            return ret;
-        }
-        catch
-        {
-            return 0;
-        }
-    }
-    #endregion
-
-    #region method getTopPartnerBestSaleShowHome
-    public DataTable getTopPartnerBestSaleShowHome(int limit = 4, int offset = 0)
-    {
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT [Id],[Name],[Address],[Phone],[Image],[Discount]  FROM tblPartner  WHERE [BestSale] = 1 AND [State] = 1 ORDER BY [Id] DESC OFFSET " + offset.ToString() + " ROWS FETCH NEXT " + limit.ToString() + " ROWS ONLY";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -1477,7 +1428,7 @@ public class Partner
 
             //  Cmd.CommandText = "SELECT * FROM tblProduct WHERE UPPER(RTRIM(LTRIM(Name))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' ORDER BY Id DESC";
 
-            Cmd.CommandText = "   SELECT TOP 24 0 AS TT, tblPartner.* ,tblLocation.Name  as Location  ";
+            Cmd.CommandText = "   SELECT TOP 24 0 AS TT, tblPartner.* ,tblLocation.Name  as Location,tblLocation.color  as Color  ";
             Cmd.CommandText += "  FROM tblPartner  LEFT JOIN tblLocation ON tblPartner.LocationId = tblLocation.Id  ";
             Cmd.CommandText += "  WHERE  UPPER(RTRIM(LTRIM(tblLocation.Name)))   LIKE  N'%'+UPPER(RTRIM(LTRIM(@Location)))+'%'  ";
             Cmd.CommandText += " ORDER BY tblPartner.Name    DESC  ";
@@ -1503,5 +1454,107 @@ public class Partner
     }
     #endregion
 
+
+    #region Method getPartnerOption
+    public DataTable getPartnerOption(int vipandsale = 0,int Business = 0, int Location = 0, int limit = 0, int offset = 0,bool DESC = true)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "";
+            Cmd.CommandText += "SELECT [tblPartner].[Id],[tblPartner].[Name],[tblPartner].[Address],[tblPartner].[Phone],[tblPartner].[Image],[tblPartner].[Discount]";
+            Cmd.CommandText += ",tblLocation.Name as Location, tblLocation.color as Color";
+            Cmd.CommandText += "  FROM tblPartner LEFT JOIN tblLocation ON tblPartner.LocationId = tblLocation.Id WHERE [tblPartner].[State] = 1 ";
+            if(vipandsale == 1) 
+            {
+                Cmd.CommandText += " AND [tblPartner].[VIP] = 1";
+            }
+            else if (vipandsale == 2)
+            {
+                Cmd.CommandText += " AND [tblPartner].[BestSale] = 1";
+            }
+            if (Location != 0)
+            {
+                Cmd.CommandText += " AND [tblLocation].[Id] = " + Location.ToString();
+            }
+            if (Business != 0)
+            {
+                Cmd.CommandText += " AND [tblPartner].[Business] = " + Business.ToString();
+            }
+            if(DESC)
+            {
+                Cmd.CommandText += " ORDER BY [DayCreate] DESC" ;
+            }
+            Cmd.CommandText += " OFFSET " + offset.ToString() + " ROWS";
+            if (limit != 0)
+            {
+                Cmd.CommandText += " FETCH NEXT " + limit.ToString() + " ROWS ONLY";
+            }
+            //this.ErrorMessage = Cmd.CommandText;
+            //return new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ds.Tables[0];
+        }
+        catch(Exception ex)
+        {
+            this.ErrorMessage = ex.Message;
+            this.ErrorCode = ex.HResult;
+
+            return new DataTable();
+        }
+    }
+    #endregion
+
+    #region Method getCountPartnerOption
+    public int getCountPartnerOption(int vipandsale = 0, int Business = 0, int Location = 0)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "";
+            Cmd.CommandText += "SELECT COUNT(*)  FROM tblPartner WHERE [tblPartner].[State] = 1 ";
+            if (vipandsale == 1)
+            {
+                Cmd.CommandText += " AND [tblPartner].[VIP] = 1";
+            }
+            else if (vipandsale == 2)
+            {
+                Cmd.CommandText += " AND [tblPartner].[BestSale] = 1";
+            }
+            if (Location != 0)
+            {
+                Cmd.CommandText += " AND [tblPartner].[LocationId] = " + Location.ToString();
+            }
+            if (Business != 0)
+            {
+                Cmd.CommandText += " AND [tblPartner].[Business] = " + Business.ToString();
+            }
+            //this.ErrorMessage = Cmd.CommandText;
+
+            int ret = (int)Cmd.ExecuteScalar();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.ErrorMessage = ex.Message;
+            this.ErrorCode = ex.HResult;
+            return 0;
+        }
+    }
+    #endregion
 
 }
