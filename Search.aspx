@@ -177,7 +177,7 @@
             <div class="col-md-3" style="margin-top: 10px">
                 <div class="sanpham_background">
                     <a class="fw" href="/detailt.aspx?id=<%= this.objTableProduct.Rows[i]["Id"].ToString() %>">
-                        <img src="/images/Products/<%= this.objTableProduct.Rows[i]["Image"].ToString() %>" class="sanpham_avata" alt=" Nổi bật" />
+                        <img src="/images/Products/<%= this.objTableProduct.Rows[i]["Image"].ToString() %>" class="sanpham_avata" alt=" Nổi bật" onerror=" this.onerror = null  ; this.src ='/img/noImg.jpg'" />
                     </a>
                     <p class="ProductLink sanpham_title">
                         <a href="/detailt.aspx?id=<%= this.objTableProduct.Rows[i]["Id"].ToString() %> ">

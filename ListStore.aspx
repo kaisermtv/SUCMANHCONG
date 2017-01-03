@@ -83,9 +83,9 @@
                         <%Response.Write(this.objTableStore.Rows[i]["Name"].ToString()); %>
                     </h4>
                     <a href="/Store/Detailt.aspx?id= <%Response.Write(this.objTableStore.Rows[i]["Id"].ToString()); %>">
-                        <img src="../Images/Partner/<%Response.Write(this.objTableStore.Rows[i]["Image"].ToString()); %>"
+                        <img src="/Images/Partner/<%Response.Write(this.objTableStore.Rows[i]["Image"].ToString()); %>"
                             alt="Cua hang" style="width: 99%; margin-left: auto; height: 200px; margin-right: auto;"
-                            onerror=" this.onerror = null  ; this.src = '../img/noImg.jpg'" /></a>
+                            onerror=" this.onerror = null  ; this.src = /img/noImg.jpg'" /></a>
                 </div>
                 <div style="font-family: Arial; font-size: 13px; text-align: justify; padding: 5px; color: #414441; height: 40px; overflow: hidden;">
                     <%Response.Write(this.objTableStore.Rows[i]["Address"].ToString()); %>

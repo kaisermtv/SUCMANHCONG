@@ -37,7 +37,7 @@ public partial class Search : System.Web.UI.Page
     public string urlget = "";
 
     // tối đa một trang hiển thị bao nhiêu item
-    public int PageItem = 16;
+    public int PageItem = 8;
     #endregion
 
     #region Method Page_Load
