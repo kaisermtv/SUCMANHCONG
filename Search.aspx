@@ -144,25 +144,25 @@
     <div class="sotrang">
         <table>
             <tr>
-                <td><a href="<%= this.GetUrlPage((this.nPage-1 > 0)?(this.nPage-1):1) %>"><i class="fa fa-angle-left"></i></a></td>
+                <td><a href="<%= this.GetUrlPage((this.nPage-1 > 0)?(this.nPage-1):1,this.pPage) %>"><i class="fa fa-angle-left"></i></a></td>
                 <% if (this.nPage != 1){ %>
-                <td><a href="<%=this.GetUrlPage(1) %>">1</a></td>
+                <td><a href="<%=this.GetUrlPage(1,this.pPage) %>">1</a></td>
                 <% } %>
 
                 <% for (int i = ((this.nPage - 4 > 1) ? (this.nPage - 4) : 2); i < this.nPage; i++){ %>
-                <td><a href="<%=this.GetUrlPage(i) %>"><%=i.ToString() %></a></td>
+                <td><a href="<%=this.GetUrlPage(i,this.pPage) %>"><%=i.ToString() %></a></td>
                 <% } %>
 
                 <td style="border-radius: 0%; background-color: aqua;"><%=this.nPage.ToString() %></td>
 
                 <% for (int i = (this.nPage + 1); i < this.MaxPage && i < (this.nPage + 6); i++){ %>
-                <td><a href="<%=this.GetUrlPage(i) %>"><%=i.ToString() %></a></td>
+                <td><a href="<%=this.GetUrlPage(i,this.pPage) %>"><%=i.ToString() %></a></td>
                 <% } %>
 
                 <% if (this.nPage < this.MaxPage){ %>
-                <td><a href="<%=this.GetUrlPage(this.MaxPage) %>"><%= this.MaxPage.ToString() %></a></td>
+                <td><a href="<%=this.GetUrlPage(this.MaxPage,this.pPage) %>"><%= this.MaxPage.ToString() %></a></td>
                 <% } %>
-                <td><a href="<%=this.GetUrlPage((this.nPage+1 < this.MaxPage)?(this.nPage+1):this.MaxPage) %>"><i class="fa fa-angle-right"></i></a></td>
+                <td><a href="<%=this.GetUrlPage((this.nPage+1 < this.MaxPage)?(this.nPage+1):this.MaxPage,this.pPage) %>"><i class="fa fa-angle-right"></i></a></td>
 
             </tr>
         </table>

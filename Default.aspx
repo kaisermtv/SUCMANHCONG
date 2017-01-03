@@ -226,7 +226,7 @@
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">CHÚNG TÔI</span></a>
-                    <a href="#"><i class="glyphicon glyphicon-book"></i>
+                    <a href="/NewsDetailt?Id=9"><i class="glyphicon glyphicon-book"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">ĐÀO TẠO</span></a>

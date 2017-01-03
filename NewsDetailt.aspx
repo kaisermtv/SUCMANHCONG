@@ -6,7 +6,7 @@
         <div style="width: 92%; margin: auto; display: table; margin-bottom: 20px; margin-top: 10px;">
             <div class="row">
                 <div class="col-md-9" style="float: left; width: 75%; height: 100%; vertical-align: top; text-align: justify;">
-                    <h3 style="text-align: justify; font-family: Arial; font-size: 16px; font-weight: bold; padding-top: 5px;"><a href="/">TRANG CHỦ</a> >> <a href="#">TIN TỨC</a></h3>
+                    <h3 style="text-align: justify; font-family: Arial; font-size: 16px; font-weight: bold; padding-top: 5px;"><a href="/">TRANG CHỦ</a> >> <a href="#"><%=this.GroupName.ToUpper() %></a></h3>
                     <hr style="width: 98%; color: #00ffff;" />
                     <div style="width: 98%; text-align: justify; margin-top:10px;">
                         <h3 style="font-family: Arial; font-size: 16px; font-weight: bold; text-align: justify;"><% Response.Write(this.objTable.Rows[0]["Title"].ToString()); %></h3>

@@ -65,10 +65,12 @@ public partial class Customer_Register : System.Web.UI.Page
             this.lblMsg.Text = "Thông tin đăng ký đã được gửi đến ban quản trị, chúng tôi sẽ xem xét và phản hồi bạn, Xin cảm ơn!";
             this.btnRegister.Enabled = false;
             this.btnCancel.Text = "Tiếp tục";
+
+            //Response.Redirect("/Customer/Register");
         }
         catch
         {
-
+            this.lblMsg.Text = "Lỗi. Bạn cần kiểm tra lại định dạng thông tin truyền vào cho chính xác!";
         }
     }
     #endregion
@@ -83,7 +85,7 @@ public partial class Customer_Register : System.Web.UI.Page
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("../");
+        Response.Redirect("/");
     } 
     #endregion
 }

@@ -75,7 +75,7 @@ public class DataTopic
     #endregion
 
     #region method getTopic
-    public DataTable getTopic()
+    public DataTable getTopic(int groupid = 0)
     {
         DataTable objTable = new DataTable();
         try
@@ -83,7 +83,12 @@ public class DataTopic
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT 0 AS TT, * FROM tblTopic";
+            Cmd.CommandText = "SELECT 0 AS TT,'' AS DayCreate1, * FROM tblTopic";
+            if(groupid != 0)
+            {
+                Cmd.CommandText += " WHERE [GroupId] = @GroupId";
+                Cmd.Parameters.Add("GroupId", SqlDbType.Int).Value = groupid;
+            }
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -189,5 +194,38 @@ public class DataTopic
             return 0;
         }
     }
+    #endregion
+
+    #region method Group Topic
+
+    #region method getGroupTopicById
+    public DataTable getGroupTopicById(int Id)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT * FROM [tblTopicGroup] WHERE Id = @Id";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+
+    }
+    #endregion
+
     #endregion
 }
