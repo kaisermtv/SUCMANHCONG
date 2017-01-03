@@ -1090,7 +1090,7 @@ public class DataProduct
 
 
     #region Method getProductOption
-    public DataTable getProductOption(int vipandsale = 0, int Group = 0, int limit = 0, int offset = 0, bool DESC = true)
+    public DataTable getProductOption(int vipandsale = 0, int Group = 0, int limit = 0, int offset = 0, bool DESC = true, string search ="",int Location = 0)
     {
         try
         {
@@ -1098,23 +1098,39 @@ public class DataProduct
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = "";
-            Cmd.CommandText += "SELECT [Id],[Name],[Image],[Discount],[CountLike],[CountBuy],[Price] FROM tblProduct WHERE [State] = 1";
-
+            Cmd.CommandText += "SELECT [tblProduct].[Id],[tblProduct].[Name],[tblProduct].[Image],[tblProduct].[Discount],[tblProduct].[CountLike],[tblProduct].[CountBuy],[tblProduct].[Price] FROM [tblProduct]";
+            if (Location != 0)
+            {
+                Cmd.CommandText += " LEFT JOIN [tblPartner] ON [tblPartner].[Id] = [tblProduct].[PartnerId]";
+            }
+            
+            Cmd.CommandText += " WHERE [tblProduct].[State] = 1";
             if (vipandsale == 1)
             {
-                Cmd.CommandText += " AND [VIP] = 1";
+                Cmd.CommandText += " AND [tblProduct].[VIP] = 1";
             }
             else if (vipandsale == 2)
             {
-                Cmd.CommandText += " AND [BestSale] = 1";
+                Cmd.CommandText += " AND [tblProduct].[BestSale] = 1";
             }
             if (Group != 0)
             {
-                Cmd.CommandText += " AND [GroupId] = " + Group.ToString();
+                Cmd.CommandText += " AND [tblProduct].[GroupId] = @Group";
+                Cmd.Parameters.Add("Group", SqlDbType.Int).Value = Group;
+            }
+            if (search != "")
+            {
+                Cmd.CommandText += " AND (UPPER([tblProduct].[Name]) LIKE N'%'+ @Search +'%' OR UPPER([tblProduct].[Price]) LIKE N'%'+ @Search +'%')";
+                Cmd.Parameters.Add("Search", SqlDbType.NVarChar).Value = search.ToUpper().Trim();
+            }
+            if (Location != 0)
+            {
+                Cmd.CommandText += " AND [tblPartner].[LocationId] = @Location";
+                Cmd.Parameters.Add("Location", SqlDbType.Int).Value = Location;
             }
             if (DESC)
             {
-                Cmd.CommandText += " ORDER BY [Id] DESC";
+                Cmd.CommandText += " ORDER BY [tblProduct].[Id] DESC";
             }
             Cmd.CommandText += " OFFSET " + offset.ToString() + " ROWS";
             if (limit != 0)
@@ -1144,7 +1160,7 @@ public class DataProduct
     #endregion
 
     #region Method getCountProductOption
-    public int getCountProductOption(int vipandsale = 0, int Group = 0)
+    public int getCountProductOption(int vipandsale = 0, int Group = 0, string search = "", int Location = 0)
     {
         try
         {
@@ -1152,18 +1168,34 @@ public class DataProduct
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = "";
-            Cmd.CommandText += "SELECT COUNT(*)  FROM tblProduct WHERE [State] = 1 ";
+            Cmd.CommandText += "SELECT COUNT(*) FROM [tblProduct]";
+            if (Location != 0)
+            {
+                Cmd.CommandText += " LEFT JOIN [tblPartner] ON [tblPartner].[Id] = [tblProduct].[PartnerId]";
+            }
+            Cmd.CommandText += " WHERE [tblProduct].[State] = 1 ";
             if (vipandsale == 1)
             {
-                Cmd.CommandText += " AND [VIP] = 1";
+                Cmd.CommandText += " AND [tblProduct].[VIP] = 1";
             }
             else if (vipandsale == 2)
             {
-                Cmd.CommandText += " AND [BestSale] = 1";
+                Cmd.CommandText += " AND [tblProduct].[BestSale] = 1";
             }
             if (Group != 0)
             {
-                Cmd.CommandText += " AND [GroupId] = " + Group.ToString();
+                Cmd.CommandText += " AND [tblProduct].[GroupId] = @Group";
+                Cmd.Parameters.Add("Group", SqlDbType.Int).Value = Group;
+            }
+            if (search != "")
+            {
+                Cmd.CommandText += " AND (UPPER([tblProduct].[Name]) LIKE N'%'+ @Search +'%' OR UPPER([tblProduct].[Price]) LIKE N'%'+ @Search +'%')";
+                Cmd.Parameters.Add("Search", SqlDbType.NVarChar).Value = search.ToUpper().Trim();
+            }
+            if (Location != 0)
+            {
+                Cmd.CommandText += " AND [tblPartner].[LocationId] = @Location";
+                Cmd.Parameters.Add("Location", SqlDbType.Int).Value = Location;
             }
             //this.ErrorMessage = Cmd.CommandText;
 

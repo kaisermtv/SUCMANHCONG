@@ -1456,7 +1456,7 @@ public class Partner
 
 
     #region Method getPartnerOption
-    public DataTable getPartnerOption(int vipandsale = 0,int Business = 0, int Location = 0, int limit = 0, int offset = 0,bool DESC = true)
+    public DataTable getPartnerOption(int vipandsale = 0,int Business = 0, int Location = 0, int limit = 0, int offset = 0,bool DESC = true,string search ="")
     {
         try
         {
@@ -1482,6 +1482,11 @@ public class Partner
             if (Business != 0)
             {
                 Cmd.CommandText += " AND [tblPartner].[Business] = " + Business.ToString();
+            }
+            if (search != "")
+            {
+                Cmd.CommandText += " AND (UPPER([tblPartner].[Name]) LIKE N'%'+ @Search +'%' OR UPPER([tblPartner].[Address]) LIKE N'%'+ @Search +'%')";
+                Cmd.Parameters.Add("Search", SqlDbType.NVarChar).Value = search.ToUpper().Trim();
             }
             if(DESC)
             {
@@ -1515,7 +1520,7 @@ public class Partner
     #endregion
 
     #region Method getCountPartnerOption
-    public int getCountPartnerOption(int vipandsale = 0, int Business = 0, int Location = 0)
+    public int getCountPartnerOption(int vipandsale = 0, int Business = 0, int Location = 0,string search = "")
     {
         try
         {
@@ -1539,6 +1544,11 @@ public class Partner
             if (Business != 0)
             {
                 Cmd.CommandText += " AND [tblPartner].[Business] = " + Business.ToString();
+            }
+            if (search != "")
+            {
+                Cmd.CommandText += " AND (UPPER([tblPartner].[Name]) LIKE N'%'+ @Search +'%' OR UPPER([tblPartner].[Address]) LIKE N'%'+ @Search +'%')";
+                Cmd.Parameters.Add("Search", SqlDbType.NVarChar).Value = search.ToUpper().Trim();
             }
             //this.ErrorMessage = Cmd.CommandText;
 

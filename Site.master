@@ -72,14 +72,14 @@
                                     padding-bottom: 20px; padding-left: 5px; padding-right: 5px; border: solid 1px #c4d6cc;
                                     margin-top: 6px; text-align: center;
                                     margin-left: 14px; color: red;">
-                                     <a href="/Search/Default.aspx?location=NGHỆ AN" style="  color: red;font-weight: bold;font-family: Arial; font-size: 11px;">NGHỆ AN</a></div>
+                                     <a href="/Search?Location=1" style="  color: red;font-weight: bold;font-family: Arial; font-size: 11px;">NGHỆ AN</a></div>
                                 <div style="float: left; background-color: #f4f4f4; text-align: center; font-family: Arial;
                                     font-size: 11px; font-weight: bold; margin-top: -1px; margin-left: 5px; margin-right: 5px;">
                                     |</div>
                                 <div style="float: left; background-color: #fff; height: 20px; line-height: 20px;
                                     padding-bottom: 20px; padding-left: 5px; padding-right: 5px; border: solid 1px #c4d6cc;
                                     margin-top: 6px; text-align: center;">
-                                  <a href="/Search/Default.aspx?location= HÀ TĨNH" style=" font-family: Arial; font-size: 11px; font-weight: bold;">  HÀ TĨNH </a></div>
+                                  <a href="/Search?Location=2" style=" font-family: Arial; font-size: 11px; font-weight: bold;">  HÀ TĨNH </a></div>
                                 <div style="float: left; background-color: #f4f4f4; text-align: center; font-family: Arial;
                                     font-size: 11px; font-weight: bold; margin-top: -1px; margin-left: 5px; margin-right: 5px;">
                                     |</div>
@@ -91,7 +91,7 @@
                             </div>
                         </div>
                         <div class="col-md-4" style="text-align: right; height:100%">
-                            <form method="get" action="/Search/Default.aspx">
+                            <form method="get" action="/Search">
                                 <div class="input-group" style="text-align: right; margin-left: 42px; height: 100%">
                                     <input type="text" class="form-control" placeholder="Tìm kiếm" name="search" style="width: 280px; height: 30px; line-height: 30px; margin-top: 3px;">
                                     <div class="input-group-btn">
@@ -154,10 +154,10 @@
                                 border: 0px solid orange; margin-left: -15px; background-color: white; width: 130px;
                                 padding: 8px; z-index: 1000">
                                 <p style="width: 100%; margin-top: 5px; padding-bottom: 5px; border-bottom: solid 1px #77cef2;">
-                                    <a href="../Customer/Register.aspx">Đăng ký thành viên</a>
+                                    <a href="/Customer/Register.aspx">Đăng ký thành viên</a>
                                 </p>
                                 <p style="width: 100%; margin-top: 0px; margin-bottom: 0px;">
-                                    <a href="../Store/Register.aspx">Đăng ký gian hàng</a>
+                                    <a href="/Store/Register.aspx">Đăng ký gian hàng</a>
                                 </p>
                                 <script type="text/javascript">
                                     dropdowncontent.init("searchlink1", "right-bottom", 1000, "mouseover")
@@ -175,19 +175,19 @@
                                 padding: 8px; z-index: 1000">
                                 <p style="width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2;
                                     text-align: justify; font-weight: bold;">
-                                    <a href="/Search/Default.aspx?location=Hanoi">Hà Nội</a>
+                                    <a href="/Search?Location=0">Hà Nội</a>
                                 </p>
                                 <p style="width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2;
                                     text-align: justify; font-weight: bold;">
-                                    <a href="/Search/Default.aspx?location=Tp. Hồ Chí Minh">Tp. Hồ Chí Minh</a>
+                                    <a href="/Search?Location=0">Tp. Hồ Chí Minh</a>
                                 </p>
                                 <p style="width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2;
                                     text-align: justify; font-weight: bold;">
-                                    <a href="/Search/Default.aspx?location=Thanh hóa">Thanh hóa</a>
+                                    <a href="/Search?Location=0">Thanh hóa</a>
                                 </p>
                                 <p style="width: 100%; margin-top: 0px; margin-bottom: 0px; text-align: justify;
                                     font-weight: bold;">
-                                    <a href="/Search/Default.aspx?location=Quảng Bình">Quảng Bình</a>
+                                    <a href="/Search?Location=0">Quảng Bình</a>
                                 </p>
                                 <script type="text/javascript">
                                     dropdowncontent.init("searchlink2", "right-bottom", 500, "mouseover")
@@ -211,47 +211,47 @@
                             <div class="wrapper">
                                 <div class="col-md-10">
                                     <div class="main-menu" style="overflow:hidden; outline-style:hidden;">
-                                        <a href="../Products/?filter=0" class="col-centered">
+                                        <a href="/ListProduct" class="col-centered">
                                           
-                                            <img src="../img/icons/glyphicons-157-show-thumbnails.png" style="opacity:0.7 " />
+                                            <img src="/img/icons/glyphicons-157-show-thumbnails.png" style="opacity:0.7 " />
                                               <p style="margin-top:3px;">Tất cả</p>
                                         </a>
-                                        <a href="../Products/?filter=<% Response.Write(this.ProductGroupId[0].ToString()); %> " style="margin-left:-1%">
+                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[0].ToString()); %> " style="margin-left:-1%">
                                           
                                             <img src="../img/icons/glyphicons-87-display.png" style="opacity:0.5 " />
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[0].ToString()); %></p>
                                         </a>
-                                        <a href="../Products/?filter=<% Response.Write(this.ProductGroupId[1].ToString()); %>" style="margin-left:-1%">
+                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[1].ToString()); %>" style="margin-left:-1%">
                                             <img src="../img/icons/glyphicons-29-cars.png"  style="opacity:0.5 " />
                                           
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[1].ToString()); %></p>
                                         </a>
-                                        <a href="../Products/?filter=<% Response.Write(this.ProductGroupId[2].ToString()); %>" style="margin-left:-1%">
+                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[2].ToString()); %>" style="margin-left:-1%">
                                             <img src="../img/icons/glyphicons-384-bathrobe.png"  style="opacity:0.5 " />
                                           <%--  <img src="../img/icons/glyphicons-284-t-shirt.png" />--%>
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[2].ToString()); %></p>
                                         </a>
-                                        <a href="../Products/?filter=<% Response.Write(this.ProductGroupId[3].ToString()); %>" style="margin-left:-1%">
+                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[3].ToString()); %>" style="margin-left:-1%">
                                            
                                             <img src="../img/icons/glyphicons-5-girl.png"  style="opacity:0.5 " />
                                             <p style="margin-top:3px;" ><% Response.Write(this.ProductGroup[3].ToString());  %></p>
                                         </a>
-                                        <a href="../Products/?filter=<% Response.Write(this.ProductGroupId[4].ToString()); %>" style="margin-left:-1%">
+                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[4].ToString()); %>" style="margin-left:-1%">
                                            
                                             <img src="../img/icons/glyphicons-476-dining-set.png"  style="opacity:0.5 " />
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[4].ToString()); %></p>
                                         </a>
-                                        <a href="../Products/?filter=<% Response.Write(this.ProductGroupId[5].ToString()); %>" style="margin-left:-1%">
+                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[5].ToString()); %>" style="margin-left:-1%">
                                            
                                             <img src="../img/icons/glyphicons-593-person.png"   style="opacity:0.5 " />
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[5].ToString()); %></p>
                                         </a>
-                                        <a href="../Products/?filter=<% Response.Write(this.ProductGroupId[6].ToString()); %>" style="margin-left:-1%">
+                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[6].ToString()); %>" style="margin-left:-1%">
                                           
                                             <img src="../img/icons/glyphicons-21-home.png"  style="opacity:0.5 " />
                                             <p style="margin-top:3px;" ><% Response.Write(this.ProductGroup[6].ToString()); %></p>
                                         </a>
-                                        <a href="../Products/?filter=<% Response.Write(this.ProductGroupId[7].ToString()); %>" style="margin-left:-1%">
+                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[7].ToString()); %>" style="margin-left:-1%">
                                            
                                             <img src="../img/icons/glyphicons-341-globe.png"  style="opacity:0.5 " />
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[7].ToString()); %></p>

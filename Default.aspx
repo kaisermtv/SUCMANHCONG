@@ -196,21 +196,21 @@
 
                 <!----->
                 <div class="menu">
-                    <a href="/ProductsVIP.aspx"><i class="glyphicon glyphicon-th-list"></i>
+                    <a href="/ListProduct?Type=1"><i class="glyphicon glyphicon-th-list"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">SẢN PHẨM VIP</span>
                     </a>
-                    <a href="/ProductsBestSale.aspx"><i class="glyphicon glyphicon-th"></i>
+                    <a href="/ListProduct?Type=2"><i class="glyphicon glyphicon-th"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">SẢN PHẨM BÁN CHẠY</span>
                     </a>
-                    <a href="/StoreVIP.aspx"><i class="glyphicon glyphicon-tower"></i>
+                    <a href="/ListStore?Type=1"><i class="glyphicon glyphicon-tower"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">CỬA HÀNG VIP</span></a>
-                    <a href="StoreBestSale.aspx"><i class="glyphicon glyphicon-tasks"></i>
+                    <a href="/ListStore?Type=2"><i class="glyphicon glyphicon-tasks"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold;
                             text-transform: uppercase; color: #01a44b;">CỬA HÀNG BÁN CHẠY</span></a>
@@ -238,7 +238,7 @@
             <div class="phan1">
                 <div class="col-md-3">
                     <h2 class="StoreVIPLink">
-                        <a href="ProductsVIP.aspx">SẢN PHẨM BÁN CHẠY VIP</a>
+                        <a href="/ListProduct?Type=1">SẢN PHẨM BÁN CHẠY VIP</a>
                     </h2>
                 </div>
                 <div class="col-md-9">
@@ -307,7 +307,7 @@
         <div class="row">
             <div class="col-md-3">
                 <h2 class="StoreVIPLink">
-                    <a href="ProductsBestSale.aspx">SẢN PHẨM BÁN CHẠY %</a>
+                    <a href="/ListProduct?Type=2">SẢN PHẨM BÁN CHẠY %</a>
                 </h2>
             </div>
 
@@ -387,7 +387,7 @@
         <div class="row">
             <div class="col-md-3">
                 <h2 class="StoreVIPLink">
-                    <a href="StoreVIP.aspx">CỬA HÀNG BÁN CHẠY VIP</a>
+                    <a href="/ListStore?Type=1">CỬA HÀNG BÁN CHẠY VIP</a>
                 </h2>
             </div>
             <div class="line">
@@ -449,7 +449,7 @@
         <div class="row">
             <div class="col-md-3">
                 <h2 class="StoreVIPLink">
-                    <a href="StoreBestSale.aspx">CỬA HÀNG BÁN CHẠY</a>
+                    <a href="/ListStore?Type=2">CỬA HÀNG BÁN CHẠY</a>
                 </h2>
             </div>
             <div class="line">
