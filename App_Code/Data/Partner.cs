@@ -113,7 +113,7 @@ public class Partner
 
     #region Method UpdateOrInsertPartner
     //*
-    public int UpdateOrInsertPartner(int Id, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, bool BestSale, bool VIP, bool State, float Discount, string Content, string Image,int locationId)
+    public int UpdateOrInsertPartner(int Id, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, bool BestSale, bool VIP, bool State, float Discount, string Content, string Image, int locationId)
     {
         try
         {
@@ -1294,7 +1294,7 @@ public class Partner
     #endregion
 
     #region method updatePartner
-    public int updatePartner(int Id, double discountTotal, double discount, double discountAdv, double discountCard)
+    public int updatePartner(int Id, double discountTotal, double discount, double discountAdv, double discountCard,double minmaxsale)
     {
         
         try
@@ -1302,11 +1302,12 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "UPDATE tblPartner SET DiscountTotal = @DiscountTotal, Discount = @Discount, DiscountAdv = @DiscountAdv, DiscountCard = @DiscountCard WHERE Id = @Id";
+            Cmd.CommandText = "UPDATE tblPartner SET DiscountTotal = @DiscountTotal, Discount = @Discount, DiscountAdv = @DiscountAdv, DiscountCard = @DiscountCard,[MinMaxSales] = @MinMaxSales WHERE Id = @Id";
             Cmd.Parameters.Add("DiscountTotal", SqlDbType.Float).Value = discountTotal;
             Cmd.Parameters.Add("Discount", SqlDbType.Float).Value = discount;
             Cmd.Parameters.Add("DiscountAdv", SqlDbType.Float).Value = discountAdv;
             Cmd.Parameters.Add("DiscountCard", SqlDbType.Float).Value = discountCard;
+            Cmd.Parameters.Add("MinMaxSales", SqlDbType.Float).Value = minmaxsale;
             Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
             Cmd.ExecuteNonQuery();
             sqlCon.Close();

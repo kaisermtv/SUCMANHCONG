@@ -103,7 +103,11 @@
                 <div class="row">
                     <div class="col-md-3">
                         <div style="width: 100%; color: #fff;" class="TVS-Col-md20">
-                            <a href="#"><b><% Response.Write(this.strName.ToUpper()); %></b></a><a href="/Store/Summary.aspx"><img src ="/img/Notification.gif" alt ="notification" style ="width:30px; margin-top:-8px; margin-bottom:-8px; margin-left:20px;"></a>
+                            <a href="#"><% Response.Write(this.strName.ToUpper()); %></a>
+                            <a href="/Store/Summary.aspx">
+                                <img src ="/img/Notification.gif" alt ="notification" style ="width:30px; margin-top:-8px; margin-bottom:-8px; margin-left:20px;">
+                            </a>
+                            <a style="font-size: 25px;margin-top:-10px;color: red"> ★</a>
                         </div>
                         <div style="width: 100%;">
                             <asp:Label ID="lblImg1" runat="server" Text=""></asp:Label>
