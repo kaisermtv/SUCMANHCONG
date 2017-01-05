@@ -43,7 +43,7 @@
     </div>
  
     <div style="width: 100%; height: 30px; line-height: 30px;">
-        <div style="width: 15%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
+        <div style="width: 14%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
             &nbsp;&nbsp;Điện thoại :
         </div>
         <div style="width: 15%; height: 30px; line-height: 30px; float: left;">
@@ -68,16 +68,9 @@
             <asp:DropDownList ID="ddlBusiness" runat="server" Style="width: 100%; height: 26px; line-height: 26px; margin-top: 3px;"></asp:DropDownList>
         </div>
     </div>
-    <div style="width: 100%; height: auto; margin-top: 5px;">
+    <div style="width: 100%; height: auto; margin-top: 5px; display:table;">
         <div style="width: 12%; height: auto; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
             &nbsp;&nbsp;Giới thiệu :
-        </div>
-        <div style="width: 87.5%; height: auto; line-height: 30px; float: right;">
-            <CKEditor:CKEditorControl ID="txtContent" CssClass="editor1" runat="server" Height="280" Width="99%" BasePath="~/ckeditor"></CKEditor:CKEditorControl>
-        </div>
-    </div>
-    <div style="width: 100%; height: 425px; line-height: 425px; margin-top: 5px;">
-        <div style="width: 12%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
             <br />
             <br />
             Hình đại diện
@@ -90,8 +83,10 @@
             <asp:FileUpload ID="upImage1" runat="server" Width="100px" CssClass="FileUploadImage" Height="22px" />
                 </label>
         </div>
+        <div style="width: 87.5%; height: auto; line-height: 30px; float: right;">
+            <CKEditor:CKEditorControl ID="txtContent" CssClass="editor1" runat="server" Height="280" Width="99%" BasePath="~/ckeditor"></CKEditor:CKEditorControl>
+        </div>
     </div>
-
     <div style="width: 100%; height: 35px; line-height: 35px;">
         <div style="width: 12.5%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
             &nbsp;&nbsp;Mức chiết khấu :
@@ -99,6 +94,7 @@
         <div style="width: 10%; height: 30px; line-height: 30px; float: left;">
             <asp:TextBox ID="txtDiscount" runat="server" Style="height: 22px; line-height: 22px; width: 99%; font-size: 13px; font-family: Arial;"></asp:TextBox>
         </div>
+
         <div style="width: 10%; height: 30px; line-height: 30px; float: left; padding-left:20px;">
             <asp:CheckBox ID="ckbBestSale" Text="  Bán chạy %" runat="server" />
         </div>
@@ -109,6 +105,8 @@
         <div style="height: 30px; line-height: 30px; float: left; font-family:Arial; font-size:12px;">
             <asp:CheckBox ID="ckbState" Text = "  Trạng thái" runat="server" />
         </div>
+
+        
     </div>
 </asp:Content>
 

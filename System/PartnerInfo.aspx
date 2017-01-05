@@ -118,6 +118,13 @@
             </div>
 
             <div style="width: 22%; display: table; float: left;">
+                Doanh số cân đối:
+            </div>
+            <div style="width: 78%; display: table; float: right;">
+                <asp:TextBox ID="txtMinMaxSale" runat="server" Style="height: 22px; line-height: 22px; width: 100px; font-family: Arial; font-size: 14px; font-weight: bold; text-transform: uppercase; border: solid 1px Aqua;"></asp:TextBox>
+            </div>
+
+            <div style="width: 22%; display: table; float: left;">
                 Số sản phẩm:
             </div>
             <div style="width: 78%; display: table; float: right;">
