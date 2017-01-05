@@ -46,6 +46,14 @@
                 $('#qnimate').addClass('popup-box-on');
             });
 
+            $("#lienhe").click(function () {
+                $('#qnimate').addClass('popup-box-on');
+            }); 
+
+            $("#lienheht").click(function () {
+                $('#qnimate').addClass('popup-box-on');
+            });
+
             $("#removeClass").click(function () {
                 $('#qnimate').removeClass('popup-box-on');
             });
@@ -218,42 +226,42 @@
                                         </a>
                                         <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[0].ToString()); %> " style="margin-left:-1%">
                                           
-                                            <img src="../img/icons/glyphicons-87-display.png" style="opacity:0.5 " />
+                                            <img src="/img/icons/glyphicons-87-display.png" style="opacity:0.5 " />
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[0].ToString()); %></p>
                                         </a>
                                         <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[1].ToString()); %>" style="margin-left:-1%">
-                                            <img src="../img/icons/glyphicons-29-cars.png"  style="opacity:0.5 " />
+                                            <img src="/img/icons/glyphicons-29-cars.png"  style="opacity:0.5 " />
                                           
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[1].ToString()); %></p>
                                         </a>
                                         <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[2].ToString()); %>" style="margin-left:-1%">
-                                            <img src="../img/icons/glyphicons-384-bathrobe.png"  style="opacity:0.5 " />
+                                            <img src="/img/icons/glyphicons-384-bathrobe.png"  style="opacity:0.5 " />
                                           <%--  <img src="../img/icons/glyphicons-284-t-shirt.png" />--%>
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[2].ToString()); %></p>
                                         </a>
                                         <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[3].ToString()); %>" style="margin-left:-1%">
                                            
-                                            <img src="../img/icons/glyphicons-5-girl.png"  style="opacity:0.5 " />
+                                            <img src="/img/icons/glyphicons-5-girl.png"  style="opacity:0.5 " />
                                             <p style="margin-top:3px;" ><% Response.Write(this.ProductGroup[3].ToString());  %></p>
                                         </a>
                                         <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[4].ToString()); %>" style="margin-left:-1%">
                                            
-                                            <img src="../img/icons/glyphicons-476-dining-set.png"  style="opacity:0.5 " />
+                                            <img src="/img/icons/glyphicons-476-dining-set.png"  style="opacity:0.5 " />
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[4].ToString()); %></p>
                                         </a>
                                         <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[5].ToString()); %>" style="margin-left:-1%">
                                            
-                                            <img src="../img/icons/glyphicons-593-person.png"   style="opacity:0.5 " />
+                                            <img src="/img/icons/glyphicons-593-person.png"   style="opacity:0.5 " />
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[5].ToString()); %></p>
                                         </a>
                                         <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[6].ToString()); %>" style="margin-left:-1%">
                                           
-                                            <img src="../img/icons/glyphicons-21-home.png"  style="opacity:0.5 " />
+                                            <img src="/img/icons/glyphicons-21-home.png"  style="opacity:0.5 " />
                                             <p style="margin-top:3px;" ><% Response.Write(this.ProductGroup[6].ToString()); %></p>
                                         </a>
                                         <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[7].ToString()); %>" style="margin-left:-1%">
                                            
-                                            <img src="../img/icons/glyphicons-341-globe.png"  style="opacity:0.5 " />
+                                            <img src="/img/icons/glyphicons-341-globe.png"  style="opacity:0.5 " />
                                             <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[7].ToString()); %></p>
                                         </a>
                                     </div>
@@ -276,13 +284,13 @@
             <div class="container" style="margin-top: -15px;">
                 <div class="row">
                     <div class="col-md-3">
-                        <h5><a href="#" style="font-family: Arial; font-size: 15px; font-weight: bold;">Giới
+                        <h5><a href="/NewsDetailt?Id=12" style="font-family: Arial; font-size: 15px; font-weight: bold;">Giới
                             thiệu SUCMANHCONG</a></h5>
                         <ul style="list-style-type: circle;">
-                            <li><a href="#" style="color: #4e4e57;">Liên hệ</a></li>
-                            <li><a href="#" style="color: #4e4e57;">Về chúng tôi</a></li>
-                            <li><a href="#" style="color: #4e4e57;">Chính sách bảo mật thông tin</a></li>
-                            <li><a href="#" style="color: #4e4e57;">Thông tin</a></li>
+                            <li><a href="#lienhe" id="lienhe" style="color: #4e4e57;">Liên hệ</a></li>
+                            <li><a href="/About" style="color: #4e4e57;">Về chúng tôi</a></li>
+                            <li><a href="/NewsDetailt?Id=11" style="color: #4e4e57;">Chính sách bảo mật thông tin</a></li>
+                            <li><a href="/NewsDetailt?Id=14" style="color: #4e4e57;">Thông tin</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3">
@@ -301,8 +309,8 @@
                         <h5><a href="#" style="font-family: Arial; font-size: 15px; font-weight: bold;">HỢP
                             TÁC SUCMANHCONG</a></h5>
                         <ul>
-                            <li><a href="#">Chính sách hợp tác</a></li>
-                            <li><a href="#">Liên hệ hợp tác</a></li>
+                            <li><a href="/NewsDetailt?Id=13">Chính sách hợp tác</a></li>
+                            <li><a href="#lienheht" id="lienheht">Liên hệ hợp tác</a></li>
                         </ul>
                     </div>
                     <div class="col-md-3">
@@ -317,7 +325,7 @@
             <div class="popup-box chat-popup" id="qnimate">
                 <div class="popup-head">
                     <div class="popup-head-left pull-left">
-                        <img src="../img/company.png" alt="iamgurdeeposahan">
+                        <img src="/img/company.png" alt="iamgurdeeposahan">
                         Hỗ trợ trực tuyến </div>
                     <div class="popup-head-right pull-right">
                         <div class="btn-group">
@@ -362,7 +370,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">
-                        <img src="../images/logo.jpg"  alt="SUCMANHCONG.COM" style="width: 200px; height: 60px; margin-top: 6px;"/>
+                        <img src="/images/logo.jpg"  alt="SUCMANHCONG.COM" style="width: 200px; height: 60px; margin-top: 6px;"/>
                     </div>
                     <div class="col-md-6">
                         <h6 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57;">

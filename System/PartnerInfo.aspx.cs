@@ -17,6 +17,8 @@ public partial class System_PartnerInfo : System.Web.UI.Page
     private int itemId = 0;
     public int SoSanPham = 0, SoSanPhamVIP = 0, SoSanPhamBanChay = 0, SoGiaoDich = 0;
     public double TongDoanhSo = 0;
+
+    public string Message = "";
     #endregion
 
     #region method Page_Load
@@ -32,7 +34,10 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             this.btnCreate.Enabled = false;
             this.btnUpdate.Enabled = false;
         }
-        if (!Page.IsPostBack)
+        if (this.itemId == 0)
+        {
+            Response.Redirect("/System/Partner");
+        } else if (!Page.IsPostBack)
         {
             this.getPartner();
             this.SoSanPham = this.objProduct.getCountProductByPartnerId(this.itemId);
@@ -40,6 +45,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             this.SoSanPhamBanChay = this.objProduct.getProductBestSaleCountByPartnerId(this.itemId);
             this.SoGiaoDich = this.objPartner.getProductBillCountByPartnerId(this.itemId);
             this.TongDoanhSo = this.objPartner.getProductDoanhSoByPartnerId(this.itemId);
+            /*
             if (this.txtAccount.Text.Trim() == "")
             {
                 this.btnCreate.Enabled = true;
@@ -48,6 +54,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             {
                 this.btnCreate.Enabled = false;
             }
+            /* */
         }
     } 
     #endregion
@@ -100,12 +107,29 @@ public partial class System_PartnerInfo : System.Web.UI.Page
     #region method btnCreate_Click
     protected void btnCreate_Click(object sender, EventArgs e)
     {
+        TVSFunc objFunc = new TVSFunc();
+        string PartnerAccount = objFunc.getPartnerAccount();
+
+        int ret = objFunc.updatePartnerAccount(this.itemId,PartnerAccount + this.txtAccount.Text);
+        if(ret == 0)
+        {
+            this.txtAccount.Text = PartnerAccount + this.txtAccount.Text;
+            //this.btnCreate.Enabled = false;
+
+            this.Message = "Cập nhật tài khoản thành công";
+        } else if(ret == -1)
+        {
+            this.Message = objFunc.ErrorMessage;
+        } else if(ret == 1)
+        {
+            this.Message = "Tài khoản đã tồn tại";
+        }
+
+        
+
+        /*
         try
         {
-            if (this.itemId == 0)
-            {
-                return;
-            }
             //TVSFunc objFunc = new TVSFunc();
             string PartnerAccount = "";
             PartnerAccount = objFunc.getPartnerAccount();
@@ -118,6 +142,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
           
         }
         catch { }
+        /* */
     } 
     #endregion
 

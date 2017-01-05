@@ -70,8 +70,11 @@
                             </div>
                             <div class="wrapper" style="margin-top: 10px; text-align: left;">
                                 <div class="container">
-                                    <div style="width: 100%; text-align: right; z-index: 1;"><% Response.Write(strFullName); %></div>
-                                    <div class="ultimatedropdown">
+                                    <div style="width: 15%; text-align: right; z-index: 1; float:right;margin-top:-10px">
+                                        <img src="/Images/Customer/<%=this.objCustomer["Avatar"].ToString() %>" style="width:50px;height:65px" />
+                                        <B style="float:right"><%=this.objCustomer["Account"].ToString() %><br/><a href = "/Logout.aspx">Thoát</a></B>
+                                    </div>
+                                    <div class="ultimatedropdown" style="width:85%">
                                         <ul>
                                             <li><a href="javascript:vold(0)">Thông tin tải khoản</a>
                                                 <ul>
@@ -101,14 +104,14 @@
                                                     <li><a href="#">Thông tin khác</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="javascript:vold(0)">Thông tin khác</a>
+                                            <%--<li><a href="javascript:vold(0)">Thông tin khác</a>
                                                 <ul>
                                                     <li><a href="#">Hình ảnh / Video</a></li>
                                                     <li><a href="#">Câu trả lời cho bạn</a></li>
                                                     <li><a href="#">Chương trình thi đua</a></li>
                                                     <li><a href="#">Thông tin khác</a></li>
                                                 </ul>
-                                            </li>
+                                            </li>--%>
                                         </ul>
                                         <br style="clear: left" />
                                     </div>

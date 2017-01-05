@@ -1263,32 +1263,6 @@ public class Partner
     #endregion
 
 
-
-    #region method getTopPartnerVIPShowHome
-    public DataTable getTopPartnerVIPShowHome(int limit = 4,int offset = 0)
-    {
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT [Id],[Name],[Address],[Phone],[Image],[Discount] FROM tblPartner WHERE [VIP] = 1 AND [State] = 1  ORDER BY [Id] DESC OFFSET " + offset.ToString() + " ROWS FETCH NEXT " + limit.ToString() + " ROWS ONLY";
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-            return ds.Tables[0];
-        }
-        catch
-        {
-            return new DataTable();
-        }
-
-    }
-    #endregion
-
     #region method getProductDoanhSoByPartnerId
     public double getProductDoanhSoByPartnerId(int PartnerId)
     {
@@ -1361,6 +1335,13 @@ public class Partner
             Cmd.CommandText = sqlQuery;
             Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
             int ret = Cmd.ExecuteNonQuery();
+
+
+            Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "DELETE FROM [tblAccount] WHERE [Acct_Type] = 0 AND Acct_PGKEY = @Id";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            ret = Cmd.ExecuteNonQuery();
+
             sqlCon.Close();
             sqlCon.Dispose();
 
@@ -1369,87 +1350,6 @@ public class Partner
         catch
         {
             return 0;
-        }
-    }
-    #endregion
-
-
-    // tim kiem 
-    #region Method getAllPartnerSearchByName
-    public DataTable getAllPartnerSearchByName(string name)
-    {
-        DataTable objTable = new DataTable();
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-
-            //  Cmd.CommandText = "SELECT * FROM tblProduct WHERE UPPER(RTRIM(LTRIM(Name))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' ORDER BY Id DESC";
-
-            Cmd.CommandText = "   SELECT TOP 12 0 AS TT, tblPartner.* ,tblLocation.Name   as Location  ";
-            Cmd.CommandText += "  from tblPartner    LEFT JOIN tblLocation ON tblPartner.LocationId = tblLocation.Id WHERE ";
-            Cmd.CommandText += "  UPPER(RTRIM(LTRIM(tblPartner.Name)))      LIKE  N'%'+UPPER(RTRIM(LTRIM(@Name)))+'%' ";
-            Cmd.CommandText += "   OR    UPPER(RTRIM(LTRIM([Address]))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@Name)))+'%'  ";
-            Cmd.CommandText += "	OR    UPPER(RTRIM(LTRIM(Phone)))     LIKE  N'%'+UPPER(RTRIM(LTRIM(@Name))) +'%' ";
-            Cmd.CommandText += "	ORDER BY tblPartner.Name   DESC  ";
-            Cmd.Parameters.Add("@Name", SqlDbType.NVarChar).Value = name;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                ds.Tables[0].Rows[i]["TT"] = (i + 1);
-            }
-            return ds.Tables[0];
-        }
-        catch
-        {
-            return new DataTable();
-        }
-    }
-    #endregion
-
-    // tim kiem 
-    #region Method getAllPartnerSearchByLocation
-    public DataTable getAllPartnerSearchByLocation(string localtion)
-    {
-        DataTable objTable = new DataTable();
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-            SqlCommand Cmd = sqlCon.CreateCommand();
-
-            //  Cmd.CommandText = "SELECT * FROM tblProduct WHERE UPPER(RTRIM(LTRIM(Name))) LIKE  N'%'+UPPER(RTRIM(LTRIM(@SearchKey)))+'%' ORDER BY Id DESC";
-
-            Cmd.CommandText = "   SELECT TOP 24 0 AS TT, tblPartner.* ,tblLocation.Name  as Location,tblLocation.color  as Color  ";
-            Cmd.CommandText += "  FROM tblPartner  LEFT JOIN tblLocation ON tblPartner.LocationId = tblLocation.Id  ";
-            Cmd.CommandText += "  WHERE  UPPER(RTRIM(LTRIM(tblLocation.Name)))   LIKE  N'%'+UPPER(RTRIM(LTRIM(@Location)))+'%'  ";
-            Cmd.CommandText += " ORDER BY tblPartner.Name    DESC  ";
-            Cmd.Parameters.Add("@Location", SqlDbType.NVarChar).Value = localtion;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-
-            DataSet ds = new DataSet();
-            da.Fill(ds);
-            sqlCon.Close();
-            sqlCon.Dispose();
-
-            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-            {
-                ds.Tables[0].Rows[i]["TT"] = (i + 1);
-            }
-            return ds.Tables[0];
-        }
-        catch
-        {
-            return new DataTable();
         }
     }
     #endregion

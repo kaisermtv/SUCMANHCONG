@@ -1,4 +1,4 @@
-﻿<%@ Page Title="THÔNG TIN HÓA ĐƠN" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="BillNote.aspx.cs" Inherits="Customer_BillNote" %>
+﻿<%@ Page Title="THÔNG TIN HÓA ĐƠN" Language="C#" MasterPageFile="~/Customer.master" AutoEventWireup="true" CodeFile="BillNote.aspx.cs" Inherits="Customer_BillNote" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <div class="container">

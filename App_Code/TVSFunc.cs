@@ -7,11 +7,7 @@ using System.Web;
 
 public class TVSFunc
 {
-    #region method TVSFunc
-    public TVSFunc()
-    {
-    } 
-    #endregion
+    public string ErrorMessage = "";
 
     #region Method CryptographyMD5
     public string CryptographyMD5(string source)
@@ -35,7 +31,7 @@ public class TVSFunc
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblPartner WHERE Account = @Account AND AccountPass = @OldAccountPass";
+        Cmd.CommandText = "SELECT * FROM [tblAccount] WHERE [Acct_Name] = @Account AND [Acct_Pass] = @OldAccountPass";
         Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
         Cmd.Parameters.Add("OldAccountPass", SqlDbType.NVarChar).Value = this.CryptographyMD5(Old);
         Cmd.Parameters.Add("AccountPass", SqlDbType.NVarChar).Value = this.CryptographyMD5(New);
@@ -51,7 +47,7 @@ public class TVSFunc
         }
         else
         {
-            Cmd.CommandText = "UPDATE tblPartner SET AccountPass = @AccountPass WHERE Account = @Account";
+            Cmd.CommandText = "UPDATE [tblAccount] SET [Acct_Pass] = @AccountPass WHERE [Acct_Name] = @Account";
             Cmd.ExecuteNonQuery();
         }
         sqlCon.Close();
@@ -114,7 +110,112 @@ public class TVSFunc
     }
     #endregion
 
-    
+    #region menthod updatePartnerAccount
+    public int updatePartnerAccount(int id, string partnerAcc)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM [tblAccount] WHERE [Acct_Name] = @Account";
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = partnerAcc;
+            int ret = Cmd.ExecuteNonQuery();
+            if (ret > 0)
+            {
+                return 1;
+            }
+
+            Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "IF EXISTS (SELECT * FROM [tblAccount] WHERE [Acct_Type] = 0 AND Acct_PGKEY = @Id)";
+            Cmd.CommandText += " BEGIN UPDATE [tblAccount] SET [Acct_Name] = @Account WHERE [Acct_Type] = 0 AND Acct_PGKEY = @Id END";
+            Cmd.CommandText += " ELSE BEGIN INSERT INTO [tblAccount]([Acct_Name],[Acct_Pass],[Acct_Type],Acct_PGKEY) VALUES(@Account,@Password,0,@Id)  END";
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = partnerAcc;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = id;
+            Cmd.Parameters.Add("Password", SqlDbType.NVarChar).Value = this.CryptographyMD5("123");
+            ret = Cmd.ExecuteNonQuery();
+            if (ret == 0)
+            {
+                return 2;
+            }
+
+            Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "UPDATE tblPartner SET Account = @Account, DayCreate = getdate() WHERE Id = @Id";
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = partnerAcc;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = id;
+            ret = Cmd.ExecuteNonQuery();
+            if (ret == 0)
+            {
+                return 2;
+            }
+
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return 0;
+        }
+        catch(Exception ex)
+        {
+            this.ErrorMessage = ex.Message;
+            return -1;
+        }
+    }
+    #endregion
+
+    #region menthod updateCustomerAccount
+    public int updateCustomerAccount(int id, string customerAcc, string customertype)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM [tblAccount] WHERE [Acct_Name] = @Account";
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = customerAcc;
+            int ret = Cmd.ExecuteNonQuery();
+            if (ret > 0)
+            {
+                return 1;
+            }
+
+            Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "IF EXISTS (SELECT * FROM [tblAccount] WHERE [Acct_Type] = 1 AND Acct_PGKEY = @Id)";
+            Cmd.CommandText += " BEGIN UPDATE [tblAccount] SET [Acct_Name] = @Account WHERE [Acct_Type] = 1 AND Acct_PGKEY = @Id END";
+            Cmd.CommandText += " ELSE BEGIN INSERT INTO [tblAccount]([Acct_Name],[Acct_Pass],[Acct_Type],Acct_PGKEY) VALUES(@Account,@Password,1,@Id)  END";
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = customerAcc;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = id;
+            Cmd.Parameters.Add("Password", SqlDbType.NVarChar).Value = this.CryptographyMD5("123");
+            ret = Cmd.ExecuteNonQuery();
+            if (ret == 0)
+            {
+                return 2;
+            }
+
+            Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "UPDATE [tblCustomers] SET Account = @Account, [AccountType] = @AccountType, DayCreateAccount = getdate() WHERE Id = @Id";
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = customerAcc;
+            Cmd.Parameters.Add("AccountType", SqlDbType.NVarChar).Value = customertype;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = id;
+            ret = Cmd.ExecuteNonQuery();
+            if (ret == 0)
+            {
+                return 2;
+            }
+
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            this.ErrorMessage = ex.Message;
+            return -1;
+        }
+    }
+    #endregion
 
     //IF NOT EXISTS (SELECT [column_name] FROM information_schema.columns WHERE [table_name] = 'tblBillDetail' and column_name = 'StockId')
      //BEGIN ALTER TABLE tblBillDetail ADD StockId nvarchar(50) DEFAULT('') END

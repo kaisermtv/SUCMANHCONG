@@ -93,8 +93,7 @@ public partial class System_CustomerInfo : System.Web.UI.Page
             strCardNumber = this.txtAccount.Text.Trim();
         }
 
-
-        int ret = this.objCustomers.UpdateCustomerById(this.itemId, CustomerAccount + strCardNumber, this.ddlTypeCard.SelectedValue.ToString());
+        int ret = this.objFunc.updateCustomerAccount(this.itemId, CustomerAccount + strCardNumber, this.ddlTypeCard.SelectedValue.ToString());
         if (ret > 0)
         {
             this.txtAccount.Text = CustomerAccount + strCardNumber;

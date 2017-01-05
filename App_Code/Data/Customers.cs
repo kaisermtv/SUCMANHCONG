@@ -100,7 +100,7 @@ public class Customers
     #endregion
 
     #region method getCustomer
-    public DataTable getCustomer(string Account)
+    public DataTable getCustomer(string Account = "")
     {
         DataTable objTable = new DataTable();
         try
@@ -108,8 +108,13 @@ public class Customers
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblCustomers WHERE Account = @Account";
-            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
+            Cmd.CommandText = "SELECT * FROM tblCustomers";
+            if (Account != "")
+            {
+                Cmd.CommandText += " WHERE Account = @Account";
+                Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
+            }
+            
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
@@ -154,6 +159,32 @@ public class Customers
         }
 
         return objTable;
+    }
+    #endregion
+
+    #region method getCustomerByAccount
+    public DataTable getCustomerByAccount(string Acct)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM tblCustomers WHERE [Account] = @Acct";
+            Cmd.Parameters.Add("Acct", SqlDbType.NVarChar).Value = Acct;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
     }
     #endregion
 
@@ -291,6 +322,12 @@ public class Customers
             Cmd1.CommandText = sqlQuery1;
             Cmd1.Parameters.Add("id", SqlDbType.Int).Value = id;
             Cmd1.ExecuteNonQuery();
+
+            Cmd1 = sqlCon1.CreateCommand();
+            Cmd1.CommandText = "DELETE FROM [tblAccount] WHERE [Acct_Type] = 1 AND Acct_PGKEY = @Id";
+            Cmd1.Parameters.Add("Id", SqlDbType.Int).Value = id;
+            Cmd1.ExecuteNonQuery();
+
             sqlCon1.Close();
             sqlCon1.Dispose();
         }

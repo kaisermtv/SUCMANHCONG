@@ -84,7 +84,7 @@
                 Tài khoản cửa hàng:
             </div>
             <div style="width: 78%; display: table; float: right;">
-                <asp:TextBox ID="txtAccount" runat="server" ReadOnly="true" Style="height: 22px; line-height: 22px; width: 100px; font-family: Arial; font-size: 14px; font-weight: bold; text-transform: uppercase; border: solid 1px Aqua;"></asp:TextBox>
+                <asp:TextBox ID="txtAccount" runat="server" Style="height: 22px; line-height: 22px; width: 100px; font-family: Arial; font-size: 14px; font-weight: bold; text-transform: uppercase; border: solid 1px Aqua;"></asp:TextBox>
 
             </div>
 
@@ -164,6 +164,8 @@
             </div>
 
         </div>
+
+        <p><%=this.Message %></p>
     </div>
 </asp:Content>
 

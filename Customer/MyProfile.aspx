@@ -7,8 +7,8 @@
                 <div style="width: 100%; color: #fff;" class="TVS-Col-md20">
                     <a href="#"><b>THÔNG TIN TÀI KHOẢN</b></a>
                 </div>
-                 <div style="width: 100%;">
-                    <asp:Label ID="lblImg1" runat="server" Text=""></asp:Label>
+                 <div style="width: 100%;text-align:center  ">
+                    <asp:Label ID="lblImg1" runat="server" Height="100%" Text=""></asp:Label>
                 </div>
                 <div style="width: 100%; color: #fff;" class="TVS-Col-md2">
                     <a href="MyProfile.aspx">+ Hồ sơ của tôi</a>

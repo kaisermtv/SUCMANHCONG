@@ -1,23 +1,20 @@
-﻿<%@ Page Title="ĐĂNG NHẬP" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="login.aspx.cs" Inherits="login" %>
+﻿<%@ Page Title="ĐĂNG NHẬP" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <style type="text/css">
         body {
             /*background-image: url('/images/looping-bg.jpg');*/
         }
-
         .form-signin input[type="text"] {
             margin-bottom: -1px;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         }
-
         .form-signin input[type="password"] {
             margin-bottom: 10px;
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
-
         .form-signin .form-control {
             position: relative;
             font-size: 16px;
@@ -49,7 +46,7 @@
                             <input name="remember" type="checkbox" value="Remember Me">
                             Nhớ mật khẩu</label>
                     </div>
-                    <asp:Button ID="btnLogin" runat="server" Text="ĐĂNG NHẬP" class="btn btn-lg btn-success btn-block" OnClick="btnLogin_Click" />
+                    <input type="submit" class="btn btn-lg btn-success btn-block" value="ĐĂNG NHẬP" />
                     <br>
 
                     <p class="text-center"><a href="Register.aspx">Đăng ký tài khoản?</a></p>
@@ -59,4 +56,3 @@
         </div>
     </div>
 </asp:Content>
-

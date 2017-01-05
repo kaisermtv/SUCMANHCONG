@@ -19,6 +19,9 @@ public partial class CustomerMaster : MasterPage
     private TVSFunc objFunc = new TVSFunc();
     public string[] ProductGroup = new string[7] { "", "", "", "", "", "", "" };
     private DataTable objTableProductGroup = new DataTable();
+
+    public Customers objCustomers = new Customers();
+    public DataRow objCustomer;
     #endregion
 
     #region method Page_Init
@@ -81,9 +84,18 @@ public partial class CustomerMaster : MasterPage
     {
         if (Session["ACCOUNT"] == null || Session["ACCOUNT"].ToString() == "")
         {
-            Response.Redirect("../");
+            Response.Redirect("/");
         }
-        this.strFullName = "<B>Xin chào " + Session["ACCOUNT"].ToString() + " | <a href = \"../Logout.aspx\">Thoát</a></B>";
+        DataTable objData = objCustomers.getCustomerByAccount(Session["ACCOUNT"].ToString());
+        if (objData.Rows.Count > 0)
+        {
+            this.objCustomer = objData.Rows[0];
+        } else
+        {
+            Response.Redirect("/");
+        }
+
+        //this.strFullName = "<B>Xin chào " + Session["ACCOUNT"].ToString() + " | <a href = \"../Logout.aspx\">Thoát</a></B>";
     } 
     #endregion
 

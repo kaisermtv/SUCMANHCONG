@@ -11,15 +11,15 @@
     <link href="css/Adminstyles.css" rel="stylesheet" />
     <link href="css/System.css" rel="stylesheet" />
 </head>
-<body style="overflow: auto; margin: 3px; margin-top:0px; background-color:#ecf0f5;">
+<body style="overflow: auto; margin: 3px; margin-top: 0px; background-color: #ecf0f5;">
     <form id="form1" runat="server">
-        <div class="header" style="background-color: #808080; margin-top:3px; line-height: 36px; height: 36px; width: 100%; text-align: center; font-family: Arial; font-size: 15px; font-weight: bold; color: #fff;">
+        <div class="header" style="background-color: #808080; margin-top: 3px; line-height: 36px; height: 36px; width: 100%; text-align: center; font-family: Arial; font-size: 15px; font-weight: bold; color: #fff;">
             <div style="width: 20%; float: left;">
-                <div style="width: 100%; float: left; background-color: #367fa9; font-family: Arial; font-size: 15px; color:#fff;">
+                <div style="width: 100%; float: left; background-color: #367fa9; font-family: Arial; font-size: 15px; color: #fff;">
                     QUẢN TRỊ HỆ THỐNG
                 </div>
             </div>
-            <div style="width: 80%; float: right; background-color:#3c8dbc;">
+            <div style="width: 80%; float: right; background-color: #3c8dbc;">
                 &nbsp;
             </div>
         </div>
@@ -48,75 +48,78 @@
                 <div class="SystemLeftMenuRoot">
                     &nbsp;&nbsp;+ CẤU HÌNH HỆ THỐNG
                 </div>
-                <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/SystemConfig.aspx">Cấu hình hệ thống</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/SystemConfig.aspx">Cấu hình hệ thống</a>
                 </div>
-                <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/MenuModifier.aspx">Cấu hình Menu</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/MenuModifier.aspx">Cấu hình Menu</a>
                 </div>
-                <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Abouts.aspx">Thông tin đơn vị</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Abouts.aspx">Thông tin đơn vị</a>
                 </div>
-                <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/ListGroupAcc.aspx">Nhóm tài khoản</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/ListGroupAcc.aspx">Nhóm tài khoản</a>
                 </div>
-                <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/ListAccount.aspx">Tài khoản người dùng</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/ListAccount.aspx">Tài khoản người dùng</a>
                 </div>
-                <div style ="background-color:#fff; height:1px; line-height:1px; display:table; margin-bottom:-1px;">
+                <div style="background-color: #fff; height: 1px; line-height: 1px; display: table; margin-bottom: -1px;">
                     &nbsp;
                 </div>
                 <div class="SystemLeftMenuRoot">
                     &nbsp;&nbsp;+ QUẢN TRỊ NỘI DUNG
                 </div>
-                <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/ListBusiness.aspx">Nhóm kinh doanh</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/ListBusiness.aspx">Nhóm kinh doanh</a>
                 </div>
-                <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Partner.aspx">Cửa hàng - đối tác</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Partner.aspx">Cửa hàng - đối tác</a>
                 </div>
-                <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Customer.aspx">Khách hàng</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Customer.aspx">Khách hàng</a>
                 </div>
-                <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Customer.aspx">Thành viên</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Customer.aspx">Thành viên</a>
                 </div>
-                <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Employee.aspx">Nhân viên - Cộng tác viên</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Employee.aspx">Nhân viên - Cộng tác viên</a>
                 </div>
-                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Topic.aspx">Tin tức - Topic</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Topic.aspx">Tin tức - Topic</a>
                 </div>
-                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/ProductGroup.aspx">Nhóm sản phẩm</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/ProductGroup.aspx">Nhóm sản phẩm</a>
                 </div>
-                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Product.aspx">Sản phẩm</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Product.aspx">Sản phẩm</a>
                 </div>
-                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/ListBrand.aspx">Nhãn hiệu</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/ListLocation.aspx">Tỉnh thành</a>
                 </div>
-                  <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/SlideImage.aspx">Slide - Banner</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/ListBrand.aspx">Nhãn hiệu</a>
                 </div>
-                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/Video.aspx">Video - Media</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/SlideImage.aspx">Slide - Banner</a>
                 </div>
-                 <div class = "SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "../../System/ListMedia.aspx">Hình ảnh- Media</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Video.aspx">Video - Media</a>
                 </div>
-                <div class = "SystemLeftMenu" style="margin-top:10px;">
-                   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href = "mailto:hieuxinhe94@gmail.com">Báo cáo - Phản hồi</a>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/ListMedia.aspx">Hình ảnh- Media</a>
+                </div>
+                <div class="SystemLeftMenu" style="margin-top: 10px;">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:hieuxinhe94@gmail.com">Báo cáo - Phản hồi</a>
 
                 </div>
 
             </div>
-            <div style="width: 79%; float: right; padding-left:5px; padding-right:5px;">
+            <div style="width: 79%; float: right; padding-left: 5px; padding-right: 5px;">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
         </div>
     </form>
-    <iframe src ="/NoPage.aspx" style ="width:0px; height:0px;"></iframe>
+    <iframe src="/NoPage.aspx" style="width: 0px; height: 0px;"></iframe>
 </body>
 </html>

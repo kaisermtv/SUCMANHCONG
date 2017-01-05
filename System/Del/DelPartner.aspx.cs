@@ -27,14 +27,14 @@ public partial class System_Del_DelSlide : System.Web.UI.Page
     {
         this.objSlide.removePartner(itemId);
 
-        Response.Redirect("~/System/Partner.aspx");
+        Response.Redirect("/System/Partner.aspx");
     }
     #endregion
 
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/System/Partner.aspx");
+        Response.Redirect("/System/Partner.aspx");
     }
     #endregion
 }

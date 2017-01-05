@@ -82,7 +82,7 @@ public partial class SiteMaster : MasterPage
     {
         if (Session["ACCOUNT"] == null || Session["ACCOUNT"].ToString() == "")
         {
-            strHeader = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"../LogIn/Register.aspx\" id=\"searchlink1\" rel=\"subcontent1\">Đăng kí &nbsp;|&nbsp; </a><a href=\"../LogIn/login.aspx\">&nbsp;Đăng nhập</a>";
+            strHeader = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"#\" id=\"searchlink1\" rel=\"subcontent1\">Đăng kí &nbsp;|&nbsp; </a><a href=\"/login.aspx\">&nbsp;Đăng nhập</a>";
             currPartnerId = "#";
         }
         else
