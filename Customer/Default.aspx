@@ -1,105 +1,106 @@
 ﻿<%@ Page Title="TRANG CHỦ" Language="C#" MasterPageFile="~/Customer.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="Customer_Default" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
-    <div class ="container">
-        <div class ="row">
-            <h3 style ="text-align:center; color:#000;">PHÂN HẠNG THẺ THÀNH VIÊN TRÊN SUCMANHCONG.COM</h3>
+<asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+    <style>
+        .row_detailt {
+            margin-left: 15px;
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <h3 style="text-align: center; color: #000;">PHÂN HẠNG THẺ THÀNH VIÊN TRÊN SUCMANHCONG.COM</h3>
         </div>
-        <div class ="row" style ="margin-top:30px;">
-            <div class ="col-md-4">
-                <div style ="width:99%; height:500px; background-color:#f6f6f6; text-align:center;">
-                    <div style ="width:100%; height:115px; background-color:#42bacc; text-align:center; padding-top:50px; color:#fff; font-weight:bold; font-size:20px;">
-                        THẺ HẠNG ĐỒNG
-                    </div>
-                     <div style ="width:100%; height:95px;text-align:center; padding-top:30px; color:#9acf1c; border-bottom:dotted 1px #fff; font-size:20px;">
-                        20,000,000 đ
-                    </div>
-                    <div style = "width:100%;">
-                        <br />
-                        <br />
-                        <p>
-                            Được hưởng 20% chiết khấu hoá đơn
-                        </p>
-                        <p>
-                            Được hưởng 3% tích luỹ thẻ
-                        </p>
-                        <p>
-                            Được quyền lợi abc khác
-                        </p>
-                         <p>
-                            Được quyền lợi abc khác
-                        </p>
-                        <br />
-                        <br />
-                        <br />
-                        <asp:Button ID="btnAction1" runat="server" Text="Nâng cấp" CssClass ="btn btn-danger" Enabled = "false" />
-                    </div>
+        <div class="row" style="margin-top: 30px;">
+            <div class="col-md-4" style="background-image: url('../Images/design/Thedong.png'); background-repeat: no-repeat">
+                <div style="width: 100%; height: 115px; margin-left: -30px; text-align: center; padding-top: 5px; color: #fff; font-weight: bold; font-size: 20px;">
+                    THẺ ĐỒNG 
+                </div>
+                <div style="width: 100%; height: 95px; text-align: center; margin-left: -35px; margin-top: -25px; color: #9acf1c; border-bottom: dotted 1px #fff; font-size: 20px;">
+                    30,000 đ
+                </div>
+                <div class="btn-group dropup" style="margin-top: -30px">
+                    <a class="btn btn-primary" href="../../NewsDetailt?Id=1">Xem chi tiết</a>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>a</li>
+                    </ul>
+                </div>
+
+
+            </div>
+
+
+
+            <div class="col-md-4" style="background-image: url('../Images/design/Thebac.png'); background-repeat: no-repeat">
+                <div style="width: 100%; height: 115px; margin-left: -30px; text-align: center; padding-top: 5px; color: #fff; font-weight: bold; font-size: 20px;">
+                    THẺ BẠC 
+                </div>
+
+                <div style="width: 100%; height: 95px; text-align: center; margin-left: -35px; margin-top: -25px; color: #fff; border-bottom: dotted 1px #fff; font-size: 20px;">
+                    350,000 đ
+                </div>
+
+                <div class="btn-group dropup" style="margin-top: -30px">
+                    <a class="btn btn-primary" href="../../NewsDetailt?Id=2">Xem chi tiết</a>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>a</li>
+                    </ul>
+
+                    <asp:Button ID="Button1" runat="server" Text="Nâng cấp" CssClass="btn btn-success row_detailt" />
+
                 </div>
             </div>
-            <div class ="col-md-4">
-                <div style ="width:99%; height:500px; background-color:#f6f6f6; text-align:center;">
-                    <div style ="width:100%; height:115px; background-color:#00cc7d; text-align:center; padding-top:50px; color:#fff; font-weight:bold; font-size:20px;">
-                        THẺ HẠNG BẠC
-                    </div>
-                     <div style ="width:100%; height:95px;text-align:center; padding-top:30px; color:#9acf1c; border-bottom:dotted 1px #fff; font-size:20px;">
-                        30,000,000 đ
-                    </div>
-                    <div style = "width:100%;">
-                        <br />
-                        <br />
-                        <p>
-                            Được hưởng 25% chiết khấu hoá đơn
-                        </p>
-                        <p>
-                            Được hưởng 3% tích luỹ thẻ
-                        </p>
-                        <p>
-                            Được quyền lợi abc khác
-                        </p>
-                         <p>
-                            Được quyền lợi abc khác
-                        </p>
-                        <br />
-                        <br />
-                        <br />
-                        <asp:Button ID="Button1" runat="server" Text="Nâng cấp" CssClass ="btn btn-primary" />
-                    </div>
+
+
+            <div class="col-md-4" style="background-image: url('../Images/design/Thevang.png'); opacity: 0.9; background-repeat: no-repeat">
+                <div style="width: 100%; height: 115px; margin-left: -30px; text-align: center; padding-top: 5px; color: #fff; font-weight: bold; font-size: 20px;">
+                    THẺ VÀNG
+                </div>
+                <div style="width: 100%; height: 95px; text-align: center; margin-left: -35px; margin-top: -25px; color: #fff; border-bottom: dotted 1px #fff; font-size: 20px;">
+                    1,000,000 đ
+                </div>
+                <div class="btn-group dropup" style="margin-top: -30px">
+                    <a class="btn btn-primary" href="../../NewsDetailt?Id=3">Xem chi tiết</a>
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                        <span class="sr-only">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li>a</li>
+                    </ul>
+
+                    <asp:Button ID="Button2" runat="server" Text="Nâng cấp" CssClass="btn btn-success row_detailt" />
                 </div>
             </div>
-            <div class ="col-md-4">
-                <div style ="width:99%; height:500px; background-color:#f6f6f6; text-align:center;">
-                    <div style ="width:100%; height:115px; background-color:#00cc7d; text-align:center; padding-top:50px; color:#fff; font-weight:bold; font-size:20px;">
-                        THẺ HẠNG VÀNG
-                    </div>
-                     <div style ="width:100%; height:95px;text-align:center; padding-top:30px; color:#9acf1c; border-bottom:dotted 1px #fff; font-size:20px;">
-                        50,000,000 đ
-                    </div>
-                    <div style = "width:100%;">
-                        <br />
-                        <br />
-                        <p>
-                            Được hưởng 35% chiết khấu hoá đơn
-                        </p>
-                        <p>
-                            Được hưởng 5% tích luỹ thẻ
-                        </p>
-                        <p>
-                            Được quyền lợi abc khác
-                        </p>
-                         <p>
-                            Được quyền lợi abc khác
-                        </p>
-                        <br />
-                        <br />
-                        <br />
-                        <asp:Button ID="Button2" runat="server" Text="Nâng cấp" CssClass ="btn btn-primary"/>
-                    </div>
-                </div>
-            </div>
+
+
         </div>
-        <div class ="row" style = "margin-top:30px;">
-            <h4>Tìm hiểu thông tin thêm về các loại thẻ ...</h4>
+        <div class="row" style="margin-top: 30px;">
+            <h4>Tin Khuyến Mãi</h4>
         </div>
+
+
+
+    </div>
+
+    <div class="line" style="width: 100%; background-color: ActiveBorder; height: 1px;"></div>
+    <div class="container">
+        <ul class="list-group">
+            <% for (int i = 0; i < this.objtable.Rows.Count; i++)
+               { %>
+            <li class="list-group-item">
+                <a href="../../NewsDetailt?Id=<% Response.Write(this.objtable.Rows[i]["Id"].ToString()); %>">
+                    <% Response.Write(this.objtable.Rows[i]["Title"].ToString()); %>
+                    <h4 style="font-size:10px; font-family:'Comic Sans MS'"><% Response.Write(this.objtable.Rows[i]["DayCreate"].ToString());%> </h4>
+                </a></li>
+            <%} %>
+        </ul>
     </div>
 </asp:Content>
-
