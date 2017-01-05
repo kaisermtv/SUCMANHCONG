@@ -278,7 +278,7 @@
                             KÝ NHẬN BẢN TIN</a></h5>
                     <div class="input-group">
                         <span class="input-group-addon" id="basic-addon1">@</span>
-                        <input type="text" name="email" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                        <input type="email" name="email" class="form-control" placeholder="Username" aria-describedby="basic-addon1" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
                     </div>
                     <br />
                     <input type="submit" value="Gửi đi" class="btn btn-default" />
