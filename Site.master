@@ -48,7 +48,7 @@
 
             $("#lienhe").click(function () {
                 $('#qnimate').addClass('popup-box-on');
-            }); 
+            });
 
             $("#lienheht").click(function () {
                 $('#qnimate').addClass('popup-box-on');
@@ -69,202 +69,178 @@
 </head>
 <body>
     <script type='text/javascript'>window._sbzq || function (e) { e._sbzq = []; var t = e._sbzq; t.push(["_setAccount", 53047]); var n = e.location.protocol == "https:" ? "https:" : "http:"; var r = document.createElement("script"); r.type = "text/javascript"; r.async = true; r.src = n + "//static.subiz.com/public/js/loader.js"; var i = document.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i) }(window);</script>
-    
-        <div class="top_header">
-            <div class="container">
-                <div class="top_logo">
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div style="background-color: #f4f4f4; text-align: center; width: 100%; height: 35px;">
-                                <div style="float: left; background-color: #fff; height: 20px; line-height: 20px;
-                                    padding-bottom: 20px; padding-left: 5px; padding-right: 5px; border: solid 1px #c4d6cc;
-                                    margin-top: 6px; text-align: center;
-                                    margin-left: 14px; color: red;">
-                                     <a href="/Search?Location=1" style="  color: red;font-weight: bold;font-family: Arial; font-size: 11px;">NGHỆ AN</a></div>
-                                <div style="float: left; background-color: #f4f4f4; text-align: center; font-family: Arial;
-                                    font-size: 11px; font-weight: bold; margin-top: -1px; margin-left: 5px; margin-right: 5px;">
-                                    |</div>
-                                <div style="float: left; background-color: #fff; height: 20px; line-height: 20px;
-                                    padding-bottom: 20px; padding-left: 5px; padding-right: 5px; border: solid 1px #c4d6cc;
-                                    margin-top: 6px; text-align: center;">
-                                  <a href="/Search?Location=2" style=" font-family: Arial; font-size: 11px; font-weight: bold;">  HÀ TĨNH </a></div>
-                                <div style="float: left; background-color: #f4f4f4; text-align: center; font-family: Arial;
-                                    font-size: 11px; font-weight: bold; margin-top: -1px; margin-left: 5px; margin-right: 5px;">
-                                    |</div>
-                                <div style="float: left; background-color: #fff; height: 20px; line-height: 20px;
-                                    padding-bottom: 20px; padding-left: 5px; padding-right: 5px; border: solid 1px #c4d6cc;
-                                    margin-top: 6px; text-align: center; font-family: Arial; font-size: 10px; font-weight: bold;">
-                                    <a href="#" id="searchlink2" rel="subcontent2" style="font-size: 11px;">KHÁC</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4" style="text-align: right; height:100%">
-                            <form method="get" action="/Search">
-                                <div class="input-group" style="text-align: right; margin-left: 42px; height: 100%">
-                                    <input type="text" class="form-control" placeholder="Tìm kiếm" name="search" style="width: 280px; height: 30px; line-height: 30px; margin-top: 3px;">
-                                    <div class="input-group-btn">
-                                        <button class="btn btn-default" type="submit" style="width: 40px; height: 30px; margin-top: 1px"><i class="glyphicon glyphicon-search"></i></button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
 
-                        <div class="col-md-5" style="text-align: right; float: right;">
-                            <span style="color: red; font-family: 'Arial'; font-size: 12px; font-weight: bold;">
-                                Hotline: 09 3636 9090</span>
-                          
-                            
-                    <a href="#" id="addClass"><span class="glyphicon"></span>Hỗ trợ trực tuyến </a>
-                             
-                            <% Response.Write(strHeader); %>
-                            <div id="subcontent0" style="position: absolute; visibility: hidden; text-align: justify;
-                                border: 0px solid orange; margin-top: 0px; background-color: white; width: 180px;
-                                padding: 8px; z-index: 1000;">
-                                <p style="width: 100%; margin-top: 5px; padding-bottom: 3px; border-bottom: solid 1px #77cef2;
-                                    font-weight: bold;">
-                                    + <a href="<% Response.Write(currPartnerId); %>">Thông tin tài khoản</a>
-                                </p>
-                                <p style="width: 100%; margin-top: 0px; padding-bottom: 3px; border-bottom: solid 1px #77cef2;
-                                    font-weight: bold;">
-                                    + <a href="/Customer/CustomerBill.aspx">Doanh số tiêu dùng</a>
-                                </p>
-                                <p style="width: 100%; margin-top: 0px; margin-bottom: 0px; font-weight: bold;">
-                                    + <a href="/Logout.aspx">Thoát</a>
-                                </p>
-                                <script type="text/javascript">
-                                    dropdowncontent.init("searchlink0", "left-bottom", 1000, "mouseover")
-                                </script>
-                            </div>
-
-                            <div id="subcontent" style="position: absolute; visibility: hidden; text-align: justify;
-                                border: 0px solid orange; margin-top: 0px; background-color: white; width: 150px;
-                                padding: 8px; z-index: 1000;">
-                                <p style="width: 100%; margin-top: 5px; padding-bottom: 3px; border-bottom: solid 1px #77cef2;
-                                    font-weight: bold;">
-                                    + <a href="<% Response.Write(currPartnerId); %>">Thông tin tài khoản</a>
-                                </p>
-                                <p style="width: 100%; margin-top: 0px; padding-bottom: 3px; border-bottom: solid 1px #77cef2;
-                                    font-weight: bold;">
-                                    + <a href="/Store/Product.aspx">Quản trị gian hàng</a>
-                                </p>
-                                <p style="width: 100%; margin-top: 0px; padding-bottom: 3px; border-bottom: solid 1px #77cef2;
-                                    font-weight: bold;">
-                                    + <a href="/Store/ProductCustomer.aspx">Quản trị bán hàng</a>
-                                </p>
-                                <p style="width: 100%; margin-top: 0px; margin-bottom: 0px; font-weight: bold;">
-                                    + <a href="/Logout.aspx">Thoát</a>
-                                </p>
-                                <script type="text/javascript">
-                                    dropdowncontent.init("searchlink", "left-bottom", 1000, "mouseover")
-                                </script>
-                            </div>
-                            <div id="subcontent1" style="position: absolute; visibility: hidden; text-align: center;
-                                border: 0px solid orange; margin-left: -15px; background-color: white; width: 130px;
-                                padding: 8px; z-index: 1000">
-                                <p style="width: 100%; margin-top: 5px; padding-bottom: 5px; border-bottom: solid 1px #77cef2;">
-                                    <a href="/Customer/Register.aspx">Đăng ký thành viên</a>
-                                </p>
-                                <p style="width: 100%; margin-top: 0px; margin-bottom: 0px;">
-                                    <a href="/Store/Register.aspx">Đăng ký gian hàng</a>
-                                </p>
-                                <script type="text/javascript">
-                                    dropdowncontent.init("searchlink1", "right-bottom", 1000, "mouseover")
-
-                                    function myFormSubmit() {
-                                        if (document.forms[0].onsubmit && !document.forms[0].onsubmit()) {
-                                            return;
-                                        }
-                                        document.forms[0].submit();
-                                    }
-                                </script>
-                            </div>
-                            <div id="subcontent2" style="position: absolute; visibility: hidden; text-align: center;
-                                border-left: solid 1px #c4d6cc; margin-left: -6px; background-color: white; width: 130px;
-                                padding: 8px; z-index: 1000">
-                                <p style="width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2;
-                                    text-align: justify; font-weight: bold;">
-                                    <a href="/Search?Location=0">Hà Nội</a>
-                                </p>
-                                <p style="width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2;
-                                    text-align: justify; font-weight: bold;">
-                                    <a href="/Search?Location=0">Tp. Hồ Chí Minh</a>
-                                </p>
-                                <p style="width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2;
-                                    text-align: justify; font-weight: bold;">
-                                    <a href="/Search?Location=0">Thanh hóa</a>
-                                </p>
-                                <p style="width: 100%; margin-top: 0px; margin-bottom: 0px; text-align: justify;
-                                    font-weight: bold;">
-                                    <a href="/Search?Location=0">Quảng Bình</a>
-                                </p>
-                                <script type="text/javascript">
-                                    dropdowncontent.init("searchlink2", "right-bottom", 500, "mouseover")
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <form runat="server" method="post">
-        <div style="background-color: #f4f4f4;">
-            <div class="container">
+    <div class="top_header">
+        <div class="container">
+            <div class="top_logo">
                 <div class="row">
-                    <div class="nav_menu">
-                        <div class="container">
-                            <div class="col-md-2">
-                                <a href="/">
-                                    <img src="/images/logo.jpg" alt="" style="width: 200px; height: 60px" /></a>
+                    <div class="col-md-3">
+                        <div style="background-color: #f4f4f4; text-align: center; width: 100%; height: 35px;">
+                            <div style="float: left; background-color: #fff; height: 20px; line-height: 20px; padding-bottom: 20px; padding-left: 5px; padding-right: 5px; border: solid 1px #c4d6cc; margin-top: 6px; text-align: center; margin-left: 14px; color: red;">
+                                <a href="/Search?Location=1" style="color: red; font-weight: bold; font-family: Arial; font-size: 11px;">NGHỆ AN</a>
                             </div>
-                            <div class="wrapper">
-                                <div class="col-md-10">
-                                    <div class="main-menu" style="overflow:hidden; outline-style:hidden;">
-                                        <a href="/ListProduct" class="col-centered">
-                                          
-                                            <img src="/img/icons/glyphicons-157-show-thumbnails.png" style="opacity:0.7 " />
-                                              <p style="margin-top:3px;">Tất cả</p>
-                                        </a>
-                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[0].ToString()); %> " style="margin-left:-1%">
-                                          
-                                            <img src="/img/icons/glyphicons-87-display.png" style="opacity:0.5 " />
-                                            <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[0].ToString()); %></p>
-                                        </a>
-                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[1].ToString()); %>" style="margin-left:-1%">
-                                            <img src="/img/icons/glyphicons-29-cars.png"  style="opacity:0.5 " />
-                                          
-                                            <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[1].ToString()); %></p>
-                                        </a>
-                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[2].ToString()); %>" style="margin-left:-1%">
-                                            <img src="/img/icons/glyphicons-384-bathrobe.png"  style="opacity:0.5 " />
-                                          <%--  <img src="../img/icons/glyphicons-284-t-shirt.png" />--%>
-                                            <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[2].ToString()); %></p>
-                                        </a>
-                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[3].ToString()); %>" style="margin-left:-1%">
-                                           
-                                            <img src="/img/icons/glyphicons-5-girl.png"  style="opacity:0.5 " />
-                                            <p style="margin-top:3px;" ><% Response.Write(this.ProductGroup[3].ToString());  %></p>
-                                        </a>
-                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[4].ToString()); %>" style="margin-left:-1%">
-                                           
-                                            <img src="/img/icons/glyphicons-476-dining-set.png"  style="opacity:0.5 " />
-                                            <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[4].ToString()); %></p>
-                                        </a>
-                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[5].ToString()); %>" style="margin-left:-1%">
-                                           
-                                            <img src="/img/icons/glyphicons-593-person.png"   style="opacity:0.5 " />
-                                            <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[5].ToString()); %></p>
-                                        </a>
-                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[6].ToString()); %>" style="margin-left:-1%">
-                                          
-                                            <img src="/img/icons/glyphicons-21-home.png"  style="opacity:0.5 " />
-                                            <p style="margin-top:3px;" ><% Response.Write(this.ProductGroup[6].ToString()); %></p>
-                                        </a>
-                                        <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[7].ToString()); %>" style="margin-left:-1%">
-                                           
-                                            <img src="/img/icons/glyphicons-341-globe.png"  style="opacity:0.5 " />
-                                            <p style="margin-top:3px;"><% Response.Write(this.ProductGroup[7].ToString()); %></p>
-                                        </a>
-                                    </div>
+                            <div style="float: left; background-color: #f4f4f4; text-align: center; font-family: Arial; font-size: 11px; font-weight: bold; margin-top: -1px; margin-left: 5px; margin-right: 5px;">
+                                |
+                            </div>
+                            <div style="float: left; background-color: #fff; height: 20px; line-height: 20px; padding-bottom: 20px; padding-left: 5px; padding-right: 5px; border: solid 1px #c4d6cc; margin-top: 6px; text-align: center;">
+                                <a href="/Search?Location=2" style="font-family: Arial; font-size: 11px; font-weight: bold;">HÀ TĨNH </a>
+                            </div>
+                            <div style="float: left; background-color: #f4f4f4; text-align: center; font-family: Arial; font-size: 11px; font-weight: bold; margin-top: -1px; margin-left: 5px; margin-right: 5px;">
+                                |
+                            </div>
+                            <div style="float: left; background-color: #fff; height: 20px; line-height: 20px; padding-bottom: 20px; padding-left: 5px; padding-right: 5px; border: solid 1px #c4d6cc; margin-top: 6px; text-align: center; font-family: Arial; font-size: 10px; font-weight: bold;">
+                                <a href="#" id="searchlink2" rel="subcontent2" style="font-size: 11px;">KHÁC</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="text-align: right; height: 100%">
+                        <form method="get" action="/Search">
+                            <div class="input-group" style="text-align: right; margin-left: 42px; height: 100%">
+                                <input type="text" class="form-control" placeholder="Tìm kiếm" name="search" style="width: 280px; height: 30px; line-height: 30px; margin-top: 3px;">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" style="width: 40px; height: 30px; margin-top: 1px"><i class="glyphicon glyphicon-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="col-md-5" style="text-align: right; float: right;">
+                        <span style="color: red; font-family: 'Arial'; font-size: 12px; font-weight: bold;">Hotline: 09 3636 9090</span>
+
+
+                        <a href="#" id="addClass"><span class="glyphicon"></span>Hỗ trợ trực tuyến </a>
+
+                        <% Response.Write(strHeader); %>
+                        <div id="subcontent0" style="position: absolute; visibility: hidden; text-align: justify; border: 0px solid orange; margin-top: 0px; background-color: white; width: 180px; padding: 8px; z-index: 1000;">
+                            <p style="width: 100%; margin-top: 5px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; font-weight: bold;">
+                                + <a href="<% Response.Write(currPartnerId); %>">Thông tin tài khoản</a>
+                            </p>
+                            <p style="width: 100%; margin-top: 0px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; font-weight: bold;">
+                                + <a href="/Customer/CustomerBill.aspx">Doanh số tiêu dùng</a>
+                            </p>
+                            <p style="width: 100%; margin-top: 0px; margin-bottom: 0px; font-weight: bold;">
+                                + <a href="/Logout.aspx">Thoát</a>
+                            </p>
+                            <script type="text/javascript">
+                                dropdowncontent.init("searchlink0", "left-bottom", 1000, "mouseover")
+                            </script>
+                        </div>
+
+                        <div id="subcontent" style="position: absolute; visibility: hidden; text-align: justify; border: 0px solid orange; margin-top: 0px; background-color: white; width: 150px; padding: 8px; z-index: 1000;">
+                            <p style="width: 100%; margin-top: 5px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; font-weight: bold;">
+                                + <a href="<% Response.Write(currPartnerId); %>">Thông tin tài khoản</a>
+                            </p>
+                            <p style="width: 100%; margin-top: 0px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; font-weight: bold;">
+                                + <a href="/Store/Product.aspx">Quản trị gian hàng</a>
+                            </p>
+                            <p style="width: 100%; margin-top: 0px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; font-weight: bold;">
+                                + <a href="/Store/ProductCustomer.aspx">Quản trị bán hàng</a>
+                            </p>
+                            <p style="width: 100%; margin-top: 0px; margin-bottom: 0px; font-weight: bold;">
+                                + <a href="/Logout.aspx">Thoát</a>
+                            </p>
+                            <script type="text/javascript">
+                                dropdowncontent.init("searchlink", "left-bottom", 1000, "mouseover")
+                            </script>
+                        </div>
+                        <div id="subcontent1" style="position: absolute; visibility: hidden; text-align: center; border: 0px solid orange; margin-left: -15px; background-color: white; width: 130px; padding: 8px; z-index: 1000">
+                            <p style="width: 100%; margin-top: 5px; padding-bottom: 5px; border-bottom: solid 1px #77cef2;">
+                                <a href="/Customer/Register.aspx">Đăng ký thành viên</a>
+                            </p>
+                            <p style="width: 100%; margin-top: 0px; margin-bottom: 0px;">
+                                <a href="/Store/Register.aspx">Đăng ký gian hàng</a>
+                            </p>
+                            <script type="text/javascript">
+                                dropdowncontent.init("searchlink1", "right-bottom", 1000, "mouseover")
+
+                                function myFormSubmit() {
+                                    if (document.forms[0].onsubmit && !document.forms[0].onsubmit()) {
+                                        return;
+                                    }
+                                    document.forms[0].submit();
+                                }
+                            </script>
+                        </div>
+                        <div id="subcontent2" style="position: absolute; visibility: hidden; text-align: center; border-left: solid 1px #c4d6cc; margin-left: -6px; background-color: white; width: 130px; padding: 8px; z-index: 1000">
+                            <p style="width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; text-align: justify; font-weight: bold;">
+                                <a href="/Search?Location=0">Hà Nội</a>
+                            </p>
+                            <p style="width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; text-align: justify; font-weight: bold;">
+                                <a href="/Search?Location=0">Tp. Hồ Chí Minh</a>
+                            </p>
+                            <p style="width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; text-align: justify; font-weight: bold;">
+                                <a href="/Search?Location=0">Thanh hóa</a>
+                            </p>
+                            <p style="width: 100%; margin-top: 0px; margin-bottom: 0px; text-align: justify; font-weight: bold;">
+                                <a href="/Search?Location=0">Quảng Bình</a>
+                            </p>
+                            <script type="text/javascript">
+                                dropdowncontent.init("searchlink2", "right-bottom", 500, "mouseover")
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background-color: #f4f4f4;">
+        <div class="container">
+            <div class="row">
+                <div class="nav_menu">
+                    <div class="container">
+                        <div class="col-md-2">
+                            <a href="/">
+                                <img src="/images/logo.jpg" alt="" style="width: 200px; height: 60px" /></a>
+                        </div>
+                        <div class="wrapper">
+                            <div class="col-md-10">
+                                <div class="main-menu" style="overflow: hidden; outline-style: hidden;">
+                                    <a href="/ListProduct" class="col-centered">
+
+                                        <img src="/img/icons/glyphicons-157-show-thumbnails.png" style="opacity: 0.7" />
+                                        <p style="margin-top: 3px;">Tất cả</p>
+                                    </a>
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[0].ToString()); %> " style="margin-left: -1%">
+
+                                        <img src="/img/icons/glyphicons-87-display.png" style="opacity: 0.5" />
+                                        <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[0].ToString()); %></p>
+                                    </a>
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[1].ToString()); %>" style="margin-left: -1%">
+                                        <img src="/img/icons/glyphicons-29-cars.png" style="opacity: 0.5" />
+
+                                        <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[1].ToString()); %></p>
+                                    </a>
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[2].ToString()); %>" style="margin-left: -1%">
+                                        <img src="/img/icons/glyphicons-384-bathrobe.png" style="opacity: 0.5" />
+                                        <%--  <img src="../img/icons/glyphicons-284-t-shirt.png" />--%>
+                                        <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[2].ToString()); %></p>
+                                    </a>
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[3].ToString()); %>" style="margin-left: -1%">
+
+                                        <img src="/img/icons/glyphicons-5-girl.png" style="opacity: 0.5" />
+                                        <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[3].ToString());  %></p>
+                                    </a>
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[4].ToString()); %>" style="margin-left: -1%">
+
+                                        <img src="/img/icons/glyphicons-476-dining-set.png" style="opacity: 0.5" />
+                                        <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[4].ToString()); %></p>
+                                    </a>
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[5].ToString()); %>" style="margin-left: -1%">
+
+                                        <img src="/img/icons/glyphicons-593-person.png" style="opacity: 0.5" />
+                                        <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[5].ToString()); %></p>
+                                    </a>
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[6].ToString()); %>" style="margin-left: -1%">
+
+                                        <img src="/img/icons/glyphicons-21-home.png" style="opacity: 0.5" />
+                                        <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[6].ToString()); %></p>
+                                    </a>
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[7].ToString()); %>" style="margin-left: -1%">
+
+                                        <img src="/img/icons/glyphicons-341-globe.png" style="opacity: 0.5" />
+                                        <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[7].ToString()); %></p>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -272,120 +248,131 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <div>
+    <div>
+        <form runat="server" method="post">
             <div class="container">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server">
                 </asp:ContentPlaceHolder>
             </div>
-        </div>
+        </form>
+    </div>
 
-        <div class="footer-menu" style="margin-top: 45px; background-color: #f4f4f4; height: 210px;">
-            <div class="container" style="margin-top: -15px;">
-                <div class="row">
-                    <div class="col-md-3">
-                        <h5><a href="/NewsDetailt?Id=12" style="font-family: Arial; font-size: 15px; font-weight: bold;">Giới
+    <div class="footer-menu" style="margin-top: 45px; background-color: #f4f4f4; height: 210px;">
+        <div class="container" style="margin-top: -15px;">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5><a href="/NewsDetailt?Id=12" style="font-family: Arial; font-size: 15px; font-weight: bold;">Giới
                             thiệu SUCMANHCONG</a></h5>
-                        <ul style="list-style-type: circle;">
-                            <li><a href="#lienhe" id="lienhe" style="color: #4e4e57;">Liên hệ</a></li>
-                            <li><a href="/About" style="color: #4e4e57;">Về chúng tôi</a></li>
-                            <li><a href="/NewsDetailt?Id=11" style="color: #4e4e57;">Chính sách bảo mật thông tin</a></li>
-                            <li><a href="/NewsDetailt?Id=14" style="color: #4e4e57;">Thông tin</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        <h5><a href="#" style="font-family: Arial; font-size: 15px; font-weight: bold;">ĐĂNG
+                    <ul style="list-style-type: circle;">
+                        <li><a href="#lienhe" id="lienhe" style="color: #4e4e57;">Liên hệ</a></li>
+                        <li><a href="/About" style="color: #4e4e57;">Về chúng tôi</a></li>
+                        <li><a href="/NewsDetailt?Id=11" style="color: #4e4e57;">Chính sách bảo mật thông tin</a></li>
+                        <li><a href="/NewsDetailt?Id=14" style="color: #4e4e57;">Thông tin</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <form method="get" action="/ReceiveNews">
+                    <h5><a href="#" style="font-family: Arial; font-size: 15px; font-weight: bold;">ĐĂNG
                             KÝ NHẬN BẢN TIN</a></h5>
-                        <div class="input-group">
-                            <span class="input-group-addon" id="basic-addon1">@</span>
-                            <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-                        </div>
-                        <br />
-                        <input type="button" value="Gửi đi" class="btn btn-default" />
-                        <br />
-                        <br />
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">@</span>
+                        <input type="text" name="email" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
                     </div>
-                    <div class="col-md-3">
-                        <h5><a href="#" style="font-family: Arial; font-size: 15px; font-weight: bold;">HỢP
+                    <br />
+                    <input type="submit" value="Gửi đi" class="btn btn-default" />
+                    <br />
+                    <br />
+                        </form>
+                </div>
+                <div class="col-md-3">
+                    <h5><a href="#" style="font-family: Arial; font-size: 15px; font-weight: bold;">HỢP
                             TÁC SUCMANHCONG</a></h5>
-                        <ul>
-                            <li><a href="/NewsDetailt?Id=13">Chính sách hợp tác</a></li>
-                            <li><a href="#lienheht" id="lienheht">Liên hệ hợp tác</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-3">
-                        &nbsp;
-                    </div>
+                    <ul>
+                        <li><a href="/NewsDetailt?Id=13">Chính sách hợp tác</a></li>
+                        <li><a href="#lienheht" id="lienheht">Liên hệ hợp tác</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    &nbsp;
                 </div>
             </div>
         </div>
+    </div>
 
 
 
-            <div class="popup-box chat-popup" id="qnimate">
-                <div class="popup-head">
-                    <div class="popup-head-left pull-left">
-                        <img src="/img/company.png" alt="iamgurdeeposahan">
-                        Hỗ trợ trực tuyến </div>
-                    <div class="popup-head-right pull-right">
-                        <div class="btn-group">
-                         
-                        </div>
-                        <button data-widget="remove" id="removeClass" class="chat-header-button pull-right"
-                            type="button"><i class="glyphicon glyphicon-off"></i></button>
-                    </div>
-                </div>
-                <div class="popup-messages">
-                    <div class="direct-chat-messages">
-                        <div class="direct-chat-msg doted-border">
-                            <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name pull-left">Sucmanhcong.com</span>
-                            </div>
-                            <img alt="message user image" src="../img/company.png" class="direct-chat-img"><!-- /.direct-chat-img -->
-                            <div class="direct-chat-text">
-                            Xin chào , chúng tôi có thể giúp gì cho bạn ?
-                            </div>
-                        </div>
-                        <div class="chat-box-single-line">
-                            <abbr class="timestamp">25/12/2016  15:40:44</abbr>
-                        </div>
-
-                        </div>
-                        </div>
-                <div class="popup-messages-footer">
-                    <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40"
-                        name="message"></textarea>
-                    <div class="btn-footer">
-                        <button class="bg_none"><i class="glyphicon glyphicon-film"></i></button>
-                        <button class="bg_none"><i class="glyphicon glyphicon-camera"></i></button>
-                        <button class="bg_none"><i class="glyphicon glyphicon-paperclip"></i></button>
-                        <button class="bg_none pull-right"><i class="glyphicon glyphicon-thumbs-up"></i>
-                        </button>
-                    </div>
-                </div>
+    <div class="popup-box chat-popup" id="qnimate">
+        <div class="popup-head">
+            <div class="popup-head-left pull-left">
+                <img src="/img/company.png" alt="iamgurdeeposahan">
+                Hỗ trợ trực tuyến
             </div>
+            <div class="popup-head-right pull-right">
+                <div class="btn-group">
+                </div>
+                <button data-widget="remove" id="removeClass" class="chat-header-button pull-right"
+                    type="button">
+                    <i class="glyphicon glyphicon-off"></i>
+                </button>
+            </div>
+        </div>
+        <div class="popup-messages">
+            <div class="direct-chat-messages">
+                <div class="direct-chat-msg doted-border">
+                    <div class="direct-chat-info clearfix">
+                        <span class="direct-chat-name pull-left">Sucmanhcong.com</span>
+                    </div>
+                    <img alt="message user image" src="../img/company.png" class="direct-chat-img"><!-- /.direct-chat-img -->
+                    <div class="direct-chat-text">
+                        Xin chào , chúng tôi có thể giúp gì cho bạn ?
+                    </div>
+                </div>
+                <div class="chat-box-single-line">
+                    <abbr class="timestamp">25/12/2016  15:40:44</abbr>
+                </div>
+
+            </div>
+        </div>
+        <div class="popup-messages-footer">
+            <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40"
+                name="message"></textarea>
+            <div class="btn-footer">
+                <button class="bg_none"><i class="glyphicon glyphicon-film"></i></button>
+                <button class="bg_none"><i class="glyphicon glyphicon-camera"></i></button>
+                <button class="bg_none"><i class="glyphicon glyphicon-paperclip"></i></button>
+                <button class="bg_none pull-right">
+                    <i class="glyphicon glyphicon-thumbs-up"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
 
-            <div class="sub-footer" style="background-color: #e9e5e5;">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="/images/logo.jpg"  alt="SUCMANHCONG.COM" style="width: 200px; height: 60px; margin-top: 6px;"/>
-                    </div>
-                    <div class="col-md-6">
-                        <h6 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57;">
-                            CÔNG TY CỔ PHẦN ĐẦU TƯ THƯƠNG MẠI SỨC MẠNH CỘNG</h6>
-                        <p style="font-family: Arial; font-size: 13px; margin-top: -5px; color: #4e4e57;">Mã
-                            số thuế: 0401768141 do Sở kế hoạch đầu tư Đà Nẵng cấp ngày 30/05/2016</p>
-                        <p style="font-family: Arial; font-size: 13px; margin-top: -5px; color: #4e4e57;">Điện
-                            thoại: 09 3636 9090 Fax: 0383 575 979 Email: sucmanhcong@gmail.com</p>
-                    </div>
-                    <div class="col-md-3">
-                    </div>
+    <div class="sub-footer" style="background-color: #e9e5e5;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="/images/logo.jpg" alt="SUCMANHCONG.COM" style="width: 200px; height: 60px; margin-top: 6px;" />
+                </div>
+                <div class="col-md-6">
+                    <h6 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57;">CÔNG TY CỔ PHẦN ĐẦU TƯ THƯƠNG MẠI SỨC MẠNH CỘNG</h6>
+                    <p style="font-family: Arial; font-size: 13px; margin-top: -5px; color: #4e4e57;">
+                        Mã
+                            số thuế: 0401768141 do Sở kế hoạch đầu tư Đà Nẵng cấp ngày 30/05/2016
+                    </p>
+                    <p style="font-family: Arial; font-size: 13px; margin-top: -5px; color: #4e4e57;">
+                        Điện
+                            thoại: 09 3636 9090 Fax: 0383 575 979 Email: sucmanhcong@gmail.com
+                    </p>
+                </div>
+                <div class="col-md-3">
                 </div>
             </div>
         </div>
+    </div>
 
-    </form>
+
 </body>
 </html>
