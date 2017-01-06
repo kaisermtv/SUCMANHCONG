@@ -199,11 +199,11 @@ public class Partner
             if (todate != "")
             {
                 Cmd.CommandText += " AND DayCreate < DATEADD(day,1,@FromDate)";
-                Cmd.Parameters.Add("FromDate", SqlDbType.DateTime).Value = fromdate;
+                Cmd.Parameters.Add("FromDate", SqlDbType.DateTime).Value = todate;
             }
 
             Cmd.CommandText += " ORDER BY DayCreate DESC";
-
+            //this.ErrorMessage = Cmd.CommandText;
             Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = PartnerAccount;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
