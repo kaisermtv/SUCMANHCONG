@@ -106,7 +106,6 @@ public class DataTopic
         {
 
         }
-
         return objTable;
     }
     #endregion
