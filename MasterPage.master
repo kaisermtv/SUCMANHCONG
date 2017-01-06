@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div style="width: 80%; float: right; background-color: #3c8dbc;">
-                &nbsp;
+               <a style="float:right;margin-right:20px" href="/System/Logout">Thoát</a>
             </div>
         </div>
         <asp:ScriptManager runat="server">
