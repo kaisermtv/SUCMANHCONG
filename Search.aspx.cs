@@ -124,7 +124,7 @@ public partial class Search : System.Web.UI.Page
         if (this.pMaxPage == 0) this.pMaxPage = 1;
         if (this.pPage > this.pMaxPage) this.pPage = this.pMaxPage;
         #endregion
-        this.objTableProduct = objProduct.getProductOption(this.VBType, this.ProductGroup, this.PageItem, (this.nPage - 1) * this.PageItem, true, this.sSearch , this.Location );
+        this.objTableProduct = objProduct.getProductOption(this.VBType, this.ProductGroup, this.PageItem, (this.pPage - 1) * this.PageItem, true, this.sSearch , this.Location );
 
     }
     #endregion
