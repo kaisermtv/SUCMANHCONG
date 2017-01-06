@@ -51,6 +51,16 @@
             }
 
         });
+
+        function show_tichluythang()
+        {
+            aler('Tổng số tích hiện có : ');
+        }
+
+        function show_tongsodu() {
+            alert('Tổng số dư hiện tại : ');
+        }
+
     </script>
 
     <script type="text/javascript" src="http://www.sucmanhcong.com/js/dropdowncontent.js">
@@ -82,8 +92,9 @@
                                                     <li><a href="#">Đội nhóm</a></li>
                                                     <li><a href="javascript:vold(0)">Tài chính</a>
                                                         <ul>
-                                                            <li><a href="#">Tích luỹ tháng</a></li>
-                                                            <li><a href="#">Tổng số dư</a></li>
+                                                            <li><a href="#" onclick="show_tichluythang();">Tích luỹ tháng</a></li>
+                                                            
+                                                            <li><a href="#" onclick="show_tongsodu();">Tổng số dư</a></li>
                                                         </ul>
                                                     </li>
                                                     <li><a href="#">Chia sẻ link</a></li>
@@ -91,8 +102,8 @@
                                             </li>
                                             <li><a href="javascript:vold(0)">Doanh số giao dịch</a>
                                                 <ul>
-                                                    <li><a href="CustomerBill.aspx">Giao dịch mới nhất</a></li>
-                                                    <li><a href="#">Tất cả giao dich</a></li>
+                                                    <li><a href="CustomerBillOnMonth.aspx">Giao dịch trong tháng</a></li>
+                                                    <li><a href="CustomerBill.aspx">Tất cả giao dich</a></li>
                                                     <li><a href="#">Điểm tích luỹ</a></li>
                                                 </ul>
                                             </li>
@@ -101,7 +112,7 @@
                                                     <li><a href="#">Sản phẩm có thể mua</a></li>
                                                     <li><a href="#">Sản phẩm quảng cáo</a></li>
                                                     <li><a href="#">Lịch sử giao dịch</a></li>
-                                                    <li><a href="#">Thông tin khác</a></li>
+                                                  
                                                 </ul>
                                             </li>
                                             <%--<li><a href="javascript:vold(0)">Thông tin khác</a>

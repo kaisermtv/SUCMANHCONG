@@ -53,7 +53,7 @@ public partial class Customer_CustomerBill : System.Web.UI.Page
                 this.strDSCard = "0";
             }
 
-            this.objTable = this.getCustomerBill();
+            this.objTable = this.getCustomerBillInMonth();
             if (this.objTable.Rows.Count > 0)
             {
                 for (int i = 0; i < this.objTable.Rows.Count; i++)
@@ -125,7 +125,28 @@ public partial class Customer_CustomerBill : System.Web.UI.Page
     }
     #endregion
 
-   
+    #region method getCustomerBillInMonth
+    public DataTable getCustomerBillInMonth()
+    {
+        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+        sqlCon.Open();
+        SqlCommand Cmd = sqlCon.CreateCommand();
+        Cmd.CommandText = "SELECT 0 AS TT, * FROM tblPartnerBill WHERE CustomerAccount = @CustomerAccount AND datepart(month,DayCreate) = datepart(month,getdate()) AND datepart(year,DayCreate) = datepart(year,getdate()) ORDER BY [DayCreate] DESC ";
+        Cmd.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = Session["ACCOUNT"].ToString();
+        SqlDataAdapter da = new SqlDataAdapter();
+        da.SelectCommand = Cmd;
+        DataSet ds = new DataSet();
+        da.Fill(ds);
+        sqlCon.Close();
+        sqlCon.Dispose();
+        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        {
+            ds.Tables[0].Rows[i]["TT"] = (i + 1);
+        }
+        return ds.Tables[0];
+    }
+    #endregion
+
     #region method getPartnerBillInDay
     public double getPartnerBillInDay()
     {
