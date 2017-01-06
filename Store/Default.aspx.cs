@@ -16,6 +16,7 @@ public partial class Store_Default : System.Web.UI.Page
     public int SoSanPham = 0, SoSanPhamVIP = 0, SoSanPhamBanChay = 0, SoGiaoDich = 0;
     public double TongDoanhSo = 0;
     public string strName = "", strAddress = "", strPhone = "", strManager = "", strEmail = "", strTaxcode = "", strAccount = "", strBestSale = "", strVIP = "", strBankAccount = "", strBankAccountName = "";
+    public string strCreateDate = "";
     #endregion
 
     #region method Page_Load
@@ -53,6 +54,7 @@ public partial class Store_Default : System.Web.UI.Page
             this.strAccount = objDataPartner.Rows[0]["Account"].ToString();
             this.strBankAccount = objDataPartner.Rows[0]["BankAccount"].ToString();
             this.strBankAccountName = objDataPartner.Rows[0]["BankAccountName"].ToString();
+            this.strCreateDate = objDataPartner.Rows[0]["DayCreate"].ToString();
             if (objDataPartner.Rows[0]["BestSale"].ToString() == "True")
             {
                 this.strBestSale = "X";

@@ -26,6 +26,13 @@ public partial class Store : MasterPage
     #region method Page_Init
     protected void Page_Init(object sender, EventArgs e)
     {
+        if (Session["ACCOUNT"] == null || Session["ACCOUNT"].ToString() == "")
+        {
+            Response.Redirect("/");
+        }
+        Session["ACCOUNT"] = Session["ACCOUNT"];
+        
+
         // The code below helps to protect against XSRF attacks
         var requestCookie = Request.Cookies[AntiXsrfTokenKey];
         Guid requestCookieGuidValue;
@@ -81,11 +88,6 @@ public partial class Store : MasterPage
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["ACCOUNT"] == null || Session["ACCOUNT"].ToString() == "")
-        {
-            Response.Redirect("../");
-        }
-        Session["ACCOUNT"] = Session["ACCOUNT"];
         this.getPartner();
         this.strFullName = "Xin chào " + Session["ACCOUNT"].ToString() + " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href = \"../Logout.aspx\">Thoát</a>";
     } 

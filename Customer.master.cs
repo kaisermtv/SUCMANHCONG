@@ -27,6 +27,21 @@ public partial class CustomerMaster : MasterPage
     #region method Page_Init
     protected void Page_Init(object sender, EventArgs e)
     {
+        if (Session["ACCOUNT"] == null || Session["ACCOUNT"].ToString() == "")
+        {
+            Response.Redirect("/");
+        }
+        DataTable objData = objCustomers.getCustomerByAccount(Session["ACCOUNT"].ToString());
+        if (objData.Rows.Count > 0)
+        {
+            this.objCustomer = objData.Rows[0];
+        }
+        else
+        {
+            Response.Redirect("/");
+        }
+
+
         // The code below helps to protect against XSRF attacks
         var requestCookie = Request.Cookies[AntiXsrfTokenKey];
         Guid requestCookieGuidValue;
@@ -82,18 +97,7 @@ public partial class CustomerMaster : MasterPage
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["ACCOUNT"] == null || Session["ACCOUNT"].ToString() == "")
-        {
-            Response.Redirect("/");
-        }
-        DataTable objData = objCustomers.getCustomerByAccount(Session["ACCOUNT"].ToString());
-        if (objData.Rows.Count > 0)
-        {
-            this.objCustomer = objData.Rows[0];
-        } else
-        {
-            Response.Redirect("/");
-        }
+        
 
         //this.strFullName = "<B>Xin chào " + Session["ACCOUNT"].ToString() + " | <a href = \"../Logout.aspx\">Thoát</a></B>";
     } 
