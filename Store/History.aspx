@@ -7,13 +7,13 @@
                 Từ ngày
             </div>
             <div class="col-md-3">
-                <input runat="server" id="txtFromDate" type="date" class="form-control" value="" placeholder="Tìm từ ngày" />
+                <input runat="server" id="txtFromDate" type="date" class="form-control" value="" placeholder="yyy-mm-dd" />
             </div>
             <div class="col-md-1">
                 tới ngày
             </div>
             <div class="col-md-3">
-                <input type="date" runat="server" id="txtToDate" class="form-control" value="" placeholder="Tìm tới ngày" />
+                <input type="date" runat="server" id="txtToDate" class="form-control" value="" placeholder="yyy-mm-dd" />
             </div>
             <div class="col-md-2">
                 <input type="submit" style="float: left" class="btn btn-default" value="Lọc kết quả" />
