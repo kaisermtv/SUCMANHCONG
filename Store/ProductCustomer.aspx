@@ -423,6 +423,11 @@
             }
         }
 
+        function getPrice(elementId)
+        {
+            return document.getElementById(elementId).value.replace(/,/g, '') * 1;
+        }
+
         function calTotalMoney() {
             document.getElementById('MainContent_lblMsg1').textContent = '-:-';
             
@@ -430,18 +435,19 @@
             var totalItem = document.getElementById('MainContent_txtTotalItem').value;
             var totalMoney = 0;
             for (var i = 0; i < totalItem; i++) {
-                totalMoney += ((document.getElementById('txtNumber' + i).value).replace(',', '') * 1) * ((document.getElementById('txtPrice' + i).value).replace(',', '') * 1);
+                totalMoney += getPrice('txtNumber' + i) * getPrice('txtPrice' + i);
             }
 
             document.getElementById('out_tonggiamgia').innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
 
+           
             //*
             var totalMoneybt = 0;
             for (var i = 1; i < 11; i++) {
               //  bufa = document.getElementById('MainContent_txtProductNumber' + i).value;
                // bufb = document.getElementById('MainContent_txtProductPrice' + i).value;
 
-                totalMoneybt += ((document.getElementById('MainContent_txtProductNumber' + i).value).replace(',', '') * 1) * ((document.getElementById('MainContent_txtProductPrice' + i).value).replace(',', '') * 1);
+                totalMoneybt += getPrice('MainContent_txtProductNumber' + i) * getPrice('MainContent_txtProductPrice' + i);
             }
             document.getElementById('out_tonghangthuong').innerText = totalMoneybt.toLocaleString('en-US', { minimumFractionDigits: 0 });
 
@@ -461,15 +467,17 @@
             }
             
             
-            var TotalMoney = (document.getElementById('MainContent_txtTotalMoney').value).replace(',', '') * 1;
+            var TotalMoney = getPrice('MainContent_txtTotalMoney');
 
             document.getElementById('MainContent_txtTotalMoneyDiscount').value = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
 
+            /* 
             if (document.getElementById('MainContent_txtTotalMoneyDiscount').value.trim() == '' || document.getElementById('MainContent_txtTotalMoneyDiscount').value.trim() == '0') {
                 document.getElementById('MainContent_lblMsg1').textContent = 'Chưa xác định tổng tiền giảm giá';
                 document.getElementById("MainContent_txtTotalMoneyDiscount").focus();
                 return;
             }
+            /**/
             if (document.getElementById('txtDiscountLevel').textContent.trim() == '' || document.getElementById('txtDiscountLevel').textContent.trim() == '0' || document.getElementById('txtDiscountLevel').textContent.trim() == '-') {
                 document.getElementById('MainContent_lblMsg1').textContent = 'Chưa xác định mức giảm giá của cửa hàng';
                 document.getElementById("txtDiscountLevel").focus();
@@ -485,8 +493,8 @@
             var totalMoneyBill = 0;
             var tmpTodalMoneyDiscount = 0;
 
-            totalMoneyBill = new Number((document.getElementById('MainContent_txtTotalMoney').value).replace(',', '').trim().replace(',', '').replace(',', '').replace(',', '').replace(',', '')) * 1;
-            tmpTodalMoneyDiscount = (document.getElementById('MainContent_txtTotalMoneyDiscount').value.replace(',', '').replace(',', '').replace(',', '').replace(',', '').replace(',', '') * 1) * document.getElementById('txtDiscountLevel').textContent.trim() / 100;
+            totalMoneyBill = getPrice('MainContent_txtTotalMoney');
+            tmpTodalMoneyDiscount = getPrice('MainContent_txtTotalMoneyDiscount') * document.getElementById('txtDiscountLevel').textContent.trim() / 100;
 
             document.getElementById('MainContent_txtTotalMoneyPayment').value = (totalMoneyBill - tmpTodalMoneyDiscount).toLocaleString('en-US', { minimumFractionDigits: 0 });
             document.getElementById('MainContent_btnSave').disabled = false;
