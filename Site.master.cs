@@ -20,11 +20,20 @@ public partial class SiteMaster : MasterPage
     public string[] ProductGroup = new string[8] { "", "", "", "", "", "", "","" };
     public int[] ProductGroupId = new int[8] { 0, 0, 0, 0, 0, 0, 0,0 };
     private DataTable objTableProductGroup = new DataTable();
+
+    public int Location = 0;
     #endregion
 
     #region method Page_Init
     protected void Page_Init(object sender, EventArgs e)
     {
+        try
+        {
+            this.Location = int.Parse(Request["Location"].ToString());
+        }
+        catch { }
+
+
         // The code below helps to protect against XSRF attacks
         var requestCookie = Request.Cookies[AntiXsrfTokenKey];
         Guid requestCookieGuidValue;
