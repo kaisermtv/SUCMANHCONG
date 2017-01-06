@@ -15,10 +15,8 @@ public partial class Customer_Default : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
-        {
-            objtable = objTopic.getTopTopic();
-        }
+      
+            objtable = objTopic.getTopic(4);
     }
 
 

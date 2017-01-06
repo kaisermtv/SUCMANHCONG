@@ -136,7 +136,8 @@ public partial class Customer_CustomerInfoUpdate : System.Web.UI.Page
             Cmd.ExecuteNonQuery();
             sqlCon.Close();
             sqlCon.Dispose();
-            this.strMsg = "Thông tin đã được cập nhật thành công !";
+            this.strMsg = "Đã cập nhật  !";
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "showMsg", "alert('Thông tin đã được cập nhật thành công ');", true);
             this.getCustomer();
         }
         catch (Exception Ex)

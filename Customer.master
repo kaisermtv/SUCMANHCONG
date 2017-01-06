@@ -76,7 +76,7 @@
                                     </div>
                                     <div class="ultimatedropdown" style="width:85%">
                                         <ul>
-                                            <li><a href="javascript:vold(0)">Thông tin tải khoản</a>
+                                            <li><a href="javascript:vold(0)">Thông tin tài khoản</a>
                                                 <ul>
                                                     <li><a href="MyProfile.aspx">Hồ sơ của tôi</a></li>
                                                     <li><a href="#">Đội nhóm</a></li>

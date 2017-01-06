@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Họ tên</label>
                                 <div class="col-sm-9">
-                                    <asp:TextBox ID="txtName" runat="server" CssClass="form-control" Style="height: 35px; line-height: 35px; width: 100%; font-size: 15px; font-family: Arial;"></asp:TextBox>
+                                    <asp:TextBox ID="txtName" runat="server" Enabled="false" CssClass="form-control" Style="height: 35px; line-height: 35px; width: 100%; font-size: 15px; font-family: Arial;"></asp:TextBox>
                                 </div>
                             </div>
                             <br />
@@ -75,14 +75,14 @@
                             <div class="form-group" style="margin-top: 30px;">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Số CMND</label>
                                 <div class="col-sm-9">
-                                    <asp:TextBox ID="txtIdCard" runat="server" CssClass="form-control" Style="height: 35px; line-height: 35px; width: 100%; font-size: 15px; font-family: Arial;"></asp:TextBox>
+                                    <asp:TextBox ID="txtIdCard" runat="server"  Enabled="false" CssClass="form-control" Style="height: 35px; line-height: 35px; width: 100%; font-size: 15px; font-family: Arial;"></asp:TextBox>
                                 </div>
                             </div>
                             <br />
                             <div class="form-group" style="margin-top: 30px;">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Số hiệu thẻ</label>
                                 <div class="col-sm-9">
-                                    <asp:TextBox ID="txtAccount" runat="server" CssClass="form-control" Style="height: 35px; line-height: 35px; width: 100%; font-size: 15px; font-family: Arial;"></asp:TextBox>
+                                    <asp:TextBox ID="txtAccount" runat="server"  Enabled="false" CssClass="form-control" Style="height: 35px; line-height: 35px; width: 100%; font-size: 15px; font-family: Arial;"></asp:TextBox>
                                 </div>
                             </div>
                             <br />
