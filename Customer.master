@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Customer.master.cs" Inherits="CustomerMaster" %>
+
 <%@ Import Namespace="System.Text.RegularExpressions" %>
 <%
     string u = Request.ServerVariables["HTTP_USER_AGENT"];
@@ -52,14 +53,17 @@
 
         });
 
-        function show_tichluythang()
-        {
-            aler('Tổng số tích hiện có : ');
+        function show_tichluythang() {
+            alert('Tổng số tiền tích lũy hiện có :<% Response.Write(this.tichluythang); %> Vnđ');
         }
 
         function show_tongsodu() {
-            alert('Tổng số dư hiện tại : ');
+            alert('Tổng số dư hiện tại : <% Response.Write(this.tongsodu); %> Vnđ ');
         }
+
+        function show_diemtichluy() {
+            alert('Chương trình thi đua bắt đầu . Vui lòng quay lại sau');
+          }
 
     </script>
 
@@ -80,11 +84,12 @@
                             </div>
                             <div class="wrapper" style="margin-top: 10px; text-align: left;">
                                 <div class="container">
-                                    <div style="width: 15%; text-align: right; z-index: 1; float:right;margin-top:-10px">
-                                        <img src="/Images/Customer/<%=this.objCustomer["Avatar"].ToString() %>" style="width:50px;height:65px" />
-                                        <B style="float:right"><%=this.objCustomer["Account"].ToString() %><br/><a href = "/Logout.aspx">Thoát</a></B>
+                                    <div style="width: 15%; text-align: right; z-index: 1; float: right; margin-top: -10px">
+                                        <img src="/Images/Customer/<%=this.objCustomer["Avatar"].ToString() %>" style="width: 50px; height: 65px" />
+                                        <b style="float: right"><%=this.objCustomer["Account"].ToString() %><br />
+                                            <a href="/Logout.aspx">Thoát</a></b>
                                     </div>
-                                    <div class="ultimatedropdown" style="width:85%">
+                                    <div class="ultimatedropdown" style="width: 85%">
                                         <ul>
                                             <li><a href="javascript:vold(0)">Thông tin tài khoản</a>
                                                 <ul>
@@ -93,7 +98,7 @@
                                                     <li><a href="javascript:vold(0)">Tài chính</a>
                                                         <ul>
                                                             <li><a href="#" onclick="show_tichluythang();">Tích luỹ tháng</a></li>
-                                                            
+
                                                             <li><a href="#" onclick="show_tongsodu();">Tổng số dư</a></li>
                                                         </ul>
                                                     </li>
@@ -104,15 +109,15 @@
                                                 <ul>
                                                     <li><a href="CustomerBillOnMonth.aspx">Giao dịch trong tháng</a></li>
                                                     <li><a href="CustomerBill.aspx">Tất cả giao dich</a></li>
-                                                    <li><a href="#">Điểm tích luỹ</a></li>
+                                                    <li><a href="#" onclick="show_diemtichluy();">Điểm tích luỹ</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="javascript:vold(0)">Hàng hóa giao dịch</a>
                                                 <ul>
-                                                    <li><a href="#">Sản phẩm có thể mua</a></li>
-                                                    <li><a href="#">Sản phẩm quảng cáo</a></li>
-                                                    <li><a href="#">Lịch sử giao dịch</a></li>
-                                                  
+                                                    <li><a href="ProductBestBuy.aspx">Sản phẩm có thể mua</a></li>
+                                                    <li><a href="AdvertProduct.aspx">Sản phẩm quảng cáo</a></li>
+                                                   
+
                                                 </ul>
                                             </li>
                                             <%--<li><a href="javascript:vold(0)">Thông tin khác</a>

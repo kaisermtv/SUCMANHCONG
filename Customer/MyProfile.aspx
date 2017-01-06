@@ -8,6 +8,16 @@
             background-color:#367fa9;
         }
     </style>
+    <script>
+        function  btnTichLuyThang_Click()
+        {
+            alert('Số tiền tích lũy : <% Response.Write(this.tichluythang); %> Vnđ ');
+        }
+        function btnTongSoDu_Click() {
+            alert('Tổng số dư : <% Response.Write(this.tongsodu); %> ');
+        }
+
+    </script>
     <div class="container">
         <div class="row" style="margin-top: 20px;">
             <div class="col-md-3">
@@ -24,11 +34,10 @@
                     <asp:Button runat="server" ID="btnDoiNhom" OnClick="btnDoiNhom_Click" Class="btn-left-select" Text="Đội nhóm"/> 
                 </div>
                 <div style="width: 100%; color: #fff;" class="TVS-Col-md2-1">
-            <asp:Button runat="server"  Text="Tích lũy tháng" Id="btnTichLuyThang" Class="btn-left-select" OnClick="btnTichLuyThang_Click"></asp:Button>
+            <a href="#"  onclick="btnTichLuyThang_Click()"> • Tích lũy tháng </a>
                 </div>
                 <div style="width: 100%; color: #fff;" class="TVS-Col-md2-1">
-                    <asp:Button runat="server"  Text="Tổng số dư" Id="btnTongSoDu" Class="btn-left-select" OnClick="btnTongSoDu_Click"></asp:Button>
-        
+                   <a href="#"  onclick="btnTongSoDu_Click()"> • Tổng số dư </a>
                 </div>
                 <div style="width: 100%; color: #fff;" class="TVS-Col-md2">
                     <a href="#">+ Chia sẻ link</a>

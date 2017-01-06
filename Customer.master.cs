@@ -19,7 +19,7 @@ public partial class CustomerMaster : MasterPage
     private TVSFunc objFunc = new TVSFunc();
     public string[] ProductGroup = new string[7] { "", "", "", "", "", "", "" };
     private DataTable objTableProductGroup = new DataTable();
-
+    public String tichluythang = "" , tongsodu = "";
     public Customers objCustomers = new Customers();
     public DataRow objCustomer;
     #endregion
@@ -70,6 +70,8 @@ public partial class CustomerMaster : MasterPage
         }
 
         Page.PreLoad += master_Page_PreLoad;
+        this.tichluythang = ""+ getCustomerTotalDiscountCard(Session["ACCOUNT"].ToString()).ToString(); 
+        this.tongsodu = " Chưa thể tính toán ";
     } 
     #endregion
 
@@ -121,6 +123,47 @@ public partial class CustomerMaster : MasterPage
             ds.Tables[0].Rows[i]["TT"] = (i + 1);
         }
         return ds.Tables[0];
+    }
+    #endregion
+
+    #region method getCustomerTotalDiscountCard
+    public double getCustomerTotalDiscountCard(string CustomerAccount)
+    {
+        double tmpValue = 0, tmpValue1 = 0;
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT ISNULL(SUM((TotalMoneyDiscount*DiscountCard)/100),0) AS Discount FROM tblPartnerBill WHERE CustomerAccount = @CustomerAccount";
+            Cmd.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = CustomerAccount;
+            SqlDataReader Rd = Cmd.ExecuteReader();
+            while (Rd.Read())
+            {
+                tmpValue = double.Parse(Rd["Discount"].ToString());
+            }
+            Rd.Close();
+
+            SqlCommand Cmd1 = sqlCon.CreateCommand();
+            Cmd1.CommandText = "SELECT ISNULL(SUM(TotalMoney),0) AS TotalMoney FROM tblCustomersPaymentByCard WHERE CustomerAccount = @CustomerAccount";
+            Cmd1.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = CustomerAccount;
+            SqlDataReader Rd1 = Cmd1.ExecuteReader();
+            while (Rd1.Read())
+            {
+                tmpValue1 = double.Parse(Rd1["TotalMoney"].ToString());
+            }
+            Rd1.Close();
+
+            tmpValue = tmpValue - tmpValue1;
+
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+
+        }
+        return tmpValue;
     }
     #endregion
 
