@@ -182,24 +182,42 @@ public class Partner
     #endregion
 
     #region method getHistoryBill
-    public DataTable getHistoryBillByPartnerAccount(string PartnerAccount)
+    public DataTable getHistoryBillByPartnerAccount(string PartnerAccount,string fromdate = "",string todate = "")
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT 0 AS TT, * FROM tblPartnerBill WHERE PartnerAccount = @PartnerAccount ORDER BY DayCreate DESC";
-        Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = PartnerAccount;
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-        sqlCon.Close();
-        sqlCon.Dispose();
-        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+        try
         {
-            ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT 0 AS TT, * FROM tblPartnerBill WHERE PartnerAccount = @PartnerAccount";
+            if (fromdate != "")
+            {
+                Cmd.CommandText += " AND DayCreate >= @FromDate";
+                Cmd.Parameters.Add("FromDate", SqlDbType.DateTime).Value = fromdate;
+            }
+
+            if (todate != "")
+            {
+                Cmd.CommandText += " AND DayCreate < DATEADD(day,1,@FromDate)";
+                Cmd.Parameters.Add("FromDate", SqlDbType.DateTime).Value = fromdate;
+            }
+
+            Cmd.CommandText += " ORDER BY DayCreate DESC";
+
+            Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = PartnerAccount;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+                
+            return ds.Tables[0];
         }
-        return ds.Tables[0];
+        catch { 
+            return new DataTable();
+        }
+        
     }
     #endregion
 

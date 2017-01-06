@@ -10,6 +10,7 @@
                         <div class="panel-heading"><b>THÔNG TIN CỬA HÀNG</b></div>
                         <!-- List group -->
                         <ul class="list-group">
+                            <li class="list-group-item">Người đại diện: <% Response.Write(strManager); %></li>
                             <li class="list-group-item">Tên cửa hàng: <% Response.Write(strName); %></li>
                             <li class="list-group-item">Địa chỉ: <% Response.Write(strAddress); %></li>
                             <li class="list-group-item">Điện thoại: <% Response.Write(strPhone); %></li>
@@ -18,6 +19,8 @@
                             <li class="list-group-item">Tài khoản cửa hàng: <% Response.Write(strAccount); %></li>
                             <li class="list-group-item">Số tài khoản: <% Response.Write(strBankAccount); %></li>
                             <li class="list-group-item">Ngân hàng: <% Response.Write(strBankAccountName); %></li>
+                            <li class="list-group-item">Ngày hợp đồng hiệu lực: <% Response.Write(strCreateDate); %></li>
+
                         </ul>
                     </div>
                 </div>

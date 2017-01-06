@@ -14,15 +14,17 @@ public partial class Store_History : System.Web.UI.Page
     private Partner objPartner = new Partner();
     public DataTable objTable = new DataTable();
     public string strName = "", strAddress = "", strPhone = "", strManager = "", strEmail = "", strTaxcode = "", strAccount = "", strBestSale = "", strVIP = "", strMsg = "", strHtml = "";
+
+    public string FromDate = "";
+    public string ToDate = "";
     #endregion
 
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (Session["ACCOUNT"] == null)
-        {
-            Response.Redirect("/");
-        }
+
+
+
         if (!Page.IsPostBack)
         {
             this.getPartner();
@@ -35,7 +37,7 @@ public partial class Store_History : System.Web.UI.Page
                     strHtml += "<div style =\"width:100%; margin-top:1px;\">";
 
                     strHtml += "<div style=\"width: 5%; float: left; border:solid 1px #f3f1f1; border-right:none; border-top:none;text-align:center;height:26px; line-height:26px; color:#000;\">";
-                    strHtml += this.objTable.Rows[i]["TT"].ToString();
+                    strHtml += i.ToString();
                     strHtml += "</div>";
 
                     strHtml += "<div style=\"width: 18%; float: left; border:solid 1px #f3f1f1;border-top:none;text-align:center;height:26px; line-height:26px; color:#000;\">";
