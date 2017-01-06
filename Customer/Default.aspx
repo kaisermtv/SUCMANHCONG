@@ -8,12 +8,12 @@
         }
         .title_card {
 
-            width: 100%; height: 115px; margin-left: -8px; text-align: center; padding-top: 5px; color: #fff; font-size: 20px; font-weight:100;
+            width: 100%; height: 115px; margin-left: -8px; text-align: center; padding-top: 8px; color: #fff; font-size: 20px; font-weight:100;
             font-family:Arial;
            
         }
         .title-cost{
-        width: 100%; height: 95px; text-align: center; margin-left: -10px; margin-top: -25px; color:  #fff; border-bottom: dotted 1px #fff; font-size: 20px;
+        width: 100%; height: 95px; text-align: center; margin-left: -10px; margin-top: -20px; color:  #fff; border-bottom: dotted 1px #fff; font-size: 20px;
         font:small-caption;
         }
     </style>
@@ -23,13 +23,13 @@
         </div>
         <div class="row" style="margin-top: 30px;">
             <div class="col-md-4" style="background-image: url('../Images/design/Thedong.png'); background-repeat: no-repeat">
-                <div class="title_card">
+                <div class="title_card" style="margin-left:3px;">
                     THẺ ĐỒNG 
                 </div>
                 <div class="title-cost">
                     30,000 đ
                 </div>
-                <div class="btn-group dropup" style="margin-top: -55px; margin-left:-15px;">
+                <div class="btn-group dropup" style="margin-top: -70px; margin-left:-15px;">
                     <a class="btn btn-primary" href="../../NewsDetailt?Id=1">Xem chi tiết</a>
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="caret"></span>
@@ -42,9 +42,6 @@
 
 
             </div>
-
-
-
             <div class="col-md-4" style="background-image: url('../Images/design/Thebac.png'); background-repeat: no-repeat">
                 <div class="title_card">
                           THẺ BẠC 
@@ -54,7 +51,7 @@
                      350,000 đ
                 </div>
 
-                <div class="btn-group dropup" style="margin-top: -55px; margin-left:-15px;">
+                <div class="btn-group dropup" style="margin-top: -70px; margin-left:-15px;">
                     <a class="btn btn-primary" href="../../NewsDetailt?Id=2">Xem chi tiết</a>
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="caret"></span>
@@ -77,7 +74,7 @@
              <div class="title-cost">
                        1,000,000 đ
                 </div>
-             <div class="btn-group dropup" style="margin-top: -55px; margin-left:-15px;">
+             <div class="btn-group dropup" style="margin-top: -70px; margin-left:-15px;">
                        <a class="btn btn-primary" href="../../NewsDetailt?Id=3">Xem chi tiết</a>
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="caret"></span>

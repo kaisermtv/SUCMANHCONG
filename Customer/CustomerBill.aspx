@@ -6,7 +6,7 @@
         <div class="row" style="margin-top: 20px;">
             <div class="col-md-3">
                 <div style="width: 100%; color: #fff;" class="TVS-Col-md20">
-                    <a href="#"><B>DOANH SỐ GIAO DỊCH</B></a>
+                    <a href="#"><b>DOANH SỐ GIAO DỊCH</b></a>
                 </div>
                 <div style="width: 100%; color: #fff;" class="TVS-Col-md2">
                     <a href="#">+ Doanh số trong ngày: <% Response.Write(this.strDSInDay); %></a>
@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="col-md-9">
-                <div style="width: 100%; margin-top:0px;">
+                <div style="width: 100%; margin-top: 0px;">
                     <div style="width: 5%; float: left; border: solid 1px #f3f1f1; border-right: none; text-align: center; font-weight: bold; height: 30px; line-height: 30px; color: #000;">
                         TT   
                     </div>

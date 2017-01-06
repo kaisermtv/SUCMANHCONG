@@ -94,6 +94,9 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Product.aspx">Sản phẩm</a>
                 </div>
                 <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/AdvertmentProduct.aspx"> Yêu cầu quoảng cáo sản phẩm </a>
+                </div>
+                <div class="SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/ListLocation.aspx">Tỉnh thành</a>
                 </div>
                 <div class="SystemLeftMenu">
@@ -105,6 +108,7 @@
                 <div class="SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Video.aspx">Video - Media</a>
                 </div>
+
                 <div class="SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/ListMedia.aspx">Hình ảnh- Media</a>
                 </div>

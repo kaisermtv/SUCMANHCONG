@@ -1105,6 +1105,7 @@ public class DataProduct
             }
             
             Cmd.CommandText += " WHERE [tblProduct].[State] = 1";
+
             if (vipandsale == 1)
             {
                 Cmd.CommandText += " AND [tblProduct].[VIP] = 1";
@@ -1159,6 +1160,7 @@ public class DataProduct
     }
     #endregion
 
+   
     #region Method getCountProductOption
     public int getCountProductOption(int vipandsale = 0, int Group = 0, string search = "", int Location = 0)
     {
@@ -1215,4 +1217,163 @@ public class DataProduct
     #endregion
 
 
+    // AdvertProduct : Sản phẩm khách hàng nhờ quoảng cáo 
+    #region Method UpdateOrInsertAdvertProducTabletById
+    public int UpdateOrInsertAdvertProducTabletById(int Id, string Name, float Price, float Discount, string Content, string Image, bool BestSale, bool VIP, bool State, int GroupId, int PartnerId)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            string sqlQuery = "";
+            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblAdvertProduct WHERE Id = @Id)";
+            sqlQuery += "BEGIN INSERT INTO tblAdvertProduct(Name,Price,Discount,Content,Image,GroupId,BestSale,VIP,State,PartnerId) VALUES(@Name,@Price,@Discount,@Content,@Image,@GroupId,@BestSale,@VIP,@State,@PartnerId) END ";
+            sqlQuery += "ELSE BEGIN UPDATE tblAdvertProduct SET Name = @Name, Price = @Price, Discount = @Discount, Content = @Content, Image = @Image, BestSale = @BestSale, VIP = @VIP, State = @State, GroupId = @GroupId, PartnerId = @PartnerId WHERE Id = @Id END";
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
+            Cmd.Parameters.Add("Price", SqlDbType.Float).Value = Price;
+            Cmd.Parameters.Add("Discount", SqlDbType.Float).Value = Discount;
+            Cmd.Parameters.Add("Content", SqlDbType.NText).Value = Content;
+            Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = Image;
+            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = BestSale;
+            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = VIP;
+            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;
+            Cmd.Parameters.Add("GroupId", SqlDbType.Int).Value = GroupId;
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
+            int ret = Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+    #endregion
+
+    #region method getPartAdvertmentProduct
+    public DataTable getPartAdvertmentProduct()
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = " SELECT 0 AS TT,Name,Price,Id,CountLike,CountBuy, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblAdvertProduct ORDER BY id desc";
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+            {
+                ds.Tables[0].Rows[i]["TT"] = (i + 1);
+            }
+            return ds.Tables[0];
+        }
+        catch
+        {
+            return new DataTable();
+        }
+
+    }
+    #endregion
+
+    #region Method getAdvertmentProductById
+    public DataTable getAdvertmentProductById(int Id)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+
+            Cmd.CommandText = "SELECT * from tblAdvertProduct Where Id = @Id ;";
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            objTable = ds.Tables[0];
+        }
+        catch
+        {
+
+        }
+        return objTable;
+    }
+    #endregion
+
+    #region Method UpdateOrInsertAdvertmentProductById
+    public int UpdateOrInsertAdvertmentProductById(int Id, string Name, float Price, float Discount, string Content, string Image, bool BestSale, bool VIP, bool State, int GroupId, int PartnerId)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            string sqlQuery = "";
+            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblAdvertProduct WHERE Id = @Id)";
+            sqlQuery += "BEGIN INSERT INTO tblAdvertProduct(Name,Price,Discount,Content,Image,GroupId,BestSale,VIP,State,PartnerId) VALUES(@Name,@Price,@Discount,@Content,@Image,@GroupId,@BestSale,@VIP,@State,@PartnerId) END ";
+            sqlQuery += "ELSE BEGIN UPDATE tblAdvertProduct SET Name = @Name, Price = @Price, Discount = @Discount, Content = @Content, Image = @Image, BestSale = @BestSale, VIP = @VIP, State = @State, GroupId = @GroupId, PartnerId = @PartnerId WHERE Id = @Id END";
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
+            Cmd.Parameters.Add("Price", SqlDbType.Float).Value = Price;
+            Cmd.Parameters.Add("Discount", SqlDbType.Float).Value = Discount;
+            Cmd.Parameters.Add("Content", SqlDbType.NText).Value = Content;
+            Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = Image;
+            Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = BestSale;
+            Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = VIP;
+            Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;
+            Cmd.Parameters.Add("GroupId", SqlDbType.Int).Value = GroupId;
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
+            int ret = Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+    #endregion
+
+    #region method removeAdvertmentProduct
+    public int removeAdvertmentProduct(int Id)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            string sqlQuery = "";
+            sqlQuery = "IF  EXISTS (SELECT * FROM tblAdvertProduct WHERE Id = @Id)";
+            sqlQuery += "BEGIN DELETE FROM tblAdvertProduct  WHERE Id = @Id END ";
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            int ret = Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return 1;
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+    #endregion
 }
