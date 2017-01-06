@@ -23,7 +23,7 @@ public partial class System_Product : System.Web.UI.Page
         if (!Page.IsPostBack)
         {
             CollectionPager2.MaxPages = 1000;
-            CollectionPager2.PageSize = 120;
+            CollectionPager2.PageSize = 30;
             CollectionPager2.DataSource = this.getProduct().DefaultView;
             CollectionPager2.BindToControl = DataList2;
             DataList2.DataSource = CollectionPager2.DataSourcePaged;
