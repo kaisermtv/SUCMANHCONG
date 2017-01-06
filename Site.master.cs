@@ -20,20 +20,15 @@ public partial class SiteMaster : MasterPage
     public string[] ProductGroup = new string[8] { "", "", "", "", "", "", "","" };
     public int[] ProductGroupId = new int[8] { 0, 0, 0, 0, 0, 0, 0,0 };
     private DataTable objTableProductGroup = new DataTable();
+    public Location objLocation = new Location();
 
     public int Location = 0;
+    public DataRowCollection objTableLocation;
     #endregion
 
     #region method Page_Init
     protected void Page_Init(object sender, EventArgs e)
     {
-        try
-        {
-            this.Location = int.Parse(Request["Location"].ToString());
-        }
-        catch { }
-
-
         // The code below helps to protect against XSRF attacks
         var requestCookie = Request.Cookies[AntiXsrfTokenKey];
         Guid requestCookieGuidValue;
@@ -89,6 +84,15 @@ public partial class SiteMaster : MasterPage
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.objTableLocation = this.objLocation.getLocation().Rows;
+        try
+        {
+            this.Location = int.Parse(Request["Location"].ToString());
+        }
+        catch { }
+
+
+
         if (Session["ACCOUNT"] == null || Session["ACCOUNT"].ToString() == "")
         {
             strHeader = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"#\" id=\"searchlink1\" rel=\"subcontent1\">Đăng kí &nbsp;|&nbsp; </a><a href=\"/login.aspx\">&nbsp;Đăng nhập</a>";

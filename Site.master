@@ -93,18 +93,12 @@
                             </div>
                         </div>
                         <div id="subcontent2" style="position: absolute; visibility: hidden; text-align: center; border-left: solid 1px #c4d6cc; margin-left: -6px; background-color: white; width: 130px; padding: 8px; z-index: 1000">
-                            <p style="width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; text-align: justify; font-weight: bold;">
-                                <a href="/Search?Location=0">Hà Nội</a>
+                            <% for(int i = 2;i<objTableLocation.Count;i++){ %>
+                            <p class="LocationMenuChid" <%= (this.Location == (int)objTableLocation[i]["Id"])?"style=\"color: red;\"":"" %>>
+                                <a href="/Search?Location=<%=objTableLocation[i]["Id"] %>"><%=objTableLocation[i]["Name"] %></a>
                             </p>
-                            <p style="width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; text-align: justify; font-weight: bold;">
-                                <a href="/Search?Location=0">Tp. Hồ Chí Minh</a>
-                            </p>
-                            <p style="width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; text-align: justify; font-weight: bold;">
-                                <a href="/Search?Location=0">Thanh hóa</a>
-                            </p>
-                            <p style="width: 100%; margin-top: 0px; margin-bottom: 0px; text-align: justify; font-weight: bold;">
-                                <a href="/Search?Location=0">Quảng Bình</a>
-                            </p>
+                            <% } %>
+                            
                             <script type="text/javascript">
                                 dropdowncontent.init("searchlink2", "right-bottom", 500, "mouseover")
                             </script>

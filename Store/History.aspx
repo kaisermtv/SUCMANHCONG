@@ -1,7 +1,21 @@
 ﻿<%@ Page Title="LỊCH SỬ GIAO DỊCH" Language="C#" MasterPageFile="~/Store.master" AutoEventWireup="true" CodeFile="History.aspx.cs" Inherits="Store_History" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-    <div class="container" style="width: 100%;">
+    <div class="container" style="width: 100%; text-align:right;">
+        <div class="row" style="margin-bottom: 10px;">
+            <div class="col-md-3">
+                <select class="form-control" onchange="">
+                    <option value="0">--Tìm từ ngày--</option>
+
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control" onchange="">
+                    <option value="0">--Tìm tới ngày--</option>
+
+                </select>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="row">

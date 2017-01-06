@@ -22,14 +22,24 @@ public partial class Store_History : System.Web.UI.Page
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
+        try
+        {
+            this.FromDate = Request["FromDate"].ToString();
+        }
+        catch { }
 
+        try
+        {
+            this.ToDate = Request["ToDate"].ToString();
+        }
+        catch { }
 
 
         if (!Page.IsPostBack)
         {
             this.getPartner();
 
-            this.objTable = this.objPartner.getHistoryBillByPartnerAccount(Session["ACCOUNT"].ToString());
+            this.objTable = this.objPartner.getHistoryBillByPartnerAccount(Session["ACCOUNT"].ToString(), this.FromDate, this.ToDate);
             if (this.objTable.Rows.Count > 0)
             {
                 for (int i = 0; i < this.objTable.Rows.Count; i++)
