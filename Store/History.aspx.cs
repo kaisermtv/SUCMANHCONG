@@ -17,29 +17,54 @@ public partial class Store_History : System.Web.UI.Page
 
     public string FromDate = "";
     public string ToDate = "";
+    public string Message = "";
     #endregion
 
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
-        try
+        if (Page.IsPostBack)
         {
-            this.FromDate = Request["FromDate"].ToString();
-        }
-        catch { }
+            string rurl = "?";
+            string str = this.txtFromDate.Value;
 
-        try
+            if(str != "")
+            {
+                rurl += "FromDate=" + str;
+            }
+
+            str = this.txtToDate.Value;
+
+            if (str != "")
+            {
+                if (rurl != "?") rurl += "&";
+                rurl += "ToDate=" + str;
+            }
+
+
+            Response.Redirect("/Store/History" + rurl);
+        } else
         {
-            this.ToDate = Request["ToDate"].ToString();
-        }
-        catch { }
+            try
+            {
+                this.FromDate = Request["FromDate"].ToString();
+                this.txtFromDate.Value = this.FromDate;
+            }
+            catch { }
+
+            try
+            {
+                this.ToDate = Request["ToDate"].ToString();
+                this.txtToDate.Value = this.ToDate;
+            }
+            catch { }
 
 
-        if (!Page.IsPostBack)
-        {
+
             this.getPartner();
 
             this.objTable = this.objPartner.getHistoryBillByPartnerAccount(Session["ACCOUNT"].ToString(), this.FromDate, this.ToDate);
+            //this.Message = this.objPartner.ErrorMessage;
             if (this.objTable.Rows.Count > 0)
             {
                 for (int i = 0; i < this.objTable.Rows.Count; i++)
