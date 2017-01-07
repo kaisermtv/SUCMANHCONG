@@ -107,7 +107,8 @@
                                             </li>
                                             <li><a href="javascript:vold(0)">Doanh số giao dịch</a>
                                                 <ul>
-                                                    <li><a href="CustomerBillOnMonth.aspx">Giao dịch trong tháng</a></li>
+                                                    <li><a href="/Customer/CustomerBill?FromDate=<%=this.MondayOfWeek(DateTime.Now).ToString("yyyy-MM-dd") %>&ToDate=<%=this.SundayOfWeek(DateTime.Now).ToString("yyyy-MM-dd") %>">Giao dịch trong tuần</a></li>
+                                                    <li><a href="/Customer/CustomerBill?FromDate=<%=DateTime.Now.ToString("yyyy-MM-01") %>&ToDate=<%=DateTime.Now.AddMonths(1).AddDays(- DateTime.Now.Day).ToString("yyyy-MM-dd") %>">Giao dịch trong tháng</a></li>
                                                     <li><a href="CustomerBill.aspx">Tất cả giao dich</a></li>
                                                     <li><a href="#" onclick="show_diemtichluy();">Điểm tích luỹ</a></li>
                                                 </ul>

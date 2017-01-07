@@ -28,6 +28,28 @@
                 </div>
             </div>
             <div class="col-md-9">
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-1" style="height: 100%">
+                        Từ ngày
+                    </div>
+                    <div class="col-md-3">
+                        <input runat="server" id="txtFromDate" type="date" class="form-control" value="" placeholder="yyy-mm-dd" />
+                    </div>
+                    <div class="col-md-1">
+                        tới ngày
+                    </div>
+                    <div class="col-md-3">
+                        <input type="date" runat="server" id="txtToDate" class="form-control" value="" placeholder="yyy-mm-dd" />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="submit" style="float: left" class="btn btn-default" value="Lọc kết quả" />
+                    </div>
+                </div>
+                 <% if(this.Message != ""){ %>
+        <div class="row" >
+            <pre><%= this.Message %></pre>
+        </div>
+        <% } %>
                 <div style="width: 100%; margin-top: 0px;">
                     <div style="width: 5%; float: left; border: solid 1px #f3f1f1; border-right: none; text-align: center; font-weight: bold; height: 30px; line-height: 30px; color: #000;">
                         TT   

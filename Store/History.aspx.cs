@@ -63,7 +63,7 @@ public partial class Store_History : System.Web.UI.Page
 
             this.getPartner();
 
-            this.objTable = this.objPartner.getHistoryBillByPartnerAccount(Session["ACCOUNT"].ToString(), this.FromDate, this.ToDate);
+            this.objTable = this.objPartner.getHistoryBill(Session["ACCOUNT"].ToString(), this.FromDate, this.ToDate);
             //this.Message = this.objPartner.ErrorMessage;
             if (this.objTable.Rows.Count > 0)
             {

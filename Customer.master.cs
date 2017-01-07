@@ -173,4 +173,32 @@ public partial class CustomerMaster : MasterPage
         Context.GetOwinContext().Authentication.SignOut();
     } 
     #endregion
+
+
+    #region date
+    public DateTime MondayOfWeek(DateTime date)
+    {
+        var dayOfWeek = date.DayOfWeek;
+
+        /*
+        if (dayOfWeek == DayOfWeek.Sunday)
+        {
+            //xét chủ nhật là đầu tuần thì thứ 2 là ngày kế tiếp nên sẽ tăng 1 ngày  
+            //return date.AddDays(1);  
+
+            // nếu xét chủ nhật là ngày cuối tuần  
+            return date.AddDays(-6);
+        }
+         /* */
+        // nếu không phải thứ 2 thì lùi ngày lại cho đến thứ 2  
+        int offset = dayOfWeek - DayOfWeek.Monday;
+        return date.AddDays(-offset);
+    }
+
+    public DateTime SundayOfWeek(DateTime date)
+    {
+        return this.MondayOfWeek(date).AddDays(6);
+    }
+
+    #endregion
 }

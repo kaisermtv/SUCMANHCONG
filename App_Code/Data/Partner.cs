@@ -182,14 +182,26 @@ public class Partner
     #endregion
 
     #region method getHistoryBill
-    public DataTable getHistoryBillByPartnerAccount(string PartnerAccount,string fromdate = "",string todate = "")
+    public DataTable getHistoryBill(string PartnerAccount = "",string fromdate = "",string todate = "",string customerAccount = "")
     {
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT 0 AS TT, * FROM tblPartnerBill WHERE PartnerAccount = @PartnerAccount";
+            Cmd.CommandText = "SELECT 0 AS TT, * FROM tblPartnerBill WHERE 1=1";
+            if (PartnerAccount != "")
+            {
+                Cmd.CommandText += " AND UPPER(PartnerAccount) = @PartnerAccount";
+                Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = PartnerAccount.ToUpper();
+            }
+
+            if (customerAccount != "")
+            {
+                Cmd.CommandText += " AND UPPER([CustomerAccount]) = @CustomerAccount";
+                Cmd.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = customerAccount.ToUpper();
+            }
+
             if (fromdate != "")
             {
                 Cmd.CommandText += " AND DayCreate >= @FromDate";
@@ -203,8 +215,8 @@ public class Partner
             }
 
             Cmd.CommandText += " ORDER BY DayCreate DESC";
-            //this.ErrorMessage = Cmd.CommandText;
-            Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = PartnerAccount;
+            this.ErrorMessage = Cmd.CommandText;
+           
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
