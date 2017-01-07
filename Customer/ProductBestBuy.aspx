@@ -78,7 +78,11 @@
                     </div>
                     <div class="sanpham_price_line">
                         <span class="sanpham_price">
-                            <%= this.objTableProduct.Rows[i]["Price"].ToString() %>&nbsp;<sup><u>đ</u></sup>
+                                 <%                  
+                       TVSFunc tvsPrice = new TVSFunc();
+                       Response.Write(tvsPrice.formatPrice(this.objTableProduct.Rows[i]["Price"].ToString()));
+                                %>
+                          
                         </span>
                         <div class="sanpham_Discount">
                             &nbsp; -

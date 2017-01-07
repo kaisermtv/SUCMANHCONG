@@ -218,5 +218,38 @@ public class TVSFunc
     #endregion
 
     //IF NOT EXISTS (SELECT [column_name] FROM information_schema.columns WHERE [table_name] = 'tblBillDetail' and column_name = 'StockId')
-     //BEGIN ALTER TABLE tblBillDetail ADD StockId nvarchar(50) DEFAULT('') END
+    //BEGIN ALTER TABLE tblBillDetail ADD StockId nvarchar(50) DEFAULT('') END
+    #region formatprice(String price)
+    public String formatPrice(String price)
+    {
+
+        if (price.Length <= 3) { return price + " <sup><u>đ</u></sup>"; }
+        else
+        {
+            char[] priceTmp = price.ToCharArray();
+            if (priceTmp.Length <= 6 && priceTmp[priceTmp.Length - 1] == '0' && priceTmp[priceTmp.Length - 2] == '0' && priceTmp[priceTmp.Length - 3] == '0')
+            {
+                String price2 = new String(priceTmp);
+                price2 = price2.Substring(0, price.Length - 3);
+                return price2 + " k<sup><u>đ</u></sup>";
+            }
+            else if (priceTmp.Length <= 9 && priceTmp[priceTmp.Length - 1] == '0' && priceTmp[priceTmp.Length - 2] == '0' && priceTmp[priceTmp.Length - 3] == '0')
+            {
+                String price2 = new String(priceTmp);
+                price2 = price2.Substring(0, price.Length - 3);
+                price2 = String.Format("{0:n0}", Int32.Parse(price2));
+                while (price2.EndsWith("0")) { price2 = price2.Substring(0, price2.Length - 1); }
+
+                return (price2 + " tr <sup><u>đ</u></sup>");
+
+            }
+
+            else
+            {
+                return (" <span class='' style='fontsize:4px;'>" + price + "</span>");
+            }
+        }
+    }
+
+    #endregion
 }
