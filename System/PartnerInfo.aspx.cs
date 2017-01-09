@@ -53,6 +53,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             else
             {
                 this.btnCreate.Enabled = false;
+                this.txtAccount.ReadOnly = true;
             }
             /* */
         }
@@ -71,6 +72,14 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             this.lblPhone.Text = objData.Rows[0]["Phone"].ToString();
             this.lblTaxCode.Text = objData.Rows[0]["TaxCode"].ToString();
             this.txtAccount.Text = objData.Rows[0]["Account"].ToString();
+
+           
+            // Lấy số tiền được thanh toán bằng thẻ trừ đi tổng chi phí quảng cáo
+            double a = this.objPartner.getSalesCardByPartnerAccout(objData.Rows[0]["Account"].ToString()) - this.objPartner.getPartnerBillTotalDiscountAdvByAccount(objData.Rows[0]["Account"].ToString());
+            this.outDoanhsoCandoi.InnerText = String.Format("{0:0,0}",a);
+
+
+
             if (objData.Rows[0]["BestSale"].ToString() == "True")
             {
                 this.ckbBestSale.Checked = true;
@@ -117,13 +126,13 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             this.txtAccount.Text = PartnerAccount + this.txtAccount.Text;
             this.btnCreate.Enabled = false;
 
-            this.Message = "Cập nhật tài khoản thành công";
+            this.lblMsg.Text = "Cập nhật tài khoản thành công";
         } else if(ret == -1)
         {
             this.Message = objFunc.ErrorMessage;
         } else if(ret == 1)
         {
-            this.Message = "Tài khoản đã tồn tại";
+            this.lblMsg.Text = "Tài khoản đã tồn tại";
         }
 
         
@@ -226,4 +235,40 @@ public partial class System_PartnerInfo : System.Web.UI.Page
         }
     }
     #endregion
+
+    #region method btnParnerPayment_Click
+    protected void btnParnerPayment_Click(object sender, EventArgs e)
+    {
+        double pm = 0;
+        try
+        {
+            pm = double.Parse(this.txtParnertPayment.Text);
+        }
+        catch 
+        {
+            this.lblMsg.Text = "Định dạng nhập không đúng!";
+            return;
+        }
+
+
+        DataRowCollection objData = this.objPartner.getPartnerById(this.itemId).Rows;
+        if (objData.Count > 0)
+        {
+            int ret = this.objPartner.addPartnerPayment(0, (int)objData[0]["Id"], pm);
+            if(ret> 0)
+            {
+                double a = this.objPartner.getSalesCardByPartnerAccout(objData[0]["Account"].ToString()) - this.objPartner.getPartnerBillTotalDiscountAdvByAccount(objData[0]["Account"].ToString());
+                this.outDoanhsoCandoi.InnerText = String.Format("{0:0,0}", a);
+
+                this.lblMsg.Text = "Thao tác thực hiện thành công!";
+            }
+            else
+            {
+                this.lblMsg.Text = "Có lỗi xảy ra. Xin thử lại!";
+            }
+        }
+    }
+    #endregion
+
+    
 }

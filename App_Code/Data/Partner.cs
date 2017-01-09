@@ -1512,6 +1512,14 @@ public class Partner
             Cmd.CommandText += " WHERE PB.[PartnerAccount] = @PartnerAccount";
             Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = PartnerAccout.ToUpper().Trim();
             double ret = (double)Cmd.ExecuteScalar();
+
+            Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT ISNULL(SUM([TotalPayment]),0) FROM [tblPartnerPayments]";
+            Cmd.CommandText += " WHERE [PartnerId] = (SELECT [Id] FROM [tblPartner] WHERE [Account] = @PartnerAccount) ";
+            Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = PartnerAccout.ToUpper().Trim();
+            ret += (double)Cmd.ExecuteScalar();
+
+
             sqlCon.Close();
             sqlCon.Dispose();
 
@@ -1522,6 +1530,35 @@ public class Partner
             this.ErrorMessage = ex.Message;
             this.ErrorCode = ex.HResult;
 
+            return 0;
+        }
+    }
+    #endregion
+
+    #region Method getSalesBalance
+    public int addPartnerPayment(int AccountId,int PartnerId,double Payment)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "INSERT INTO [tblPartnerPayments]([PartnerId],[TotalPayment],[AccountId]) VALUES(@PartnerId,@Payment,@AccountId) SELECT CAST(scope_identity() AS int)";
+            Cmd.Parameters.Add("AccountId", SqlDbType.Int).Value = AccountId;
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
+            Cmd.Parameters.Add("Payment", SqlDbType.Float).Value = Payment;
+
+            //int ret = Cmd.ExecuteNonQuery();
+            int ret = (int)Cmd.ExecuteScalar();
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.ErrorMessage = ex.Message;
+            this.ErrorCode = ex.HResult;
             return 0;
         }
     }

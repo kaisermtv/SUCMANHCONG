@@ -146,10 +146,9 @@ public partial class Store : MasterPage
                 mm = (double)objTable[0]["MinMaxSales"];
             }
             catch { }
-            
+            // Lấy số tiền được thanh toán bằng thẻ trừ đi tổng chi phí quảng cáo
             double a = this.objPartner.getSalesCardByPartnerAccout(Session["ACCOUNT"].ToString()) - this.objPartner.getPartnerBillTotalDiscountAdvByAccount(Session["ACCOUNT"].ToString());
 
-            // Lấy số tiền được thanh toán bằng thẻ trừ đi tổng chi phí quảng cáo
             this.ngoisao = Math.Abs(a) < mm;
 
             if (objTable[0]["BestSale"].ToString() == "True")

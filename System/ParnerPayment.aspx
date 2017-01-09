@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="PartnerInfo.aspx.cs" Inherits="System_PartnerInfo" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ParnerPayment.aspx.cs" Inherits="System_ParnerPayment" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 
@@ -73,7 +73,7 @@
             </div>
         </div>
 
-        <div style="width: 60%; display: table; float: right;margin-bottom:20px">
+        <div style="width: 60%; display: table; float: right;">
             <div style="width: 22%; display: table; float: left;">
                 &nbsp;
             </div>
@@ -168,16 +168,11 @@
                 <asp:Button ID="btnCreate" runat="server" Style="height: 28px; line-height: 22px; width: 150px;" Text="Khởi tạo mã cửa hàng" OnClick="btnCreate_Click" />
                 <asp:Button ID="btnUpdate" runat="server" Style="height: 28px; line-height: 22px; width: 140px;" Text="Cập nhật chiết khấu" OnClick="btnUpdate_Click" />
                 <asp:Button ID="btnProduct" runat="server" Style="height: 28px; line-height: 22px; width: 115px;" Text="Chi tiết giao dịch" />
+                <asp:Button ID="btnParnerPayment" runat="server" Style="height: 28px; line-height: 22px; width: 115px;" Text="Thanh toán cửa hàng" OnClick="btnParnerPayment_Click" />
             </div>
 
         </div>
-        
-        <div style="width: 100%; display: table;">
-            Doanh số cân đối: <a runat="server" id="outDoanhsoCandoi"></a><br />
-            Nhập tiền thanh toán: 
-            <asp:TextBox ID="txtParnertPayment" runat="server" Style="margin-right:20px; height: 22px; line-height: 22px; width: 200px; font-family: Arial; font-size: 14px; font-weight: bold; text-transform: uppercase; border: solid 1px Aqua;"></asp:TextBox>
-            <asp:Button ID="btnParnertPayment" runat="server" Style="height: 28px; line-height: 22px; width: 130px;" Text="Thanh toán cửa hàng" OnClick="btnParnerPayment_Click" />
-        </div>
+
         <p><%=this.Message %></p>
     </div>
 </asp:Content>
