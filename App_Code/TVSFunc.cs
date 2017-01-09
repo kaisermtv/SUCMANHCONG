@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Web;
 
 public class TVSFunc
@@ -252,4 +254,36 @@ public class TVSFunc
     }
 
     #endregion
+
+    public int sendEmail(String fromMail ,String fromName, String toMail,String toName,String password)
+    {
+        var fromAddress = new MailAddress(fromMail, fromName);
+        var toAddress = new MailAddress(toMail , toName);
+      
+        String title = "Test mail";
+        String content = "Noi dung";
+
+        var stmp = new SmtpClient
+        {
+            Host = "smtp.gmail.com",
+            Port = 587,
+            EnableSsl = true,
+            DeliveryMethod = SmtpDeliveryMethod.Network,
+            UseDefaultCredentials = false,
+            Credentials = new NetworkCredential(fromAddress.Address, password),
+            Timeout=20000
+        };
+        try { 
+        using (var message = new MailMessage(fromAddress, toAddress) { Subject = title, Body = content }) { stmp.Send(message); }
+       
+            }
+        catch(Exception e)
+        {
+            if (e.ToString().Contains("authenticated")) { return -1; }
+            return 0;
+        }
+        
+        return 1;
+    }
+
 }

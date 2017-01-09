@@ -8,7 +8,7 @@ using System.Web.UI.WebControls;
 public partial class ReceiveNews : System.Web.UI.Page
 {
     public string email = "";
-
+    private TVSFunc func = new TVSFunc();
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -19,7 +19,6 @@ public partial class ReceiveNews : System.Web.UI.Page
             Response.Redirect("/");
         }
 
-        DataReceiveNews objReceiveNews = new DataReceiveNews();
-        objReceiveNews.addEmail(this.email);
+      
     }
 }
