@@ -12,15 +12,19 @@ using System.Web.UI.WebControls;
 public partial class Store : MasterPage
 {
     #region declare objects
+    private Partner objPartner = new Partner();
+    private TVSFunc objFunc = new TVSFunc();
+
+    private DataTable objTableProductGroup = new DataTable();
+
     private const string AntiXsrfTokenKey = "__AntiXsrfToken";
     private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
     private string _antiXsrfTokenValue;
     public string strHeader = "", currPartnerId = "", strFullName = "";
-    private TVSFunc objFunc = new TVSFunc();
     public string[] ProductGroup = new string[7] { "", "", "", "", "", "", "" };
-    private DataTable objTableProductGroup = new DataTable();
     public string strStoreName = "";
     public string strName = "", strAddress = "", strPhone = "", strManager = "", strEmail = "", strTaxcode = "", strAccount = "", strBestSale = "", strVIP = "", strMsg = "", strHtml = "";
+    public bool ngoisao = true;
     #endregion
 
     #region method Page_Init
@@ -124,23 +128,31 @@ public partial class Store : MasterPage
     #region method getPartner
     public void getPartner()
     {
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblPartner WHERE Account = @Account";
-        Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Session["ACCOUNT"].ToString();
-        SqlDataReader Rd = Cmd.ExecuteReader();
-        while (Rd.Read())
+        DataRowCollection objTable = this.objPartner.getPartnerInforByAccount(Session["ACCOUNT"].ToString()).Rows;
+        if(objTable.Count > 0 )
         {
-            this.strStoreName = Rd["Name"].ToString();
-            this.strName = Rd["Name"].ToString();
-            this.strAddress = Rd["Address"].ToString();
-            this.strManager = Rd["Manager"].ToString();
-            this.strPhone = Rd["Phone"].ToString();
-            this.strEmail = Rd["Email"].ToString();
-            this.strTaxcode = Rd["TaxCode"].ToString();
-            this.strAccount = Rd["Account"].ToString();
-            if (Rd["BestSale"].ToString() == "True")
+            this.strStoreName = objTable[0]["Name"].ToString();
+            this.strName = objTable[0]["Name"].ToString();
+            this.strAddress = objTable[0]["Address"].ToString();
+            this.strManager = objTable[0]["Manager"].ToString();
+            this.strPhone = objTable[0]["Phone"].ToString();
+            this.strEmail = objTable[0]["Email"].ToString();
+            this.strTaxcode = objTable[0]["TaxCode"].ToString();
+            this.strAccount = objTable[0]["Account"].ToString();
+            
+            double mm = 0;
+            try
+            {
+                mm = (double)objTable[0]["MinMaxSales"];
+            }
+            catch { }
+            
+            double a = this.objPartner.getSalesCardByPartnerAccout(Session["ACCOUNT"].ToString()) - this.objPartner.getPartnerBillTotalDiscountAdvByAccount(Session["ACCOUNT"].ToString());
+
+            // Lấy số tiền được thanh toán bằng thẻ trừ đi tổng chi phí quảng cáo
+            this.ngoisao = Math.Abs(a) < mm;
+
+            if (objTable[0]["BestSale"].ToString() == "True")
             {
                 this.strBestSale = "X";
             }
@@ -148,7 +160,7 @@ public partial class Store : MasterPage
             {
                 this.strBestSale = "";
             }
-            if (Rd["VIP"].ToString() == "True")
+            if (objTable[0]["VIP"].ToString() == "True")
             {
                 this.strVIP = "X";
             }
@@ -156,11 +168,10 @@ public partial class Store : MasterPage
             {
                 this.strVIP = "";
             }
-            lblImg1.Text = "<img width = \"100%\" height = \"120px\" src = \"/Images/Partner/" + Rd["Image"].ToString() + "\">";
+            lblImg1.Text = "<img width = \"100%\" height = \"120px\" src = \"/Images/Partner/" + objTable[0]["Image"].ToString() + "\">";
+        
         }
-        Rd.Close();
-        sqlCon.Close();
-        sqlCon.Dispose();
+
     }
     #endregion
 }

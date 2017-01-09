@@ -107,7 +107,7 @@
                             <a href="/Store/Summary.aspx">
                                 <img src ="/img/Notification.gif" alt ="notification" style ="width:30px; margin-top:-8px; margin-bottom:-8px; margin-left:20px;">
                             </a>
-                            <a style="font-size: 25px;margin-top:-10px;color: red"> ★</a>
+                            <a class="ngoisao"<%= this.ngoisao?" style=\"color: green;\"":"" %>> ★</a>
                         </div>
                         <div style="width: 100%;">
                             <asp:Label ID="lblImg1" runat="server" Text=""></asp:Label>

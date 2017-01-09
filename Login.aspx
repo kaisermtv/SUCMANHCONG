@@ -49,7 +49,8 @@
                     <input type="submit" class="btn btn-lg btn-success btn-block" value="ĐĂNG NHẬP" />
                     <br>
 
-                    <p class="text-center"><a href="Register.aspx">Đăng ký tài khoản?</a></p>
+                    <p class="text-center"><a href="/Customer/Register.aspx">Đăng ký tài khoản khách hàng?</a></p>
+                    <p class="text-center"><a href="/Store/Register.aspx">Đăng ký tài khoản cửa hàng?</a></p>
                 </fieldset>
                 <%--</form>--%>
             </div>

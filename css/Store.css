@@ -68,7 +68,7 @@
     border-top: none;
     height: 30px;
     line-height: 30px;
-    padding-top:2px;
+    padding-top: 2px;
 }
 
 .list_product_item_pr {
@@ -80,7 +80,7 @@
     border-top: none;
     line-height: 30px;
     text-align: right;
-    padding-top:2px;
+    padding-top: 2px;
 }
 
 .list_product_item_bx {
@@ -237,4 +237,10 @@
     Width: 100%;
     text-align: right;
     font-weight: bold;
+}
+
+.ngoisao {
+    font-size: 25px;
+    margin-top: -10px;
+    color: red;
 }
