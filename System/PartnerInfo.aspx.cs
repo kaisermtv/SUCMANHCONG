@@ -45,7 +45,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             this.SoSanPhamBanChay = this.objProduct.getProductBestSaleCountByPartnerId(this.itemId);
             this.SoGiaoDich = this.objPartner.getProductBillCountByPartnerId(this.itemId);
             this.TongDoanhSo = this.objPartner.getProductDoanhSoByPartnerId(this.itemId);
-            /*
+            
             if (this.txtAccount.Text.Trim() == "")
             {
                 this.btnCreate.Enabled = true;
@@ -115,7 +115,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
         if(ret == 0)
         {
             this.txtAccount.Text = PartnerAccount + this.txtAccount.Text;
-            //this.btnCreate.Enabled = false;
+            this.btnCreate.Enabled = false;
 
             this.Message = "Cập nhật tài khoản thành công";
         } else if(ret == -1)
