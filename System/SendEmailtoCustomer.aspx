@@ -32,7 +32,7 @@
             </div>
 
            <div style="float: right; width: 30%; text-align: right;">
-                <asp:Button ID="btnSave" runat="server" Text="Ghi nhận" Style="height: 28px; width: 75px; padding-bottom: 4px; font-weight: bold; margin-right: -2px;"
+                <asp:Button ID="btnSave" runat="server" Text="Gữi đi" Style="height: 28px; width: 75px; padding-bottom: 4px; font-weight: bold; margin-right: -2px;"
                     OnClick="btnSave_Click" />
                 <asp:Button ID="btnCancel" runat="server" Text="Thoát" Style="height: 28px; width: 75px; padding-bottom: 4px; font-weight: bold; margin-right: 6px;"
                     OnClick="btnCancel_Click" />
