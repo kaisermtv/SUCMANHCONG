@@ -57,9 +57,10 @@
                         <div class="box-content">
                              <h4>Hải Hà</h4>
                             <hr />
+                              <a href="<%Response.Write(this.objTableBrandVip.Rows[0]["Url"].ToString()); %>">
                                  <img class="fw" src="/Images/<%Response.Write(this.objTableBrandVip.Rows[0]["Logo"].ToString()); %>"
                                         style="border: solid 1px #dedee3; padding: 10px; height:100% ; width:300px;"  alt="<%Response.Write(this.objTableBrandVip.Rows[0]["Logo"].ToString()); %>" />
-                              
+                              </a>
                             <p>Miêu tả thương hiệu</p>
                             <br />
                             <a href="#" class="btn btn-block btn-primary">Xem thêm</a>
@@ -71,9 +72,10 @@
                         <div class="box-content">
                              <h4>Thăng Long</h4>
                             <hr />
+                               <a href="<%Response.Write(this.objTableBrandVip.Rows[1]["Url"].ToString()); %>">
                              <img class="fw" src="/Images/<%Response.Write(this.objTableBrandVip.Rows[1]["Logo"].ToString()); %>"
                                         style="border: solid 1px #dedee3; padding: 10px; height:100% ; width:300px;"  alt="<%Response.Write(this.objTableBrandVip.Rows[1]["Logo"].ToString()); %>" />
-                              
+                              </a>
                             <p>Miêu tả thương hiệu</p>
                             <br />
                             <a href="#" class="btn btn-block btn-primary">Xem thêm</a>
@@ -85,9 +87,10 @@
                         <div class="box-content">
                              <h4>Viễn Phố </h4>
                             <hr />
+                                  <a href="<%Response.Write(this.objTableBrandVip.Rows[3]["Url"].ToString()); %>">
                              <img class="fw" src="/Images/<%Response.Write(this.objTableBrandVip.Rows[2]["Logo"].ToString()); %>"
                                         style="border: solid 1px #dedee3; padding: 10px; height:100% ; width:300px;"  alt="<%Response.Write(this.objTableBrandVip.Rows[2]["Logo"].ToString()); %>" />
-                              
+                              </a>
                             <p>Miêu tả thương hiệu</p>
                             <br />
                             <a href="#" class="btn btn-block btn-primary">Xem thêm</a>

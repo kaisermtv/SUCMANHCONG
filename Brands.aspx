@@ -25,9 +25,10 @@
                                 <% for (int i = 0; i < this.objTableBrand.Rows.Count; i++)
                                    { %>
                                 <div class="col-md-3">
-                                    
+                                       <a href="<%Response.Write(this.objTableBrand.Rows[i]["Url"].ToString()); %>">
                                     <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>"
                                         style="border: solid 1px #dedee3; padding: 10px;" alt="<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>" />
+                                            </a>
                                 </div>
                                 <% } %>
                             </div>

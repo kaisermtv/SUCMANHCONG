@@ -581,7 +581,7 @@
                 <div class="btn-group">
                     <button type="button" onclick="window.location.href='TopBrands.aspx'" class="btn btn-danger">Xem tất cả</button>
                     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                        aria-haspopup="true" aria-expanded="false"/>
                         <span class="caret"></span>   
                 </div>
             </div>
