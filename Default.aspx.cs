@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : Page
 {
+   
     #region declare objects
     private DataProduct objProduct = new DataProduct();
     public Partner objPartner = new Partner();
@@ -36,6 +37,8 @@ public partial class _Default : Page
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
+       
+     
         try
         {
             this.PageProduct = int.Parse(Request["PageProduct"].ToString());
@@ -81,4 +84,7 @@ public partial class _Default : Page
         this.objTableSlide = objSlide.getSlideImage();
     }
     #endregion
+
+
+
 }

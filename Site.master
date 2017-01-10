@@ -93,12 +93,13 @@
                             </div>
                         </div>
                         <div id="subcontent2" style="position: absolute; visibility: hidden; text-align: center; border-left: solid 1px #c4d6cc; margin-left: -6px; background-color: white; width: 130px; padding: 8px; z-index: 1000">
-                            <% for(int i = 2;i<objTableLocation.Count;i++){ %>
+                            <% for (int i = 2; i < objTableLocation.Count; i++)
+                               { %>
                             <p class="LocationMenuChid" <%= (this.Location == (int)objTableLocation[i]["Id"])?"style=\"color: red;\"":"" %>>
                                 <a href="/Search?Location=<%=objTableLocation[i]["Id"] %>"><%=objTableLocation[i]["Name"] %></a>
                             </p>
                             <% } %>
-                            
+
                             <script type="text/javascript">
                                 dropdowncontent.init("searchlink2", "right-bottom", 500, "mouseover")
                             </script>
@@ -172,7 +173,7 @@
                                 }
                             </script>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -269,17 +270,17 @@
                 </div>
                 <div class="col-md-3">
                     <form method="get" action="/ReceiveNews">
-                    <h5><a href="#" style="font-family: Arial; font-size: 15px; font-weight: bold;">ĐĂNG
+                        <h5><a href="#" style="font-family: Arial; font-size: 15px; font-weight: bold;">ĐĂNG
                             KÝ NHẬN BẢN TIN</a></h5>
-                    <div class="input-group">
-                        <span class="input-group-addon" id="basic-addon1">@</span>
-                        <input type="email" name="email" class="form-control" placeholder="Username" aria-describedby="basic-addon1" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
-                    </div>
-                    <br />
-                    <input type="submit" value="Gửi đi" class="btn btn-default" />
-                    <br />
-                    <br />
-                        </form>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">@</span>
+                            <input type="email" name="email" class="form-control" placeholder="Username" aria-describedby="basic-addon1" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                        </div>
+                        <br />
+                        <input type="submit" value="Gửi đi" class="btn btn-default" />
+                        <br />
+                        <br />
+                    </form>
                 </div>
                 <div class="col-md-3">
                     <h5><a href="#" style="font-family: Arial; font-size: 15px; font-weight: bold;">HỢP
@@ -344,7 +345,6 @@
         </div>
     </div>
 
-
     <div class="sub-footer" style="background-color: #e9e5e5;">
         <div class="container">
             <div class="row">
@@ -352,15 +352,8 @@
                     <img src="/images/logo.jpg" alt="SUCMANHCONG.COM" style="width: 200px; height: 60px; margin-top: 6px;" />
                 </div>
                 <div class="col-md-6">
-                    <h6 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57;">CÔNG TY CỔ PHẦN ĐẦU TƯ THƯƠNG MẠI SỨC MẠNH CỘNG</h6>
-                    <p style="font-family: Arial; font-size: 13px; margin-top: -5px; color: #4e4e57;">
-                        Mã
-                            số thuế: 0401768141 do Sở kế hoạch đầu tư Đà Nẵng cấp ngày 30/05/2016
-                    </p>
-                    <p style="font-family: Arial; font-size: 13px; margin-top: -5px; color: #4e4e57;">
-                        Điện
-                            thoại: 09 3636 9090 Fax: 0383 575 979 Email: sucmanhcong@gmail.com
-                    </p>
+                     <% Response.Write(this.footer);  %>
+                 
                 </div>
                 <div class="col-md-3">
                 </div>

@@ -112,6 +112,10 @@
                 <div class="SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/ListMedia.aspx">Hình ảnh- Media</a>
                 </div>
+                <div class="SystemLeftMenu">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/SendEmailtoCustomer.aspx">Gửi Mail </a>
+                </div>
+
                 <div class="SystemLeftMenu" style="margin-top: 10px;">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="mailto:hieuxinhe94@gmail.com">Báo cáo - Phản hồi</a>
 

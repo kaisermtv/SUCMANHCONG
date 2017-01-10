@@ -21,8 +21,10 @@ public partial class SiteMaster : MasterPage
     public int[] ProductGroupId = new int[8] { 0, 0, 0, 0, 0, 0, 0,0 };
     private DataTable objTableProductGroup = new DataTable();
     public Location objLocation = new Location();
-
+    public string footer = "";
+    private tblAbouts objAbout = new tblAbouts();
     public int Location = 0;
+    private DataTable objTableAboutUs = new DataTable();
     public DataRowCollection objTableLocation;
     #endregion
 
@@ -90,9 +92,6 @@ public partial class SiteMaster : MasterPage
             this.Location = int.Parse(Request["Location"].ToString());
         }
         catch { }
-
-
-
         if (Session["ACCOUNT"] == null || Session["ACCOUNT"].ToString() == "")
         {
             strHeader = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"#\" id=\"searchlink1\" rel=\"subcontent1\">Đăng kí &nbsp;|&nbsp; </a><a href=\"/login.aspx\">&nbsp;Đăng nhập</a>";
@@ -121,6 +120,21 @@ public partial class SiteMaster : MasterPage
                 this.ProductGroupId[i] = int.Parse(this.objTableProductGroup.Rows[i]["Id"].ToString());
             }
         }
+        // footer 
+        this.objTableAboutUs=  this.objAbout.getAbouts();
+        if (this.objTableAboutUs.Rows.Count > 0)
+        {
+            footer = " <h6 style='font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57;'>";
+            footer += objTableAboutUs.Rows[0]["Name"].ToString().ToUpper() + "</h6>";
+            footer += " <p style='font-family: Arial; font-size: 13px; margin-top: -5px; color: #4e4e57;'>";
+            footer += objTableAboutUs.Rows[0]["Address"].ToString();
+            footer += " </p>"+
+                    "<p style='font-family: Arial; font-size: 13px; margin-top: -5px; color: #4e4e57;'>";
+            footer += "Điện thoại :" + objTableAboutUs.Rows[0]["Phone"].ToString() + "  Email  :" + objTableAboutUs.Rows[0]["Email"];
+            footer += " </p>";
+             
+        }
+
     } 
     #endregion
 
