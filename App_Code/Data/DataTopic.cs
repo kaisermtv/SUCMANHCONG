@@ -148,7 +148,7 @@ public class DataTopic
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT TOP 3 0 AS TT, *,'' AS DayCreate1 FROM tblTopic WHERE GroupId = 1";
+            Cmd.CommandText = "SELECT TOP 3 0 AS TT, *,'' AS DayCreate1 FROM tblTopic WHERE GroupId = 1  ORDER BY DayCreate DESC";
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();
