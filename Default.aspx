@@ -536,19 +536,13 @@
             </div>
             <div class="col-lg-2" style="text-align: right; margin-top: 42px;">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-danger">Xem tất cả</button>
+                    <button onclick="window.location.href='Brands.aspx'" type="button" class="btn btn-danger">Xem tất cả</button>
                     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
+                       
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
+                   
                 </div>
             </div>
         </div>
@@ -584,19 +578,11 @@
             </div>
             <div class="col-lg-2" style="text-align: right; margin-top: 42px;">
                 <div class="btn-group">
-                    <button type="button" class="btn btn-danger">Xem tất cả</button>
+                    <button type="button" onclick="window.location.href='TopBrands.aspx'" class="btn btn-danger">Xem tất cả</button>
                     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="caret"></span>
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">Separated link</a></li>
-                    </ul>
+                     
                 </div>
             </div>
         </div>
