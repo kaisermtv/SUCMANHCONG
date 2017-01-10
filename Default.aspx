@@ -638,7 +638,7 @@
                         </div>
                     </div>
                     <div style="float: right; width: 80%; text-align: justify; padding: 9px;">
-                        <div style="vertical-align: top; height: 50px; overflow: hidden;">
+                        <div style="vertical-align: top; height: 57px; overflow: hidden;">
                             <h5 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57; text-transform: uppercase; margin-top: -22px;"
                                 class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[i]["Id"].ToString()); %>">
                                     <% Response.Write(objTableNews.Rows[i]["Title"].ToString()); %></a></h5>
