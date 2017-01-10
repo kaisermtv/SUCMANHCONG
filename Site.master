@@ -168,52 +168,53 @@
                     <div class="container">
                         <div class="col-md-2">
                             <a href="/">
-                                <img src="/images/logo.jpg" alt="" style="width: 200px; height: 60px" /></a>
+                                <img src="/images/logo.jpg" alt="" style="width: 200px; height: 60px" ; margin-left: -1% /></a>
                         </div>
                         <div class="wrapper">
                             <div class="col-md-10">
-                                <div class="main-menu" style="overflow: hidden; outline-style: hidden;">
+                                <div class="main-menu" style="overflow: hidden;">
+                                   
                                     <a href="/ListProduct" class="col-centered">
 
                                         <img src="/img/icons/glyphicons-157-show-thumbnails.png" style="opacity: 0.7" />
-                                        <p style="margin-top: 3px;">Tất cả</p>
+                                        <p style="margin-top: 5px; font-size:12px;">Tất cả</p>
                                     </a>
-                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[0].ToString()); %> " style="margin-left: -1%">
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[0].ToString()); %> " class="main-menu-item">
 
                                         <img src="/img/icons/glyphicons-87-display.png" style="opacity: 0.5" />
-                                        <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[0].ToString()); %></p>
+                                        <p style="margin-top: 3px; font-size:12px;"><% Response.Write(this.ProductGroup[0].ToString()); %></p>
                                     </a>
-                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[1].ToString()); %>" style="margin-left: -1%">
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[1].ToString()); %>" class="main-menu-item">
                                         <img src="/img/icons/glyphicons-29-cars.png" style="opacity: 0.5" />
 
                                         <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[1].ToString()); %></p>
                                     </a>
-                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[2].ToString()); %>" style="margin-left: -1%">
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[2].ToString()); %>" class="main-menu-item">
                                         <img src="/img/icons/glyphicons-384-bathrobe.png" style="opacity: 0.5" />
                                         <%--  <img src="../img/icons/glyphicons-284-t-shirt.png" />--%>
                                         <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[2].ToString()); %></p>
                                     </a>
-                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[3].ToString()); %>" style="margin-left: -1%">
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[3].ToString()); %>" class="main-menu-item">
 
                                         <img src="/img/icons/glyphicons-5-girl.png" style="opacity: 0.5" />
                                         <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[3].ToString());  %></p>
                                     </a>
-                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[4].ToString()); %>" style="margin-left: -1%">
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[4].ToString()); %>" class="main-menu-item">
 
                                         <img src="/img/icons/glyphicons-476-dining-set.png" style="opacity: 0.5" />
                                         <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[4].ToString()); %></p>
                                     </a>
-                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[5].ToString()); %>" style="margin-left: -1%">
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[5].ToString()); %>" class="main-menu-item">
 
                                         <img src="/img/icons/glyphicons-593-person.png" style="opacity: 0.5" />
                                         <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[5].ToString()); %></p>
                                     </a>
-                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[6].ToString()); %>" style="margin-left: -1%">
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[6].ToString()); %>" class="main-menu-item">
 
                                         <img src="/img/icons/glyphicons-21-home.png" style="opacity: 0.5" />
                                         <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[6].ToString()); %></p>
                                     </a>
-                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[7].ToString()); %>" style="margin-left: -1%">
+                                    <a href="/ListProduct/?Group=<% Response.Write(this.ProductGroupId[7].ToString()); %>" class="main-menu-item">
 
                                         <img src="/img/icons/glyphicons-341-globe.png" style="opacity: 0.5" />
                                         <p style="margin-top: 3px;"><% Response.Write(this.ProductGroup[7].ToString()); %></p>

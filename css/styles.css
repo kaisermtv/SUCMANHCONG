@@ -350,17 +350,18 @@ h2 {
 
 .main-menu {
     margin-top: -5px;
-    width: 120%;
+    width: 100%;
+    margin-right:-200px;
     /*border-top:solid 2px red;*/
     padding-top: 0px;
 }
-
     .main-menu a {
         display: inline-block;
         text-decoration: none;
         text-transform: capitalize;
         text-align: center;
         width: 10.776%;
+          margin-left: -0.1%;
     }
 
         .main-menu a:nth-child(8) {
