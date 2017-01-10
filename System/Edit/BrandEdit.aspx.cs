@@ -35,6 +35,7 @@ public partial class System_Edit_BrandEdit : System.Web.UI.Page
         {
             this.txtDescription.Text = objData.Rows[0]["Description"].ToString();
             this.txtName.Text = objData.Rows[0]["Name"].ToString();
+            this.txtUrl.Text = objData.Rows[0]["Url"].ToString();
 
             if (objData.Rows[0]["VIP"].ToString() == "True")
             {
@@ -67,7 +68,7 @@ public partial class System_Edit_BrandEdit : System.Web.UI.Page
                 return;
             }
 
-        int ret = this.objBrand.setBrand(this.itemId, this.txtDescription.Text, this.txtName.Text, this.CheckVip.Checked, this.txtImage.Text);
+        int ret = this.objBrand.setBrand(this.itemId,this.txtUrl.Text, this.txtDescription.Text, this.txtName.Text, this.CheckVip.Checked, this.txtImage.Text);
         if (ret > 0)
         {
             Response.Redirect("/System/ListBrand.aspx");

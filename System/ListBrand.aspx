@@ -12,14 +12,19 @@
 
     <table cellpadding="0" cellspacing="0" border="0" style="margin: 0px; width: 99.9%; height: 30px;">
         <tr>
-            <td class="head_table_item" style="width: 4%;">
+            <td class="head_table_item" style="width: 2%;">
                 <div class="head_table_item_mg">
                     ID
                 </div>
             </td>
-            <td class="head_table_item" style="width: 56%;">
+            <td class="head_table_item" style="width: 30%;">
                 <div class="head_table_item_mg">
                     Tên thương hiệu
+                </div>
+            </td>
+              <td class="head_table_item" style="width: 26%;">
+                <div class="head_table_item_mg">
+                 Website
                 </div>
             </td>
             <td class="head_table_item" style="width: 10%;">
@@ -50,10 +55,17 @@
                             <%# Eval("Id") %>
                         </div>
                     </td>
-                    <td class="page_table_item" style="width: 56%;">
+                    <td class="page_table_item" style="width: 30%;">
                         <div class="page_table_item">
-                            <a style="display: block; vertical-align: middle;" href="GroupAccEdit.aspx?Id=<%# Eval("Id") %>">
+                            <a style="display: block; vertical-align: middle;" href="Edit/BrandEdit.aspx?Id=<%# Eval("Id") %>">
                                 <%# Eval("Name") %>
+                            </a>
+                        </div>
+                    </td>
+                     <td class="page_table_item" style="width: 26%;">
+                        <div class="page_table_item">
+                            <a style="display: block; vertical-align: middle;" href="Edit/BrandEdit.aspx?Id=<%# Eval("Id") %>">
+                                <%# Eval("Url") %>
                             </a>
                         </div>
                     </td>

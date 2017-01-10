@@ -26,6 +26,15 @@
             <asp:TextBox ID="txtName" runat="server" Style="height: 22px; line-height: 22px; width: 99%; font-size: 13px; font-family: Arial;"></asp:TextBox>
         </div>
     </div>
+    
+    <div style="width: 100%; height: 35px; line-height: 35px;">
+        <div style="width: 18%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">
+            &nbsp;&nbsp; Website :
+        </div>
+        <div style="width: 81.5%; height: 35px; line-height: 35px; float: right;">
+            <asp:TextBox ID="txtUrl" runat="server" Style="height: 22px; line-height: 22px; width: 99%; font-size: 13px; font-family: Arial;"></asp:TextBox>
+        </div>
+    </div>
 
     <div style="width: 100%; height: 105px; line-height: 105px;">
         <div style="width: 18%; height: 30px; line-height: 30px; float: left; font-size: 13px; font-family: Arial;">

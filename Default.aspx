@@ -554,11 +554,12 @@
                 </div>
                 <% for (int i = 0; i < this.objTableBrand.Rows.Count && i < 3; i++)
                    { %>
-                <div class="col-md-3">
-                    <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>"
+                <div class="col-md-3"> 
+                    <a href="<%Response.Write(this.objTableBrand.Rows[i]["Url"].ToString()); %>">
+                    <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>" 
                         alt="" style="border: solid 1px #f4f4f4; padding: 10px;" />
                     <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i + 3]["Logo"].ToString()); %>"
-                        alt="" style="border: solid 1px #f4f4f4; padding: 10px; margin-top: 10px;" />
+                        alt="" style="border: solid 1px #f4f4f4; padding: 10px; margin-top: 10px;" /></a>
                 </div>
 
                 <% } %>
@@ -581,8 +582,7 @@
                     <button type="button" onclick="window.location.href='TopBrands.aspx'" class="btn btn-danger">Xem tất cả</button>
                     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        <span class="caret"></span>
-                     
+                        <span class="caret"></span>   
                 </div>
             </div>
         </div>
@@ -592,8 +592,10 @@
                 <% for (int i = 0; i < this.objTableBrand.Rows.Count && i < 4; i++)
                    { %>
                 <div class="col-md-3">
+                       <a href="<%Response.Write(this.objTableBrand.Rows[i]["Url"].ToString()); %>">
                     <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>"
                         style="border: solid 1px #dedee3; padding: 10px;" alt="<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>" />
+                           </a>
                 </div>
                 <% } %>
             </div>

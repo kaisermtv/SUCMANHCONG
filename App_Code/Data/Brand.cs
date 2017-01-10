@@ -133,7 +133,7 @@ public class Brand
 
 
     #region method setBrand
-    public int setBrand(int Id, string Descriptionm, string Name,bool VIP,string logo)
+    public int setBrand(int Id,string url ,string Descriptionm, string Name,bool VIP,string logo)
     {
         try
         {
@@ -142,10 +142,11 @@ public class Brand
             SqlCommand Cmd = sqlCon.CreateCommand();
             string sqlQuery = "";
             sqlQuery = "IF NOT EXISTS (SELECT * FROM tblBrand WHERE Id = @Id)";
-            sqlQuery += "BEGIN INSERT INTO tblBrand(Name,Description,VIP,Logo) VALUES(@Name,@Description,@VIP,@Logo) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblBrand SET Name = @Name, Description = @Description, VIP=@VIP, Logo=@Logo WHERE Id = @Id END";
+            sqlQuery += "BEGIN INSERT INTO tblBrand(Name,Url,Description,VIP,Logo) VALUES(@Name,@Url,@Description,@VIP,@Logo) END ";
+            sqlQuery += "ELSE BEGIN UPDATE tblBrand SET Name = @Name,Url = @Url, Description = @Description, VIP=@VIP, Logo=@Logo WHERE Id = @Id END";
             Cmd.CommandText = sqlQuery;
             Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+            Cmd.Parameters.Add("Url", SqlDbType.NVarChar).Value = url;
             Cmd.Parameters.Add("Description", SqlDbType.NVarChar).Value = Descriptionm;
             Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
             Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = VIP;
