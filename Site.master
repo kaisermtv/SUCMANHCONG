@@ -41,29 +41,11 @@
 
         });
 
-        $(function () {
-            $("#addClass").click(function () {
-                $('#qnimate').addClass('popup-box-on');
-            });
-
-            $("#lienhe").click(function () {
-                $('#qnimate').addClass('popup-box-on');
-            });
-
-            $("#lienheht").click(function () {
-                $('#qnimate').addClass('popup-box-on');
-            });
-
-            $("#removeClass").click(function () {
-                $('#qnimate').removeClass('popup-box-on');
-            });
-        })
     </script>
 
     <script type="text/javascript" src="/js/dropdowncontent.js">
        
     </script>
-    <link href="css/ChatSupportStyle.css" rel="stylesheet" />
 
     <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </head>
@@ -120,7 +102,7 @@
                         <span style="color: red; font-family: 'Arial'; font-size: 12px; font-weight: bold;">Hotline: 09 3636 9090</span>
 
 
-                        <a href="#" id="addClass"><span class="glyphicon"></span>Hỗ trợ trực tuyến </a>
+                        <a href="#" id="" onclick="support();"><span class="glyphicon"></span>Hỗ trợ trực tuyến </a>
 
                         <% Response.Write(strHeader); %>
                         <div id="subcontent0" style="position: absolute; visibility: hidden; text-align: justify; border: 0px solid orange; margin-top: 0px; background-color: white; width: 180px; padding: 8px; z-index: 1000;">
@@ -332,7 +314,7 @@
             </div>
         </div>
         <div class="popup-messages-footer">
-            <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40"
+            <textarea id="status_message" placeholder="z..." rows="10" cols="40"
                 name="message"></textarea>
             <div class="btn-footer">
                 <button class="bg_none"><i class="glyphicon glyphicon-film"></i></button>
@@ -352,15 +334,26 @@
                     <img src="/images/logo.jpg" alt="SUCMANHCONG.COM" style="width: 200px; height: 60px; margin-top: 6px;" />
                 </div>
                 <div class="col-md-6">
-                     <% Response.Write(this.footer);  %>
-                 
+                    <% Response.Write(this.footer);  %>
                 </div>
                 <div class="col-md-3">
                 </div>
             </div>
         </div>
     </div>
-
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function support() {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/587448a18f538671f4697115/default';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 
 </body>
 </html>

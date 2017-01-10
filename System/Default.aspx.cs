@@ -11,10 +11,7 @@ public partial class Default3 : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
-            //--config ckfinder
-            CKFinder.FileBrowser _FileBrowser = new CKFinder.FileBrowser();
-            _FileBrowser.BasePath = "ckfinder";
-            _FileBrowser.SetupCKEditor(editor1);
+         
         }
     }
 }
