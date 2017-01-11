@@ -26,6 +26,7 @@ public partial class _Default : Page
     public DataTable objTableBrand = new DataTable();
     public DataTable objTableSlide = new DataTable();
 
+    public int Location = 0;
 
     public int CountPageProduct = 1;
     public int PageProduct = 1;
@@ -37,7 +38,11 @@ public partial class _Default : Page
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        try
+        {
+            this.Location = int.Parse(Request["Location"].ToString());
+        }
+        catch { }
      
         try
         {
