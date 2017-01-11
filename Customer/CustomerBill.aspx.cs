@@ -111,7 +111,7 @@ public partial class Customer_CustomerBill : System.Web.UI.Page
                 this.strDSCard = "0";
             }
 
-            this.objTable = this.objPartner.getHistoryBill("", this.FromDate, this.ToDate, Session["ACCOUNT"].ToString());
+            this.objTable = this.objPartner.getHistoryBill("", this.FromDate, this.ToDate, Session["ACCOUNT"].ToString(),this.Type);
             //this.Message = this.objPartner.ErrorMessage;
             if (this.objTable.Rows.Count > 0)
             {
@@ -120,7 +120,7 @@ public partial class Customer_CustomerBill : System.Web.UI.Page
                     strHtml += "<div style =\"width:100%; margin-top:1px;\">";
 
                     strHtml += "<div style=\"width: 5%; float: left; border:solid 1px #f3f1f1; border-right:none; border-top:none;text-align:center;height:26px; line-height:26px; color:#000;\">";
-                    strHtml += this.objTable.Rows[i]["TT"].ToString();
+                    strHtml += (i+1).ToString();
                     strHtml += "</div>";
 
                     strHtml += "<div style=\"width: 18%; float: left; border:solid 1px #f3f1f1;border-top:none;padding-left:6px;height:26px; line-height:26px; color:#000;\">";

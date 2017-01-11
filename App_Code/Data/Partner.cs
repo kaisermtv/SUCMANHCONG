@@ -189,7 +189,20 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT 0 AS TT, * FROM tblPartnerBill AS PB WHERE 1=1";
+            Cmd.CommandText = "SELECT 0 AS TT, PB.* FROM tblPartnerBill AS PB";
+            if (type == 2)
+            {
+                Cmd.CommandText += " RIGHT JOIN [tblCustomersPaymentByCard] AS CPC ON PB.[Id] = CPC.[BillId] WHERE 1=1";
+            }
+            else if (type == 1)
+            {
+                Cmd.CommandText += " WHERE PB.[Id] NOT IN(SELECT [BillId] FROM [tblCustomersPaymentByCard])";
+            }
+            else
+            {
+                Cmd.CommandText += " WHERE 1=1";
+            }
+            
             if (PartnerAccount != "")
             {
                 Cmd.CommandText += " AND UPPER(PB.PartnerAccount) = @PartnerAccount";
