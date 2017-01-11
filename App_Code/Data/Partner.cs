@@ -182,39 +182,39 @@ public class Partner
     #endregion
 
     #region method getHistoryBill
-    public DataTable getHistoryBill(string PartnerAccount = "",string fromdate = "",string todate = "",string customerAccount = "")
+    public DataTable getHistoryBill(string PartnerAccount = "",string fromdate = "",string todate = "",string customerAccount = "",int type = 0)
     {
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT 0 AS TT, * FROM tblPartnerBill WHERE 1=1";
+            Cmd.CommandText = "SELECT 0 AS TT, * FROM tblPartnerBill AS PB WHERE 1=1";
             if (PartnerAccount != "")
             {
-                Cmd.CommandText += " AND UPPER(PartnerAccount) = @PartnerAccount";
+                Cmd.CommandText += " AND UPPER(PB.PartnerAccount) = @PartnerAccount";
                 Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = PartnerAccount.ToUpper();
             }
 
             if (customerAccount != "")
             {
-                Cmd.CommandText += " AND UPPER([CustomerAccount]) = @CustomerAccount";
+                Cmd.CommandText += " AND UPPER(PB.[CustomerAccount]) = @CustomerAccount";
                 Cmd.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = customerAccount.ToUpper();
             }
 
             if (fromdate != "")
             {
-                Cmd.CommandText += " AND DayCreate >= @FromDate";
+                Cmd.CommandText += " AND PB.DayCreate >= @FromDate";
                 Cmd.Parameters.Add("FromDate", SqlDbType.DateTime).Value = fromdate;
             }
 
             if (todate != "")
             {
-                Cmd.CommandText += " AND DayCreate < DATEADD(day,1,@ToDate)";
+                Cmd.CommandText += " AND PB.DayCreate < DATEADD(day,1,@ToDate)";
                 Cmd.Parameters.Add("ToDate", SqlDbType.DateTime).Value = todate;
             }
 
-            Cmd.CommandText += " ORDER BY DayCreate DESC";
+            Cmd.CommandText += " ORDER BY PB.DayCreate DESC";
             this.ErrorMessage = Cmd.CommandText;
            
             SqlDataAdapter da = new SqlDataAdapter();

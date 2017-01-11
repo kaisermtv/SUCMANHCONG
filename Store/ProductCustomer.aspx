@@ -437,9 +437,9 @@
             for (var i = 0; i < totalItem; i++) {
                 totalMoney += getPrice('txtNumber' + i) * getPrice('txtPrice' + i);
             }
-
-            document.getElementById('out_tonggiamgia').innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
-
+           
+               document.getElementById('out_tonggiamgia').innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
+             
            
             //*
             var totalMoneybt = 0;
@@ -468,9 +468,10 @@
             
             
             var TotalMoney = getPrice('MainContent_txtTotalMoney');
-
-            document.getElementById('MainContent_txtTotalMoneyDiscount').value = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
-
+            if (document.getElementById('chkAuto').checked == true)
+            {
+                document.getElementById('MainContent_txtTotalMoneyDiscount').value = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
+            }
             /* 
             if (document.getElementById('MainContent_txtTotalMoneyDiscount').value.trim() == '' || document.getElementById('MainContent_txtTotalMoneyDiscount').value.trim() == '0') {
                 document.getElementById('MainContent_lblMsg1').textContent = 'Chưa xác định tổng tiền giảm giá';

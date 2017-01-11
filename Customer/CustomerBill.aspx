@@ -42,6 +42,13 @@
                         <input type="date" runat="server" id="txtToDate" class="form-control" value="" placeholder="yyy-mm-dd" />
                     </div>
                     <div class="col-md-2">
+                        <select class="form-control" name="optType" >
+                            <option value="0">Tất cả</option>
+                            <option value="1" <% if (this.Type == 1) Response.Write("selected='selected'"); %>>Tiền mặt</option>
+                            <option value="2" <% if (this.Type == 2) Response.Write("selected='selected'"); %>>Dùng thẻ</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
                         <input type="submit" style="float: left" class="btn btn-default" value="Lọc kết quả" />
                     </div>
                 </div>
