@@ -51,7 +51,7 @@ public partial class System_AccountDel : System.Web.UI.Page
     {
         //this.getid();
 
-        objDataAccount.DelContact(this.itemId);
+        objDataAccount.DelAccount(this.itemId);
 
         Response.Redirect("~/System/");
     }

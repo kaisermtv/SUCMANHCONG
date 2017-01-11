@@ -99,8 +99,8 @@
                     <div class="col-md-5" style="text-align: right; float: right;">
                         <span style="color: red; font-family: 'Arial'; font-size: 12px; font-weight: bold;">Hotline: 09 3636 9090</span>
 
-
-                        <a href="#" id="script" onclick="support();"><span class="glyphicon"></span>Hỗ trợ trực tuyến </a>
+                        <a href="#nogo" onclick="_sbzq.push([‘expandWidget’]);"><span class="glyphicon"></span>Hỗ trợ trực tuyến </a>
+                      
 
                         <% Response.Write(strHeader); %>
                         <div id="subcontent0" style="position: absolute; visibility: hidden; text-align: justify; border: 0px solid orange; margin-top: 0px; background-color: white; width: 180px; padding: 8px; z-index: 1000;">
@@ -270,7 +270,7 @@
                             TÁC SUCMANHCONG</a></h5>
                     <ul>
                         <li><a href="/NewsDetailt?Id=13">Chính sách hợp tác</a></li>
-                        <li><a href="#lienheht" id="lienheht">Liên hệ hợp tác</a></li>
+                        <li><a href="#lienheht" onclick="openContact();" id="lienheht">Liên hệ hợp tác</a></li>
                     </ul>
                 </div>
                 <div class="col-md-3">
@@ -297,13 +297,12 @@
             </div>
         </div>
     </div>
-    <!---Online Support-->
   <script type='text/javascript'>window._sbzq || function (e) { e._sbzq = []; var t = e._sbzq; t.push(["_setAccount", 57158]); var n = e.location.protocol == "https:" ? "https:" : "http:"; var r = document.createElement("script"); r.type = "text/javascript"; r.async = true; r.src = n + "//static.subiz.com/public/js/loader.js"; var i = document.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i) }(window);</script>
       <script>
           function openContact() {
               window.open('ContactUs.aspx', 'newWindow', 'left=2, top=2,location=no, width=500, height=600, menubar=no, resizable=yes,statusbar=yes,scrollbars=yes');
           }
-                </script>
+   </script>
 
 </body>
 </html>

@@ -28,7 +28,7 @@
     <div class="form-area">  
         <form role="form">
         <br style="clear:both">
-                    <h3 style="margin-bottom: 25px; text-align: center;">Contact Form</h3>
+                    <h3 style="margin-bottom: 25px; text-align: center;">Liên hệ với Sucmanhcong.com - Hợp tác cùng phát triễn . </h3>
     				<div class="form-group">
 						<asp:TextBox type="text"  runat="server" class="form-control" ID="txtName" name="name" placeholder="Tên" required/>
 					</div>
