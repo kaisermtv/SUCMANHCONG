@@ -9,13 +9,15 @@ using System.Web.UI.WebControls;
 
 public partial class Customer_MyProfile : System.Web.UI.Page
 {
-    public String html = "";
     #region declare objects
+    private TVSFunc objFunc = new TVSFunc();
+
     public string strName = "", strAddress = "", strPhone = "", strBirthday = "", strIdCard = "", strEmail = "", strMsg = "",strDaycreate="",strCard = "";
     private string Id = "";
-    private TVSFunc objFunc = new TVSFunc();
+
+    public string html = "";
+    public string tichluythang = "", tongsodu = "";
     #endregion
-    public String tichluythang = "", tongsodu = "";
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -59,7 +61,7 @@ public partial class Customer_MyProfile : System.Web.UI.Page
             this.strEmail = Rd["Email"].ToString();
             this.strIdCard = Rd["IdCard"].ToString();
             this.strDaycreate = Rd["DayCreateAccount"].ToString();
-            lblImg1.Text = "<img width = \"100%\" height = \"120px\" src = \"/Images/Customer/" + Rd["Avatar"].ToString() + "\">";
+            lblImg1.Text = "<img  height = \"120px\" src = \"/Images/Customer/" + Rd["Avatar"].ToString() + "\">";
         }
         Rd.Close();
         sqlCon.Close();

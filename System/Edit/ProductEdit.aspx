@@ -67,7 +67,7 @@
         </div>
     </div>
 
-    <div style="width: 100%; height: 450px; line-height: 450px; margin-top: 5px;">
+    <div style="width: 100%; line-height: 450px; margin-top: 5px;display:table;">
         <div style="width: 12%; height: 30px; line-height: 30px; float: left; font-size: 13px;
             font-family: Arial;">
             &nbsp;&nbsp;Nội dung:
@@ -84,7 +84,7 @@
                     Height="22px" />
             </label>
         </div>
-        <div style="width: 87.5%; height: 30px; line-height: 30px; float: right;">
+        <div style="width: 87.5%; line-height: 30px; float: right;">
             <CKEditor:CKEditorControl ID="txtContent" CssClass="editor1" runat="server" Height="305"
                 Width="99%" BasePath="~/ckeditor"></CKEditor:CKEditorControl>
         </div>
