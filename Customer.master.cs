@@ -98,7 +98,7 @@ public partial class CustomerMaster : MasterPage
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.tichluythang = "" + getCustomerTotalDiscountCard(Session["ACCOUNT"].ToString()).ToString();
+        this.tichluythang = String.Format("{0:0,0}",getCustomerTotalDiscountCard(Session["ACCOUNT"].ToString()));
         this.tongsodu =  String.Format("{0:0,0}",this.getCustomerTotalDiscountCard(Session["ACCOUNT"].ToString()) - objCustomers.getSalesCardByCustomerAccout(Session["ACCOUNT"].ToString()));
 
 
