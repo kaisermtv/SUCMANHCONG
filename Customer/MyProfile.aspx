@@ -25,7 +25,7 @@
                     <a href="#"><b>THÔNG TIN TÀI KHOẢN</b></a>
                 </div>
                 <div style="width: 100%; text-align: center">
-                    <asp:Label ID="lblImg1" runat="server" Height="100%" Text=""></asp:Label>
+                    <asp:Label ID="lblImg1" runat="server" style="width:auto;height:100%;overflow:hidden" Text=""></asp:Label>
                 </div>
                 <div style="width: 100%; color: #fff;" class="TVS-Col-md2">
                     <asp:Button runat="server"  Text="Hồ sơ của tôi" Id="btnHoSoCuaToi" Class="btn-left-select" OnClick="btnHoSoCuaToi_Click"></asp:Button>
