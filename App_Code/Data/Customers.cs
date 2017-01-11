@@ -7,9 +7,8 @@ using System.Web;
 
 public class Customers
 {
-	public Customers()
-	{
-	}
+    public string ErrorMessage = "";
+    public int ErrorCode = 0;
 
     #region method setCustomer
     //*
@@ -336,6 +335,35 @@ public class Customers
             return -1;
         }
         return 1;
+    }
+    #endregion
+
+
+    #region Method getSalesBalance
+    public double getSalesCardByCustomerAccout(string CustomerAccout)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT ISNULL(SUM(PB.TotalMoneyDiscount),0) FROM [tblCustomersPaymentByCard] AS CPC LEFT JOIN [tblPartnerBill] AS PB ON PB.[Id] = CPC.[BillId]";
+            Cmd.CommandText += " WHERE PB.[CustomerAccount] = @CustomerAccout";
+            Cmd.Parameters.Add("CustomerAccout", SqlDbType.NVarChar).Value = CustomerAccout.ToUpper().Trim();
+            double ret = (double)Cmd.ExecuteScalar();
+
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+        }
+        catch (Exception ex)
+        {
+            this.ErrorMessage = ex.Message;
+            this.ErrorCode = ex.HResult;
+
+            return 0;
+        }
     }
     #endregion
 }

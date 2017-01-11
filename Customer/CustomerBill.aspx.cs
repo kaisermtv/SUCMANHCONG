@@ -18,6 +18,7 @@ public partial class Customer_CustomerBill : System.Web.UI.Page
     public string FromDate = "";
     public string ToDate = "";
     public string Message = "";
+    public int Type = 0;
     #endregion
 
     #region method Page_Load
@@ -45,9 +46,27 @@ public partial class Customer_CustomerBill : System.Web.UI.Page
                 rurl += "ToDate=" + str;
             }
 
+            try
+            {
+                this.Type = Int32.Parse(Request.Form["optType"]);
+            }
+            catch { }
+
+            if (this.Type != 0)
+            {
+                if (rurl != "?") rurl += "&";
+                rurl += "Type=" + this.Type;
+            }
+
 
             Response.Redirect("/Customer/CustomerBill" + rurl);
         } else {
+            try
+            {
+                this.Type = Int32.Parse(Request["Type"]);
+            }
+            catch { }
+
             try
             {
                 this.FromDate = Request["FromDate"].ToString();

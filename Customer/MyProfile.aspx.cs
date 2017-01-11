@@ -33,8 +33,7 @@ public partial class Customer_MyProfile : System.Web.UI.Page
         {
             this.getCustomer();
         }
-        this.tichluythang = "" + getCustomerTotalDiscountCard(Session["ACCOUNT"].ToString()).ToString();
-        this.tongsodu = " Chưa thể tính toán ";
+        //this.tichluythang = "" + getCustomerTotalDiscountCard(Session["ACCOUNT"].ToString()).ToString();
     }
     #endregion
 
