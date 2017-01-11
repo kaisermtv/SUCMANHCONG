@@ -243,12 +243,14 @@
                     <h5><a href="/NewsDetailt?Id=12" style="font-family: Arial; font-size: 15px; font-weight: bold;">Giới
                             thiệu SUCMANHCONG</a></h5>
                     <ul style="list-style-type: circle;">
-                        <li><a href="#lienhe" id="lienhe" style="color: #4e4e57;">Liên hệ</a></li>
+                       
+                        <li><a href="#lienhe" onclick="openContact();" id="lienhe" style="color: #4e4e57;">Liên hệ</a></li>
                         <li><a href="/About" style="color: #4e4e57;">Về chúng tôi</a></li>
                         <li><a href="/NewsDetailt?Id=11" style="color: #4e4e57;">Chính sách bảo mật thông tin</a></li>
                         <li><a href="/NewsDetailt?Id=14" style="color: #4e4e57;">Thông tin</a></li>
                     </ul>
                 </div>
+            
                 <div class="col-md-3">
                     <form method="get" action="/ReceiveNews">
                         <h5><a href="#" style="font-family: Arial; font-size: 15px; font-weight: bold;">ĐĂNG
@@ -297,7 +299,11 @@
     </div>
     <!---Online Support-->
   <script type='text/javascript'>window._sbzq || function (e) { e._sbzq = []; var t = e._sbzq; t.push(["_setAccount", 57158]); var n = e.location.protocol == "https:" ? "https:" : "http:"; var r = document.createElement("script"); r.type = "text/javascript"; r.async = true; r.src = n + "//static.subiz.com/public/js/loader.js"; var i = document.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i) }(window);</script>
-  
+      <script>
+          function openContact() {
+              window.open('ContactUs.aspx', 'newWindow', 'left=2, top=2,location=no, width=500, height=600, menubar=no, resizable=yes,statusbar=yes,scrollbars=yes');
+          }
+                </script>
 
 </body>
 </html>
