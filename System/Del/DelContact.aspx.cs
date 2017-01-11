@@ -6,10 +6,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class System_AccountDel : System.Web.UI.Page
+public partial class System_Del_DelContact : System.Web.UI.Page
 {
 
-    private DataAccount objDataAccount = new DataAccount();
+    private Contact objDataContact = new Contact();
     private int itemId = 0;
     public string name = "";
 
@@ -25,7 +25,7 @@ public partial class System_AccountDel : System.Web.UI.Page
         {
         }
 
-       
+
     }
     #endregion
 
@@ -34,13 +34,14 @@ public partial class System_AccountDel : System.Web.UI.Page
     {
         this.getid();
 
-        DataTable objTable = this.objDataAccount.getAccount(this.itemId);
+        DataTable objTable = this.objDataContact.getContact(this.itemId);
         if (objTable.Rows.Count > 0)
         {
-            this.name = objTable.Rows[0]["UserName"].ToString();
-        } else
+            this.name = objTable.Rows[0]["Name"].ToString();
+        }
+        else
         {
-            Response.Redirect("~/System/ListAccount.aspx");
+            Response.Redirect("~/System/");
         }
 
     }
@@ -51,7 +52,7 @@ public partial class System_AccountDel : System.Web.UI.Page
     {
         //this.getid();
 
-        objDataAccount.DelContact(this.itemId);
+        objDataContact.DelContact(this.itemId);
 
         Response.Redirect("~/System/");
     }
@@ -60,7 +61,7 @@ public partial class System_AccountDel : System.Web.UI.Page
     #region method btnCancel_Click
     protected void btnCancel_Click(object sender, EventArgs e)
     {
-        Response.Redirect("~/System/ListAccount.aspx");
+        Response.Redirect("~/System/");
     }
     #endregion
 }

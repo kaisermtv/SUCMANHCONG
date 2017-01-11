@@ -25,7 +25,7 @@
                     Tên đầy đủ
                 </div>
             </td>
-            
+
             <!--
             <td class="head_table_item" style="width: 10%;">
                 <div class="head_table_item_mg">
