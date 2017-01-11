@@ -83,7 +83,7 @@ public class DataTopic
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT 0 AS TT,'' AS DayCreate1, * FROM tblTopic";
+            Cmd.CommandText = " SELECT TOP 100  0 AS TT,'' AS DayCreate1, tblTopic.[Id],[Title],[ShortContent],tblTopicGroup.Name ,[Image],[GroupId],[DayCreate],[UserCreate],tblTopic.[State] FROM [succ1c1f_SMC].[dbo].[tblTopic] LEFT JOIN tblTopicGroup ON tblTopic.GroupId = tblTopicGroup.Id ";
             if(groupid != 0)
             {
                 Cmd.CommandText += " WHERE [GroupId] = @GroupId";

@@ -18,10 +18,17 @@
                             <%# Eval("TT") %>
                         </div>
                     </td>
-                    <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 86%;">
+                    <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 76%;">
                         <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
                             <a style="display: block; vertical-align: middle;" href="#">
                                 <%# Eval("Title") %>
+                            </a>
+                        </div>
+                    </td>
+                      <td style="text-align: center; vertical-align: middle; font-family: Arial; font-size: 15px; color: #fff; background-color: #FFF; width: 10%;">
+                        <div style="float: left; display: table-cell; line-height: 30px; width: 100%; height: 30px; text-align: justify; padding-left: 5px; vertical-align: middle; font-size: 15px; border-bottom:solid 1px #808080;">
+                            <a style="display: block; vertical-align: middle;" href="#">
+                                <%# Eval("Name") %>
                             </a>
                         </div>
                     </td>
