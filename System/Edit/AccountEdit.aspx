@@ -8,7 +8,7 @@
         <div style="float: left; width: 12%;">&nbsp;&nbsp;Tài khoản</div>
         <div style="float: right; width: 87.5%;">
 
-            
+
             <div style="float: right; width: 25%; text-align: right;">
                 <asp:Button ID="btnSave" runat="server" Text="Ghi nhận" class="btn_post_from" Style="margin-right: -2px;" OnClick="btnSave_Click" />
                 <asp:Button ID="btnCancel" runat="server" Text="Thoát" class="btn_post_from" Style="margin-right: 6px;" OnClick="btnCancel_Click" />
