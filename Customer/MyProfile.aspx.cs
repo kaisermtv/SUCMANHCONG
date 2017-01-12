@@ -18,6 +18,7 @@ public partial class Customer_MyProfile : System.Web.UI.Page
     public string html = "";
     public string tichluythang = "", tongsodu = "";
     #endregion
+
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -43,7 +44,7 @@ public partial class Customer_MyProfile : System.Web.UI.Page
         SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
         sqlCon.Open();
         SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblCustomers WHERE Account = @Account";
+        Cmd.CommandText = "SELECT * FROM tblCustomers WHERE Account = @Account  ";
         Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = this.Id;
         SqlDataReader Rd = Cmd.ExecuteReader();
         while (Rd.Read())
@@ -61,6 +62,14 @@ public partial class Customer_MyProfile : System.Web.UI.Page
             this.strIdCard = Rd["IdCard"].ToString();
             this.strDaycreate = Rd["DayCreateAccount"].ToString();
             lblImg1.Text = "<img  height = \"120px\" src = \"/Images/Customer/" + Rd["Avatar"].ToString() + "\">";
+            switch(Rd["AccountType"].ToString())
+            {
+                case "CustomerAccount": this.strCard = "Thẻ Đồng"; break;
+                case "CustomerAccount1": this.strCard = "Thẻ Bạc"; break;
+                case "CustomerAccount2": this.strCard = "Thẻ Vàng"; break;
+                default: this.strCard = "Không Xác Định"; break;
+            }
+
         }
         Rd.Close();
         sqlCon.Close();

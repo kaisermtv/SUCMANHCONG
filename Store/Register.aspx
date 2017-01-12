@@ -90,7 +90,8 @@
                                 <asp:Button ID="btnCancel" runat="server" CssClass="btn btn-info" Text="Bỏ qua" Style="width: 100px; font-weight: bold; margin-right: 6px;" OnClick="btnCancel_Click" />
                             </div>
                         </div>
-                        <br /><br />
+                        <br />
+                        <br />
                     </div>
                 </div>
             </div>
