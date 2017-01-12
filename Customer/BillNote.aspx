@@ -106,6 +106,33 @@
 
                         </tr>
                         <% } %>
+                            
+                            <!---- NO Discount--->
+                         <% for (int i = 0; i < this.objTableProductNoDiscount.Rows.Count; i++)
+                           { %>
+                        <tr>
+
+                            <td style="overflow: hidden"><% Response.Write(this.objTableProductNoDiscount.Rows[i]["ProductName"].ToString()); %></td>
+                            <td><% Response.Write(this.objTableProductNoDiscount.Rows[i]["ProductNumber"].ToString()); %></td>
+                            <td><%  Response.Write(this.objTableProductNoDiscount.Rows[i]["ProductPrice"].ToString()); %></td>
+                            <td>0
+                                   </td>
+                            <td><% 
+                                   int tmp = 0;
+                                    try
+                                    {
+                                        tmp = Int32.Parse(this.objTableProductNoDiscount.Rows[i]["ProductNumber"].ToString()) * Int32.Parse(this.objTableProductNoDiscount.Rows[i]["ProductPrice"].ToString());
+                                    }
+                                    catch
+                                    {
+                                        tmp = 0;
+                                    }
+                                    Response.Write(tmp.ToString());  %></td>
+                                 <td style="text-align:center">  Không    </td>
+
+                        </tr>
+                        <% } %>
+
                     </tbody>
                 </table>
 

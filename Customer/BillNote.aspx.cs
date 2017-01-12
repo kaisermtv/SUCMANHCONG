@@ -14,6 +14,7 @@ public partial class Customer_BillNote : System.Web.UI.Page
     private DataTable objTable = new DataTable();
     private int Item = 0;
     public DataTable objTableProduct = new DataTable();
+    public DataTable objTableProductNoDiscount = new DataTable();
 
     #endregion
 
@@ -33,6 +34,7 @@ public partial class Customer_BillNote : System.Web.UI.Page
             this.objTable = this.getCustomerBillInformation(this.Item);
             this.getBillNote();
             this.objTableProduct = getBillDetailById(this.Item);
+            this.objTableProductNoDiscount = getBillNoDiscountDetailById(this.Item);
             if (this.objTable.Rows.Count > 0)
             {
                 this.strPartnerName = this.objTable.Rows[0]["PartnerName"].ToString();
@@ -147,6 +149,32 @@ public partial class Customer_BillNote : System.Web.UI.Page
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = "SELECT * FROM tblPartnerBillDetail LEFT JOIN tblProduct ON tblProduct.Id = tblPartnerBillDetail.ProductId WHERE BillId = @BillId AND ISNULL(ProductNumber,0) > 0";
+            Cmd.Parameters.Add("BillId", SqlDbType.NVarChar).Value = BillId;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            objTable = ds.Tables[0];
+            sqlCon.Close();
+            sqlCon.Dispose();
+        }
+        catch
+        {
+        }
+        return objTable;
+    }
+    #endregion
+
+    #region method getBillNoDiscountDetailById
+    public DataTable getBillNoDiscountDetailById(int BillId)
+    {
+        DataTable objTable = new DataTable();
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM [dbo].[tblPartnerBillDetailOrther]WHERE BillId = @BillId  AND ISNULL(ProductNumber,0) > 0";
             Cmd.Parameters.Add("BillId", SqlDbType.NVarChar).Value = BillId;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
