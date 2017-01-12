@@ -12,6 +12,7 @@ public partial class Customer_Register : System.Web.UI.Page
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
+      
 
     } 
     #endregion
@@ -62,15 +63,17 @@ public partial class Customer_Register : System.Web.UI.Page
             Cmd.ExecuteNonQuery();
             sqlCon.Close();
             sqlCon.Dispose();
-            this.lblMsg.Text = "Thông tin đăng ký đã được gửi đến ban quản trị, chúng tôi sẽ xem xét và phản hồi bạn, Xin cảm ơn!";
+         
+            Page.ClientScript.RegisterStartupScript(GetType(), "msg", "confirm('Thông tin đăng ký đã được gửi đến ban quản trị, chúng tôi sẽ xem xét và phản hồi bạn, Xin cảm ơn!');",true);
+            this.lblMsg.Text = "Thao tác đã thực hiện thành công !";
             this.btnRegister.Enabled = false;
             this.btnCancel.Text = "Tiếp tục";
-
-            //Response.Redirect("/Customer/Register");
+            clearTextbox();
         }
         catch
         {
             this.lblMsg.Text = "Lỗi. Bạn cần kiểm tra lại định dạng thông tin truyền vào cho chính xác!";
+            Page.ClientScript.RegisterStartupScript(GetType(), "msg", "confirm('Lỗi. Bạn cần kiểm tra lại định dạng thông tin truyền vào cho chính xác!');", true);
         }
     }
     #endregion
@@ -80,6 +83,20 @@ public partial class Customer_Register : System.Web.UI.Page
     {
         this.setCustomer();
     } 
+    #endregion
+
+    #region method clearTextbox
+    protected void clearTextbox()
+    {
+        this.txtName.Value = "";
+        this.txtAddress.Value = "";
+        this.txtBirthday.Value = "";
+        this.txtPhone.Value = "";
+        this.txtEmail.Value = "";
+        this.txtIdCard.Value = "";
+     
+
+    }
     #endregion
 
     #region method btnCancel_Click
