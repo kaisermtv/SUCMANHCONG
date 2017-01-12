@@ -48,8 +48,7 @@
      <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <script type='text/javascript'>window._sbzq || function (e) { e._sbzq = []; var t = e._sbzq; t.push(["_setAccount", 53047]); var n = e.location.protocol == "https:" ? "https:" : "http:"; var r = document.createElement("script"); r.type = "text/javascript"; r.async = true; r.src = n + "//static.subiz.com/public/js/loader.js"; var i = document.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i) }(window);</script>
-
+    
     <div class="top_header">
         <div class="container">
             <div class="top_logo">
@@ -99,9 +98,7 @@
                     <div class="col-md-5" style="text-align: right; float: right;">
                         <span style="color: red; font-family: 'Arial'; font-size: 12px; font-weight: bold;">Hotline: 09 3636 9090</span>
 
-                        <a href="#nogo" onclick="_sbzq.push([‘expandWidget’]);"><span class="glyphicon"></span>Hỗ trợ trực tuyến </a>
-                      
-
+                        <a href="#nogo" onclick="_sbzq.push(['expandWidget']);">Hỗ trợ trực tuyến </a>
                         <% Response.Write(strHeader); %>
                         <div id="subcontent0" style="position: absolute; visibility: hidden; text-align: justify; border: 0px solid orange; margin-top: 0px; background-color: white; width: 180px; padding: 8px; z-index: 1000;">
                             <p style="width: 100%; margin-top: 5px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; font-weight: bold;">
@@ -279,10 +276,6 @@
             </div>
         </div>
     </div>
-
-
-
- 
     <div class="sub-footer" style="background-color: #e9e5e5;">
         <div class="container">
             <div class="row">
@@ -297,12 +290,26 @@
             </div>
         </div>
     </div>
-  <script type='text/javascript'>window._sbzq || function (e) { e._sbzq = []; var t = e._sbzq; t.push(["_setAccount", 57158]); var n = e.location.protocol == "https:" ? "https:" : "http:"; var r = document.createElement("script"); r.type = "text/javascript"; r.async = true; r.src = n + "//static.subiz.com/public/js/loader.js"; var i = document.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i) }(window);</script>
+ <script type='text/javascript'>window._sbzq || function (e) { e._sbzq = []; var t = e._sbzq; t.push(["_setAccount", 57158]); var n = e.location.protocol == "https:" ? "https:" : "http:"; var r = document.createElement("script"); r.type = "text/javascript"; r.async = true; r.src = n + "//static.subiz.com/public/js/loader.js"; var i = document.getElementsByTagName("script")[0]; i.parentNode.insertBefore(r, i) }(window);</script> 
       <script>
           function openContact() {
-              window.open('ContactUs.aspx', 'newWindow', 'left=2, top=2,location=no, width=500, height=600, menubar=no, resizable=yes,statusbar=yes,scrollbars=yes');
+   window.open('ContactUs.aspx', 'newWindow', 'left=2, top=2,location=no, width=500, height=600, menubar=no, resizable=yes,statusbar=yes,scrollbars=yes');
           }
    </script>
+
+<%--    <!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/587448a18f538671f4697115/default';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->--%>
 
 </body>
 </html>

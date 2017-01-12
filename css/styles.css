@@ -1312,3 +1312,7 @@ button, input, optgroup, select, textarea {
 .LocationMenuChid{
     width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; text-align: justify; font-weight: bold;
 }
+#subiz_desktop .button_chat_offline,
+#subiz_desktop .button_chat_online {
+    opacity: 0;
+}

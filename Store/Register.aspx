@@ -45,7 +45,7 @@
                         <br />
                         <div class="form-group">
                             <div class="col-sm-12">
-                                <input type="text" class="form-control" id="txtPhone" runat="server" placeholder="Điện thoại">
+                                <input type="number" class="form-control" id="txtPhone" runat="server" placeholder="Điện thoại">
                             </div>
                         </div>
                         <br />
