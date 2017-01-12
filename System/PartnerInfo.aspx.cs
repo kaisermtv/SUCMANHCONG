@@ -52,8 +52,8 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             }
             else
             {
-                this.btnCreate.Enabled = false;
-                this.txtAccount.ReadOnly = true;
+                //this.btnCreate.Enabled = false;
+                //this.txtAccount.ReadOnly = true;
             }
             /* */
         }
@@ -124,7 +124,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
         if(ret == 0)
         {
             this.txtAccount.Text = PartnerAccount + this.txtAccount.Text;
-            this.btnCreate.Enabled = false;
+            //this.btnCreate.Enabled = false;
 
             this.lblMsg.Text = "Cập nhật tài khoản thành công";
         } else if(ret == -1)

@@ -115,6 +115,13 @@ public class TVSFunc
     #region menthod updatePartnerAccount
     public int updatePartnerAccount(int id, string partnerAcc)
     {
+        DataRowCollection objPartnerInfo = new Partner().getPartnerById(id).Rows;
+        if (objPartnerInfo.Count == 0)
+        {
+            return 4;
+        }
+
+
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
@@ -150,6 +157,31 @@ public class TVSFunc
             if (ret == 0)
             {
                 return 2;
+            }
+
+            if (objPartnerInfo[0]["Account"] != null && objPartnerInfo[0]["Account"] != "")
+            {
+                Cmd = sqlCon.CreateCommand();
+                Cmd.CommandText = "UPDATE [tblPartnerBill] SET [PartnerAccount] = @Account WHERE [PartnerAccount] = @oldPartnerAccount";
+                Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = partnerAcc;
+                Cmd.Parameters.Add("oldPartnerAccount", SqlDbType.NVarChar).Value = objPartnerInfo[0]["Account"];
+                Cmd.Parameters.Add("Id", SqlDbType.Int).Value = id;
+                ret = Cmd.ExecuteNonQuery();
+                if (ret == 0)
+                {
+                    return 3;
+                }
+
+                Cmd = sqlCon.CreateCommand();
+                Cmd.CommandText = "UPDATE [tblCustomers_SMS_OTP] SET [PartnerAccount] = @Account WHERE [PartnerAccount] = @oldPartnerAccount";
+                Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = partnerAcc;
+                Cmd.Parameters.Add("oldPartnerAccount", SqlDbType.NVarChar).Value = objPartnerInfo[0]["Account"];
+                Cmd.Parameters.Add("Id", SqlDbType.Int).Value = id;
+                ret = Cmd.ExecuteNonQuery();
+                if (ret == 0)
+                {
+                    return 3;
+                }
             }
 
             sqlCon.Close();
