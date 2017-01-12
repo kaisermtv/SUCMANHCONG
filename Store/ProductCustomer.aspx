@@ -368,6 +368,21 @@
                                                     </tr>
                                                     <% Response.Write(this.strhtmlbill); %>
                                                 </table><br/>
+
+
+                                                <h3>Hàng hóa KHÔNG được giảm giá</h3>
+                                                <table id="tbl_hangkogiam" class="table-bordered">
+                                                    <tr>
+                                                        <th>STT</th>
+                                                        <th>Hàng hóa</th>
+                                                        <th>Số lượng</th>
+                                                        <th>Đơn giá</th>
+                                                        <th>Thành tiền</th>
+                                                    </tr>
+                                                    <% Response.Write(this.strhtmlbillNoDiscount); %>
+                                                </table><br/>
+
+
                                                 <p>Tổng tiền hàng: <a id="tongtienhang" runat="server"></a></p>
                                                 <p>Tổng tiền hàng hóa chiết khấu: <a id="tonggiamgia" runat="server"></a></p>
                                                 <p>Tổng tiền thanh toán: <a id="tienphaitra" runat="server"></a></p>

@@ -15,11 +15,12 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
 {
     #region declare objects
     public DataTable objTableProduct = new DataTable();
-    private Partner objPartner = new Partner();
+    private Partner objPartner  = new Partner(); 
+    private Partner objPartner2= new Partner();
     private Customers objCustomers = new Customers();
     private DataProduct objProduct = new DataProduct();
 
-    public string strHtml = "", strValue = "", strCurrBillId = "", strhtmlbill = "";
+    public string strHtml = "", strValue = "", strCurrBillId = "", strhtmlbill = "", strhtmlbillNoDiscount = "";
     public string strName = "", strAddress = "", strPhone = "", strManager = "", strEmail = "", strTaxcode = "", strAccount = "", strBestSale = "", strVIP = "", strMsg = "", strDiscount = "-", strDiscountCard = "-", strDiscountAdv = "-", strCustomerTotalDiscountCard = "0";
     public string strCusAccount  = "", strCusName = "", strCusAddress = "", strCusPhone = "", strIdCard = "", strCusEmail = "", strCusAccountType = "";
 
@@ -181,7 +182,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 {
                     try
                     {
-                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder1.Text, this.txtProductName1.Text, this.txtProductNumber1.Text, this.txtProductPrice1.Text);
+                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder1.Text, this.txtProductName1.Text, this.txtProductPrice1.Text,this.txtProductNumber1.Text);
                     }
                     catch
                     {
@@ -193,7 +194,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 {
                     try
                     {
-                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder2.Text, this.txtProductName2.Text, this.txtProductNumber2.Text, this.txtProductPrice2.Text);
+                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder2.Text, this.txtProductName2.Text, this.txtProductPrice2.Text,this.txtProductNumber2.Text);
                     }
                     catch
                     {
@@ -205,7 +206,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 {
                     try
                     {
-                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder3.Text, this.txtProductName3.Text, this.txtProductNumber3.Text, this.txtProductPrice3.Text);
+                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder3.Text, this.txtProductName3.Text, this.txtProductPrice3.Text, this.txtProductNumber3.Text);
                     }
                     catch
                     {
@@ -217,7 +218,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 {
                     try
                     {
-                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder4.Text, this.txtProductName4.Text, this.txtProductNumber4.Text, this.txtProductPrice4.Text);
+                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder4.Text, this.txtProductName4.Text, this.txtProductPrice4.Text, this.txtProductNumber4.Text);
                     }
                     catch
                     {
@@ -229,7 +230,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 {
                     try
                     {
-                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder5.Text, this.txtProductName5.Text, this.txtProductNumber5.Text, this.txtProductPrice5.Text);
+                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder5.Text, this.txtProductName5.Text, this.txtProductPrice5.Text, this.txtProductNumber5.Text);
                     }
                     catch
                     {
@@ -241,7 +242,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 {
                     try
                     {
-                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder6.Text, this.txtProductName6.Text, this.txtProductNumber6.Text, this.txtProductPrice6.Text);
+                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder6.Text, this.txtProductName6.Text, this.txtProductPrice6.Text, this.txtProductNumber6.Text);
                     }
                     catch
                     {
@@ -253,7 +254,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 {
                     try
                     {
-                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder7.Text, this.txtProductName7.Text, this.txtProductNumber7.Text, this.txtProductPrice7.Text);
+                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder7.Text, this.txtProductName7.Text, this.txtProductPrice7.Text, this.txtProductNumber7.Text);
                     }
                     catch
                     {
@@ -265,7 +266,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 {
                     try
                     {
-                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder8.Text, this.txtProductName8.Text, this.txtProductNumber8.Text, this.txtProductPrice8.Text);
+                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder8.Text, this.txtProductName8.Text, this.txtProductPrice8.Text, this.txtProductNumber8.Text);
                     }
                     catch
                     {
@@ -277,7 +278,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 {
                     try
                     {
-                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder9.Text, this.txtProductName9.Text, this.txtProductNumber9.Text, this.txtProductPrice9.Text);
+                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder9.Text, this.txtProductName9.Text, this.txtProductPrice9.Text, this.txtProductNumber9.Text);
                     }
                     catch
                     {
@@ -289,7 +290,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 {
                     try
                     {
-                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder10.Text, this.txtProductName10.Text, this.txtProductNumber10.Text, this.txtProductPrice10.Text);
+                        objPartner.setPartnerBillDetailOther(BillId, this.txtOrder10.Text, this.txtProductName10.Text, this.txtProductPrice10.Text, this.txtProductNumber10.Text);
                     }
                     catch
                     {
@@ -358,8 +359,31 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 str += "<td>" + (intnum * intPrice).ToString() + "</td>";
                 str += "</tr>";
             }
-
             strhtmlbill = str;
+
+            string strNoDiscount = "";
+             int intBillId = Int32.Parse(BillId); 
+            DataTable data2 = objPartner2.getPartnerBillDetailOtherById(intBillId);
+
+            for (int i = 0; i < data2.Rows.Count; i++)
+            {
+                strNoDiscount += "<tr>";
+                strNoDiscount += "<td>" + (++stt).ToString() + "</td>";
+                strNoDiscount += "<td>" + data2.Rows[i]["ProductName"] + "</td>";
+
+                double intnum = double.Parse(data2.Rows[i]["ProductNumber"].ToString());
+                double intPrice = double.Parse(data2.Rows[i]["ProductPrice"].ToString());
+
+                strNoDiscount += "<td>" + intnum.ToString() + "</td>";
+                strNoDiscount += "<td>" + intPrice.ToString() + "</td>";
+                strNoDiscount += "<td>" + (intnum * intPrice).ToString() + "</td>";
+                strNoDiscount += "</tr>";
+            }
+            strhtmlbillNoDiscount = strNoDiscount;
+
+
+
+       
         }
         catch
         {
