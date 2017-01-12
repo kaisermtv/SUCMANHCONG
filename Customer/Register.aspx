@@ -59,7 +59,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel-body" style="padding: 0px;">
-                                    <input type="text" class="form-control" id="txtBirthday" runat="server" placeholder="Ngày sinh">
+                                    <input type="date" class="form-control" id="txtBirthday" runat="server" placeholder="Ngày sinh">
                                 </div>
                             </div>
                         </div>
