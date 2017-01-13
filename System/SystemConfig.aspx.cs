@@ -37,6 +37,7 @@ public partial class SystemConfig : System.Web.UI.Page
     public void setCustomer()
     {
         this.lblMsg.Text = "";
+        /*
         if (this.txtPartnerAccount.Text.Trim() == "")
         {
             this.lblMsg.Text = "Bạn chưa nhập ký hiệu thẻ đối tác";
@@ -72,6 +73,7 @@ public partial class SystemConfig : System.Web.UI.Page
             this.lblMsg.Text = "Bạn chưa nhập mức giảm giá thành viên";
             return;
         }
+         /**/
 
         float PartnerDiscount = 0;
         try{
