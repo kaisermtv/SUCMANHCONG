@@ -40,7 +40,7 @@
                     <a href="#">+ Chia sẻ link</a>
                 </div>
                 <div style="width: 100%; color: #fff;" class="TVS-Col-md2">
-                    <a href="#">+ Thay đổi mật khẩu</a>
+                    <a href="ResetCustomerPassword.aspx">+ Thay đổi mật khẩu</a>
                 </div>
                 <div style="width: 100%; color: #fff;" class="TVS-Col-md2-2">
                     <a href="../Logout.aspx">+ Thoát</a>
