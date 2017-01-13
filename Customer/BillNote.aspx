@@ -46,7 +46,7 @@
                         Mức chiết khấu
                     </div>
                     <div style="width: 50%; float: right; text-align: left;">
-                        <% Response.Write(this.strDiscount); %>
+                        <% Response.Write(this.strDiscount); %> %
                     </div>
                 </div>
                 <div style="width: 100%; height: 30px; line-height: 30px;">
@@ -108,6 +108,12 @@
                         <% } %>
                             
                             <!---- NO Discount--->
+                        <tr style="background-color:ThreeDDarkShadow">
+                           <td> </td>
+                            <td> </td>
+                             <td> </td>
+                             <td> </td>  <td> </td> <td> </td>
+                        </tr>
                          <% for (int i = 0; i < this.objTableProductNoDiscount.Rows.Count; i++)
                            { %>
                         <tr>
