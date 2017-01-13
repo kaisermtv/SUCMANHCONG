@@ -105,7 +105,9 @@
         <div style="height: 30px; line-height: 30px; float: left; font-family:Arial; font-size:12px;">
             <asp:CheckBox ID="ckbState" Text = "  Trạng thái" runat="server" />
         </div>
-
+        <div style="height: 30px; line-height: 30px; float: left; font-family:Arial; font-size:12px; margin-left:30px;" >
+        Ngày khởi tạo hợp đồng :    <input type="datetime" class="form-control" id="txtDateTime" runat="server" placeholder="dd/mm/yyyy hh:mm:ss "/>
+        </div>
         
     </div>
 </asp:Content>

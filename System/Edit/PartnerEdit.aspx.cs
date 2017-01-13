@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -75,6 +76,9 @@ public partial class PartnerEdit : System.Web.UI.Page
             this.ddlBusiness.SelectedValue = objData.Rows[0]["Business"].ToString();
             this.txtContent.Text = objData.Rows[0]["Content"].ToString();
             this.txtImage.Text = objData.Rows[0]["Image"].ToString();
+            string x = objData.Rows[0]["DayCreate"].ToString();     //DateTime.ParseExact(objData.Rows[0]["DayCreate"].ToString(), "dd-MM-yyyy HH:mm:ss",CultureInfo.InvariantCulture);
+            DateTime date = Convert.ToDateTime(objData.Rows[0]["DayCreate"].ToString());
+            this.txtDateTime.Value = date.ToString("dd-M-yyyy HH:mm:ss");
              try
             {  
                 this.ddlLocation.SelectedIndex = Int32.Parse(objData.Rows[0]["LocationId"].ToString()) -1;
@@ -149,8 +153,19 @@ public partial class PartnerEdit : System.Web.UI.Page
             try{
                 Discount = Int32.Parse(this.txtDiscount.Text);
             } catch{}
+            string dayCreate = "";
+            try
+            {
+                DateTime date = DateTime.ParseExact(this.txtDateTime.Value,"dd-M-yyyy HH:mm:ss",null,DateTimeStyles.None);
+                dayCreate = date.ToString();
+                Page.ClientScript.RegisterClientScriptBlock(GetType(), "msgDate2", "alert('" + date + "!');",true);
+            }
+            catch {
+                dayCreate = "";
+                Page.ClientScript.RegisterClientScriptBlock(GetType(), "msgDate", "alert('Ngày hợp đồng có hiệu lực : dd-MM-yyyy HH:mm:ss , Hãy cẩn thận !');",true);
+            }
 
-            int ret = this.objPartner.UpdateOrInsertPartner(this.itemId, this.txtName.Text, this.txtAddress.Text, this.txtPhone.Text, this.txtManager.Text, this.txtTaxCode.Text, Business, this.ckbBestSale.Checked, this.ckbVIP.Checked, this.ckbState.Checked, Discount, this.txtContent.Text, this.txtImage.Text, locationId);
+            int ret = this.objPartner.UpdateOrInsertPartner(this.itemId, this.txtName.Text, this.txtAddress.Text, this.txtPhone.Text, this.txtManager.Text, this.txtTaxCode.Text, Business, this.ckbBestSale.Checked, this.ckbVIP.Checked, this.ckbState.Checked, Discount, this.txtContent.Text, this.txtImage.Text, locationId, dayCreate);
             if (ret > 0)
             {
                 Response.Redirect("/System/Partner.aspx");

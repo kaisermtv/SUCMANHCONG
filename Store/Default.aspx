@@ -19,7 +19,7 @@
                             <li class="list-group-item">Tài khoản cửa hàng: <% Response.Write(strAccount); %></li>
                             <li class="list-group-item">Số tài khoản: <% Response.Write(strBankAccount); %></li>
                             <li class="list-group-item">Ngân hàng: <% Response.Write(strBankAccountName); %></li>
-                            <li class="list-group-item">Ngày hợp đồng hiệu lực: <% Response.Write(strCreateDate); %></li>
+                            <li class="list-group-item">Ngày hợp đồng hiệu lực: <% Response.Write(strCreateDate); %></li> 
 
                         </ul>
                     </div>

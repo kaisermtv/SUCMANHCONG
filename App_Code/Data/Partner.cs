@@ -113,8 +113,48 @@ public class Partner
 
     #region Method UpdateOrInsertPartner
     //*
-    public int UpdateOrInsertPartner(int Id, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, bool BestSale, bool VIP, bool State, float Discount, string Content, string Image, int locationId)
+    public int UpdateOrInsertPartner(int Id, string Name, string Address, string Phone, string Manager, string TaxCode, int Business, bool BestSale, bool VIP, bool State, float Discount, string Content, string Image, int locationId,string datetime = "")
     {
+        #region when user setup dateTime()
+        if (datetime.Trim() != null) {
+            try
+            {
+                SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+                sqlCon.Open();
+                SqlCommand Cmd = sqlCon.CreateCommand();
+                string sqlQuery = "IF NOT EXISTS (SELECT * FROM tblPartner WHERE Id = @Id)";
+                sqlQuery += "BEGIN INSERT INTO tblPartner(Name,Address,Phone,Manager,Business,TaxCode,Content,Image,BestSale,VIP,State,Discount,LocationId,DayCreate) VALUES(@Name,@Address,@Phone,@Manager,@Business,@TaxCode,@Content,@Image,@BestSale,@VIP,@State,@Discount,@LocationId,@DayCreate) END ";
+                sqlQuery += "ELSE BEGIN UPDATE tblPartner SET Name = @Name, Address = @Address, Phone = @Phone, Manager = @Manager, Business = @Business, TaxCode = @TaxCode, Content = @Content, Image = @Image, State = @State, BestSale = @BestSale, VIP = @VIP, Discount = @Discount,LocationId = @LocationId ,DayCreate= @DayCreate WHERE Id = @Id END";
+                Cmd.CommandText = sqlQuery;
+                Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
+                Cmd.Parameters.Add("Name", SqlDbType.NVarChar).Value = Name;
+                Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = Address;
+                Cmd.Parameters.Add("Phone", SqlDbType.NVarChar).Value = Phone;
+                Cmd.Parameters.Add("Manager", SqlDbType.NVarChar).Value = Manager;
+                Cmd.Parameters.Add("TaxCode", SqlDbType.NVarChar).Value = TaxCode;
+                Cmd.Parameters.Add("Business", SqlDbType.Int).Value = Business;
+                Cmd.Parameters.Add("Content", SqlDbType.NText).Value = Content;
+                Cmd.Parameters.Add("Image", SqlDbType.NVarChar).Value = Image;
+                Cmd.Parameters.Add("BestSale", SqlDbType.Bit).Value = BestSale;
+                Cmd.Parameters.Add("VIP", SqlDbType.Bit).Value = VIP;
+                Cmd.Parameters.Add("State", SqlDbType.Bit).Value = State;
+                Cmd.Parameters.Add("Discount", SqlDbType.Float).Value = Discount;
+                Cmd.Parameters.Add("LocationId", SqlDbType.Int).Value = locationId;
+                Cmd.Parameters.Add("DayCreate", SqlDbType.DateTime).Value = datetime;
+                int ret = Cmd.ExecuteNonQuery();
+                sqlCon.Close();
+                sqlCon.Dispose();
+
+                return ret;
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+        #endregion
+
+        #region update normal
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
@@ -149,6 +189,7 @@ public class Partner
             return 0;
         }
     }
+        #endregion
     // */
     #endregion
 

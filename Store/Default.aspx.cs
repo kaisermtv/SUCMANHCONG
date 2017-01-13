@@ -74,4 +74,5 @@ public partial class Store_Default : System.Web.UI.Page
         }
     }
     #endregion
+    
 }
