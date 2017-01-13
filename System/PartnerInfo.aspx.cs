@@ -244,13 +244,11 @@ public partial class System_PartnerInfo : System.Web.UI.Page
         {
             pm = double.Parse(this.txtParnertPayment.Text);
         }
-        catch 
+        catch
         {
             this.lblMsg.Text = "Định dạng nhập không đúng!";
             return;
         }
-
-
         DataRowCollection objData = this.objPartner.getPartnerById(this.itemId).Rows;
         if (objData.Count > 0)
         {
