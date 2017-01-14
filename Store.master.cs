@@ -140,17 +140,17 @@ public partial class Store : MasterPage
             this.strTaxcode = objTable[0]["TaxCode"].ToString();
             this.strAccount = objTable[0]["Account"].ToString();
             
-            double mm = 0;
+            double min = 0,max =0;
             try
             {
-                mm = (double)objTable[0]["MinMaxSales"];
+                min = (double)objTable[0]["MinSales"];
+                max = (double)objTable[0]["MaxSales"];
             }
             catch { }
             // Lấy số tiền được thanh toán bằng thẻ trừ đi tổng chi phí quảng cáo
             double a = this.objPartner.getSalesCardByPartnerAccout(Session["ACCOUNT"].ToString()) - this.objPartner.getPartnerBillTotalDiscountAdvByAccount(Session["ACCOUNT"].ToString());
-
-            this.ngoisao = Math.Abs(a) < mm;
-
+            if (a < min || a > max) { this.ngoisao = false; }
+            
             if (objTable[0]["BestSale"].ToString() == "True")
             {
                 this.strBestSale = "X";

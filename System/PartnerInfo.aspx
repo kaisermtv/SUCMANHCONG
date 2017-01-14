@@ -121,7 +121,8 @@
                 Giới hạn cân đối:
             </div>
             <div style="width: 78%; display: table; float: right;">
-                <asp:TextBox ID="txtMinMaxSale"  value="0" runat="server" Style="height: 22px; line-height: 22px; width: 100px; font-family: Arial; font-size: 14px; font-weight: bold; text-transform: uppercase; border: solid 1px Aqua;"></asp:TextBox>
+               Từ : <asp:TextBox ID="txtMinSale"  value="0" runat="server" Style="height: 22px; line-height: 22px; width: 100px; font-family: Arial; font-size: 14px; font-weight: bold; text-transform: uppercase; border: solid 1px Aqua;"></asp:TextBox>
+               Đến : <asp:TextBox ID="txtMaxSale"  value="0" runat="server" Style="height: 22px; line-height: 22px; width: 100px; font-family: Arial; font-size: 14px; font-weight: bold; text-transform: uppercase; border: solid 1px Aqua;"></asp:TextBox>
             </div>
 
             <div style="width: 22%; display: table; float: left;">
