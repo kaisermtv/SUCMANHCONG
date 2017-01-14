@@ -92,14 +92,26 @@ public partial class SiteMaster : MasterPage
             this.Location = int.Parse(Request["Location"].ToString());
         }
         catch { }
-        if (Session["ACCOUNT"] == null || Session["ACCOUNT"].ToString() == "")
+
+
+        DataTable objdata;
+         if (Session["ACCOUNT"] == null || Session["ACCOUNT"].ToString() == "")
+         {
+             objdata = new DataTable();
+         } else
+         {
+             objdata = objFunc.getAccount(Session["ACCOUNT"].ToString());
+         }
+
+
+         if (objdata.Rows.Count == 0)
         {
             strHeader = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"#\" id=\"searchlink1\" rel=\"subcontent1\">Đăng kí &nbsp;|&nbsp; </a><a href=\"/login.aspx\">&nbsp;Đăng nhập</a>";
             currPartnerId = "#";
         }
         else
         {
-            if (Session["ACCOUNT"].ToString().Substring(0, 3).ToUpper() == this.objFunc.getPartnerAccount().Trim().ToUpper())
+            if ((int)objdata.Rows[0]["Acct_Type"] == 0)
             {
                 strHeader = "<i class=\"fa fa-user\">&nbsp;<a href=\"../Store/\">" + Session["ACCOUNT"].ToString() + "</a></i>";
                 currPartnerId = "../Store/PartnerInfo.aspx?id=" + Session["ACCOUNT"].ToString();
