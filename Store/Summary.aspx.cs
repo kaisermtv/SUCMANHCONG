@@ -30,7 +30,9 @@ public partial class Store_Summary : System.Web.UI.Page
             this.lblDSInMonth.Text = String.Format("{0:0,0}", this.objPartner.getPartnerBillInMonthByAccount(Session["ACCOUNT"].ToString()));
             this.lblTotalDiscount.Text = String.Format("{0:0,0}", this.objPartner.getPartnerBillTotalDiscountByAccount(Session["ACCOUNT"].ToString()));
             this.lblTotalDiscountCard.Text = String.Format("{0:0,0}", this.objPartner.getPartnerBillTotalDiscountCardByAccount(Session["ACCOUNT"].ToString()));
-            
+            this.lblcardsale.Text = String.Format("{0:0,0}", this.objPartner.getSalesCardByPartnerAccout(Session["ACCOUNT"].ToString()));
+
+
             double TotalADV = this.objPartner.getPartnerBillTotalDiscountAdvByAccount(Session["ACCOUNT"].ToString());
             this.lblTotalDiscountAdv.Text = String.Format("{0:0,0}", TotalADV);
             
