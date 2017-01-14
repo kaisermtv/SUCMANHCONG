@@ -1554,25 +1554,28 @@ public class Partner
     #endregion
 
 
-
     #region Method getSalesBalance
-    public double getSalesCardByPartnerAccout(string PartnerAccout)
+    public double getSalesCardByPartnerAccout(string PartnerAccout,bool cfg = true)
     {
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
+
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = "SELECT ISNULL(SUM(PB.TotalMoneyDiscount),0) FROM [tblCustomersPaymentByCard] AS CPC LEFT JOIN [tblPartnerBill] AS PB ON PB.[Id] = CPC.[BillId]";
             Cmd.CommandText += " WHERE PB.[PartnerAccount] = @PartnerAccount";
             Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = PartnerAccout.ToUpper().Trim();
             double ret = (double)Cmd.ExecuteScalar();
 
-            Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT ISNULL(SUM([TotalPayment]),0) FROM [tblPartnerPayments]";
-            Cmd.CommandText += " WHERE [PartnerId] = (SELECT [Id] FROM [tblPartner] WHERE [Account] = @PartnerAccount) ";
-            Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = PartnerAccout.ToUpper().Trim();
-            ret += (double)Cmd.ExecuteScalar();
+            if (cfg)
+            {
+                Cmd = sqlCon.CreateCommand();
+                Cmd.CommandText = "SELECT ISNULL(SUM([TotalPayment]),0) FROM [tblPartnerPayments]";
+                Cmd.CommandText += " WHERE [PartnerId] = (SELECT [Id] FROM [tblPartner] WHERE [Account] = @PartnerAccount) ";
+                Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = PartnerAccout.ToUpper().Trim();
+                ret += (double)Cmd.ExecuteScalar();
+            }
 
 
             sqlCon.Close();

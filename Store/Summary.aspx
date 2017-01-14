@@ -34,6 +34,9 @@
                             <li class="list-group-item">Doanh số cân đối :
                                 <asp:Label ID="lblDSPayment" runat="server" Text="0" ForeColor="Black"></asp:Label>
                             </li>
+                            <li class="list-group-item">Số được thanh toán bằng thẻ :
+                                <asp:Label ID="lblcardsale" runat="server" Text="0" ForeColor="Black"></asp:Label>
+                            </li>
                         </ul>
                     </div>
                 </div>

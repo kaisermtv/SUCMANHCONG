@@ -200,6 +200,12 @@ public class TVSFunc
     #region menthod updateCustomerAccount
     public int updateCustomerAccount(int id, string customerAcc, string customertype)
     {
+        DataRowCollection objProduct = new DataProduct().getProductById(id).Rows;
+        if (objProduct.Count == 0)
+        {
+            return 4;
+        }
+
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
@@ -247,6 +253,34 @@ public class TVSFunc
         {
             this.ErrorMessage = ex.Message;
             return -1;
+        }
+    }
+    #endregion
+
+    #region menthod getAccount
+    public DataTable getAccount(string account)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            Cmd.CommandText = "SELECT * FROM [tblAccount] WHERE [Acct_Name] = @Account";
+            Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = account;
+            SqlDataAdapter da = new SqlDataAdapter();
+            da.SelectCommand = Cmd;
+            DataSet ds = new DataSet();
+            da.Fill(ds);
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ds.Tables[0];
+        }
+        catch (Exception ex)
+        {
+            this.ErrorMessage = ex.Message;
+            return new DataTable();
         }
     }
     #endregion
