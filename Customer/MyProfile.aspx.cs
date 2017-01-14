@@ -59,7 +59,7 @@ public partial class Customer_MyProfile : System.Web.UI.Page
             catch { }
             this.strCard = Rd["IdCard"].ToString();
             this.strEmail = Rd["Email"].ToString();
-            this.strIdCard = Rd["IdCard"].ToString();
+            this.strIdCard = Rd["Account"].ToString();
             this.strDaycreate = Rd["DayCreateAccount"].ToString();
             lblImg1.Text = "<img  height = \"120px\" src = \"/Images/Customer/" + Rd["Avatar"].ToString() + "\">";
             switch(Rd["AccountType"].ToString())
@@ -117,6 +117,7 @@ public partial class Customer_MyProfile : System.Web.UI.Page
 
         panel.Visible = true;
     }
+
     #region method getCustomerTotalDiscountCard
     public double getCustomerTotalDiscountCard(string CustomerAccount)
     {

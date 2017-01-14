@@ -52,7 +52,8 @@
                         <!-- Default panel contents -->
                         <div class="panel-heading">Hồ sơ của tôi</div>
                         <div class="panel-body">
-                            <p>Mã Thẻ :<% Response.Write(strCard); %></p>
+                            <p>Loại Thẻ :<% Response.Write(strCard); %></p>
+                              <p>Mã Thẻ :<% Response.Write(strIdCard); %></p>
                             <br />
                             <p>Ngày kích hoạt : <% Response.Write(strDaycreate); %></p>
                         </div>

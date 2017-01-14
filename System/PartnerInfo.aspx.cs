@@ -104,7 +104,8 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             {
                 this.ckbState.Checked = false;
             }
-            this.txtMinMaxSale.Text = objData.Rows[0]["MinMaxSales"].ToString();
+            this.txtMinSale.Text = objData.Rows[0]["MinSales"].ToString();
+            this.txtMaxSale.Text = objData.Rows[0]["MaxSales"].ToString();
             this.txtDiscountCard.Text = objData.Rows[0]["DiscountCard"].ToString();
             this.txtDiscountTotal.Text = objData.Rows[0]["DiscountTotal"].ToString();
             this.txtDiscount.Text = objData.Rows[0]["Discount"].ToString();
@@ -226,7 +227,9 @@ public partial class System_PartnerInfo : System.Web.UI.Page
                   double.Parse(this.txtDiscount.Text),
                   double.Parse(this.txtDiscountAdv.Text),
                   double.Parse(this.txtDiscountCard.Text),
-                  double.Parse(this.txtMinMaxSale.Text)) > 0)
+                  double.Parse(this.txtMinSale.Text) ,
+                    double.Parse(this.txtMaxSale.Text) 
+                  ) > 0)
             this.lblMsg.Text = "Thông tin đã được cập nhật vào hệ thống.";
         }
         catch(Exception Ex)

@@ -51,7 +51,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel-body" style="padding: 0px;">
-                                    <input type="number" class="form-control" id="txtPhone" runat="server" placeholder="Điện thoại">
+                                    <input type="number" class="form-control" value="" id="txtPhone" runat="server" placeholder="Điện thoại">
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel-body" style="padding: 0px;">
-                                    <input type="date" class="form-control" id="txtBirthday" runat="server" placeholder="Ngày sinh">
+                                    <input type="date" class="form-control" id="txtBirthday" value="dd/mm/yyyy" runat="server" placeholder="Ngày sinh">
                                 </div>
                             </div>
                         </div>
@@ -67,7 +67,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="panel-body" style="padding: 0px;">
-                                    <input type="email" class="form-control" id="txtEmail" runat="server" placeholder="Địa chỉ email">
+                                    <input type="email" class="form-control" id="txtEmail"  runat="server" placeholder="Địa chỉ email">
                                 </div>
                             </div>
                         </div>

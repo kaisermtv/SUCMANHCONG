@@ -20,12 +20,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%: Page.Title %> - SỨC MẠNH CỘNG</title>
-    <%--<asp:PlaceHolder runat="server">
-            <%: Scripts.Render("~/bundles/modernizr") %>
-        </asp:PlaceHolder>
-        <webopt:BundleReference runat="server" Path="~/Content/css" />
-        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-        <link href="Content/Site.css" rel="stylesheet" />--%>
+   
     <link href="~/SMC.ico" rel="shortcut icon" type="image/x-icon" />
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/styles.css" />
@@ -47,11 +42,6 @@
     
     <link rel="stylesheet" type="text/css" href="/css/balloontip.css" />
     <script type="text/javascript" src="/css/balloontip.js">
-    /***********************************************
-    * Rich HTML Balloon Tooltip- (c) Dynamic Drive DHTML code library (www.dynamicdrive.com)
-    * Please keep this notice intact
-    * Visit Dynamic Drive at http://www.dynamicdrive.com/ for full source code
-    ***********************************************/
     </script>
 
     <script type="text/javascript">
@@ -105,9 +95,15 @@
                         <div style="width: 100%; color: #fff;" class="TVS-Col-md20">
                             <a href="#"><% Response.Write(this.strName.ToUpper()); %></a>
                             <a href="/Store/Summary.aspx">
-                                <img src ="/img/Notification.gif" alt ="notification" style ="width:30px; margin-top:-8px; margin-bottom:-8px; margin-left:20px;">
+                                <script>
+                                   function myMouseFunction()
+                                   {
+                                       alert('Tài khoản đang trong tình trạng cảnh báo vì chưa thanh toán hợp đồng .');
+                                   }
+                                </script>
+                                <img src ="/img/Notification.gif" alt ="notification" style ="width:30px; margin-top:-8px; margin-bottom:-8px; margin-left:20px; ">
                             </a>
-                            <a class="ngoisao"<%= this.ngoisao?" style=\"color: green;\"":"" %>> ★</a>
+                            <a class="ngoisao"<%= this.ngoisao ? " style=\"color: green; font-size:50px;  \"" : "style=\"color: red; font-size:50px; title=\"Cảnh báo\" \" onmousemove =\"myMouseFunction()\" " %>> ★</a>
                         </div>
                         <div style="width: 100%;">
                             <asp:Label ID="lblImg1" runat="server" Text=""></asp:Label>
