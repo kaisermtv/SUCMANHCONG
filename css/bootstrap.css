@@ -6612,6 +6612,9 @@ button.close {
     display: table-cell !important;
   }
 }
+
+
+
 @media (min-width: 768px) and (max-width: 991px) {
   .visible-sm-block {
     display: block !important;

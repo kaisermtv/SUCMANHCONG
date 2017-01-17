@@ -349,7 +349,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
             {
                 str += "<tr>";
                 str += "<td>" + (++stt).ToString() + "</td>";
-                str += "<td>" + data.Rows[i]["ProductName"] + "</td>";
+                str += "<td>" + data.Rows[i]["Name"] + "</td>";
 
                 double intnum = double.Parse(data.Rows[i]["ProductNumber"].ToString());
                 double intPrice = double.Parse(data.Rows[i]["ProductPrice"].ToString());
@@ -842,8 +842,8 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
 
     #region Code for SMS Send
 
-    const string APIKey = "9A777702907155A61B1FD0BE8CB9B4";//Dang ky tai khoan tai esms.vn de lay key//Register account at esms.vn to get key
-    const string SecretKey = "FCCD9B6DDC659F184D335743AB9A8F";
+    const string APIKey = "C6C0F4A274DFAF435238F759CCFBF6";//Dang ky tai khoan tai esms.vn de lay key//Register account at esms.vn to get key
+    const string SecretKey = "E4161C0DFCAFF8CB655DB9C6F25A89";
 
     #region method SendSMS
     public string SendSMS(string phone, string message)
@@ -873,7 +873,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                            + "<APIKEY>" + APIKey + "</APIKEY>"
                            + "<SECRETKEY>" + SecretKey + "</SECRETKEY>"
                            + "<ISFLASH>0</ISFLASH>"
-                           + "<SMSTYPE>7</SMSTYPE>"//SMSTYPE 3: đầu số ngẫu nhiên tốc độ chậm, SMSTYPE=7: đầu số ngẫu nhiên tốc độ cao, SMSTYPE=4: Đầu số 19001534; SMSTYpe=6: đàu số 8755                               
+                           + "<SMSTYPE>4</SMSTYPE>"//SMSTYPE 3: đầu số ngẫu nhiên tốc độ chậm, SMSTYPE=7: đầu số ngẫu nhiên tốc độ cao, SMSTYPE=4: Đầu số 19001534; SMSTYpe=6: đàu số 8755                               
                            + "<CONTENT>" + message + "</CONTENT>"
                            + "<CONTACTS>" + customers + "</CONTACTS>"
 

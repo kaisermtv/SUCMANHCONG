@@ -200,11 +200,11 @@ public class TVSFunc
     #region menthod updateCustomerAccount
     public int updateCustomerAccount(int id, string customerAcc, string customertype)
     {
-        DataRowCollection objProduct = new DataProduct().getProductById(id).Rows;
-        if (objProduct.Count == 0)
-        {
-            return 4;
-        }
+        //DataRowCollection objProduct = new DataProduct().getProductById(id).Rows;
+        //if (objProduct.Count == 0)
+        //{
+        //    return 4;
+        //}
 
         try
         {
@@ -321,6 +321,7 @@ public class TVSFunc
 
     #endregion
 
+    #region sendEmailforUser
     public int sendEmail(String fromMail ,String fromName, String toMail,String toName,String password)
     {
         var fromAddress = new MailAddress(fromMail, fromName);
@@ -351,5 +352,6 @@ public class TVSFunc
         
         return 1;
     }
+    #endregion
 
 }

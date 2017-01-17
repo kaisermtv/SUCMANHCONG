@@ -83,9 +83,9 @@ public class DataProduct
             SqlCommand Cmd = sqlCon.CreateCommand();
             string sqlQuery = "";
 
-            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblProduct WHERE Id = @Id AND  PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account))";
+            sqlQuery = "IF NOT EXISTS (SELECT tblProduct.Id FROM tblProduct WHERE Id = @Id AND  PartnerId = (SELECT TOP 1 tblPartner.id FROM tblPartner WHERE Account = @Account))";
             sqlQuery += "BEGIN INSERT INTO tblProduct(Name,Price,Discount,Content,Image,GroupId,BestSale,VIP,PartnerId,BrandId) VALUES(@Name,@Price,@Discount,@Content,@Image,@GroupId,@BestSale,@VIP,(SELECT id FROM tblPartner WHERE Account = @Account),@BrandId) END ";
-            sqlQuery += "ELSE BEGIN UPDATE tblProduct SET Name = @Name, Price = @Price, Discount = @Discount, Content = @Content, Image = @Image, BestSale = @BestSale, VIP = @VIP, GroupId = @GroupId, PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account), BrandId = @BrandId WHERE Id = @Id END ";
+            sqlQuery += "ELSE BEGIN UPDATE tblProduct SET Name = @Name, Price = @Price, Discount = @Discount, Content = @Content, Image = @Image, BestSale = @BestSale, VIP = @VIP, GroupId = @GroupId, PartnerId = (SELECT TOP 1 tblPartner.id FROM tblPartner WHERE Account = @Account), BrandId = @BrandId WHERE Id = @Id END ";
             Cmd.CommandText = sqlQuery;
 
             Cmd.Parameters.Add("Id", SqlDbType.Int).Value = Id;
@@ -99,7 +99,7 @@ public class DataProduct
             Cmd.Parameters.Add("GroupId", SqlDbType.Int).Value = GroupId;
             Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
             Cmd.Parameters.Add("BrandId", SqlDbType.Int).Value = BrandId;
-
+            
             ret = Cmd.ExecuteNonQuery();
             sqlCon.Close();
             sqlCon.Dispose();
@@ -746,7 +746,7 @@ public class DataProduct
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE [State] = 1 AND PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account)";
+            Cmd.CommandText = "SELECT 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE [State] = 1 AND PartnerId IN (SELECT id FROM tblPartner WHERE Account = @Account)";
             Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -778,7 +778,7 @@ public class DataProduct
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE PartnerId = (SELECT id FROM tblPartner WHERE Account = @Account)";
+            Cmd.CommandText = "SELECT 0 AS TT, *, REPLACE(REPLACE(CAST(BestSale AS nvarchar),'1',N'Bán chạy'),'0','') AS BESTSALE1, REPLACE(REPLACE(CAST(VIP AS nvarchar),'1',N'VIP'),'0','') AS VIP1 FROM tblProduct WHERE PartnerId IN (SELECT id FROM tblPartner WHERE Account = @Account)";
             Cmd.Parameters.Add("Account", SqlDbType.NVarChar).Value = Account;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;

@@ -37,7 +37,7 @@
                     <asp:Label ID="lblMsg" runat="server" Text="-:-" ForeColor ="Red" Font-Size="14px"></asp:Label>
                     </p>
                      <hr class="colorgraph">
-                    <input class="form-control email-title" placeholder="Account" id="txtAccount" name="email" type="text" runat="server" Style = "text-transform:uppercase;">
+                    <input class="form-control email-title"  placeholder="Account" id="txtAccount" name="email" type="text" runat="server" Style = "text-transform:uppercase; ">
                     <br />  
                     <input class="form-control" placeholder="Password" name="password" id="txtPassWord" type="password" value="" runat="server">
                     <a class="pull-right" href="PasswordRecover.aspx" style="margin-top:10px;">Quên mật khẩu?</a>
@@ -49,8 +49,8 @@
                     <input type="submit" class="btn btn-lg btn-success btn-block" value="ĐĂNG NHẬP" />
                     <br>
 
-                    <p class="text-center"><a href="/Customer/Register.aspx">Đăng ký tài khoản khách hàng?</a></p>
-                    <p class="text-center"><a href="/Store/Register.aspx">Đăng ký tài khoản cửa hàng?</a></p>
+                    <p class="text-center"><a href="/Register.aspx">Đăng ký tài khoản khách hàng?</a></p>
+                   
                 </fieldset>
                 <%--</form>--%>
             </div>

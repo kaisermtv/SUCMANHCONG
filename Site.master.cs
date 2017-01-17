@@ -106,7 +106,7 @@ public partial class SiteMaster : MasterPage
 
          if (objdata.Rows.Count == 0)
         {
-            strHeader = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"#\" id=\"searchlink1\" rel=\"subcontent1\">Đăng kí &nbsp;|&nbsp; </a><a href=\"/login.aspx\">&nbsp;Đăng nhập</a>";
+            strHeader = "&nbsp;&nbsp;|&nbsp;&nbsp;<a href=\"#\" id=\"searchlink1\" rel=\"subcontent1\">Đăng kí &nbsp;|&nbsp; </a><a href=\"/login.aspx\" rel=\"subcontent_login\" id=\"search_link2\">&nbsp;Đăng nhập</a>";
             currPartnerId = "#";
         }
         else

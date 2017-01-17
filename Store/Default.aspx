@@ -5,21 +5,21 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="panel panel-default">
+                    <div class="panel panel-info">
                         <!-- Default panel contents -->
                         <div class="panel-heading"><b>THÔNG TIN CỬA HÀNG</b></div>
                         <!-- List group -->
                         <ul class="list-group">
-                            <li class="list-group-item">Người đại diện: <% Response.Write(strManager); %></li>
-                            <li class="list-group-item">Tên cửa hàng: <% Response.Write(strName); %></li>
-                            <li class="list-group-item">Địa chỉ: <% Response.Write(strAddress); %></li>
-                            <li class="list-group-item">Điện thoại: <% Response.Write(strPhone); %></li>
-                            <li class="list-group-item">Địa chỉ email: <% Response.Write(strEmail); %></li>
-                            <li class="list-group-item">Mã số thuế: <% Response.Write(strTaxcode); %></li>
-                            <li class="list-group-item">Tài khoản cửa hàng: <% Response.Write(strAccount); %></li>
-                            <li class="list-group-item">Số tài khoản: <% Response.Write(strBankAccount); %></li>
-                            <li class="list-group-item">Ngân hàng: <% Response.Write(strBankAccountName); %></li>
-                            <li class="list-group-item">Ngày hợp đồng hiệu lực: <% Response.Write(strCreateDate); %></li> 
+                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Người đại diện: </label><% Response.Write(strManager+"."); %></li>
+                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Tên cửa hàng:</label> <% Response.Write(strName + "."); %></li>
+                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Địa chỉ: </label><% Response.Write(strAddress + "."); %></li>
+                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Điện thoại : </label><% Response.Write(strPhone+ "."); %></li>
+                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Địa chỉ email:</label>  <% Response.Write(strEmail + "."); %></li>
+                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Mã số thuế : </label><% Response.Write(strTaxcode + "."); %></li>
+                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Tài khoản cửa hàng: </label> <% Response.Write(strAccount ); %></li>
+                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Số tài khoản: </label> <% Response.Write(strBankAccount + "."); %></li>
+                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Ngân hàng: </label> <% Response.Write(strBankAccountName + "."); %></li>
+                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Ngày hợp đồng hiệu lực: </label> <% Response.Write(strCreateDate +"."); %></li> 
 
                         </ul>
                     </div>

@@ -181,6 +181,7 @@ public partial class Store_ProductEdit : System.Web.UI.Page
         int ret = this.objProduct.UpdateOrInsertProductByAccount(Session["ACCOUNT"].ToString(), this.itemId, this.txtName.Text, Price, Discount, this.txtContent.Text, this.txtImage.Text, this.ckbBestSale.Checked, this.ckbVIP.Checked, GroupId, BrandId);
         if(ret > 0)
         {
+            Page.ClientScript.RegisterClientScriptBlock(GetType(), "msg", "confirm('Cập nhật thành công .');", true);
             Response.Redirect("Product.aspx");
         } else
         {

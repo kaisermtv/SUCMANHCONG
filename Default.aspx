@@ -1,4 +1,4 @@
-﻿<%@ Page Title="SUCMANHCONG" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
+﻿<%@ Page Title="TRANG CHỦ" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
     CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
@@ -104,15 +104,7 @@
                                 .jssorb01 .dn, .jssorb01 .dn:hover {
                                     background-color: #555555;
                                 }
-                            /* jssor slider arrow navigator skin 02 css */
-                            /*
-                            .jssora02l                  (normal)
-                            .jssora02r                  (normal)
-                            .jssora02l:hover            (normal mouseover)
-                            .jssora02r:hover            (normal mouseover)
-                            .jssora02l.jssora02ldn      (mousedown)
-                            .jssora02r.jssora02rdn      (mousedown)
-                            */
+                         
                             .jssora02l, .jssora02r {
                                 display: block;
                                 position: absolute;
@@ -194,11 +186,13 @@
     </div>
     <div class="container">
         <div class="row">
+         
+
             <div class="col-md-12">
 
 
                 <!----->
-                <div class="menu">
+                <div id="div_menu_default_page" class="menu">
                     <a href="/ListProduct?Type=1"><i class="glyphicon glyphicon-th-list"></i>
                         <br />
                         <span style="margin-top: -20px; font-size: 11px; font-family: Arial; font-weight: bold; text-transform: uppercase; color: #01a44b;">SẢN PHẨM VIP</span>
@@ -273,7 +267,7 @@
                                     <%                  
                        TVSFunc tvsPrice = new TVSFunc();
                        Response.Write(tvsPrice.formatPrice(this.objTableProductVIP.Rows[i]["Price"].ToString()));
-                                %>
+                                    %>
                                 </span>
                                 <div class="sanpham_Discount">
                                     &nbsp; -
@@ -524,7 +518,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div id="div_thuonghieu1" class="container">
         <div class="row">
             <div class="col-md-3">
                 <h2 style="font-family: Arial; font-size: 18px; font-weight: bold; color: black; padding-top: 18px; padding-left: 25px; color: #4e4e57;">ĐỒNG THƯƠNG HIỆU</h2>
@@ -540,9 +534,9 @@
                     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         <span class="caret"></span>
-                       
+
                     </button>
-                   
+
                 </div>
             </div>
         </div>
@@ -554,12 +548,12 @@
                 </div>
                 <% for (int i = 0; i < this.objTableBrand.Rows.Count && i < 3; i++)
                    { %>
-                <div class="col-md-3"> 
+                <div class="col-md-3">
                     <a href="<%Response.Write(this.objTableBrand.Rows[i]["Url"].ToString()); %>">
-                    <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>" 
-                        alt="" style="border: solid 1px #f4f4f4; padding: 10px;" />
-                    <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i + 3]["Logo"].ToString()); %>"
-                        alt="" style="border: solid 1px #f4f4f4; padding: 10px; margin-top: 10px;" /></a>
+                        <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>"
+                            alt="" style="border: solid 1px #f4f4f4; padding: 10px;" />
+                        <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i + 3]["Logo"].ToString()); %>"
+                            alt="" style="border: solid 1px #f4f4f4; padding: 10px; margin-top: 10px;" /></a>
                 </div>
 
                 <% } %>
@@ -567,7 +561,7 @@
         </div>
     </div>
 
-    <div class="container">
+    <div id="div_thuonghieu2" class="container">
         <div class="row">
             <div class="col-md-3">
                 <h2 style="font-family: Arial; font-size: 18px; font-weight: bold; color: black; padding-top: 18px; padding-left: 25px; color: #4e4e57;">THƯƠNG HIỆU NỔI BẬT</h2>
@@ -581,21 +575,21 @@
                 <div class="btn-group">
                     <button type="button" onclick="window.location.href='TopBrands.aspx'" class="btn btn-danger">Xem tất cả</button>
                     <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false"/>
-                        <span class="caret"></span>   
+                        aria-haspopup="true" aria-expanded="false" />
+                    <span class="caret"></span>
                 </div>
             </div>
         </div>
 
-        <div class="thuonghieu">
+        <div  class="thuonghieu">
             <div class="row">
                 <% for (int i = 0; i < this.objTableBrand.Rows.Count && i < 4; i++)
                    { %>
                 <div class="col-md-3">
-                       <a href="<%Response.Write(this.objTableBrand.Rows[i]["Url"].ToString()); %>">
-                    <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>"
-                        style="border: solid 1px #dedee3; padding: 10px;" alt="<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>" />
-                           </a>
+                    <a href="<%Response.Write(this.objTableBrand.Rows[i]["Url"].ToString()); %>">
+                        <img class="fw" src="/Images/<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>"
+                            style="border: solid 1px #dedee3; padding: 10px;" alt="<%Response.Write(this.objTableBrand.Rows[i]["Logo"].ToString()); %>" />
+                    </a>
                 </div>
                 <% } %>
             </div>
@@ -603,17 +597,27 @@
 
     </div>
 
-    <div class="row" style="padding: 0 -25px 0 -25px">
+    <div id="div_brand" class="row" style="padding: 0 -25px 0 -25px">
         <iframe src="brand.html" style="width: 100%; border: none;"></iframe>
     </div>
 
 
 
-    <div style="margin-top: -40px; width: 98%; margin-left: 0px; margin-right: 0px;">
+    <div  style="margin-top: -40px; width: 98%; margin-left: 0px; margin-right: 0px;">
         <div class="row" style="text-align: center;">
-            <div class="col-md-12" style="text-align: center;">
+            <div id="div_news_title" class="col-md-12" style="text-align: center;">
                 <h3 style="font-family: Arial; font-size: 25px; color: black; padding-top: 18px; color: #4e4e57; text-align: center;">TIN TỨC SUCMANHCONG.COM</h3>
             </div>
+           
+        </div>
+    </div>
+    
+    <div id="div_news_title2" style="margin-top: -00px; width: 98%; margin-left: 0px; margin-right: 0px;">
+        <div class="row" style="text-align: center;">
+            <div class="col-md-12" style="text-align: center;">
+                <h3 style="font-family: Arial; font-size: 15px; color: black; padding-top: 18px; color: #4e4e57; text-align: center;">TIN TỨC SUCMANHCONG.COM</h3>
+            </div>
+           
         </div>
     </div>
     <div class="container">
@@ -626,24 +630,24 @@
                 <div>
                     <a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[i]["Id"].ToString()); %>">
                         <img src="Images/<% Response.Write(objTableNews.Rows[i]["Image"].ToString()); %>"
-                            alt="" style="border: solid 1px #beddeb; height: 253px; width: 100%" /></a>
+                            alt="" style="border: solid 1px #beddeb; height: 253px; width: 100%;" /></a>
                 </div>
                 <div style="width: 100%;">
-                    <div style="float: left; width: 20%; text-align: center; font-family: Arial; font-size: 18px; font-weight: bold; padding: 9px; padding-left: 0px;">
+                    <div id="news_date_create" style="float: left; width: 20%; text-align: center; font-family: Arial; font-size: 18px; font-weight: bold; padding: 9px; padding-left: 0px;">
                         <div style="border: solid 1px #f4f4f4; margin-top: 11px;">
                             <% Response.Write(DateTime.Parse(objTableNews.Rows[i]["DayCreate"].ToString()).ToString("dd/MM")); %>
                         </div>
-                        <div style="border: solid 1px #f4f4f4; border-top: none; font-size: 22px; height: 40px; padding-top: 1px;">
+                        <div id="news_date_create_year" style="border: solid 1px #f4f4f4; border-top: none; font-size: 22px; height: 40px; padding-top: 1px;">
                             <% Response.Write(DateTime.Parse(objTableNews.Rows[i]["DayCreate"].ToString()).ToString("yyyy")); %>
                         </div>
                     </div>
                     <div style="float: right; width: 80%; text-align: justify; padding: 9px;">
                         <div style="vertical-align: top; height: 57px; overflow: hidden;">
-                            <h5 style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57; text-transform: uppercase; margin-top: -22px;"
+                            <h5  id="news_tittle" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57; text-transform: uppercase; margin-top: -22px;"
                                 class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[i]["Id"].ToString()); %>">
                                     <% Response.Write(objTableNews.Rows[i]["Title"].ToString()); %></a></h5>
                         </div>
-                        <div style="font-family: Arial; font-size: 14px; color: #4e4e57; height: 80px; overflow: hidden;">
+                        <div id="news_content" style="font-family: Arial; font-size: 14px; color: #4e4e57; height: 80px; overflow: hidden;">
                             <% Response.Write(objTableNews.Rows[i]["ShortContent"].ToString()); %>
                         </div>
                     </div>

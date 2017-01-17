@@ -16,58 +16,7 @@ public partial class Login : System.Web.UI.Page
     #region method Page_Load
     protected void Page_Load(object sender, EventArgs e)
     {
-        /*
-        SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-        sqlCon.Open();
-
-        SqlCommand Cmd = sqlCon.CreateCommand();
-        Cmd.CommandText = "SELECT * FROM tblAccount";
-        SqlDataAdapter da = new SqlDataAdapter();
-        da.SelectCommand = Cmd;
-        DataSet ds = new DataSet();
-        da.Fill(ds);
-
-        Partner objPartner = new Partner();
-        Customers objCustomers = new Customers();
-
-        for (int i = 0; i < ds.Tables[0].Rows.Count;i++ )
-        {
-            int type = (int)ds.Tables[0].Rows[i]["Acct_Type"];
-            if (type == 0)
-            {
-                DataRowCollection objRow = objPartner.getPartnerInforByAccount(ds.Tables[0].Rows[i]["Acct_Name"].ToString()).Rows;
-                if (objRow.Count > 0)
-                {
-                    Cmd = sqlCon.CreateCommand();
-                    Cmd.CommandText = "UPDATE [tblAccount] SET [Acct_PGKEY] = @id WHERE [Acct_Name] = @acct";
-                    Cmd.Parameters.Add("id", SqlDbType.Int).Value = (int)objRow[0]["Id"];
-                    Cmd.Parameters.Add("acct", SqlDbType.NVarChar).Value = ds.Tables[0].Rows[i]["Acct_Name"].ToString();
-                    Cmd.ExecuteNonQuery();
-
-                }
-            }
-            else if (type == 1)
-            {
-                DataRowCollection objRow = objCustomers.getCustomerByAccount(ds.Tables[0].Rows[i]["Acct_Name"].ToString()).Rows;
-                if (objRow.Count > 0)
-                {
-                    Cmd = sqlCon.CreateCommand();
-                    Cmd.CommandText = "UPDATE [tblAccount] SET [Acct_PGKEY] = @id  WHERE [Acct_Name] = @acct";
-                    Cmd.Parameters.Add("id", SqlDbType.Int).Value = (int)objRow[0]["Id"];
-                    Cmd.Parameters.Add("acct", SqlDbType.NVarChar).Value = ds.Tables[0].Rows[i]["Acct_Name"].ToString();
-                    Cmd.ExecuteNonQuery();
-                }
-            }
-
-        }
-
-
-         sqlCon.Close();
-         sqlCon.Dispose();
-
-         /**/
-
-        
+      
 
         Session["ACCOUNT"] = null;
 
@@ -132,7 +81,7 @@ public partial class Login : System.Web.UI.Page
                     if ((bool)objRow[0]["State"])
                     {
                         Session["ACCOUNT"] = accout.Rows[0]["Acct_Name"].ToString();
-                        Response.Redirect("/Customer");
+                        Response.Redirect("http://khachhang.sucmanhcong.com",true);
                     }
                     else
                     {

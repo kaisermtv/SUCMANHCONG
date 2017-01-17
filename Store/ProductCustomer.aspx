@@ -98,10 +98,10 @@
                         <div class="row" style="padding-left: 15px; padding-right: 15px;">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <b>THÔNG TIN HÀNG HOÁ GIẢM GIÁ</b> 
+                                    <b>THÔNG TIN HÀNG HOÁ GIẢM GIÁ</b> &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<b id="out_tonggiamgia" style="float:right;color:red"></b><b style="float:right;color:blue">Tổng giá trị : </b> 
+                                       
                                     <div style="right: 0px;">
-                                        <b>Tổng giá trị hàng hóa được giảm giá : </b>
-                                        <b id="out_tonggiamgia"></b>
+                                       
                                     </div> 
                                 </div>
                                 <div class="list_product_page">
@@ -113,10 +113,10 @@
                             <div class="col-md-12">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <b>THÔNG TIN HÀNG HOÁ THƯỜNG</b>
+                                        <b>THÔNG TIN HÀNG HOÁ THƯỜNG</b>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;  &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;<b id="out_tonghangthuong" style="float:right;color:red"></b><b style="float:right;color:blue">Tổng giá trị : </b> 
+                                          
+                                        
                                         <div style="right: 0px;">
-                                            <b>Tổng giá trị hàng hóa thường : </b>
-                                            <b id="out_tonghangthuong"></b>
                                         </div> 
                                     </div>
 
@@ -318,7 +318,7 @@
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h4 class="modal-title">Bạn xác nhận thanh toán bằng thẻ SMC</h4>
-                                                <p>Để trống mã OPT để gửi tin nhắn tới khách hàng</p>
+                                                <p>Để trống mã OTP để gửi tin nhắn tới khách hàng</p>
                                             </div>
                                             <div class="modal-body">
                                                 <input disabled class="form-control" id="txtOTPCode" runat="server" placeholder="Mã OTP" />

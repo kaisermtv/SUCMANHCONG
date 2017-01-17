@@ -10,6 +10,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="css/Adminstyles.css" rel="stylesheet" />
     <link href="css/System.css" rel="stylesheet" />
+    <script src="../Scripts/jquery-1.10.2.min.js"></script>
 </head>
 <body style="overflow: auto; margin: 3px; margin-top: 0px; background-color: #ecf0f5;">
     <form id="form1" runat="server">
@@ -81,9 +82,7 @@
                 <div class="SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Customer.aspx">Thành viên</a>
                 </div>
-                <div class="SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Employee.aspx">Nhân viên - Cộng tác viên</a>
-                </div>
+                
                 <div class="SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Topic.aspx">Tin tức - Topic</a>
                 </div>
@@ -94,7 +93,7 @@
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/Product.aspx">Sản phẩm</a>
                 </div>
                 <div class="SystemLeftMenu">
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/AdvertmentProduct.aspx"> Yêu cầu quoảng cáo sản phẩm </a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/AdvertmentProduct.aspx">Yêu cầu quảng cáo sản phẩm </a>
                 </div>
                 <div class="SystemLeftMenu">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/System/ListLocation.aspx">Tỉnh thành</a>

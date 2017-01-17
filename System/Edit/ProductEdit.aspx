@@ -1,11 +1,24 @@
 ﻿<%@ Page Title="QUẢN TRỊ NỘI DUNG" Language="C#" MasterPageFile="~/MasterPage.master"
-    AutoEventWireup="true" CodeFile="ProductEdit.aspx.cs" Inherits="ProductEdit" %>
+    AutoEventWireup="true" ValidateRequest="false"  CodeFile="ProductEdit.aspx.cs" Inherits="ProductEdit" %>
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+    
+   <script>
+       var roxyFileman = '/fileman/index.html';
+       $(function () {
+           CKEDITOR.replace('ContentPlaceHolder1_txtContent', {
+               filebrowserBrowseUrl: roxyFileman,
+               filebrowserImageBrowseUrl: roxyFileman + '?type=image',
+               removeDialogTabs: 'link:upload;image:upload'
+           });
+       });
+    </script>
+
     <div style="width: 100%; height: 32px; line-height: 30px; background-color: #dde8ec;
         font-family: Arial; font-size: 13px; font-weight: bold; text-transform: uppercase;">
         <div style="float: left; width: 12%;">&nbsp;&nbsp;Thêm sản phẩm</div>

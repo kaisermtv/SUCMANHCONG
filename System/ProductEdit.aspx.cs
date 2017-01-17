@@ -40,9 +40,9 @@ public partial class ProductEdit : System.Web.UI.Page
             new object[] { "Maximize", "ShowBlocks", "-", "About" }
         };
 
-        CKFinder.FileBrowser _FileBrowser = new CKFinder.FileBrowser();
-        _FileBrowser.BasePath = "/ckfinder";
-        _FileBrowser.SetupCKEditor(this.txtContent);
+        //CKFinder.FileBrowser _FileBrowser = new CKFinder.FileBrowser();
+        //_FileBrowser.BasePath = "/ckfinder";
+        //_FileBrowser.SetupCKEditor(this.txtContent);
         try
         {
             this.itemId = int.Parse(Request["id"].ToString());

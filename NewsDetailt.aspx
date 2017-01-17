@@ -2,13 +2,14 @@
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+    <div id="news-wrapper">
     <div class="container">
         <div style="width: 92%; margin: auto; display: table; margin-bottom: 20px; margin-top: 10px;">
             <div class="row">
                 <div class="col-md-9" style="float: left; width: 75%; height: 100%; vertical-align: top; text-align: justify;">
-                    <h3 style="text-align: justify; font-family: Arial; font-size: 16px; font-weight: bold; padding-top: 5px;"><a href="/">TRANG CHỦ</a> >> <a href="#"><%=this.GroupName.ToUpper() %></a></h3>
+                    <h3 style="text-align: justify; font-family: Arial; font-size: 16px; font-weight: bold; padding-top: 5px;"><a href="/"></a> <a href="#"><%=this.GroupName.ToUpper() %></a></h3>
                     <hr style="width: 98%; color: #00ffff;" />
-                    <div style="width: 98%; text-align: justify; margin-top:10px;">
+                    <div style="width: 92%; text-align: justify; margin-top:10px;">
                         <h3 style="font-family: Arial; font-size: 16px; font-weight: bold; text-align: justify;"><% Response.Write(this.objTable.Rows[0]["Title"].ToString()); %></h3>
                         
                         <div style="font-family: Arial; font-size: 14.5px; font-weight: bold; text-align: justify; margin-top: 15px; margin-bottom: 15px; color: #252726;">
@@ -45,5 +46,6 @@
             </div>
         </div>
     </div>
+        </div>
 </asp:Content>
 

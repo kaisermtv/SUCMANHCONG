@@ -39,9 +39,9 @@ public partial class PartnerEdit : System.Web.UI.Page
             new object[] { "Maximize", "ShowBlocks", "-", "About" }
         };
 
-        CKFinder.FileBrowser _FileBrowser = new CKFinder.FileBrowser();
-        _FileBrowser.BasePath = "/ckfinder";
-        _FileBrowser.SetupCKEditor(this.txtContent);
+        //CKFinder.FileBrowser _FileBrowser = new CKFinder.FileBrowser();
+        //_FileBrowser.BasePath = "/ckfinder";
+        //_FileBrowser.SetupCKEditor(this.txtContent);
 
         try
         {

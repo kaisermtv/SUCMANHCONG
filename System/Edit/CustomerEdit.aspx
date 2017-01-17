@@ -94,8 +94,9 @@
             <br />
             <asp:TextBox ID="txtAvatar" runat="server" Width="10px" Visible="false"></asp:TextBox>
             <label class="file-upload" style ="margin-top:-12px;">
-                <span><strong>Upload Image</strong></span>
-            <asp:FileUpload ID="upImage1" runat="server" Width="100px" CssClass="FileUploadImage" Height="22px" />
+                <script>function warning() { alert('Hãy đề nghị khách cập nhật trong trang cá nhân của họ');}</script>
+                <span><strong onclick="warning()">Upload Image</strong></span>
+            <asp:FileUpload ID="upImage1" runat="server" Width="100px" CssClass="FileUploadImage" Height="22px"  Enabled="false" />
                 </label>
         </div>
     </div>

@@ -332,7 +332,7 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblPartnerBillDetail WHERE BillId = @BillId";
+            Cmd.CommandText = "SELECT tblPartnerBillDetail.* , tblProduct.Name FROM tblPartnerBillDetail LEFT JOIN tblProduct ON tblProduct.Id = tblPartnerBillDetail.ProductId WHERE BillId = @BillId";
             Cmd.Parameters.Add("BillId", SqlDbType.NVarChar).Value = BillId;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -446,7 +446,7 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT * FROM tblPartnerBillDetail WHERE BillId = @BillId AND ISNULL(ProductNumber,0) > 0";
+            Cmd.CommandText = "SELECT tblPartnerBillDetail.*, tblProduct.Name FROM tblPartnerBillDetail LEFT JOIN tblProduct ON tblProduct.Id = tblPartnerBillDetail.ProductId WHERE BillId = @BillId AND ISNULL(ProductNumber,0) > 0";
             Cmd.Parameters.Add("BillId", SqlDbType.NVarChar).Value = BillId;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;

@@ -1,6 +1,9 @@
-﻿<%@ Page Title="CẬP NHẬT SẢN PHẨM" Language="C#" MasterPageFile="~/Store.master" AutoEventWireup="true" CodeFile="ProductEdit.aspx.cs" Inherits="Store_ProductEdit" %>
+﻿<%@ Page Title="CẬP NHẬT SẢN PHẨM" Language="C#" MasterPageFile="~/Store.master"  ValidateRequest="false" AutoEventWireup="true" CodeFile="ProductEdit.aspx.cs" Inherits="Store_ProductEdit" %>
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
+
+    
+
     <p id="outtext" runat="server"></p>
     <div class="container" style ="width:100%; margin:0px; padding:0px;">
         <div class="row">

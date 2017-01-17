@@ -41,29 +41,29 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-2" style="float: right">
-                <div class="dropdown">
-                    <select class="form-control" onchange="window.location=urlrl(<%=this.VBType %>,<%=this.StoreType %>,this.value,0)">
-                        <option value="0">--Vùng miền--</option>
+            <div id="ddl-store-location" class="col-md-2" style="float: right">
+                <div  class="dropdown">
+                    <select class="form-control ddl-store-location" onchange="window.location=urlrl(<%=this.VBType %>,<%=this.StoreType %>,this.value,0)">
+                        <option   value="0">Vùng miền</option>
                         <% for (int i = 0; i < this.objTableLocation.Count; i++) { %>
                         <option value="<%= this.objTableLocation[i]["Id"] %>" <% if (this.Location == (int)this.objTableLocation[i]["Id"]) Response.Write("selected='selected'"); %>><%= this.objTableLocation[i]["Name"] %></option>
                         <% } %>
                     </select>
                 </div>
             </div>
-            <div class="col-md-3" style="float: right">
+            <div id="ddl-store-product" class="col-md-3" style="float: right">
                 <div class="dropdown">
-                    <select class="form-control" onchange="window.location=urlrl(<%=this.VBType %>,this.value,<%=this.Location %>,0)">
-                        <option value="0">--Nhóm sản phẩm kinh doanh--</option>
+                    <select class="form-control ddl-store-product" onchange="window.location=urlrl(<%=this.VBType %>,this.value,<%=this.Location %>,0)">
+                        <option   value="0">Nhóm sản phẩm kinh doanh</option>
                         <% for (int i = 0; i < this.objTableBusiness.Count; i++){ %>
                         <option value="<%= this.objTableBusiness[i]["Id"] %>" <% if (this.StoreType == (int)this.objTableBusiness[i]["Id"]) Response.Write("selected='selected'"); %>><%= this.objTableBusiness[i]["Name"] %></option>
                         <% } %>
                     </select>
                 </div>
             </div>
-            <div class="col-md-2" style="float: right">
-                <div class="dropdown">
-                    <select class="form-control" onchange="window.location=urlrl(this.value,<%=this.StoreType %>,<%=this.Location %>,0)">
+            <div  id="ddl-store-type"  class="col-md-2" style="float: right">
+                <div class="dropdown ">
+                    <select class="form-control ddl-store-type"  onchange="window.location=urlrl(this.value,<%=this.StoreType %>,<%=this.Location %>,0)">
                         <option value="0">Tất cả</option>
                         <option value="1" <% if (this.VBType == 1) Response.Write("selected='selected'"); %>>Vip</option>
                         <option value="2" <% if (this.VBType == 2) Response.Write("selected='selected'"); %>>Bán chạy</option>

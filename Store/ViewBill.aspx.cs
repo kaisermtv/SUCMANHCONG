@@ -64,7 +64,7 @@ public partial class Store_ViewBill : System.Web.UI.Page
                     this.strHtml += (i + 1).ToString();
                     this.strHtml += "</div>";
                     this.strHtml += "<div style=\"width: 65%; float: left; text-align:justify; padding:3px; color:#000; font-size:13px;\">";
-                    this.strHtml += this.objTableDetailt.Rows[i]["ProductName"].ToString();
+                    this.strHtml += this.objTableDetailt.Rows[i]["Name"].ToString();
                     this.strHtml += "</div>";
                     this.strHtml += "<div style=\"width: 15%; float: left; text-align:right; padding:3px; color:#000; font-size:13px;\">";
                     this.strHtml += this.objTableDetailt.Rows[i]["ProductNumber"].ToString();

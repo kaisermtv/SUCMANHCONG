@@ -94,7 +94,7 @@ public partial class System_CustomerInfo : System.Web.UI.Page
         }
 
         int ret = this.objFunc.updateCustomerAccount(this.itemId, CustomerAccount + strCardNumber, this.ddlTypeCard.SelectedValue.ToString());
-        if (ret > 0)
+        if (ret >= 0)
         {
             this.txtAccount.Text = CustomerAccount + strCardNumber;
             this.btnCreate.Enabled = false;

@@ -63,7 +63,7 @@ public partial class CustomerEdit : System.Web.UI.Page
 
             if(ret > 0)
             {
-                Response.Redirect("Customer.aspx");
+                Response.Redirect("~/System/Customer.aspx");
             }
             else
             {
@@ -105,7 +105,7 @@ public partial class CustomerEdit : System.Web.UI.Page
             {
                 this.ckbState.Checked = false;
             }
-            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"/Images/Customer/" + objData.Rows[0]["Avatar"].ToString() + "\">";
+            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"http://khachhang.sucmanhcong.com/Images/Customer/" + objData.Rows[0]["Avatar"].ToString() + "\">";
 
             this.txtAvatar.Text = objData.Rows[0]["Avatar"].ToString();
         }

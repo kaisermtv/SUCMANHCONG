@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Globalization;
 
 public partial class Store_Default : System.Web.UI.Page
 {
@@ -54,7 +55,15 @@ public partial class Store_Default : System.Web.UI.Page
             this.strAccount = objDataPartner.Rows[0]["Account"].ToString();
             this.strBankAccount = objDataPartner.Rows[0]["BankAccount"].ToString();
             this.strBankAccountName = objDataPartner.Rows[0]["BankAccountName"].ToString();
-            this.strCreateDate = objDataPartner.Rows[0]["DayCreate"].ToString();
+
+            try
+            {
+                this.strCreateDate = (objDataPartner.Rows[0]["DayCreate"].ToString()).ToString("dd/mm/yyyy").ToString(); ;
+            }
+            catch
+            {
+                this.strCreateDate = objDataPartner.Rows[0]["DayCreate"].ToString();
+            }
             if (objDataPartner.Rows[0]["BestSale"].ToString() == "True")
             {
                 this.strBestSale = "X";

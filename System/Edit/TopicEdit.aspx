@@ -1,10 +1,26 @@
-﻿<%@ Page Title="QUẢN TRỊ NỘI DUNG" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="TopicEdit.aspx.cs" Inherits="TopicEdit" %>
+﻿<%@ Page Title="QUẢN TRỊ NỘI DUNG"  ValidateRequest="false"   Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="TopicEdit.aspx.cs" Inherits="TopicEdit" %>
 
 <%@ Register Assembly="CKEditor.NET" Namespace="CKEditor.NET" TagPrefix="CKEditor" %>
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
+  <!--cấu hình fileman-->
+      
+
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    
+    <script>
+        var roxyFileman = '/fileman/index.html';
+        $(function () {
+            CKEDITOR.replace('ContentPlaceHolder1_txtContent', {
+                filebrowserBrowseUrl: roxyFileman,
+                filebrowserImageBrowseUrl: roxyFileman + '?type=image',
+                removeDialogTabs: 'link:upload;image:upload'
+            });
+        });
+    </script>
     <div style="width: 100%; height: 32px; line-height: 30px; background-color: #dde8ec; font-family: Arial; font-size: 13px; font-weight: bold; text-transform: uppercase;">
         <div style="float: left; width: 12%;">&nbsp;&nbsp;Thêm tin tức</div>
         <div style="float: right; width: 87.5%;">

@@ -56,7 +56,7 @@
                             Ghi chú
                         </div>
                         <div class="table_header_item2" style="width: 5%;">
-                            &nbsp;
+                         Chi tiết
                         </div>
                     </div>
                     <% Response.Write(this.strHtml); %>

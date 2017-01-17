@@ -34,19 +34,19 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-3" style="float: right">
+            <div  id="ddl-store-location2" class="col-md-3 "  style="float: right">
                 <div class="dropdown">
-                    <select class="form-control" onchange="window.location=urlrl(<%=this.VBType %>,this.value,0)">
-                        <option value="0">--Nhóm sản phẩm--</option>
+                    <select class="form-control ddl-store-location2" onchange="window.location=urlrl(<%=this.VBType %>,this.value,0)">
+                        <option value="0">Nhóm sản phẩm </option>
                         <% for (int i = 0; i < this.objRowProductGroup.Count; i++){ %>
                         <option value="<%= this.objRowProductGroup[i]["Id"] %>" <% if (this.ProductGroup == (int)this.objRowProductGroup[i]["Id"]) Response.Write("selected='selected'"); %>><%= this.objRowProductGroup[i]["Name"] %></option>
                         <% } %>
                     </select>
                 </div>
             </div>
-            <div class="col-md-2" style="float: right">
+            <div id="ddl-store-product"   class="col-md-2 " style="float: right">
                 <div class="dropdown">
-                    <select class="form-control" onchange="window.location=urlrl(this.value,<%=this.ProductGroup %>,0)">
+                    <select class="form-control ddl-store-product" onchange="window.location=urlrl(this.value,<%=this.ProductGroup %>,0)">
                         <option value="0">Tất cả</option>
                         <option value="1" <% if (this.VBType == 1) Response.Write("selected='selected'"); %>>Vip</option>
                         <option value="2" <% if (this.VBType == 2) Response.Write("selected='selected'"); %>>Bán chạy</option>
