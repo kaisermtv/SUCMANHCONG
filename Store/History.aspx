@@ -28,34 +28,34 @@
             <div class="col-md-12">
                 <div class="row">
                     <div style="width: 100%; margin-top: 0px;">
-                        <div class="table_header_item" style="width: 5%;">
+                        <div id="tn1" class="table_header_item" style="width: 5%;">
                             TT   
                         </div>
-                        <div class="table_header_item1" style="width: 18%;">
+                        <div id="tn3" class="table_header_item1" style="width: 18%;">
                             Ngày, giờ giao dịch
                         </div>
-                        <div class="table_header_item2" style="width: 10%;">
+                        <div id="tn4" class="table_header_item2" style="width: 10%;">
                             Tổng tiền
                         </div>
-                        <div class="table_header_item2" style="width: 10%;">
+                        <div  id="tn5"class="table_header_item2" style="width: 10%;">
                             Tiền CK
                         </div>
-                        <div class="table_header_item2" style="width: 5%;">
+                        <div id="tn6" class="table_header_item2" style="width: 5%;">
                             CK(%)
                         </div>
-                        <div class="table_header_item2" style="width: 5%;">
+                        <div id="tn7" class="table_header_item2" style="width: 5%;">
                             TL(%)
                         </div>
-                        <div class="table_header_item2" style="width: 5%;">
+                        <div id="tn8" class="table_header_item2" style="width: 5%;">
                             QC(%)
                         </div>
-                        <div class="table_header_item2" style="width: 10%;">
+                        <div id="tn9" class="table_header_item2" style="width: 10%;">
                             Thanh toán
                         </div>
-                        <div class="table_header_item2" style="width: 27%;">
+                        <div id="tn10" class="table_header_item2" style="width: 27%;">
                             Ghi chú
                         </div>
-                        <div class="table_header_item2" style="width: 5%;">
+                        <div id="tn11" class="table_header_item2" style="width: 5%;">
                          Chi tiết
                         </div>
                     </div>

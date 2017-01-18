@@ -69,45 +69,45 @@ public partial class Store_History : System.Web.UI.Page
             {
                 for (int i = 0; i < this.objTable.Rows.Count; i++)
                 {
-                    strHtml += "<div style =\"width:100%; margin-top:1px;\">";
+                    strHtml += "<div  style =\"width:100%; margin-top:1px; display:table;\">";
 
-                    strHtml += "<div style=\"width: 5%; float: left; border:solid 1px #f3f1f1; border-right:none; border-top:none;text-align:center;height:26px; line-height:26px; color:#000;\">";
+                    strHtml += "<div id=\"tt2\" style=\"width: 5%; float: left; border:solid 1px #f3f1f1; border-right:none; border-top:none;text-align:center;height:26px; line-height:26px; color:#000;\">";
                     strHtml += i.ToString();
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width: 18%; float: left; border:solid 1px #f3f1f1;border-top:none;text-align:center;height:26px; line-height:26px; color:#000;\">";
+                    strHtml += "<div  id=\"tt3\" style=\"width: 18%; float: left; border:solid 1px #f3f1f1;border-top:none;text-align:center;height:26px; line-height:26px; color:#000;\">";
                     strHtml += this.objTable.Rows[i]["DayCreate"].ToString();
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width: 10%; float: left; border:solid 1px #f3f1f1;border-top:none;border-left:none; text-align:right;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
+                    strHtml += "<div id=\"tt4\" style=\"width: 10%; float: left; border:solid 1px #f3f1f1;border-top:none;border-left:none; text-align:right;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
                     strHtml += string.Format("{0:0,0}", double.Parse(this.objTable.Rows[i]["TotalMoney"].ToString()));
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width: 10%; float: left; border:solid 1px #f3f1f1;border-top:none;border-left:none; text-align:right;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
+                    strHtml += "<div  id=\"tt5\"style=\"width: 10%; float: left; border:solid 1px #f3f1f1;border-top:none;border-left:none; text-align:right;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
                     strHtml += string.Format("{0:0,0}", double.Parse(this.objTable.Rows[i]["TotalMoneyDiscount"].ToString()));
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width: 5%; float: left; border:solid 1px #f3f1f1;border-top:none;border-left:none; text-align:right;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
+                    strHtml += "<div id=\"tt6\" style=\"width: 5%; float: left; border:solid 1px #f3f1f1;border-top:none;border-left:none; text-align:right;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
                     strHtml += string.Format("{0:0,0}", double.Parse(this.objTable.Rows[i]["Discount"].ToString()));
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width: 5%; float: left; border:solid 1px #f3f1f1;border-top:none;border-left:none; text-align:right;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
+                    strHtml += "<div  id=\"tt7\" style=\"width: 5%; float: left; border:solid 1px #f3f1f1;border-top:none;border-left:none; text-align:right;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
                     strHtml += string.Format("{0:0,0}", double.Parse(this.objTable.Rows[i]["DiscountCard"].ToString()));
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width: 5%; float: left; border:solid 1px #f3f1f1;border-top:none;border-left:none; text-align:right;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
+                    strHtml += "<div  id=\"tt8\" style=\"width: 5%; float: left; border:solid 1px #f3f1f1;border-top:none;border-left:none; text-align:right;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
                     strHtml += string.Format("{0:0,0}", double.Parse(this.objTable.Rows[i]["DiscountAdv"].ToString()));
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width: 10%; float: left; border:solid 1px #f3f1f1; border-left:none; text-align:right;border-top:none;padding-right:5px;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
+                    strHtml += "<div id=\"tt9\" style=\"width: 10%; float: left; border:solid 1px #f3f1f1; border-left:none; text-align:right;border-top:none;padding-right:5px;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
                     strHtml += string.Format("{0:0,0}", double.Parse(this.objTable.Rows[i]["TotalPeyment"].ToString()));
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width: 27%; float: left; border:solid 1px #f3f1f1; border-left:none; text-align:justify;border-top:none;height:26px; line-height:26px; color:#000;\">";
+                    strHtml += "<div id=\"tt10\" style=\"width: 27%; float: left; border:solid 1px #f3f1f1; border-left:none; text-align:justify;border-top:none;height:26px; line-height:26px; color:#000;\">";
                     strHtml += this.objTable.Rows[i]["Note"].ToString();
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width: 5%; float: left; border:solid 1px #f3f1f1; border-left:none; border-top:none;text-align:center;height:26px; line-height:26px; color:#000;\">";
+                    strHtml += "<div id=\"tt11\" style=\"width: 5%; float: left; border:solid 1px #f3f1f1; border-left:none; border-top:none;text-align:center;height:26px; line-height:26px; color:#000;\">";
                     strHtml += "<a href = \"ViewBill.aspx?id=" + this.objTable.Rows[i]["Id"].ToString() + "\"><img src = \"../img/Edit.png\" alt = \"Chi tiết\" title = \"Chi tiết hoá đơn\">";
                     strHtml += "</div>";
 

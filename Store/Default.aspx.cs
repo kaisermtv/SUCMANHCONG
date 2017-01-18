@@ -58,7 +58,7 @@ public partial class Store_Default : System.Web.UI.Page
 
             try
             {
-                this.strCreateDate = (objDataPartner.Rows[0]["DayCreate"].ToString()).ToString("dd/mm/yyyy").ToString(); ;
+                this.strCreateDate = DateTime.Parse(objDataPartner.Rows[0]["DayCreate"].ToString()).ToString("dd/MM/yyyy HH:mm.ss");
             }
             catch
             {

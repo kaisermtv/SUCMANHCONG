@@ -9,17 +9,17 @@
                         <!-- Default panel contents -->
                         <div class="panel-heading"><b>THÔNG TIN CỬA HÀNG</b></div>
                         <!-- List group -->
-                        <ul class="list-group">
-                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Người đại diện: </label><% Response.Write(strManager+"."); %></li>
-                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Tên cửa hàng:</label> <% Response.Write(strName + "."); %></li>
-                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Địa chỉ: </label><% Response.Write(strAddress + "."); %></li>
-                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Điện thoại : </label><% Response.Write(strPhone+ "."); %></li>
-                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Địa chỉ email:</label>  <% Response.Write(strEmail + "."); %></li>
-                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Mã số thuế : </label><% Response.Write(strTaxcode + "."); %></li>
-                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Tài khoản cửa hàng: </label> <% Response.Write(strAccount ); %></li>
-                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Số tài khoản: </label> <% Response.Write(strBankAccount + "."); %></li>
-                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Ngân hàng: </label> <% Response.Write(strBankAccountName + "."); %></li>
-                            <li class="list-group-item"><label for="inputEmail3" class="col-sm-3 control-label">Ngày hợp đồng hiệu lực: </label> <% Response.Write(strCreateDate +"."); %></li> 
+                        <ul class="list-group" style="text-align:left !important; overflow:hidden;">
+                            <li class="list-group-item" style="text-align:left !important;"><label for="inputEmail3" class="col-sm-3 control-label">Người đại diện: </label><% Response.Write(strManager+"."); %></li>
+                            <li class="list-group-item" style="text-align:left !important; "><label for="inputEmail3" class="col-sm-3 control-label" >Tên cửa hàng:</label> <% Response.Write(strName + "."); %></li>
+                            <li class="list-group-item" style="text-align:left !important;"><label for="inputEmail3" class="col-sm-3 control-label">Địa chỉ: </label><% Response.Write(strAddress + "."); %></li>
+                            <li class="list-group-item" style="text-align:left !important;"><label for="inputEmail3" class="col-sm-3 control-label">Điện thoại : </label><% Response.Write(strPhone+ "."); %></li>
+                            <li class="list-group-item" style="text-align:left !important;" ><label for="inputEmail3" class="col-sm-3 control-label">Địa chỉ email:</label>  <% Response.Write(strEmail + "."); %></li>
+                            <li class="list-group-item" style="text-align:left !important;"><label for="inputEmail3" class="col-sm-3 control-label">Mã số thuế : </label><% Response.Write(strTaxcode + "."); %></li>
+                            <li class="list-group-item" style="text-align:left !important;" ><label for="inputEmail3" class="col-sm-3 control-label">Tài khoản cửa hàng: </label> <% Response.Write(strAccount ); %></li>
+                            <li class="list-group-item" style="text-align:left !important;"><label for="inputEmail3" class="col-sm-3 control-label">Số tài khoản: </label> <% Response.Write(strBankAccount + "."); %></li>
+                            <li class="list-group-item" style="text-align:left !important;" ><label for="inputEmail3" class="col-sm-3 control-label">Ngân hàng: </label> <% Response.Write(strBankAccountName + "."); %></li>
+                            <li class="list-group-item" style="text-align:left !important;" ><label for="inputEmail3" class="col-sm-3 control-label">Ngày hợp đồng hiệu lực: </label> <% Response.Write(strCreateDate +"."); %></li> 
 
                         </ul>
                     </div>

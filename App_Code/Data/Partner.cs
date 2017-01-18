@@ -296,7 +296,7 @@ public class Partner
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             string sqlQuery = "";
-            sqlQuery = "IF NOT EXISTS (SELECT * FROM tblPartnerBill WHERE CustomerAccount = @CustomerAccount AND PartnerAccount = @PartnerAccount AND TotalMoney = @TotalMoney AND TotalMoneyDiscount = @TotalMoneyDiscount AND Discount = @Discount AND TotalPeyment = @TotalPeyment AND datepart(day,DayCreate) = datepart(day,getdate()) AND datepart(month,DayCreate) = datepart(month,getdate()) AND datepart(year,DayCreate) = datepart(year,getdate()) AND datepart(hour,DayCreate) = datepart(hour,getdate()) AND datepart(minute,DayCreate) = datepart(minute,getdate()) )";
+            sqlQuery = "IF NOT EXISTS (SELECT tblPartnerBill.Id FROM tblPartnerBill WHERE CustomerAccount = @CustomerAccount AND PartnerAccount = @PartnerAccount AND TotalMoney = @TotalMoney AND TotalMoneyDiscount = @TotalMoneyDiscount AND Discount = @Discount AND TotalPeyment = @TotalPeyment AND datepart(day,DayCreate) = datepart(day,getdate()) AND datepart(month,DayCreate) = datepart(month,getdate()) AND datepart(year,DayCreate) = datepart(year,getdate()) AND datepart(hour,DayCreate) = datepart(hour,getdate()) AND datepart(minute,DayCreate) = datepart(minute,getdate()) )";
             sqlQuery += "BEGIN INSERT INTO tblPartnerBill(CustomerAccount,PartnerAccount,TotalMoney,TotalMoneyDiscount,Discount,DiscountCard,DiscountAdv,TotalPeyment,DayCreate) VALUES(@CustomerAccount,@PartnerAccount,@TotalMoney,@TotalMoneyDiscount,@Discount,@DiscountCard,@DiscountAdv,@TotalPeyment,getdate()) SELECT TOP 1 CAST(SCOPE_IDENTITY () as int)  END";
             Cmd.CommandText = sqlQuery;
             Cmd.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = CustomerAccount;
@@ -1572,7 +1572,7 @@ public class Partner
             {
                 Cmd = sqlCon.CreateCommand();
                 Cmd.CommandText = "SELECT ISNULL(SUM([TotalPayment]),0) FROM [tblPartnerPayments]";
-                Cmd.CommandText += " WHERE [PartnerId] = (SELECT [Id] FROM [tblPartner] WHERE [Account] = @PartnerAccount) ";
+                Cmd.CommandText += " WHERE [PartnerId] = (SELECT TOP 1 [Id] FROM [tblPartner] WHERE [Account] = @PartnerAccount) ";
                 Cmd.Parameters.Add("PartnerAccount", SqlDbType.NVarChar).Value = PartnerAccout.ToUpper().Trim();
                 ret += (double)Cmd.ExecuteScalar();
             }

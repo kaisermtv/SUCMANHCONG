@@ -34,10 +34,10 @@ public partial class Store_Product : System.Web.UI.Page
             {
                 for (int i = 0; i < this.objTable.Rows.Count; i++)
                 {
-                    strHtml += "<div class=\"row tvsRow\">";
-                    strHtml += "<div class=\"col-md-1 TVSRowCenter\">" + (i + 1).ToString() + "</div>";
-                    strHtml += "<div class=\"col-md-10 TVSRowLeft\">" + this.objTable.Rows[i]["Name"].ToString() + "</div>";
-                    strHtml += "<div class=\"col-md-1 TVSRowRight\">&nbsp;<a href = \"ProductEdit.aspx?id=" + this.objTable.Rows[i]["Id"].ToString() + "\"><img src = \"/img/edit.png\" alt = \"Sửa\" title = \"Sửa thông tin\"></a>&nbsp;&nbsp;&nbsp;<a href = \"#\"><img src = \"/img/delete.png\" alt = \"Xoá\" title = \"Xoá thông tin\"></a></div>";
+                    strHtml += "<div class=\" col-md-12 row tvsRow\">";
+                    strHtml += "<div class=\"col-md-1  \" Style=\" width:10% !important; \">   " + (i + 1).ToString() + "</div>";
+                    strHtml += "<div class=\"col-md-9 \"Style=\" width:70% !important; \" >" + this.objTable.Rows[i]["Name"].ToString() + "</div>";
+                    strHtml += "<div class=\"col-md-1 \" Style=\" width:20% !important; \" >&nbsp;<a href = \"ProductEdit.aspx?id=" + this.objTable.Rows[i]["Id"].ToString() + "\"><img src = \"/img/edit.png\" alt = \"Sửa\" title = \"Sửa thông tin\"></a>&nbsp;&nbsp;&nbsp;<a href = \"#\"><img src = \"/img/delete.png\" alt = \"Xoá\" title = \"Xoá thông tin\"></a></div>";
                     strHtml += "</div>";
                 }
             }

@@ -307,7 +307,7 @@
 
             <div class="line">
                 <div class="col-md-7">
-                    <img src="images/line.jpg" alt="" />
+                    <img class="img-line" src="images/line.jpg" alt="" />
                 </div>
             </div>
         </div>
@@ -395,7 +395,7 @@
             </div>
             <div class="line">
                 <div class="col-md-7">
-                    <img src="/images/line.jpg" alt="" />
+                    <img class="img-line" src="/images/line.jpg" alt="" />
                 </div>
             </div>
 
@@ -457,7 +457,7 @@
             </div>
             <div class="line">
                 <div class="col-md-7">
-                    <img src="images/line.jpg" alt="" />
+                    <img class="img-line" src="images/line.jpg" alt="" />
                 </div>
             </div>
         </div>
@@ -524,8 +524,8 @@
                 <h2 style="font-family: Arial; font-size: 18px; font-weight: bold; color: black; padding-top: 18px; padding-left: 25px; color: #4e4e57;">ĐỒNG THƯƠNG HIỆU</h2>
             </div>
             <div class="line">
-                <div class="col-md-7">
-                    <img src="/images/line.jpg" alt="" />
+                <div class=" img-line col-md-7">
+                    <img class="img-line" src="/images/line.jpg" alt="" />
                 </div>
             </div>
             <div class="col-lg-2" style="text-align: right; margin-top: 42px;">
@@ -568,7 +568,7 @@
             </div>
             <div class="line">
                 <div class="col-md-7">
-                    <img src="/images/line.jpg" alt="" />
+                    <img class="img-line" src="/images/line.jpg" alt="" />
                 </div>
             </div>
             <div class="col-lg-2" style="text-align: right; margin-top: 42px;">

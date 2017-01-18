@@ -721,6 +721,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
     #region method btnSaveByCard_Click
     protected void btnSaveByCard_Click(object sender, EventArgs e)
     {
+        getCustomerInfo();
         if (this.txtOTPCode.Value.Length == 0)
         {
             // Create OTP SMS
@@ -842,8 +843,8 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
 
     #region Code for SMS Send
 
-    const string APIKey = "C6C0F4A274DFAF435238F759CCFBF6";//Dang ky tai khoan tai esms.vn de lay key//Register account at esms.vn to get key
-    const string SecretKey = "E4161C0DFCAFF8CB655DB9C6F25A89";
+    const string APIKey = "F3073774B684665F94CCA97DF82CE4";//Dang ky tai khoan tai esms.vn de lay key//Register account at esms.vn to get key
+    const string SecretKey = "9C6F7B238396FF7FC7D3574D033FFB";
 
     #region method SendSMS
     public string SendSMS(string phone, string message)
@@ -868,12 +869,13 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                             + "</CUSTOMER>";
         }
 
+        try { 
 
         string SampleXml = @"<RQST>"
                            + "<APIKEY>" + APIKey + "</APIKEY>"
                            + "<SECRETKEY>" + SecretKey + "</SECRETKEY>"
                            + "<ISFLASH>0</ISFLASH>"
-                           + "<SMSTYPE>4</SMSTYPE>"//SMSTYPE 3: đầu số ngẫu nhiên tốc độ chậm, SMSTYPE=7: đầu số ngẫu nhiên tốc độ cao, SMSTYPE=4: Đầu số 19001534; SMSTYpe=6: đàu số 8755                               
+                           + "<SMSTYPE>7</SMSTYPE>"//SMSTYPE 3: đầu số ngẫu nhiên tốc độ chậm, SMSTYPE=7: đầu số ngẫu nhiên tốc độ cao, SMSTYPE=4: Đầu số 19001534; SMSTYpe=6: đàu số 8755                               
                            + "<CONTENT>" + message + "</CONTENT>"
                            + "<CONTACTS>" + customers + "</CONTACTS>"
 
@@ -916,6 +918,11 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
         strResult = strResult.Replace("</string>", "");
 
         return strResult;
+            }
+        catch
+        {
+            return "";
+        }
     }
 
     #endregion

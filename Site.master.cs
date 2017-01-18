@@ -119,7 +119,7 @@ public partial class SiteMaster : MasterPage
             else
             {
                 strHeader = "<i class=\"fa fa-user\">&nbsp;<a href=\"../Customer/\">" + Session["ACCOUNT"].ToString() + "</a></i>";
-                currPartnerId = "../Customer/CustomerInfo.aspx?id=" + Session["ACCOUNT"].ToString();
+                currPartnerId = "http://khachhang.sucmanhcong.com" ; // +  Session["ACCOUNT"].ToString();
             }
         }
         this.objTableProductGroup = this.getProductGroup();

@@ -7218,7 +7218,7 @@ button.close {
 
 /** OPEN Mobile Style**/
 
-@media (min-width: 0px) and (max-width: 600px) {
+@media (min-width: 0px) and (max-width: 900px) {
 
     #div_location,
     #div_container_menu,
@@ -7268,6 +7268,9 @@ button.close {
     #div_footer_flow_email {
         margin-top: 70px;
         text-align: center;
+         margin-left:15%;
+
+          width:130% !important;
     }
 
     #div_footer {
@@ -7281,14 +7284,20 @@ button.close {
         text-align: center;
         margin-bottom: -10%;
         font-size: 8px !important;
+
     }
 
     #div_footer_contact {
         margin-top: -250px;
+        width:130% !important;
+            margin-left:15%;
     }
 
     #div_about_footer {
         margin-top: -20px;
+        width:130% !important;
+        margin-left:15%;
+
     }
 
     #wrapper {
@@ -7340,7 +7349,14 @@ button.close {
         padding: 0;
         margin-right: 30px;
     }
-
+    #div-menu-store-mobile
+    {
+        display:block !important;
+    }
+    #div-menu-store-desktop
+    {
+        display:none;
+    }
         #news-wrapper p {
             width: 100% !important;
             font-size: 12px;
@@ -7372,7 +7388,11 @@ button.close {
     .navbar {
         border-radius: 4px;
     }
+    .container
+    {
 
+        display:table;
+    }
     .navbar {
         position: relative;
         min-height: 50px;
@@ -7380,7 +7400,7 @@ button.close {
         border: 1px solid transparent;
     }
 
-    article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary ,navbar-left {
+    article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary  {
         text-align:center;
         display: block;
     }
@@ -7388,15 +7408,41 @@ button.close {
      {
             text-align:center;
      }
-   
 
-    #mobile-support-menu-left,#mobile-support-menu-right
+
+
+    #mobile-support-menu-left,#mobile-support-menu-right,#div-menu-store-mobile
     {
         display:block !important;
 
     }
+    .img-line
+    {
+        display:none !important;
+    }
+#tn3,#tn6,#tn7,#tn8,#tn9,#tn10
+{
+     display:none !important;
+
+     overflow:hidden;
+}
+#tn1,#tn2,#tn4,#tn5,#tn11,  #tt1,#tt2,#tt4,#tt5,#tt11
+{
+      width:20% !important;
+}
+#div-menu-store-desktop
+{
+    display:none !important;
+}
+
+    #tt3,#tt6,#tt7,#tt8,#tt9,#tt10
+    {
+        overflow:hidden;
+        display:none !important;
+        width:120%;
+    }
+
+
 }
 
 /** END Mobile Style**/
-
-
