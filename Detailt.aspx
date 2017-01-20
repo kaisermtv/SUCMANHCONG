@@ -1,4 +1,4 @@
-﻿<%@ Page Title="THÔNG TIN CẦN BIẾT" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Detailt.aspx.cs" Inherits="Detailt" %>
+﻿<%@ Page Title="CHI TIẾT " Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="Detailt.aspx.cs" Inherits="Detailt" %>
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <style>
@@ -12,15 +12,15 @@
     <div class="container">
         <div style="width: 100%; margin: auto; display: table; margin-bottom: 10px; margin-top: 0px;">
             <div class="row">
-                <div class="col-md-9" style="float: left; width: 75%; height: 100%; vertical-align: top; text-align: justify;">
+                <div id="div-detailt-1" class="col-md-9" style="float: left; width: 75%; height: 100%; vertical-align: top; text-align: justify;">
                     <h3 style="text-align: justify; font-family: Arial; font-size: 16px; font-weight: bold; padding-top: 5px;"><a href="/">TRANG CHỦ</a> >> <a href="#">THÔNG TIN HÀNG HÓA, DỊCH VỤ</a></h3>
                     <hr style="width: 98%; color: #00ffff;" />
-                    <div style="width: 100%; text-align: justify; margin-top: 0px;">
+                    <div id="div-detailt-1" style="width: 100%; text-align: justify; margin-top: 0px;">
                         <% Response.Write(this.objTable.Rows[0]["Content"].ToString()); %>
                     </div>
                 </div>
 
-                <div class="col-md-3" style="float: right; width: 25%; height: 100%; vertical-align: top;">
+                <div id="div-detailt-2" class="col-md-3" style="float: right; width: 25%; height: 100%; vertical-align: top;">
                     <h3 style="font-family: Arial; font-size: 18px; font-weight: bold; margin-top: px; margin-bottom:13px;">SẢN PHẨM KHÁC</h3>
 
                     <asp:DataList ID="DataList2" runat="server" RepeatDirection="Horizontal" RepeatColumns="1" Width="100%" ItemStyle-BorderStyle="None" BorderStyle="Dashed" Style="margin-left: -10px;">

@@ -6,10 +6,10 @@
     <div class="container">
         <div style="width: 92%; margin: auto; display: table; margin-bottom: 20px; margin-top: 10px;">
             <div class="row">
-                <div class="col-md-9" style="float: left; width: 75%; height: 100%; vertical-align: top; text-align: justify;">
+                <div  id="div-left-news" class="col-md-9" style="float: left; width: 75%; height: 100%; vertical-align: top; text-align: justify;">
                     <h3 style="text-align: justify; font-family: Arial; font-size: 16px; font-weight: bold; padding-top: 5px;"><a href="/"></a> <a href="#"><%=this.GroupName.ToUpper() %></a></h3>
                     <hr style="width: 98%; color: #00ffff;" />
-                    <div style="width: 92%; text-align: justify; margin-top:10px;">
+                    <div id="div-left-new-product"  style="width: 92%; text-align: justify; margin-top:10px;">
                         <h3 style="font-family: Arial; font-size: 16px; font-weight: bold; text-align: justify;"><% Response.Write(this.objTable.Rows[0]["Title"].ToString()); %></h3>
                         
                         <div style="font-family: Arial; font-size: 14.5px; font-weight: bold; text-align: justify; margin-top: 15px; margin-bottom: 15px; color: #252726;">
@@ -18,7 +18,7 @@
                         <% Response.Write(this.objTable.Rows[0]["Content"].ToString()); %>
                     </div>
                 </div>
-                <div class="col-md-3" style="float: right; width: 25%; height: 100%; display: table;">
+                <div id="div-right-new-product" class="col-md-3" style="float: right; width: 25%; height: 100%; display: table;">
 
                     <h3 style="font-family: Arial; font-size: 18px; font-weight: bold; margin-top: 26px; margin-bottom:13px;">TIN LIÊN QUAN</h3>
 

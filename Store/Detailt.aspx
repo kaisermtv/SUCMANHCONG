@@ -2,9 +2,9 @@
     CodeFile="Detailt.aspx.cs" Inherits="Store_Detailt" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
-    <div class="container">
+    <div  class="container">
         <div class="row" style="margin-top: 20px;">
-            <div class="col-md-6">
+            <div id="div-detailt-1" class="col-md-6">
                 <div style="font-family: Arial; font-size: 15px; font-weight: bold; text-transform: uppercase;
                     display: table; vertical-align: middle;">
                     <% if (this.objTablePartner.Rows.Count > 0) Response.Write(this.objTablePartner.Rows[0]["Name"].ToString()); else Response.Write("&nbsp;"); %>
@@ -14,7 +14,7 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div id="div-detailt-2"  class="col-md-6">
                 <div style="float: right;">
                     <div style="float: left; margin-right: 8px;">
                         <asp:Button type="button" ID="btnMoicapnhat" class="btn btn-primary " runat="server"
@@ -105,7 +105,7 @@
                         </div>
                     </div>
 
-                <div class="col-md-3" style="float: left; width: 25%; height: 100%; vertical-align: top;">
+                <div  id="div-content-left-detailt" class="col-md-3" style="float: left; width: 25%; height: 100%; vertical-align: top;">
                       <div style="width: 95%; height:355px; background-color: #f6f6f6; border: solid 1px #c6c6c6;">
                         <div style="padding: 5px;">
                             <h5>THÔNG TIN LIÊN HỆ</h5>
@@ -123,7 +123,7 @@
                         <ItemTemplate>
                             <div style="height: 355px; padding: 0px; margin-bottom:15px; float:left  ">
                                 <a href="/detailt.aspx?id=<%# Eval("Id") %>" style="width: 100%; height: 252px;"  >
-                                    <img src="/images/Products/<%# Eval("Image") %>" alt="San pham VIP" style="width: 100%; height: 252px;" 
+                                    <img id="img-vip-store" src="/images/Products/<%# Eval("Image") %>" alt="San pham VIP" style="width: 100%; height: 252px;" 
                                          onerror="this.onerror = null; this.src = '../img/noImg2.jpg';"
                                         /></a>
                                 <p class ="ProductLink" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #50505a; padding: 5px; text-align: justify; height:54px; overflow:hidden; border-bottom: solid 2px #f0f0fb;">

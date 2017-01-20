@@ -1,4 +1,4 @@
-﻿<%@ Page Title="ĐĂNG NHẬP" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="ReceiveNews.aspx.cs" Inherits="ReceiveNews" %>
+﻿<%@ Page Title="NHẬN TIN TỨC " Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="ReceiveNews.aspx.cs" Inherits="ReceiveNews" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
     <h4 style="text-align: center; margin-top: 30px;">CHÀO MỪNG BẠN ĐẾN VỚI SUCMANHCONG.COM!</h4>

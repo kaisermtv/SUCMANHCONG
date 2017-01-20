@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="PasswordRecover.aspx.cs" Inherits="PasswordRecover" %>
+﻿<%@ Page Title="KHÔI PHỤC MẬT KHẨU" Language="C#" MasterPageFile="~/Site.master" AutoEventWireup="true" CodeFile="PasswordRecover.aspx.cs" Inherits="PasswordRecover" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" Runat="Server">
 

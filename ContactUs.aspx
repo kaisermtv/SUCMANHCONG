@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ContactUs.aspx.cs" Inherits="ContactUs" enableEventValidation="false" %>
+﻿<%@ Page Title="LIÊN HỆ " Language="C#" AutoEventWireup="true" CodeFile="ContactUs.aspx.cs" Inherits="ContactUs" enableEventValidation="false" %>
 
 <!DOCTYPE html>
 

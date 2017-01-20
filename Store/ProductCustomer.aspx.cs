@@ -537,7 +537,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                     strHtml += "<input class = \"tvsInput\" type =\"text\" id = \"txtNumber" + i.ToString() + "\" name = \"txt#" + this.objTableProduct.Rows[i]["Id"].ToString() + "#" + this.objTableProduct.Rows[i]["Price"].ToString() + "\" value =\"" + this.objPartner.getPartnerBillProductNumber(this.strCurrBillId, this.objTableProduct.Rows[i]["Id"].ToString()) + "\" style =\"color:#000; text-align:right; padding-right:5px;\"/>";
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width: 10%; float: right; border:solid 1px #f3f1f1; overflow:hidden; height:30px;line-height:30px; text-align:right;\">";
+                    strHtml += "<div id=\"txtInput\" style=\"width: 10%; float: right; border:solid 1px #f3f1f1; overflow:hidden; height:30px;line-height:30px; text-align:right;\">";
                     strHtml += "<input class = \"tvsInput\" type =\"text\" id = \"txtPrice" + i.ToString() + "\" value = \"" + String.Format("{0:0,0}", double.Parse(this.objTableProduct.Rows[i]["Price"].ToString())) + "\" style = \"text-align:right; padding-right:5px;\" readonly = \"readonly\">";
                     strHtml += "</div>";
 
@@ -559,7 +559,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                     strHtml += "<input class = \"tvsInput\" type =\"text\" id = \"txtNumber" + i.ToString() + "\" name = \"txt#" + this.objTableProduct.Rows[i]["Id"].ToString() + "#" + this.objTableProduct.Rows[i]["Price"].ToString() + "\" value =\"" + this.objPartner.getPartnerBillProductNumber(this.strCurrBillId, this.objTableProduct.Rows[i]["Id"].ToString()) + "\" style =\"color:#000; text-align:right; padding-right:5px;\"/>";
                     strHtml += "</div>";
 
-                    strHtml += "<div style=\"width: 10%; float: right; border:solid 1px #f3f1f1;overflow:hidden; height:30px;line-height:30px; text-align:right;\">";
+                    strHtml += "<div id=\"txtInput\" style=\"width: 10%; float: right; border:solid 1px #f3f1f1;overflow:hidden; height:30px;line-height:30px; text-align:right;\">";
                     strHtml += "<input class = \"tvsInput\" type =\"text\" id = \"txtPrice" + i.ToString() + "\" value = \"" + String.Format("{0:0,0}", double.Parse(this.objTableProduct.Rows[i]["Price"].ToString())) + "\" style = \"text-align:right; padding-right:5px;\" readonly = \"readonly\">";
                     strHtml += "</div>";
 
@@ -732,27 +732,26 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
 
             if (rowsAffected == 1)
             {
-                string ret = this.SendSMS(this.strCusPhone,"SMC gửi mã kích hoạt OTP: " + strOTP);
-                //string ret = this.SendSMS("01667762419", strOTP);
+                string ret = this.SendSMS(this.strCusPhone,"Mã xác nhận từ SMC : " + strOTP);
+                
 
                 this.btnSave.Disabled = true;
                 this.btnSaveByCard.Disabled = false;
                 this.txtOTPCode.Disabled = false;
-
+                Page.ClientScript.RegisterClientScriptBlock(GetType(), "msg", "confirm('Mã OTP đã được gửi');",true);
                 this.lblMsg1.Text = "Mã OTP đã được gửi";
-                //this.lblMsg1.Text = ret;
+                
             }
             else
             {
                 this.btnSave.Disabled = false;
                 this.btnSaveByCard.Disabled = false;
                 this.txtOTPCode.Disabled = true;
-
+                Page.ClientScript.RegisterClientScriptBlock(GetType(), "msg", "confirm('Có lỗi xảy ra, xin thử lại');",true);
                 this.lblMsg1.Text = "Có lỗi xảy ra, xin thử lại";
             }
 
             // */
-
 
             this.getProduct(Session["ACCOUNT"].ToString());
 
@@ -775,7 +774,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 this.btnSave.Disabled = true;
                 this.btnSaveByCard.Disabled = false;
                 this.txtOTPCode.Disabled = false;
-
+                Page.ClientScript.RegisterClientScriptBlock(GetType(), "msg", "confirm('Có lỗi xảy ra, xin thử lại');");
                 this.lblMsg1.Text = "Mã OTP không hợp lệ";
                 //this.lblMsg1.Text = this.txtOTPCode.Value;
             }

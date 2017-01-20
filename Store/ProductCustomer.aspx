@@ -279,13 +279,13 @@
                             </div>
                         </div>
                         <div class="row" style="margin-top: 9px;">
-                            <div class="col-md-2">
+                            <div id="div-x" class="col-md-2">
                             <asp:Button ID="btnAdd" CssClass="btn btn-success" runat="server" style = "height:74px;" Text="Hóa đơn mới&nbsp;" OnClick="btnAdd_Click" />    
                             </div>
-                            <div class="col-md-2">
-                            <input type ="button" id ="btnCalTotalMoney" class = "btn btn-success" style = "height:74px;" value ="&nbsp;&nbsp;&nbsp;&nbsp;Tính tiền&nbsp;&nbsp;&nbsp;" onclick ="calTotalMoney()" runat="server" />
+                            <div id="div-x" class="col-md-2">
+                            <input  type ="button" id ="btnCalTotalMoney" class = "btn btn-success" style = "height:74px;" value ="&nbsp;&nbsp;&nbsp;&nbsp;Tính tiền&nbsp;&nbsp;&nbsp;" onclick ="calTotalMoney()" runat="server" />
                             </div>
-                            <div class="col-md-3">
+                            <div id="div-x" class="col-md-3">
                                 <input type="button" id="btnSave" disabled="disabled" data-toggle="modal" data-target="#myModalok" class="btn btn-primary" runat="server" style="width: 170px" value="Thanh toán tiền mặt" />
                                 <!-- Modal -->
                                 <div id="myModalok" class="modal fade" role="dialog">
@@ -335,7 +335,7 @@
                                 <!-- end -->
                                 <br />
                             </div>
-                            <div class="col-md-2">
+                            <div id="div-x" class="col-md-2">
                                 <!-- Bùi Hữu Tân Begin -->
                                 <input type ="button" ID ="btnPrint" class = "btn btn-success btn-lg" data-toggle="modal" data-target="#myModal" style = "height:74px;" value ="In hóa đơn" disabled runat="server" />
                                 

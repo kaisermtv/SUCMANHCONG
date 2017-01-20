@@ -4515,6 +4515,7 @@ select[multiple].input-group-sm > .form-control, select[multiple].input-group-sm
 @media (min-width:768px) {
     .navbar-header {
         float: left;
+        width:100%;
     }
 }
 
@@ -7268,9 +7269,8 @@ button.close {
     #div_footer_flow_email {
         margin-top: 70px;
         text-align: center;
-         margin-left:15%;
-
-          width:130% !important;
+         margin-left:8%;
+          width:100% !important;
     }
 
     #div_footer {
@@ -7281,21 +7281,31 @@ button.close {
     }
 
     #div_menu_footer, #div_footer_content {
-        text-align: center;
+        text-align: left;
         margin-bottom: -10%;
+        width:100% !important;
         font-size: 8px !important;
 
     }
 
     #div_footer_contact {
         margin-top: -250px;
-        width:130% !important;
-            margin-left:15%;
+        width:100% !important;
+            margin-left:10%;
     }
 
     #div_about_footer {
         margin-top: -20px;
-        width:130% !important;
+        width:100% !important;
+        margin-left:10%;
+
+    }
+    #div_menu_footer_row, #div_menu_footer_container.container
+    {
+        padding-top:4%;
+        display:block !important;
+        margin-top: -20px;
+        width:100% !important;
         margin-left:15%;
 
     }
@@ -7343,10 +7353,9 @@ button.close {
         float: left;
         margin-right: 10px !important;
         z-index: 1;
-        display: block;
-        position: relative;
-        margin: 0;
-        padding: 0;
+        display: table;
+       
+      
         margin-right: 30px;
     }
     #div-menu-store-mobile
@@ -7414,6 +7423,7 @@ button.close {
     #mobile-support-menu-left,#mobile-support-menu-right,#div-menu-store-mobile
     {
         display:block !important;
+        height:9%;
 
     }
     .img-line
@@ -7441,7 +7451,71 @@ button.close {
         display:none !important;
         width:120%;
     }
+    
+    .list_product_page
+    {
+        width:100% !important;
+    }
+    #txtPrice0,#txtPrice1,#txtPrice2,#txtPrice3,#txtPrice4,#txtPrice5
+    {
+        width:100% !important;
+        margin-left:-300px !important;
+        float : right !important;
+        text-align:left !important;
+    }
+    #txtName0
+    {
+        width:60% !important;
+        overflow:scroll;
+    }
+   #txtInput
+   {
+       width:20% !important;
+   }
+   .list_product_item_pr
+   {
+       width:20% !important;
+   }
+   .list_product_item_n
+   {
+        width:60% !important;
+   }
+   #div-x{width:100% !important;}
+   #MainContent_btnAdd,#MainContent_btnCalTotalMoney,#MainContent_btnSave,#MainContent_btnSaveByCard,#MainContent_btnPrint
+   { width:100% !important; }
 
+   #div-detailt-1
+   {
+       width:75% !important;
+   }
+   #div-detailt-2
+   {
+       display:none !important;
+   }
+   #MainContent_contentText
+   {
+       width:100% !important;
+
+   }
+  #div-content-left-detailt{
+      width:100% !important;
+  }
+  #img-vip-store
+  {     display:none;
+         padding-right:10px !important;
+        margin-top:10px !important;
+         width:auto !important;
+  }
+  #div-right-new-product{display:none !important; }
+  #div-left-new-product{width : 100% !important; margin-right:5% !important; display:block;max-width:90% !important; display:table;}
+  #div-left-news{width : 100% !important;}
+
+  #div-col-1{width:8% !important;
+             min-height: 1px !important;
+    padding-right: 0px !important;
+    padding-left: 0px ; clear:both}
+   #div-col-9{width:80% !important;clear:both;float:right; vertical-align:auto}
+    #div-col-2{width:100% !important;float:right; }
 
 }
 

@@ -80,8 +80,11 @@ public partial class Login : System.Web.UI.Page
                 {
                     if ((bool)objRow[0]["State"])
                     {
-                        Session["ACCOUNT"] = accout.Rows[0]["Acct_Name"].ToString();
-                        Response.Redirect("http://khachhang.sucmanhcong.com",true);
+                        this.lblMsg.Text = "Tài khoản không hợp lệ";
+                        return
+                            ;
+                        //Session["ACCOUNT"] = accout.Rows[0]["Acct_Name"].ToString();
+                        //Response.Redirect("http://khachhang.sucmanhcong.com",true);
                     }
                     else
                     {

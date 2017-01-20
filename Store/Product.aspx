@@ -5,9 +5,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row tvsRowHeader">
-                    <div class="col-md-1" style = "text-align:center;">TT</div>
-                    <div class="col-md-9">Hàng hoá, dịch vụ</div>
-                    <div class="col-md-2">
+                    <div id="div-col-1" class="col-md-1" style = "text-align:center;">TT</div>
+                    <div id="div-col-9" class="col-md-9">Hàng hoá, dịch vụ</div>
+                    <div  id="div-col-2" class="col-md-2">
                         <div style ="float:right;">
                             <a href ="ProductEdit.aspx">
                                 <span class="btn_tbl_hd">Thêm mới</span>
