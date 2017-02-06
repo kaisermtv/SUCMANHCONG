@@ -1,4 +1,4 @@
-﻿<%@ Page Title="QUẢN TRỊ BÁN HÀNG" Language="C#" MasterPageFile="~/Store.master" EnableEventValidation="false" AutoEventWireup="true" CodeFile="ProductCustomer.aspx.cs" Inherits="Store_ProductCustomer" %>
+﻿<%@ Page Title="QUẢN TRỊ BÁN HÀNG" Language="C#" MasterPageFile="~/Store.master" EnableEventValidation="false" AutoEventWireup="false" CodeFile="ProductCustomer.aspx.cs" Inherits="Store_ProductCustomer" %>
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="Server">
@@ -104,8 +104,11 @@
                                        
                                     </div> 
                                 </div>
+
+                                     <!---->
                                 <div class="list_product_page">
-                                    <% Response.Write(strHtml); %>                                    
+                                    
+                                                   <% Response.Write(strHtml); %>     
                                 </div>
                             </div>
                         </div>
@@ -275,6 +278,7 @@
 
 
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -308,8 +312,12 @@
 
                                 <!-- end -->
                                 <br />
-                                <input type="button" id="btnSaveByCard" disabled="disabled" data-toggle="modal" data-target="#myModalsms" class="btn btn-primary" runat="server" style="width: 170px;margin-top:5px; " value="Thanh toán thẻ SMC" />
+                                <input type="button" id="btnSaveByCard"  data-toggle="modal" data-target="#myModalsmsHello"  class="btn btn-primary" runat="server" style="width: 170px;margin-top:5px; "
+                                     value="Thanh toán thẻ SMC" />
                                 <!-- Modal -->
+                                
+                                
+
                                 <div id="myModalsms" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
 
@@ -318,21 +326,75 @@
                                             <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                                 <h4 class="modal-title">Bạn xác nhận thanh toán bằng thẻ SMC</h4>
-                                                <p>Để trống mã OTP để gửi tin nhắn tới khách hàng</p>
+                                                <p>Nhập sai quá 3 lần , tài khoản của bạn sẻ bị khóa :  </p>
+                                                <p style="color:red"> <span runat="server" id="lblwarning"></span></p>
                                             </div>
                                             <div class="modal-body">
-                                                <input disabled class="form-control" id="txtOTPCode" runat="server" placeholder="Mã OTP" />
+                                                <input  class="form-control" id="txtOTPCode" runat="server" placeholder="Mã OTP" />
+                                               
                                             </div>
                                             <div class="modal-footer">
-                                                <asp:Button CssClass="btn btn-default" Text="Xác nhận" runat="server" OnClick="btnSaveByCard_Click" />
+                                                <asp:Button runat="server" ID="btnSubmitOtp"  CssClass="btn btn-success" Text="Xác nhận" OnClick="btnSubmitOTP_Click"/>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div> 
+                                  
+                                   
+                                <!-- end -->
+
+                                <!---->
+                                <div id="Message" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title">Thông báo </h4>
+                                                <p><asp:Label ID="lblMsg" runat="server"></asp:Label></p>
+                                            </div>
+                                            <div class="modal-body">
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                             
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
+                                <!-- -->
+                             
+                              
+                                   
+                                   <div id="myModalsmsHello" class="modal fade" role="dialog">
+                                    <div class="modal-dialog">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title"> Tiến hành thanh toán bằng thẻ SMC ? </h4>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div id="select" runat="server">
+                                                                                            
+                                             <asp:Button CssClass="btn btn-primary" runat="server" Text="Xác nhận" OnClick="btnSaveByCard_Click"  />
+                                                <button type="button" class="btn btn-default" data-target="#modal" data-dismiss="modal">Close</button>
 
-                                <!-- end -->
+                                                   
+                                            </div></div>
+
+                                     
+
+                                    
+                                    </div>
+                                </div>
+                                  
+                                        </div>
                                 <br />
                             </div>
                             <div id="div-x" class="col-md-2">
@@ -445,7 +507,6 @@
 
         function calTotalMoney() {
             document.getElementById('MainContent_lblMsg1').textContent = '-:-';
-            
 
             var totalItem = document.getElementById('MainContent_txtTotalItem').value;
             var totalMoney = 0;
@@ -453,14 +514,14 @@
                 totalMoney += getPrice('txtNumber' + i) * getPrice('txtPrice' + i);
             }
            
-               document.getElementById('out_tonggiamgia').innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
+            document.getElementById('out_tonggiamgia').innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
              
            
             //*
             var totalMoneybt = 0;
             for (var i = 1; i < 11; i++) {
-              //  bufa = document.getElementById('MainContent_txtProductNumber' + i).value;
-               // bufb = document.getElementById('MainContent_txtProductPrice' + i).value;
+                //  bufa = document.getElementById('MainContent_txtProductNumber' + i).value;
+                // bufb = document.getElementById('MainContent_txtProductPrice' + i).value;
 
                 totalMoneybt += getPrice('MainContent_txtProductNumber' + i) * getPrice('MainContent_txtProductPrice' + i);
             }
@@ -511,12 +572,15 @@
 
             totalMoneyBill = getPrice('MainContent_txtTotalMoney');
             tmpTodalMoneyDiscount = getPrice('MainContent_txtTotalMoneyDiscount') * document.getElementById('txtDiscountLevel').textContent.trim() / 100;
-
             document.getElementById('MainContent_txtTotalMoneyPayment').value = (totalMoneyBill - tmpTodalMoneyDiscount).toLocaleString('en-US', { minimumFractionDigits: 0 });
+          
+
             document.getElementById('MainContent_btnSave').disabled = false;
             document.getElementById('MainContent_btnSaveByCard').disabled = false;
-
             document.getElementById('MainContent_btnPrint').disabled = true;
+
+            var canCard = (document.getElementById('MainContent_ckbD')).checked;
+            if (canCard>0) { document.getElementById('MainContent_btnSaveByCard').disabled = true; }
         }
     </script>
 </asp:Content>

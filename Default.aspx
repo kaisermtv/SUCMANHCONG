@@ -3,6 +3,55 @@
 
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <!-- This script to excute  button like menthod , Do not move diff file -->
+    <script>
+
+        function like(product_id) {
+            var canclick = document.getElementById('sessionhidden').value;
+            if (canclick.trim() == "" || typeof(canclick) == "undefined") { alert('Vui lòng đăng nhập để bình chọn cho sản phầm bạn thích !'); return };
+            if (product_id == 0) return;
+            document.getElementById("btn" + product_id).hidden = true;
+            document.getElementById("<%=hidden.ClientID %>").value = "" + product_id;
+            var element = (document.getElementById('like' + product_id));
+            var likecount = element.innerText || element.textContent;
+            document.getElementById('like' + product_id).innerHTML = parseInt(likecount) + 1;
+            <% 
+        try
+        {
+            int id = int.Parse(hidden.Value.ToString().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries)[0].ToString());
+            this.objProduct.like(id);
+
+            return;
+        }
+        catch { } %>
+                                           <% %>
+        }
+
+        function like2(product_id) {
+            var canclick = document.getElementById('sessionhidden').value;
+            if (canclick.trim() == "" || typeof (canclick) == "undefined") { alert('Vui lòng đăng nhập để bình chọn cho sản phầm bạn thích !'); return };
+            if (canclick.trim == "") return;
+            document.getElementById("btn2" + product_id).hidden = true;
+            document.getElementById("<%=hidden.ClientID %>").value = "" + product_id;
+            var element = (document.getElementById('like2' + product_id));
+            var likecount = element.innerText || element.textContent;
+            document.getElementById('like2' + product_id).innerHTML = parseInt(likecount) + 1;
+            <%
+        try
+        {
+            int id = int.Parse(hidden.Value.ToString().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries)[0].ToString());
+            this.objProduct.like(id);
+
+            return;
+        }
+        catch { } %>
+            <% %>
+        }
+
+
+    </script>
+    <!--/-->
+
     <div class="container">
         <div class="top_main">
             <div class="row">
@@ -104,7 +153,7 @@
                                 .jssorb01 .dn, .jssorb01 .dn:hover {
                                     background-color: #555555;
                                 }
-                         
+
                             .jssora02l, .jssora02r {
                                 display: block;
                                 position: absolute;
@@ -186,7 +235,7 @@
     </div>
     <div class="container">
         <div class="row">
-         
+
 
             <div class="col-md-12">
 
@@ -237,63 +286,83 @@
         </div>
         <div id="myCarousel" class="sanpham carousel slide" data-ride="carousel">
             <!-- Wrapper for slides -->
-            <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <%for (int i = 0; i < this.objTableProductVIP.Rows.Count; i++)
-                      {  %>
-                    <% if (i % 4 == 0 && i != 0)
-                       { %>
-                </div>
-                <div class="item">
-                    <% } %>
-                    <div class="col-md-3" style="margin-top: 10px">
-                        <div class="sanpham_background">
-                            <a class="fw" href="/detailt.aspx?id=<%= this.objTableProductVIP.Rows[i]["Id"].ToString() %>">
-                                <img src="/images/Products/<%= this.objTableProductVIP.Rows[i]["Image"].ToString() %>" class="sanpham_avata" alt=" Nổi bật" />
-                            </a>
-                            <p class="ProductLink sanpham_title">
-                                <a href="/detailt.aspx?id=<%= this.objTableProductVIP.Rows[i]["Id"].ToString() %> ">
-                                    <%= this.objTableProductVIP.Rows[i]["Name"].ToString() %>
-                                </a>
-                            </p>
-                            <div style="text-align: right; margin-top: -2px;">
-                                <div class="sanpham_like">
-                                    <img src="/images/User.png" alt="So nguoi thich" class="sanpham_like_img" style="width: 20px" />
-                                    <%= this.objTableProductVIP.Rows[i]["CountLike"].ToString() %>
-                                </div>
-                            </div>
-                            <div class="sanpham_price_line">
-                                <span class="sanpham_price">
-                                    <%                  
-                       TVSFunc tvsPrice = new TVSFunc();
-                       Response.Write(tvsPrice.formatPrice(this.objTableProductVIP.Rows[i]["Price"].ToString()));
-                                    %>
-                                </span>
-                                <div class="sanpham_Discount">
-                                    &nbsp; -
-                                <%= this.objTableProductVIP.Rows[i]["Discount"].ToString() %>% &nbsp;
-                                </div>
-                                <input type="button" value="Đã mua: <%= this.objTableProductVIP.Rows[i]["CountBuy"].ToString() %>" style="float: right;" />
-                            </div>
+            <asp:ScriptManager runat="server"></asp:ScriptManager>
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
 
+                            <%for (int i = 0; i < this.objTableProductVIP.Rows.Count; i++)
+                              {  %>
+                            <% if (i % 4 == 0 && i != 0)
+                               { %>
                         </div>
+                        <div class="item">
+                            <% } %>
+                            <div class="col-md-3" style="margin-top: 10px">
+                                <div class="sanpham_background">
+                                    <a class="fw" href="/detailt.aspx?id=<%= this.objTableProductVIP.Rows[i]["Id"].ToString() %>">
+                                        <img src="/images/Products/<%= this.objTableProductVIP.Rows[i]["Image"].ToString() %>" class="sanpham_avata" alt=" Nổi bật" />
+                                    </a>
+                                    <p class="ProductLink sanpham_title">
+                                        <a href="/detailt.aspx?id=<%= this.objTableProductVIP.Rows[i]["Id"].ToString() %> ">
+                                            <%= this.objTableProductVIP.Rows[i]["Name"].ToString() %>
+                                        </a>
+                                    </p>
+                                    <div style="text-align: right; margin-top: -2px;">
 
-                    </div>
-                    <% } %>
-                </div>
+                                        <div class="sanpham_like  ">
 
-            </div>
+                                            <asp:HiddenField ID="hidden" runat="server" ClientIDMode="Static" />
 
-            <!-- Left and right controls -->
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
+                                            <button class="btn-like-click" id="btn<%= this.objTableProductVIP.Rows[i]["Id"].ToString()%>" onclick="like(<%= this.objTableProductVIP.Rows[i]["Id"].ToString()%>);"
+                                                style="border: none !important; background-color: white !important; float: left; margin-right: 10px;">
+                                                <i class="glyphicon  glyphicon-thumbs-up" style="border: none !important; background-color: none !important;"></i>
+                                            </button>
+                                            <button runat="server" class="btn-like" id="Button1" style="border: none !important; background-color: white !important; float: left; margin-right: 10px;">
+                                         
+                                            </button>
+
+                                            <img src="/images/User.png" id="<%= this.objTableProductVIP.Rows[i]["Id"].ToString()%>"
+                                                alt="So nguoi thich" class="sanpham_like_img" style="width: 20px; margin-right: 10px" />
+                                            <span id="like<%= this.objTableProductVIP.Rows[i]["Id"].ToString()%>"><%= this.objTableProductVIP.Rows[i]["CountLike"].ToString() %></span>
+
+                                        </div>
+                                    </div>
+                                    <div class="sanpham_price_line">
+                                        <span class="sanpham_price">
+                                            <%                  
+                               TVSFunc tvsPrice = new TVSFunc();
+                               Response.Write(tvsPrice.formatPrice(this.objTableProductVIP.Rows[i]["Price"].ToString()));
+                                            %>
+                                        </span>
+                                        <div class="sanpham_Discount">
+                                            &nbsp; -
+                                <%= this.objTableProductVIP.Rows[i]["Discount"].ToString() %>% &nbsp;
+                                        </div>
+                                        <input type="button" value="Đã mua: <%= this.objTableProductVIP.Rows[i]["CountBuy"].ToString() %>" style="float: right;" />
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <% } %>
+                        </div>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+
         </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 
     </div>
 
@@ -313,43 +382,59 @@
         </div>
 
         <div class="sanpham">
-            <%for (int i = 0; i < this.objTableBestSale.Rows.Count && i < 8; i++)
-              {  %>
-            <div class="col-md-3" style="margin-top: 10px">
-                <div class="sanpham_background">
-                    <a class="fw" href="/detailt.aspx?id=<%= this.objTableBestSale.Rows[i]["Id"].ToString() %>">
-                        <img src="/images/Products/<%= this.objTableBestSale.Rows[i]["Image"].ToString() %>" class="sanpham_avata" alt=" Nổi bật" />
-                    </a>
-                    <p class="ProductLink sanpham_title">
-                        <a href="/detailt.aspx?id=<%= this.objTableBestSale.Rows[i]["Id"].ToString() %> ">
-                            <%= this.objTableBestSale.Rows[i]["Name"].ToString() %>
-                        </a>
-                    </p>
-                    <div style="text-align: right; margin-top: -2px;">
-                        <div class="sanpham_like">
-                            <img src="/images/User.png" alt="So nguoi thich" class="sanpham_like_img" style="width: 20px" />
-                            <%= this.objTableBestSale.Rows[i]["CountLike"].ToString() %>
-                        </div>
-                    </div>
-                    <div class="sanpham_price_line">
-                        <span class="sanpham_price">
-                            <% 
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+
+                    <%for (int i = 0; i < this.objTableBestSale.Rows.Count && i < 8; i++)
+                      {  %>
+                    <div class="col-md-3" style="margin-top: 10px">
+                        <div class="sanpham_background">
+                            <a class="fw" href="/detailt.aspx?id=<%= this.objTableBestSale.Rows[i]["Id"].ToString() %>">
+                                <img src="/images/Products/<%= this.objTableBestSale.Rows[i]["Image"].ToString() %>" class="sanpham_avata" alt=" Nổi bật" />
+                            </a>
+                            <p class="ProductLink sanpham_title">
+                                <a href="/detailt.aspx?id=<%= this.objTableBestSale.Rows[i]["Id"].ToString() %> ">
+                                    <%= this.objTableBestSale.Rows[i]["Name"].ToString() %>
+                                </a>
+                            </p>
+                            <div style="text-align: right; margin-top: -2px;">
+                                <div class="sanpham_like">
+
+                                    <button id="btn2<%= this.objTableBestSale.Rows[i]["Id"].ToString()%>" onclick="like2(<%= this.objTableBestSale.Rows[i]["Id"].ToString()%>);"
+                                        style="border: none !important; background-color: white !important; float: left; margin-right: 10px;">
+                                        <i class="glyphicon  glyphicon-thumbs-up" style="border: none !important; background-color: none !important;"></i>
+                                    </button>
+
+                              <%--      <i class="glyphicon  glyphicon-heart-empty" style="border: none !important; float: left;"></i>--%>
+
+                                    <img src="/images/User.png" alt="So nguoi thich" class="sanpham_like_img" style="width: 20px">
+
+                                    <span id="like2<%= this.objTableBestSale.Rows[i]["Id"].ToString()%>"><%= this.objTableBestSale.Rows[i]["CountLike"].ToString() %></span>
+
+                                </div>
+                            </div>
+                            <div class="sanpham_price_line">
+                                <span class="sanpham_price">
+                                    <% 
                   TVSFunc tvsPrice = new TVSFunc();
                   Response.Write(tvsPrice.formatPrice(this.objTableBestSale.Rows[i]["Price"].ToString()));
-                            %>
+                                    %>
                         
-                        </span>
-                        <div class="sanpham_Discount">
-                            &nbsp; -
+                                </span>
+                                <div class="sanpham_Discount">
+                                    &nbsp; -
                                 <%= this.objTableBestSale.Rows[i]["Discount"].ToString() %>% &nbsp;
+                                </div>
+                                <input type="button" value="Đã mua: <%= this.objTableBestSale.Rows[i]["CountBuy"].ToString() %>" style="float: right;" />
+                            </div>
+
                         </div>
-                        <input type="button" value="Đã mua: <%= this.objTableBestSale.Rows[i]["CountBuy"].ToString() %>" style="float: right;" />
+
                     </div>
+                    <% } %>
+                </ContentTemplate>
+            </asp:UpdatePanel>
 
-                </div>
-
-            </div>
-            <% } %>
         </div>
 
         <div class="col-md-12">
@@ -581,7 +666,7 @@
             </div>
         </div>
 
-        <div  class="thuonghieu">
+        <div class="thuonghieu">
             <div class="row">
                 <% for (int i = 0; i < this.objTableBrand.Rows.Count && i < 4; i++)
                    { %>
@@ -603,21 +688,21 @@
 
 
 
-    <div  style="margin-top: -40px; width: 98%; margin-left: 0px; margin-right: 0px;">
+    <div style="margin-top: -40px; width: 98%; margin-left: 0px; margin-right: 0px;">
         <div class="row" style="text-align: center;">
             <div id="div_news_title" class="col-md-12" style="text-align: center;">
                 <h3 style="font-family: Arial; font-size: 25px; color: black; padding-top: 18px; color: #4e4e57; text-align: center;">TIN TỨC SUCMANHCONG.COM</h3>
             </div>
-           
+
         </div>
     </div>
-    
+
     <div id="div_news_title2" style="margin-top: -00px; width: 98%; margin-left: 0px; margin-right: 0px;">
         <div class="row" style="text-align: center;">
             <div class="col-md-12" style="text-align: center;">
                 <h3 style="font-family: Arial; font-size: 15px; color: black; padding-top: 18px; color: #4e4e57; text-align: center;">TIN TỨC SUCMANHCONG.COM</h3>
             </div>
-           
+
         </div>
     </div>
     <div class="container">
@@ -643,7 +728,7 @@
                     </div>
                     <div style="float: right; width: 80%; text-align: justify; padding: 9px;">
                         <div style="vertical-align: top; height: 57px; overflow: hidden;">
-                            <h5  id="news_tittle" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57; text-transform: uppercase; margin-top: -22px;"
+                            <h5 id="news_tittle" style="font-family: Arial; font-size: 15px; font-weight: bold; color: #4e4e57; text-transform: uppercase; margin-top: -22px;"
                                 class="NewsHomeLink"><a href="NewsDetailt.aspx?Id=<% Response.Write(objTableNews.Rows[i]["Id"].ToString()); %>">
                                     <% Response.Write(objTableNews.Rows[i]["Title"].ToString()); %></a></h5>
                         </div>
@@ -657,4 +742,5 @@
                }%>
         </div>
     </div>
+  
 </asp:Content>

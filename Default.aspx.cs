@@ -11,7 +11,7 @@ public partial class _Default : Page
 {
    
     #region declare objects
-    private DataProduct objProduct = new DataProduct();
+    public DataProduct objProduct = new DataProduct();
     public Partner objPartner = new Partner();
     private Brand objBrand = new Brand();
     private DataTopic objTopic = new DataTopic();
@@ -33,6 +33,7 @@ public partial class _Default : Page
 
     public int CountPagePartner = 1;
     public int PagePartner = 1;
+ 
     #endregion
 
     #region method Page_Load
@@ -89,7 +90,5 @@ public partial class _Default : Page
         this.objTableSlide = objSlide.getSlideImage();
     }
     #endregion
-
-
 
 }

@@ -323,6 +323,34 @@ public class Partner
     }
     #endregion
 
+    #region method createTempPartnerBill   ||  TEMPORARY table is visible only to the current session, and is dropped automatically when the session is closed.
+    public int setTempPartnerBill(string CustomerAccount, string PartnerAccount, float TotalMoney, float TotalMoneyDiscount, float Discount, float DiscountCard, float DiscountAdv, float TotalPeyment)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            string sqlQuery = "";
+            sqlQuery = "IF NOT EXISTS (SELECT tblTempPartnerBill.Id FROM tblPartnerBill WHERE CustomerAccount = @CustomerAccount AND PartnerAccount = @PartnerAccount AND TotalMoney = @TotalMoney AND TotalMoneyDiscount = @TotalMoneyDiscount AND Discount = @Discount AND TotalPeyment = @TotalPeyment AND datepart(day,DayCreate) = datepart(day,getdate()) AND datepart(month,DayCreate) = datepart(month,getdate()) AND datepart(year,DayCreate) = datepart(year,getdate()) AND datepart(hour,DayCreate) = datepart(hour,getdate()) AND datepart(minute,DayCreate) = datepart(minute,getdate()) )";
+            Cmd.CommandText = sqlQuery;
+          
+            //int ret = Cmd.ExecuteNonQuery();
+            int ret = (int)Cmd.ExecuteScalar(); //SELECT TOP 1 CAST(SCOPE_IDENTITY () as int) 
+
+            sqlCon.Close();
+            sqlCon.Dispose();
+
+            return ret;
+            //Response.Redirect("ProductCustomer.aspx");
+        }
+        catch
+        {
+            return 0;
+        }
+    }
+    #endregion
+
     #region method getPartnerBillDetail
     public DataTable getPartnerBillDetail(string BillId)
     {
@@ -332,7 +360,7 @@ public class Partner
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT tblPartnerBillDetail.* , tblProduct.Name FROM tblPartnerBillDetail LEFT JOIN tblProduct ON tblProduct.Id = tblPartnerBillDetail.ProductId WHERE BillId = @BillId";
+            Cmd.CommandText = " SELECT tblPartnerBillDetail.* , tblProduct.Name FROM tblPartnerBillDetail LEFT JOIN tblProduct ON tblProduct.Id = tblPartnerBillDetail.ProductId WHERE BillId = @BillId";
             Cmd.Parameters.Add("BillId", SqlDbType.NVarChar).Value = BillId;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
@@ -351,7 +379,7 @@ public class Partner
     }
     #endregion
 
-    #region method setPartnerBillDetail
+    #region method setPartnerBillDetail || check đây
     public int setPartnerBillDetail(string BillId, string ProductId, string ProductName, string ProductPrice, string ProductNumber)
     {
         try
@@ -369,6 +397,18 @@ public class Partner
             Cmd.Parameters.Add("ProductPrice", SqlDbType.Float).Value = ProductPrice;
             Cmd.Parameters.Add("ProductNumber", SqlDbType.Float).Value = ProductNumber;
             int ret = Cmd.ExecuteNonQuery();
+
+            try { 
+            DataProduct product = new DataProduct();
+            SqlCommand sql = sqlCon.CreateCommand();
+            string queery = "UPDATE tblProduct SET CountBuy  = @CountBuy WHERE Id = @Id";
+            sql.CommandText = queery;
+            sql.Parameters.Add("CountBuy", SqlDbType.Int).Value = (int.Parse(product.getProductById(int.Parse(ProductId)).Rows[0]["CountBuy"].ToString()) + int.Parse(ProductNumber));
+            sql.Parameters.Add("Id", SqlDbType.Int).Value = ProductId;
+            sql.ExecuteNonQuery();
+                }
+            catch { }
+
             sqlCon.Close();
             sqlCon.Dispose();
 
@@ -399,6 +439,8 @@ public class Partner
             Cmd.Parameters.Add("ProductPrice", SqlDbType.Float).Value = ProductPrice;
             Cmd.Parameters.Add("ProductNumber", SqlDbType.Float).Value = ProductNumber;
             int ret = Cmd.ExecuteNonQuery();
+
+        
             sqlCon.Close();
             sqlCon.Dispose();
 
@@ -421,7 +463,7 @@ public class Partner
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
             Cmd.CommandText = "SELECT * FROM tblPartnerBillDetailOrther WHERE BillId = @BillId AND ISNULL(ProductNumber,0) > 0";
-            Cmd.Parameters.Add("BillId", SqlDbType.NVarChar).Value = BillId;
+            Cmd.Parameters.Add("BillId", SqlDbType.NVarChar).Value = BillId ;
             SqlDataAdapter da = new SqlDataAdapter();
             da.SelectCommand = Cmd;
             DataSet ds = new DataSet();

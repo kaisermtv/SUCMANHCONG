@@ -240,9 +240,9 @@ a {
     display: block;
     float: left;
     width: 100%;
-    top:0px !important;
-    margin-left:0%;
-    border-radius:5px;
+    top: 0px !important;
+    margin-left: 0%;
+    border-radius: 5px;
 }
 
     .nav_menu.fix {
@@ -354,7 +354,7 @@ h2 {
 .main-menu {
     margin-top: -5px;
     width: 100%;
-    padding-right:-20%;
+    padding-right: -20%;
     /*border-top:solid 2px red;*/
     padding-top: 0px;
 }
@@ -365,7 +365,7 @@ h2 {
         text-transform: capitalize;
         text-align: center;
         width: 10.776%;
-         margin-left: -0.1%;
+        margin-left: -0.1%;
     }
 
         .main-menu a:nth-child(8) {
@@ -393,8 +393,8 @@ h2 {
 
 .sanpham {
     margin-top: 10px;
-    width:100%;
-    display:table;
+    width: 100%;
+    display: table;
 }
 
 
@@ -1253,6 +1253,13 @@ button, input, optgroup, select, textarea {
     padding-left: 25px;
 }
 
+.product_like {
+    box-shadow: 0 0 1px #ccc;
+    -webkit-transition: all 0.5s ease-in-out;
+    border: 0px;
+    color: #fff;
+}
+
 .sanpham_like_img {
     width: 20px;
     margin-top: -8px;
@@ -1308,14 +1315,45 @@ button, input, optgroup, select, textarea {
     vertical-align: middle;
 }
 
-.LocationMenu{
-    font-family: Arial; font-size: 11px; font-weight: bold;
+.LocationMenu {
+    font-family: Arial;
+    font-size: 11px;
+    font-weight: bold;
 }
 
-.LocationMenuChid{
-    width: 100%; margin-top: 3px; padding-bottom: 3px; border-bottom: solid 1px #77cef2; text-align: justify; font-weight: bold;
+.LocationMenuChid {
+    width: 100%;
+    margin-top: 3px;
+    padding-bottom: 3px;
+    border-bottom: solid 1px #77cef2;
+    text-align: justify;
+    font-weight: bold;
 }
+
 #subiz_desktop .button_chat_offline,
 #subiz_desktop .button_chat_online {
     opacity: 0;
 }
+
+.btn-circle {
+    width: 20px;
+    height: 20px;
+    margin-top: -5px;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 10px;
+    line-height: 1.128571429;
+    border-radius: 15px;
+}
+
+    .btn-circle i {
+        float: none !important;
+        border: none !important;
+        margin-top: -5px !important;
+        -webkit-transition: all 0.5s ease-in-out !important;
+    }
+
+    .btn-circle:hover {
+        -webkit-transform: scale(2.5);
+        margin-top:-30px;
+    }

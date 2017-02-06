@@ -51,6 +51,7 @@ public partial class CustomerEdit : System.Web.UI.Page
             }
             if (this.txtBirthday.Text.Trim() == "")
             {
+                String s = txtBirthday.Text.Trim();
                 this.lblMsg.Text = "Bạn chưa nhập ngày sinh của thành viên";
                 return;
             }
@@ -87,7 +88,10 @@ public partial class CustomerEdit : System.Web.UI.Page
             this.txtAddress.Text = objData.Rows[0]["Address"].ToString();
             this.txtPhone.Text = objData.Rows[0]["Phone"].ToString();
             try {
+
                 this.txtBirthday.Text = DateTime.Parse(objData.Rows[0]["Birthday"].ToString()).ToString("dd/MM/yyyy");
+                String s = objData.Rows[0]["Birthday"].ToString();
+
                 }
             catch
             {

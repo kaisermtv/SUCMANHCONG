@@ -26,6 +26,7 @@ public partial class SiteMaster : MasterPage
     public int Location = 0;
     private DataTable objTableAboutUs = new DataTable();
     public DataRowCollection objTableLocation;
+    public DataProduct objProduct = new DataProduct();
     #endregion
 
     #region method Page_Init
@@ -98,9 +99,11 @@ public partial class SiteMaster : MasterPage
          if (Session["ACCOUNT"] == null || Session["ACCOUNT"].ToString() == "")
          {
              objdata = new DataTable();
+           
          } else
          {
              objdata = objFunc.getAccount(Session["ACCOUNT"].ToString());
+             sessionhidden.Value = Session["ACCOUNT"].ToString();
          }
 
 

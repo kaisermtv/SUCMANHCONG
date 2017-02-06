@@ -24,6 +24,55 @@
         }
     </script>
 
+     <!-- This script to excute  button like menthod , Do not move to diff file -->
+   <script>
+
+       function like(product_id) {
+           var canclick = document.getElementById('sessionhidden').value;
+           if (canclick.trim() == "" || typeof (canclick) == "undefined") { alert('Vui lòng đăng nhập để bình chọn cho sản phầm bạn thích !'); return };
+           if (product_id == 0) return;
+           document.getElementById("btn" + product_id).hidden = true;
+           document.getElementById("<%=hidden.ClientID %>").value = "" + product_id;
+            var element = (document.getElementById('like' + product_id));
+            var likecount = element.innerText || element.textContent;
+            document.getElementById('like' + product_id).innerHTML = parseInt(likecount) + 1;
+            <% 
+        try
+        {
+            int id = int.Parse(hidden.Value.ToString().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries)[0].ToString());
+            this.objProduct.like(id);
+
+            return;
+        }
+        catch { } %>
+           <% %>
+        }
+
+       function like2(product_id) {
+           var canclick = document.getElementById('sessionhidden').value;
+           if (canclick.trim() == "" || typeof (canclick) == "undefined") { alert('Vui lòng đăng nhập để bình chọn cho sản phầm bạn thích !'); return };
+           if (canclick.trim == "") return;
+           document.getElementById("btn2" + product_id).hidden = true;
+           document.getElementById("<%=hidden.ClientID %>").value = "" + product_id;
+            var element = (document.getElementById('like2' + product_id));
+            var likecount = element.innerText || element.textContent;
+            document.getElementById('like2' + product_id).innerHTML = parseInt(likecount) + 1;
+            <%
+        try
+        {
+            int id = int.Parse(hidden.Value.ToString().Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries)[0].ToString());
+            this.objProduct.like(id);
+
+            return;
+        }
+        catch { } %>
+                                           <% %>
+        }
+
+
+    </script>
+    <!--/-->
+
     <div class="container">
         <div class="row" style="margin-top: 20px;">
             <div class="col-md-5">
@@ -56,7 +105,9 @@
         </div>
         <hr />
     </div>
-
+    <asp:ScriptManager runat="server"></asp:ScriptManager>
+                     <asp:UpdatePanel runat="server">
+           <ContentTemplate> 
     <div class="container sanpham">
         <%for (int i = 0; i < this.objTableProduct.Rows.Count; i++) {  %>
         <%--<% if (this.objTableProduct.Rows[i]["Image"] == "" || this.objTableProduct.Rows[i]["Image"] == null) this.objTableProduct.Rows[i]["Image"] = "noImg.jpg"; %>--%>
@@ -71,7 +122,16 @@
                         </a>
                     </p>
                     <div style="text-align: right; margin-top: -2px;">
+                             <asp:HiddenField ID="hidden"  runat="server" ClientIDMode="Static" />
                         <div class="sanpham_like">
+                               <button class="btn-like-click" id="btn<%= this.objTableProduct.Rows[i]["Id"].ToString()%>" 
+                                onclick="like(<%= this.objTableProduct.Rows[i]["Id"].ToString()%>);" 
+                                       style="border:none !important; background-color:white !important; float:left;margin-right:10px; "> 
+                                       <i class="glyphicon  glyphicon-thumbs-up" style="border:none !important; background-color:none !important;" ></i>
+                                       </button>
+                                              <button runat="server" class="btn-like" id="Button1" style="border:none !important; background-color:white !important; float:left;margin-right:10px; "> 
+                                              <i class="glyphicon  glyphicon-heart-empty" style="border:none !important; float:left;"></i></button>
+
                             <img src="/images/User.png" alt="So nguoi thich" class="sanpham_like_img" style="width: 20px" />
                             <%= this.objTableProduct.Rows[i]["CountLike"].ToString() %>
                         </div>
@@ -96,6 +156,8 @@
             </div>
             <% } %>
     </div>
+       </ContentTemplate>
+       </asp:UpdatePanel>
     <div class="sotrang">
         <table>
             <tr>

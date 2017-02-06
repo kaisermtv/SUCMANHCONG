@@ -1376,4 +1376,27 @@ public class DataProduct
         }
     }
     #endregion
+
+    #region method like()
+    public void like(int ProductId)
+    {
+        try
+        {
+            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+            sqlCon.Open();
+            SqlCommand Cmd = sqlCon.CreateCommand();
+            string sqlQuery = "";
+            sqlQuery = "UPDATE tblProduct SET CountLike = CountLike + 1 WHERE Id = @Id ";
+            Cmd.CommandText = sqlQuery;
+            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = ProductId;
+            int ret = Cmd.ExecuteNonQuery();
+            sqlCon.Close();
+            sqlCon.Dispose();
+            return;
+        }
+        catch
+        {  
+        }
+    }
+    #endregion
 }
