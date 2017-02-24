@@ -13,6 +13,9 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+
+        
+
     <div style="width: 100%; height: 32px; line-height: 30px; background-color: #dde8ec; font-family: Arial; font-size: 13px; font-weight: bold; text-transform: uppercase;">
 
       
@@ -39,6 +42,7 @@
             </div>
 
     </div>
+    
 
     <asp:Panel runat="server" ID="panel" CssClass="DialogueBackground" Visible="false">
         <div class="Dialogue">
@@ -49,8 +53,8 @@
 
                 </div>
                 <div class="clear10">
-                    <asp:TextBox ID="txtEmailContent" Rows="5" runat="server" Width="500px" Height="300px" placeholder="Nội Dung email"></asp:TextBox>
-
+                    <textarea id="txtEmailContent" row="5" runat="server"  style="width:500px; height:300px; " placeholder="Nội dung email ... "></textarea> 
+               
                 </div>
                 <asp:Button ID="btnSubmit" runat="server" Text="Hoàn thành" BorderStyle="None" CssClass="btn" OnClick="can1_Click" />
                 <asp:Button ID="can1" runat="server" Text="Close" BorderStyle="None" CssClass="btn" OnClick="can1_Click" />

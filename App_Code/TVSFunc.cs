@@ -322,14 +322,14 @@ public class TVSFunc
     #endregion
 
     #region sendEmailforUser
-    public int sendEmail(String fromMail ,String fromName, String toMail,String toName,String password)
+    public int sendEmail(String fromMail ,String fromName, String toMail,String toName,String password,String contentmail)
     {
         var fromAddress = new MailAddress(fromMail, fromName);
         var toAddress = new MailAddress(toMail , toName);
       
         String title = "Test mail";
         String content = "Noi dung";
-
+        content = contentmail;
         var stmp = new SmtpClient
         {
             Host = "smtp.gmail.com",

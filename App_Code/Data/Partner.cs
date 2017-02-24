@@ -84,7 +84,7 @@ public class Partner
     #endregion
 
     #region method setCustomersPaymentByCard
-    public int setCustomersPaymentByCard(string BillId, float TotalMoney, string CustomerAccount)
+    public int setCustomersPaymentByCard(string BillId, float TotalMoney, float TotalPeyMent, string CustomerAccount)
     {
         try
         {
@@ -93,10 +93,11 @@ public class Partner
             SqlCommand Cmd1 = sqlCon1.CreateCommand();
             string sqlQuery1 = "";
             sqlQuery1 = "IF NOT EXISTS (SELECT * FROM tblCustomersPaymentByCard WHERE BillId = @BillId AND TotalMoney = @TotalMoney AND datepart(day,DayCreate) = datepart(day,getdate()) AND datepart(month,DayCreate) = datepart(month,getdate()) AND datepart(year,DayCreate) = datepart(year,getdate()) AND datepart(hour,DayCreate) = datepart(hour,getdate()) AND datepart(minute,DayCreate) = datepart(minute,getdate()) )";
-            sqlQuery1 += "BEGIN INSERT INTO tblCustomersPaymentByCard(BillId,TotalMoney,DayCreate,CustomerAccount) VALUES(@BillId,@TotalMoney,getdate(),@CustomerAccount) END";
+            sqlQuery1 += "BEGIN INSERT INTO tblCustomersPaymentByCard(BillId,TotalMoney,TotalPeymentCard,DayCreate,CustomerAccount) VALUES(@BillId,@TotalMoney,@TotalPeymentCard,getdate(),@CustomerAccount) END";
             Cmd1.CommandText = sqlQuery1;
             Cmd1.Parameters.Add("BillId", SqlDbType.NVarChar).Value = BillId;
             Cmd1.Parameters.Add("TotalMoney", SqlDbType.Float).Value = TotalMoney;
+            Cmd1.Parameters.Add("TotalPeymentCard", SqlDbType.Float).Value = TotalPeyMent;
             Cmd1.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = CustomerAccount;
             int ret = Cmd1.ExecuteNonQuery();
             sqlCon1.Close();

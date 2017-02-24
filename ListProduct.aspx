@@ -19,11 +19,9 @@
                 if (str != "?") str += "&";
                 str += "Page=" + page;
             }
-
             return str;
         }
     </script>
-
      <!-- This script to excute  button like menthod , Do not move to diff file -->
    <script>
 
@@ -66,10 +64,8 @@
             return;
         }
         catch { } %>
-                                           <% %>
+                <% %>
         }
-
-
     </script>
     <!--/-->
 
@@ -109,8 +105,8 @@
                      <asp:UpdatePanel runat="server">
            <ContentTemplate> 
     <div class="container sanpham">
-        <%for (int i = 0; i < this.objTableProduct.Rows.Count; i++) {  %>
-        <%--<% if (this.objTableProduct.Rows[i]["Image"] == "" || this.objTableProduct.Rows[i]["Image"] == null) this.objTableProduct.Rows[i]["Image"] = "noImg.jpg"; %>--%>
+        <%for (int i = 0; i < this.objTableProduct.Rows.Count ; i++)
+          {  %>
             <div class="col-md-3" style="margin-top: 10px">
                 <div class="sanpham_background">
                     <a class="fw" href="/detailt.aspx?id=<%= this.objTableProduct.Rows[i]["Id"].ToString() %>">
@@ -129,9 +125,6 @@
                                        style="border:none !important; background-color:white !important; float:left;margin-right:10px; "> 
                                        <i class="glyphicon  glyphicon-thumbs-up" style="border:none !important; background-color:none !important;" ></i>
                                        </button>
-                                              <button runat="server" class="btn-like" id="Button1" style="border:none !important; background-color:white !important; float:left;margin-right:10px; "> 
-                                              <i class="glyphicon  glyphicon-heart-empty" style="border:none !important; float:left;"></i></button>
-
                             <img src="/images/User.png" alt="So nguoi thich" class="sanpham_like_img" style="width: 20px" />
                             <%= this.objTableProduct.Rows[i]["CountLike"].ToString() %>
                         </div>
@@ -142,7 +135,6 @@
                        TVSFunc tvsPrice = new TVSFunc();
                        Response.Write(tvsPrice.formatPrice(this.objTableProduct.Rows[i]["Price"].ToString()));
                                 %>
-                         
                         </span>
                         <div class="sanpham_Discount">
                             &nbsp; -
@@ -150,9 +142,7 @@
                         </div>
                         <input type="button" value="Đã mua: <%= this.objTableProduct.Rows[i]["CountBuy"].ToString() %>" style="float: right;" />
                     </div>
-
                 </div>
-
             </div>
             <% } %>
     </div>
@@ -169,13 +159,10 @@
                 <% for (int i = ((this.nPage - 4 > 1) ? (this.nPage - 4) : 2); i < this.nPage; i++){ %>
                 <td><a href="<%=this.GetUrlPage(i) %>"><%=i.ToString() %></a></td>
                 <% } %>
-
                 <td style="border-radius: 0%; background-color: aqua;"><%=this.nPage.ToString() %></td>
-
                 <% for (int i = (this.nPage + 1); i < this.MaxPage && i < (this.nPage + 6); i++){ %>
                 <td><a href="<%=this.GetUrlPage(i) %>"><%=i.ToString() %></a></td>
                 <% } %>
-
                 <% if (this.nPage < this.MaxPage){ %>
                 <td><a href="<%=this.GetUrlPage(this.MaxPage) %>"><%= this.MaxPage.ToString() %></a></td>
                 <% } %>

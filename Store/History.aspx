@@ -31,10 +31,10 @@
                         <div id="tn1" class="table_header_item" style="width: 5%;">
                             TT   
                         </div>
-                        <div id="tn3" class="table_header_item1" style="width: 18%;">
-                            Ngày, giờ giao dịch
+                        <div id="tn3" class="table_header_item1" style="width: 12%;">
+                            Thời gian
                         </div>
-                        <div id="tn4" class="table_header_item2" style="width: 10%;">
+                        <div id="tn4" class="table_header_item2" style="width: 15%;">
                             Tổng tiền
                         </div>
                         <div  id="tn5"class="table_header_item2" style="width: 10%;">

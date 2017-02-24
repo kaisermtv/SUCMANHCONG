@@ -405,8 +405,6 @@
                                         <i class="glyphicon  glyphicon-thumbs-up" style="border: none !important; background-color: none !important;"></i>
                                     </button>
 
-                              <%--      <i class="glyphicon  glyphicon-heart-empty" style="border: none !important; float: left;"></i>--%>
-
                                     <img src="/images/User.png" alt="So nguoi thich" class="sanpham_like_img" style="width: 20px">
 
                                     <span id="like2<%= this.objTableBestSale.Rows[i]["Id"].ToString()%>"><%= this.objTableBestSale.Rows[i]["CountLike"].ToString() %></span>

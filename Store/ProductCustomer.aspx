@@ -312,12 +312,19 @@
 
                                 <!-- end -->
                                 <br />
-                                <input type="button" id="btnSaveByCard"  data-toggle="modal" data-target="#myModalsmsHello"  class="btn btn-primary" runat="server" style="width: 170px;margin-top:5px; "
+                                <input type="button" id="btnSaveByCard"    disabled="disabled"  data-toggle="modal" data-target="#myModalsmsHello" onclick="checknow()" class="btn btn-primary" runat="server" style=" width: 170px;margin-top:5px; "
                                      value="Thanh toán thẻ SMC" />
                                 <!-- Modal -->
-                                
-                                
-
+                                     <script>
+                                         function checknow() {
+                                             var x = <%=strCustomerTotalDiscountCard%> + '';
+                                             var tempp = (document.getElementById('MainContent_txtTotalMoneyPayment').value).replace(',','');
+                                             if (x < tempp) { confirm('Cảnh báo : Tài khoản không đủ để giao dịch , Vui lòng quay lại thanh toán bằng tiền mặt!', false); }
+                                             $('#myModalsmsHello').modals('hide');
+                                             return;
+                                           }
+                                        </script>
+                                <asp:HiddenField ID="hidden" ClientIDMode="Static" runat="server" />
                                 <div id="myModalsms" class="modal fade" role="dialog">
                                     <div class="modal-dialog">
 
@@ -372,25 +379,24 @@
                               
                                    
                                    <div id="myModalsmsHello" class="modal fade" role="dialog">
+                                      
                                     <div class="modal-dialog">
                                         <!-- Modal content-->
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                <h4 class="modal-title"> Tiến hành thanh toán bằng thẻ SMC ? </h4>
+                                                <button type="button"   class="close" data-dismiss="modal">&times;</button>
+                                                <h4 class="modal-title" > Tiến hành thanh toán bằng thẻ SMC ? </h4>
                                             </div>
                                             <div class="modal-footer">
                                                 <div id="select" runat="server">
                                                                                             
-                                             <asp:Button CssClass="btn btn-primary" runat="server" Text="Xác nhận" OnClick="btnSaveByCard_Click"  />
+                                             <asp:Button CssClass="btn btn-primary"  runat="server" Text="Xác nhận" OnClick="btnSaveByCard_Click"  />
                                                 <button type="button" class="btn btn-default" data-target="#modal" data-dismiss="modal">Close</button>
 
                                                    
                                             </div></div>
 
                                      
-
-                                    
                                     </div>
                                 </div>
                                   
@@ -506,6 +512,7 @@
         }
 
         function calTotalMoney() {
+           
             document.getElementById('MainContent_lblMsg1').textContent = '-:-';
 
             var totalItem = document.getElementById('MainContent_txtTotalItem').value;
@@ -516,13 +523,9 @@
            
             document.getElementById('out_tonggiamgia').innerText = totalMoney.toLocaleString('en-US', { minimumFractionDigits: 0 });
              
-           
             //*
             var totalMoneybt = 0;
             for (var i = 1; i < 11; i++) {
-                //  bufa = document.getElementById('MainContent_txtProductNumber' + i).value;
-                // bufb = document.getElementById('MainContent_txtProductPrice' + i).value;
-
                 totalMoneybt += getPrice('MainContent_txtProductNumber' + i) * getPrice('MainContent_txtProductPrice' + i);
             }
             document.getElementById('out_tonghangthuong').innerText = totalMoneybt.toLocaleString('en-US', { minimumFractionDigits: 0 });
@@ -573,14 +576,24 @@
             totalMoneyBill = getPrice('MainContent_txtTotalMoney');
             tmpTodalMoneyDiscount = getPrice('MainContent_txtTotalMoneyDiscount') * document.getElementById('txtDiscountLevel').textContent.trim() / 100;
             document.getElementById('MainContent_txtTotalMoneyPayment').value = (totalMoneyBill - tmpTodalMoneyDiscount).toLocaleString('en-US', { minimumFractionDigits: 0 });
-          
+            
+            document.getElementById('hidden').value = (totalMoneyBill - tmpTodalMoneyDiscount);
+            if ((totalMoneyBill - tmpTodalMoneyDiscount)>= <%=this.strCustomerTotalDiscountCard2%>+'')
+            {
+              
+                document.getElementById('MainContent_btnSaveByCard').disabled = true;
+            }
+            
+            else {
+                document.getElementById('MainContent_btnSaveByCard').disabled = false;
+
+            }
+            var canCard = (document.getElementById('MainContent_ckbD')).checked;
+            if (canCard > 0) { document.getElementById('MainContent_btnSaveByCard').disabled = true; }
 
             document.getElementById('MainContent_btnSave').disabled = false;
-            document.getElementById('MainContent_btnSaveByCard').disabled = false;
+     
             document.getElementById('MainContent_btnPrint').disabled = true;
-
-            var canCard = (document.getElementById('MainContent_ckbD')).checked;
-            if (canCard>0) { document.getElementById('MainContent_btnSaveByCard').disabled = true; }
         }
     </script>
 </asp:Content>

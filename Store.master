@@ -62,7 +62,7 @@
                 <div class="row">
                     <div id="div-menu-store-mobile" style="display: none" class="nav_menu">
 
-                        <div class="col-md-9" style="font-weight: bold; padding-left: 25px;">
+                        <div class="col-md-9" style="font-weight: bold; padding-left: 0px;">
                             <nav class="navbar navbar-default">
                                 <div class="container-fluid">
                                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -75,34 +75,34 @@
                                         </button>
 
                                         <a class="navbar-brand" href="/Store/" style="font-size: 12px;">QUẢN LÝ BÁN HÀNG</a>
-                                        <a class="ngoisao one" <%= this.ngoisao ? " style=\"color: green; font-size:50px;  margin-top:-10px;  \"" : " style=\"color: red; font-size:50px; title=\"Cảnh báo\" \" onmousemove =\"myMouseFunction()\" " %>>★</a>
+                                        <a class="ngoisao one" <%= this.ngoisao ? " style=\"color: green; font-size:30px;  margin-top:-10px;  \"" : " style=\"color: red; font-size:30px; title=\"Cảnh báo\" \" onmousemove =\"myMouseFunction()\" " %>>★</a>
 
                                     </div>
 
                                     <!-- Collect the nav links, forms, and other content for toggling -->
                                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                        <ul class="nav navbar-nav">
-                                            <li class="active"><a href="Default.aspx">+ Hồ sơ cửa hàng</a></li>
+                                        <ul class="nav navbar-nav" style="text-align:left !important;">
+                                            <li class="active"><a href="Default.aspx"> + Hồ sơ cửa hàng</a></li>
                                             <li><a href="/Store/Product.aspx">+ Quản trị gian hàng</a></li>
                                             <li><a href="/Store/ProductCustomer.aspx">+ Quản trị bán hàng</a></li>
                                             <li><a href="/Store/History.aspx">+ Nhật ký bán hàng</a></li>
                                             <li><a href="/Store/PartnerEdit.aspx">+ Cập nhật hồ sơ</a></li>
-
                                             <li><a href="/Store/Summary.aspx">+ Thông tin tích luỹ</a></li>
                                             <li><a href="/Store/ResetPassword.aspx">+ Thay đổi mật khẩu</a></li>
-
+                                          
                                         </ul>
 
 
                                     </div>
                                     <!-- /.navbar-collapse -->
                                 </div>
+                                  <div class="col-md-3" style="text-align: right;">
+                            <% Response.Write(strFullName); %>
+                        </div>
                                 <!-- /.container-fluid -->
                             </nav>
                         </div>
-                        <div class="col-md-3" style="text-align: right;">
-                            <% Response.Write(strFullName); %>
-                        </div>
+                      
                     </div>
                 </div>
 
@@ -133,7 +133,7 @@
                             <asp:Label ID="lblImg1" runat="server" Text=""></asp:Label>
                         </div>
                         <div style="width: 100%; color: #fff;" class="TVS-Col-md2">
-                            <a href="Default.aspx">+Hồ sơ cửa hàng</a>
+                            <a href="Default.aspx">+ Hồ sơ cửa hàng</a>
                         </div>
                         <div style="width: 100%; color: #fff;" class="TVS-Col-md2">
                             <a href="/Store/Product.aspx">+ Quản trị gian hàng</a>
@@ -152,6 +152,9 @@
                         </div>
                         <div style="width: 100%; color: #fff;" class="TVS-Col-md2-1">
                             <a href="/Store/ResetPassword.aspx">+ Thay đổi mật khẩu</a>
+                        </div>
+                         <div style="width: 100%; color: #fff;" class="TVS-Col-md2-1">
+                            <a href="../../Logout.aspx">+ Đăng xuất </a>
                         </div>
                     </div>
                     <div class="col-md-9">

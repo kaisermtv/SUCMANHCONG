@@ -67,7 +67,7 @@ public partial class System_CustomerInfo : System.Web.UI.Page
             this.lblEmail.Text = "Email : " + objData.Rows[0]["Email"].ToString();
             this.lblIdCard.Text = "Số CMND : " + objData.Rows[0]["IdCard"].ToString();
             this.txtAccount.Text = objData.Rows[0]["Account"].ToString();
-            this.lblAvatar.Text = "<img width = \"125px\" height = \"100px\" alt = \"Hình đại diện\" src = \"/Images/Customer/" + objData.Rows[0]["Avatar"].ToString() + "\">";
+            this.lblAvatar.Text = "<img width = \"125px\" height = \"100px\" alt = \"Hình đại diện\" src = \" " + objData.Rows[0]["Avatar"].ToString() + "\">";
             this.ddlTypeCard.SelectedValue = objData.Rows[0]["AccountType"].ToString();
         }
     }

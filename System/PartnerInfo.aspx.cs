@@ -74,8 +74,11 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             this.txtAccount.Text = objData.Rows[0]["Account"].ToString();
 
            
-            // Lấy số tiền được thanh toán bằng thẻ trừ đi tổng chi phí quảng cáo
-            double a = this.objPartner.getSalesCardByPartnerAccout(objData.Rows[0]["Account"].ToString()) - this.objPartner.getPartnerBillTotalDiscountAdvByAccount(objData.Rows[0]["Account"].ToString());
+            // Lấy số tiền được thanh toán bằng thẻ trừ đi tổng chi phí quảng cáo - Số tiền tích lũy 
+            double a = this.objPartner.getSalesCardByPartnerAccout(objData.Rows[0]["Account"].ToString()) 
+                - this.objPartner.getPartnerBillTotalDiscountAdvByAccount(objData.Rows[0]["Account"].ToString())
+                - this.objPartner.getPartnerBillTotalDiscountCardByAccount(objData.Rows[0]["Account"].ToString());
+                        
             this.outDoanhsoCandoi.InnerText = String.Format("{0:0,0}",a);
 
 

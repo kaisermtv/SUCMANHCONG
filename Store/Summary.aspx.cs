@@ -32,13 +32,15 @@ public partial class Store_Summary : System.Web.UI.Page
             this.lblTotalDiscountCard.Text = String.Format("{0:0,0}", this.objPartner.getPartnerBillTotalDiscountCardByAccount(Session["ACCOUNT"].ToString()));
             this.lblcardsale.Text = String.Format("{0:0,0}", this.objPartner.getSalesCardByPartnerAccout(Session["ACCOUNT"].ToString(),false));
 
-
+            
             double TotalADV = this.objPartner.getPartnerBillTotalDiscountAdvByAccount(Session["ACCOUNT"].ToString());
+            double TotalDiscount = this.objPartner.getPartnerBillTotalDiscountCardByAccount(Session["ACCOUNT"].ToString());
+
             this.lblTotalDiscountAdv.Text = String.Format("{0:0,0}", TotalADV);
             
 
             // Lấy số tiền được thanh toán bằng thẻ trừ đi tổng chi phí quảng cáo
-            this.lblDSPayment.Text = String.Format("{0:0,0}",(this.objPartner.getSalesCardByPartnerAccout(Session["ACCOUNT"].ToString()) - TotalADV));
+            this.lblDSPayment.Text = String.Format("{0:0,0}", (this.objPartner.getSalesCardByPartnerAccout(Session["ACCOUNT"].ToString()) - TotalADV - TotalDiscount));
         }
     }
     #endregion

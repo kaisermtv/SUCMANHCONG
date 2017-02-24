@@ -132,8 +132,8 @@ public partial class Store : MasterPage
         if(objTable.Count > 0 )
         {
             this.strStoreName = objTable[0]["Name"].ToString();
-            this.strName = objTable[0]["Name"].ToString();
-            this.strAddress = objTable[0]["Address"].ToString();
+            this.strName =      objTable[0]["Name"].ToString();
+            this.strAddress =  objTable[0]["Address"].ToString();
             this.strManager = objTable[0]["Manager"].ToString();
             this.strPhone = objTable[0]["Phone"].ToString();
             this.strEmail = objTable[0]["Email"].ToString();

@@ -72,14 +72,14 @@ public partial class Store_History : System.Web.UI.Page
                     strHtml += "<div  style =\"width:100%; margin-top:1px; display:table;\">";
 
                     strHtml += "<div id=\"tt2\" style=\"width: 5%; float: left; border:solid 1px #f3f1f1; border-right:none; border-top:none;text-align:center;height:26px; line-height:26px; color:#000;\">";
-                    strHtml += i.ToString();
+                    strHtml += (i+1).ToString();
                     strHtml += "</div>";
 
-                    strHtml += "<div  id=\"tt3\" style=\"width: 18%; float: left; border:solid 1px #f3f1f1;border-top:none;text-align:center;height:26px; line-height:26px; color:#000;\">";
-                    strHtml += this.objTable.Rows[i]["DayCreate"].ToString();
+                    strHtml += "<div  id=\"tt3\" style=\"width: 12%; float: left; border:solid 1px #f3f1f1;border-top:none;text-align:center;height:26px; line-height:26px; color:#000;\">";
+                    strHtml += DateTime.Parse(this.objTable.Rows[i]["DayCreate"].ToString()).ToString("dd/MM/yyyy HH:mm");
                     strHtml += "</div>";
 
-                    strHtml += "<div id=\"tt4\" style=\"width: 10%; float: left; border:solid 1px #f3f1f1;border-top:none;border-left:none; text-align:right;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
+                    strHtml += "<div id=\"tt4\" style=\"width: 15%; float: left; border:solid 1px #f3f1f1;border-top:none;border-left:none; text-align:right;height:26px; line-height:26px; color:#000; padding-right:5px;\">";
                     strHtml += string.Format("{0:0,0}", double.Parse(this.objTable.Rows[i]["TotalMoney"].ToString()));
                     strHtml += "</div>";
 

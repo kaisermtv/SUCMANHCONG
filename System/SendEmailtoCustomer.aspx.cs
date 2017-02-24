@@ -6,6 +6,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+using System.IO;
+using System.Net;
+using System.Net.Mail;
+
 public partial class System_SendEmailtoCustomer : System.Web.UI.Page
 {
     #region  declare
@@ -85,11 +89,10 @@ public partial class System_SendEmailtoCustomer : System.Web.UI.Page
        
         for (int i = 0; i < objData.Rows.Count;i++ ){
             // mail server or mail 
-            if (func.sendEmail(strFromMail, this.txtEmailTitle.Text, objData.Rows[i]["Email"].ToString(), this.txtEmailContent.Text, strPassword) != 1)
+            if (func.sendEmail(strFromMail, this.txtEmailTitle.Text, objData.Rows[i]["Email"].ToString(),"SUCMANHCONG SUPPORT", strPassword,this.txtEmailContent.InnerText) != 1)
             {
             
-                Page.ClientScript.RegisterStartupScript(GetType(), "msg", "alert('Nguyên nhân có thể khắc phục khi đi đến :  https://www.google.com/settings/security/lesssecureapps và chọn cho phép ')", true);
-                Page.ClientScript.RegisterStartupScript(GetType(), "msga", "('Không thể gửi một số email do định dạng không đúng, ')", false);
+                 Page.ClientScript.RegisterStartupScript(GetType(), "msga", "('Không thể gửi một số email do định dạng không đúng, ')", false);
                 continue;
             }
              }
@@ -100,4 +103,8 @@ public partial class System_SendEmailtoCustomer : System.Web.UI.Page
     {
 
     }
+
+
+
+   
 }

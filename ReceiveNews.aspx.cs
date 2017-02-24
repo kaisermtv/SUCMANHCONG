@@ -12,13 +12,16 @@ public partial class ReceiveNews : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.email = Request["email"].ToString();
 
-        if(this.email == null || this.email.Trim() == "")
+        this.email = Request["email"].ToString();
+       
+        if (this.email == null || this.email.Trim() == "")
         {
             Response.Redirect("/");
         }
 
-      
+        DataReceiveNews mail = new DataReceiveNews();
+        mail.addEmail(this.email);
+
     }
 }

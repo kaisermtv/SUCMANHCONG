@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 
@@ -29,7 +30,9 @@ public class Customers
             Cmd.Parameters.Add("Address", SqlDbType.NVarChar).Value = Address;
             try
             {
-                Cmd.Parameters.Add("Birthday", SqlDbType.DateTime).Value = Birthday;
+                DateTime datee = DateTime.ParseExact(Birthday, "dd/MM/yyyy", DateTimeFormatInfo.InvariantInfo);
+                datee = new DateTime(2010, 12, 21);
+                Cmd.Parameters.Add("Birthday", SqlDbType.DateTime).Value = datee;
             }
             catch
             {
@@ -342,36 +345,6 @@ public class Customers
             return -1;
         }
         return 1;
-    }
-    #endregion
-
-    #region trừ tiền trong tài khoản 
-    public int subCustomerMoney(string account,float subMoney)
-    {
-        try
-        {
-            SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
-            sqlCon.Open();
-           
-            double money = getCustomerTotalDiscountCard(account) - getSalesCardByCustomerAccout(account); 
-            if (money <= subMoney) { return -1; }
-
-            SqlCommand Cmd2 = sqlCon.CreateCommand();
-            Cmd2.CommandText = "INSERT INTO  tblCustomersPaymentByCard SET  BillId=@BillId, TotalMoney = @subMoney WHERE CustomerAccount = @CustomerAccount";     // THêm 1 cột với giá trị âm
-            Cmd2.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = account;
-            Cmd2.Parameters.Add("TotalMoney", SqlDbType.Float).Value = (subMoney);         // <- here
-            Cmd2.ExecuteNonQuery();
-            sqlCon.Close();
-            sqlCon.Dispose();
-
-            return 1;
-        }
-        catch
-        {
-            return 0;
-        }
-
-            
     }
     #endregion
 

@@ -12,13 +12,13 @@
                 Tên cửa hàng
             </div>
             <div class="col-md-4 pdl0">
-                <asp:TextBox ID="txtName" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtName"  Enabled="false" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="col-md-2 pd8l0">
                 Địa chỉ
             </div>
             <div class="col-md-4 pdl0">
-                <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtAddress" Enabled="false" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
         </div>
 
@@ -42,7 +42,7 @@
                 Mã số thuế
             </div>
             <div class="col-md-4 pdl0">
-                <asp:TextBox ID="txtTaxCode" runat="server" CssClass="form-control"></asp:TextBox>
+                <asp:TextBox ID="txtTaxCode" Enabled="false" runat="server" CssClass="form-control"></asp:TextBox>
             </div>
             <div class="col-md-2 pd8l0">
                 Ngành nghề kinh doanh

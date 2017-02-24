@@ -7217,9 +7217,9 @@ button.close {
 }
 /*# sourceMappingURL=bootstrap.min.css.map */
 
-/** OPEN Mobile Style**/
+/** Open Mobile Style**/
 
-@media (min-width: 0px) and (max-width: 900px) {
+@media (min-width: 0px) and (max-width: 765px) {
 
     #div_location,
     #div_container_menu,
@@ -7354,8 +7354,6 @@ button.close {
         margin-right: 10px !important;
         z-index: 1;
         display: table;
-       
-      
         margin-right: 30px;
     }
     #div-menu-store-mobile
@@ -7514,9 +7512,99 @@ button.close {
              min-height: 1px !important;
     padding-right: 0px !important;
     padding-left: 0px ; clear:both}
-   #div-col-9{width:80% !important;clear:both;float:right; vertical-align:auto}
+    #div-col-9{width:80% !important;clear:both;float:right; vertical-align:auto}
     #div-col-2{width:100% !important;float:right; }
+}
+@media (min-width: 765px) and (max-width: 1024px){
+     #wrapper {
+        width: 100%;
+        float: left;
+        overflow: hidden;
+    }
+ #div_location,
+    #div_container_menu,
+    #jssor_1,
+    #div_thuonghieu1,
+    #div_thuonghieu2,
+    #div_brand,
+    #div_footer_logo,
+    #div_news_title {
+        display: none;
+    }
+     #btn-search-tablet
+     {
+         float:left !important;
+         text-align: right; margin-left: -10px !important ; width: 10%;
+     }
+      #div_menu_default_page{
+          height:100px;
+          width:100%;
+      }
+     #div_menu_default_page span
+     {
+         font-size:9px !important;
+     }
+     #div_menu_default_page
+     {
+         width:100% !important; 
+         margin-left:-0px !important;
+     }
+     #div_menu_default_page span
+     {
+          font-size:7px !important;
+          overflow:hidden;
+     }
+      #div_menu_default_page a
+      {
+          width: 11.19%;
+      }
+     .fw img
+     {
+        width:80% !important;
+         margin-left:10% !important;
+     }
+
+     #div_footer_flow_email
+     {
+
+         margin-top:-55px;
+     }
+     #div_about_footer
+     {
+          margin-top:-35px;
+     }
+
+       #div_footer_flow_email   
+       {
+           width:50% !important;
+       }
+       #br_space{
+          display: block;
+       }
+      #div_footer_contact
+       {
+
+           display:none;
+       }
+      #div-menu-store-desktop
+      {
+          display:none !important;
+      }
+      #div-x .btn
+      {
+          width:100% !important;
+          margin-top : 10px;
+      }
+      #div-menu-store-mobile
+      {
+          display:table !important;
+      }
+      #tt3 a,#tt3
+      {
+          font-size:9px !important;
+          font-weight:bold;
+          margin-left:-10px;
+      }
 
 }
-
 /** END Mobile Style**/

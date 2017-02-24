@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -55,12 +56,16 @@ public partial class CustomerEdit : System.Web.UI.Page
                 this.lblMsg.Text = "Bạn chưa nhập ngày sinh của thành viên";
                 return;
             }
+           
+           
             if (upImage1.PostedFile.FileName != "")
                 if (!saveImage1())
                 {
                     return;
                 }
-            int ret = this.objCustomers.setCustomer(this.itemId, this.txtName.Text, this.txtAddress.Text, this.txtBirthday.Text, this.txtPhone.Text, this.txtEmail.Text, this.txtAccount.Text, this.txtIdCard.Text, this.txtAvatar.Text, this.ckbState.Checked);
+            
+            int ret = this.objCustomers.setCustomer(this.itemId, this.txtName.Text, this.txtAddress.Text, this.txtBirthday.Text, this.txtPhone.Text, this.txtEmail.Text, this.txtAccount.Text, this.txtIdCard.Text,
+               "http://www.sucmanhcong.com/Images/Customer/" + this.txtAvatar.Text, this.ckbState.Checked);
 
             if(ret > 0)
             {
@@ -109,8 +114,7 @@ public partial class CustomerEdit : System.Web.UI.Page
             {
                 this.ckbState.Checked = false;
             }
-            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"http://khachhang.sucmanhcong.com/Images/Customer/" + objData.Rows[0]["Avatar"].ToString() + "\">";
-
+            lblImg1.Text = "<img width = \"125px\" height = \"100px\" src = \"" + objData.Rows[0]["Avatar"].ToString() + "\">";
             this.txtAvatar.Text = objData.Rows[0]["Avatar"].ToString();
         }
     }
@@ -151,7 +155,7 @@ public partial class CustomerEdit : System.Web.UI.Page
                 strBaseLoactionImg = strBaseLoactionImg.Replace("/", "\\");
                 upImage1.PostedFile.SaveAs(strBaseLoactionImg);
                 this.txtAvatar.Text = sFileName + strEx;
-                this.lblImg1.Text = "<img width = \"125px\" height = \"100px\"  src = \"../Images/Products/" + sFileName + strEx + "\">";
+                this.lblImg1.Text = "<img width = \"125px\" height = \"100px\"  src = \"../Images/Customer/" + sFileName + strEx + "\">";
                 return true;
             }
         }

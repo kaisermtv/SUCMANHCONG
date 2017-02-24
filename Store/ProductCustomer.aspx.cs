@@ -26,6 +26,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
     private DataTable TemptblCustomersPaymentByCard = new DataTable();
 
     public string strHtml = "", strValue = "", strCurrBillId = "", strhtmlbill = "", strhtmlbillNoDiscount = "";
+   public double  strCustomerTotalDiscountCard2 = 0;
     public string strName = "", strAddress = "", strPhone = "", strManager = "", strEmail = "", strTaxcode = "", strAccount = "", strBestSale = "", strVIP = "", strMsg = "", strDiscount = "-", strDiscountCard = "-", strDiscountAdv = "-", strCustomerTotalDiscountCard = "0";
     public string strCusAccount = "", strCusName = "", strCusAddress = "", strCusPhone = "", strIdCard = "", strCusEmail = "";
     public static int count = 0; public static int postback = 0; public static string strCusAccountType = "";
@@ -164,6 +165,15 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
             this.lblMsg1.Text = " Số tiền cần thanh toán sai định dạng";
             return 0;
         }
+
+        if (strCustomerTotalDiscountCard2 < TotalPeyment && tempTable == 1)
+        {
+            this.lblMsg1.Text = " Số dư không đủ để thực hiện giao dịch bằng thẻ SMC . Vui lòng thực hiện lại thao tác và  thanh toán bằng tiền mặt ";
+            btnSaveByCard.Visible = false;
+            this.btnSave.Disabled = false;
+            return 0 ;
+        }
+
         #endregion
 
         string BillId = "";
@@ -379,8 +389,8 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                 {
                     switch (tempTable)
                     {
-                        case 0: { ret = objPartner.setCustomersPaymentByCard(BillId, TotalMoney, CustomerAccount); break; }
-                        case 1: { ret = setTempCustomersPaymentByCard(BillId, TotalMoney, CustomerAccount); break; }
+                        case 0: { ret = objPartner.setCustomersPaymentByCard(BillId, TotalMoney,TotalPeyment, CustomerAccount); break; }
+                        case 1: { ret = setTempCustomersPaymentByCard(BillId, TotalMoney,TotalPeyment, CustomerAccount); break; }
                         default: break;
                     }
                 }
@@ -554,6 +564,8 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
         {
             this.getPartnerInforByAccount(Session["ACCOUNT"].ToString());
             this.getProduct(Session["ACCOUNT"].ToString());
+            this.strCustomerTotalDiscountCard2 = this.getCustomerTotalDiscountCard(this.txtAccount.Value.ToString().Trim());
+
             this.strCustomerTotalDiscountCard = String.Format("{0:0,0}", this.getCustomerTotalDiscountCard(this.txtAccount.Value.ToString().Trim()));
             if (this.strCustomerTotalDiscountCard.Trim() == "00")
             {
@@ -659,12 +671,24 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
     #region method btnViewCustomer_Click
     protected void btnViewCustomer_Click(object sender, EventArgs e)
     {
+     
         this.getCustomerInfo();
             if(strCusAccountType == "CustomerAccount")
             {
                 btnSaveByCard.Disabled = true;
                 Page.ClientScript.RegisterStartupScript(GetType(),"warn","confirm('Lưu ý : Khách hàng hạng Đồng không thể giao dịch bằng thẻ SMC.')",true);
             }
+        else
+            {
+                
+                  if (strCustomerTotalDiscountCard2 <= 0)
+                  {
+                      btnSaveByCard.Visible = false;
+                      btnSaveByCard.Disabled = true;
+                      Page.ClientScript.RegisterStartupScript(GetType(), "warn", "confirm('Lưu ý : Khách hàng không thể giao dịch bằng thẻ SMC do số dư < 0.')", true);
+                  }
+            }
+
     }
     #endregion
 
@@ -776,12 +800,91 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
     #region method getCustomerTotalDiscountCard
     public double getCustomerTotalDiscountCard(string CustomerAccount)
     {
-        double tmpValue = 0, tmpValue1 = 0;
-        tmpValue = this.objPartner.getDiscountPartnerBillByCustomerAccount(CustomerAccount);
-        tmpValue1 = this.objCustomers.getCustomerPaymentCallByCustomerAccount(CustomerAccount);
+        // đang sai
+       
+       double tmpValue = 0, tmpValue1 = 0;
+       try
+       {
+           SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+           sqlCon.Open();
+           SqlCommand Cmd = sqlCon.CreateCommand();
+           Cmd.CommandText = " SELECT ISNULL(SUM((TotalMoneyDiscount*DiscountCard)/100),0) AS Discount FROM tblPartnerBill WHERE CustomerAccount = @CustomerAccount";
+           Cmd.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = CustomerAccount;
+           SqlDataReader Rd = Cmd.ExecuteReader();
+           while (Rd.Read())
+           {
+               tmpValue = double.Parse(Rd["Discount"].ToString());  
+           }
+           Rd.Close();
+           SqlCommand Cmd1 = sqlCon.CreateCommand();
 
-        tmpValue = tmpValue - tmpValue1;
-        return tmpValue;
+           Cmd1.CommandText = "SELECT ISNULL(SUM(TotalPeymentCard),0) AS TotalMoney FROM tblCustomersPaymentByCard WHERE CustomerAccount = @CustomerAccount";  // Tạo cột mới , do thiết kế csdl thiếu
+           Cmd1.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = CustomerAccount;
+           SqlDataReader Rd1 = Cmd1.ExecuteReader();
+           while (Rd1.Read())
+           {
+               tmpValue1 = double.Parse(Rd1["TotalMoney"].ToString());      
+           }
+           Rd1.Close();
+           tmpValue = tmpValue - tmpValue1;
+
+           sqlCon.Close();
+           sqlCon.Dispose();
+       }
+       catch
+       {
+
+       }
+       return tmpValue;
+
+        /**
+       double tmpValue = 0, tmpValue1 = 0, tmpValue2 = 0;
+      try
+      {
+          SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
+          sqlCon.Open();
+          SqlCommand Cmd = sqlCon.CreateCommand();
+          Cmd.CommandText = "SELECT ISNULL(SUM((TotalMoneyDiscount*DiscountCard)/100),0) AS Discount FROM tblPartnerBill WHERE CustomerAccount = @CustomerAccount";
+          Cmd.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = CustomerAccount;
+          SqlDataReader Rd = Cmd.ExecuteReader();
+          while (Rd.Read())
+          {
+              tmpValue = double.Parse(Rd["Discount"].ToString());   //3006000.0
+          }
+          Rd.Close();
+
+          SqlCommand Cmd1 = sqlCon.CreateCommand();
+
+          Cmd1.CommandText = "SELECT DISTINCT ISNULL(SUM(TotalPeyment),0) AS TotalMoney  FROM tblCustomersPaymentByCard  INNER JOIN tblPartnerBill ON tblPartnerBill.CustomerAccount = tblCustomersPaymentByCard.CustomerAccount   AND tblCustomersPaymentByCard.BillId = tblPartnerBill.Id   where tblCustomersPaymentByCard.CustomerAccount = @CustomerAccount ";
+          Cmd1.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = CustomerAccount;
+          SqlDataReader Rd1 = Cmd1.ExecuteReader();
+          while (Rd1.Read())
+          {
+              tmpValue1 = double.Parse(Rd1["TotalMoney"].ToString());  //120240000.0
+          }
+          Rd1.Close();
+
+          // UPGRADE CARD 
+          SqlCommand Cmd2 = sqlCon.CreateCommand();
+          Cmd2.CommandText = "SELECT  ISNULL(SUM(TotalPeyment),0) AS MoneyCard from tblPartnerBill   where CustomerAccount = @CustomerAccount AND PartnerAccount = 'SMC-CARD'";
+          Cmd2.Parameters.Add("CustomerAccount", SqlDbType.NVarChar).Value = CustomerAccount;
+          SqlDataReader Rd2 = Cmd2.ExecuteReader();
+          while (Rd2.Read())
+          {
+              tmpValue2 = double.Parse(Rd2["MoneyCard"].ToString());  // 0
+          }
+          Rd2.Close();
+
+          tmpValue = tmpValue - tmpValue1 - tmpValue2;
+
+          sqlCon.Close();
+          sqlCon.Dispose();
+      }
+      catch
+      {
+      }
+      return tmpValue;
+     * */
     }
     #endregion
 
@@ -818,21 +921,24 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
     #endregion
 
     #region AcceptUseOTP()
-    protected void senddingOTP()
+    protected int senddingOTP()
     {
         this.txtOTPCode.Disabled = false;
         this.txtOTPCode.Value = "";
         otpCode = RandomString(5, false);
         DataTable objCusomerInfo = new DataTable();
         int x = setPartnerBill(true, 1);
+        if (x == 0) 
+        { return 0; }
         if (this.objCustomers.setCustomers_SMS_OTP(txtAccount.Value.ToString(), Session["ACCOUNT"].ToString(), otpCode) == 1)
         {
             string ret = this.SendSMS(this.objCustomers.getCustomer(this.txtAccount.Value.ToString()).Rows[0]["Phone"].ToString(), "Mã xác nhận từ SMC : " + otpCode);
             this.btnSave.Disabled = true;
             this.btnSaveByCard.Disabled = false;
             this.txtOTPCode.Disabled = false;
-            Page.ClientScript.RegisterClientScriptBlock(GetType(), "msg", "confirm('Mã OTP đã được gửi <TEST : " + otpCode + "> ');", true);
+            Page.ClientScript.RegisterClientScriptBlock(GetType(), "msg", "confirm('Mã OTP đã được gửi đi , Vui lòng chờ trong giây lát . "+otpCode+"');", true);
             this.lblMsg1.Text = "Mã OTP đã được gửi";
+            return 1;
         }
         else
         {
@@ -841,7 +947,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
             this.txtOTPCode.Disabled = false;
             Page.ClientScript.RegisterClientScriptBlock(GetType(), "msg", "confirm('Tin nhắn OTP chưa được gửi đi ,Xin vui lòng thực hiện lại thao tác .');", true);
             this.lblMsg1.Text = "Mời thử lại";
-            return;
+            return 0 ;
         }
     }
 
@@ -851,9 +957,21 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
     #region method btnSaveByCard_Click
     protected void btnSaveByCard_Click(object sender, EventArgs e)
     {
-        
-        senddingOTP();
-        ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalView", "<script>$('#myModalsms').modal('show');</script>", false);
+
+        getCustomerInfo();
+        if (strCustomerTotalDiscountCard2 <= 0)
+        {
+            btnSaveByCard.Visible = false;
+            Page.ClientScript.RegisterStartupScript(GetType(), "warn", "confirm('Khách hàng không thể giao dịch bằng thẻ SMC do số dư không đủ để giao dịch .Vui lòng thực hiện lại thao tác ')", true);
+        }
+        else
+        {
+            int excute = senddingOTP();
+            if (excute == 1)
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "ModalView", "<script>$('#myModalsms').modal('show');</script>", false);
+            }
+        }
     }
     #endregion
 
@@ -877,7 +995,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
         this.ckbB1.Checked = false;
         this.ckbV.Checked = false;
         this.ckbV1.Checked = false;
-
+        this.btnSaveByCard.Visible = true;
         this.txtTotalMoneyPayment.Text = "";
 
         #region Thong tin cho hang hoa thong thuong
@@ -1128,13 +1246,13 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
     #endregion
 
     #region method setTempCustomersPaymentByCard
-    public int setTempCustomersPaymentByCard(string BillId, float TotalMoney, string CustomerAccount)
+    public int setTempCustomersPaymentByCard(string BillId, float TotalMoney,float TotalPeyment ,string CustomerAccount)
     {
         try
         {
-            TemptblCustomersPaymentByCard.Columns.AddRange(new DataColumn[3]{ new DataColumn("BillId"),
-                new DataColumn("TotalMoney"),new DataColumn("CustomerAccount") });
-            TemptblCustomersPaymentByCard.Rows.Add(BillId, TotalMoney, CustomerAccount);
+            TemptblCustomersPaymentByCard.Columns.AddRange(new DataColumn[4]{ new DataColumn("BillId"),
+                new DataColumn("TotalMoney"),new DataColumn("TotalPeyment"),new DataColumn("CustomerAccount") });
+            TemptblCustomersPaymentByCard.Rows.Add(BillId, TotalMoney,TotalPeyment, CustomerAccount);
             ViewState["TemptblCustomersPaymentByCard"] = TemptblCustomersPaymentByCard;
             return 1;
         }
@@ -1198,7 +1316,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
         DataTable TemptblCustomersPaymentByCard2 = ViewState["TemptblCustomersPaymentByCard"] as DataTable;
         try
         {
-            objPartner.setCustomersPaymentByCard(billId.ToString(), float.Parse(TemptblCustomersPaymentByCard2.Rows[0]["TotalMoney"].ToString()), TemptblCustomersPaymentByCard2.Rows[0]["CustomerAccount"].ToString());
+            objPartner.setCustomersPaymentByCard(billId.ToString(), float.Parse(TemptblCustomersPaymentByCard2.Rows[0]["TotalMoney"].ToString()), float.Parse(TemptblCustomersPaymentByCard2.Rows[0]["TotalPeyment"].ToString()), TemptblCustomersPaymentByCard2.Rows[0]["CustomerAccount"].ToString());
         }
         catch
         {
