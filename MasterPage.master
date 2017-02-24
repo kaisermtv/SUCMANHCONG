@@ -9,8 +9,10 @@
     </asp:ContentPlaceHolder>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <link href="css/Adminstyles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link href="css/System.css" rel="stylesheet" />
     <script src="../Scripts/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 </head>
 <body style="overflow: auto; margin: 3px; margin-top: 0px; background-color: #ecf0f5;">
     <form id="form1" runat="server">

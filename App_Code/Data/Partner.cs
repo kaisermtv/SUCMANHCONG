@@ -1178,7 +1178,7 @@ public class Partner
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
 
-            Cmd.CommandText = "SELECT COUNT(*) FROM tblPartnerCustomer WHERE PartnerId = @PartnerId";
+            Cmd.CommandText = "SELECT COUNT(*) FROM tblPartnerBill AS p INNER JOIN [tblPartner] AS pl ON p.[PartnerAccount] = pl.[Account]  WHERE pl.Id = @PartnerId";
             Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
 
             int ret = (int)Cmd.ExecuteScalar();
@@ -1393,30 +1393,27 @@ public class Partner
     #region method getProductDoanhSoByPartnerId
     public double getProductDoanhSoByPartnerId(int PartnerId)
     {
-        double TotalMoney = 0;
         try
         {
             SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["TVSConn"].ConnectionString);
             sqlCon.Open();
             SqlCommand Cmd = sqlCon.CreateCommand();
-            Cmd.CommandText = "SELECT SUM(Price*Number) AS TotalMoney FROM tblPartnerCustomer WHERE PartnerId = @PartnerId";
+            Cmd.CommandText = "SELECT SUM(p.TotalPeyment) AS TotalMoney FROM tblPartnerBill AS p INNER JOIN [tblPartner] AS pl ON p.[PartnerAccount] = pl.[Account]  WHERE pl.Id = @PartnerId";
             Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
-            SqlDataAdapter da = new SqlDataAdapter();
-            da.SelectCommand = Cmd;
-            DataSet ds = new DataSet();
-            da.Fill(ds);
+            double ret = (double)Cmd.ExecuteScalar();
+            
             sqlCon.Close();
             sqlCon.Dispose();
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                TotalMoney = double.Parse(ds.Tables[0].Rows[0][0].ToString());
-            }
-        }
-        catch
-        {
 
+            return ret;
         }
-        return TotalMoney;
+        catch(Exception ex)
+        {
+            this.ErrorCode = ex.HResult;
+            this.ErrorMessage = ex.Message;
+            return 0;
+        }
+        
     }
     #endregion
 

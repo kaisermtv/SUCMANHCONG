@@ -697,7 +697,7 @@ public class DataProduct
             SqlCommand Cmd = sqlCon.CreateCommand();
 
             Cmd.CommandText = "SELECT COUNT(*) FROM tblProduct WHERE PartnerId = @PartnerId AND VIP = 1";
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = PartnerId;
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
 
             int ret = (int)Cmd.ExecuteScalar();
             sqlCon.Close();
@@ -705,8 +705,10 @@ public class DataProduct
 
             return ret;
         }
-        catch
+        catch(Exception ex)
         {
+            this.ErrorCode = ex.HResult;
+            this.ErrorMessage = ex.Message;
             return 0;
         }
     }
@@ -722,7 +724,7 @@ public class DataProduct
             SqlCommand Cmd = sqlCon.CreateCommand();
 
             Cmd.CommandText = "SELECT COUNT(*) FROM tblProduct WHERE PartnerId = @PartnerId AND BestSale = 1";
-            Cmd.Parameters.Add("Id", SqlDbType.Int).Value = PartnerId;
+            Cmd.Parameters.Add("PartnerId", SqlDbType.Int).Value = PartnerId;
 
             int ret = (int)Cmd.ExecuteScalar();
             sqlCon.Close();

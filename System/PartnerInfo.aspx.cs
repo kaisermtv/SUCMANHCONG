@@ -14,7 +14,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
     private Partner objPartner = new Partner();
     private DataProduct objProduct = new DataProduct();
 
-    private int itemId = 0;
+    public int itemId = 0;
     public int SoSanPham = 0, SoSanPhamVIP = 0, SoSanPhamBanChay = 0, SoGiaoDich = 0;
     public double TongDoanhSo = 0;
 
@@ -45,6 +45,7 @@ public partial class System_PartnerInfo : System.Web.UI.Page
             this.SoSanPhamBanChay = this.objProduct.getProductBestSaleCountByPartnerId(this.itemId);
             this.SoGiaoDich = this.objPartner.getProductBillCountByPartnerId(this.itemId);
             this.TongDoanhSo = this.objPartner.getProductDoanhSoByPartnerId(this.itemId);
+
             
             if (this.txtAccount.Text.Trim() == "")
             {
@@ -239,6 +240,13 @@ public partial class System_PartnerInfo : System.Web.UI.Page
         {
             this.lblMsg.Text = Ex.Message;
         }
+    }
+    #endregion
+
+    #region method btnHistory_Click
+    protected void btnHistory_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("/System/HistoryPartner?id=" + this.itemId );
     }
     #endregion
 

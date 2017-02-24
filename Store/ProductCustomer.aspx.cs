@@ -676,7 +676,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
             if(strCusAccountType == "CustomerAccount")
             {
                 btnSaveByCard.Disabled = true;
-                Page.ClientScript.RegisterStartupScript(GetType(),"warn","confirm('Lưu ý : Khách hàng hạng Đồng không thể giao dịch bằng thẻ SMC.')",true);
+                Page.ClientScript.RegisterStartupScript(GetType(),"warn","confirm('Lưu ý : Khách hàng hạng Đồng không thể thanh toán bằng thẻ SMC.')",true);
             }
         else
             {
@@ -685,7 +685,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                   {
                       btnSaveByCard.Visible = false;
                       btnSaveByCard.Disabled = true;
-                      Page.ClientScript.RegisterStartupScript(GetType(), "warn", "confirm('Lưu ý : Khách hàng không thể giao dịch bằng thẻ SMC do số dư < 0.')", true);
+                      Page.ClientScript.RegisterStartupScript(GetType(), "warn", "confirm('Lưu ý : Khách hàng không thể thanh toán bằng thẻ SMC do số dư < 0.')", true);
                   }
             }
 

@@ -164,3 +164,25 @@ background: #000000;
 font-family: 'Trebuchet MS'; /* center it ? */
 z-index: 99999;
 }
+
+
+.list-view-head-item {
+    padding: 3px;
+    font-weight: bold;
+    color: #000;
+    font-size: 13px;
+    background-color: #f2f7fc;
+    float: left;
+}
+
+.list-view-page {
+    height: 210px;
+    overflow-y: scroll;
+    border: solid 1px #fff;
+}
+
+.line-panel-bill {
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 0px;
+}

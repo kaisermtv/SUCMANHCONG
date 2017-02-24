@@ -157,7 +157,7 @@
                 Doanh số:
             </div>
             <div style="width: 78%; display: table; float: right;">
-                <% Response.Write(this.TongDoanhSo.ToString()); %>
+                <%= String.Format("{0:0,0}",this.TongDoanhSo) %>
             </div>
 
             <div style="width: 100%; display: table; float: right;">
@@ -168,7 +168,7 @@
             <div style="width: 100%; height: 30px; line-height: 30px; display: table; float: right; margin-top:30px;">
                 <asp:Button ID="btnCreate" runat="server" Style="height: 28px; line-height: 22px; width: 150px;" Text="Khởi tạo mã cửa hàng" OnClick="btnCreate_Click" />
                 <asp:Button ID="btnUpdate" runat="server" Style="height: 28px; line-height: 22px; width: 140px;" Text="Cập nhật chiết khấu" OnClick="btnUpdate_Click" />
-                <asp:Button ID="btnProduct" runat="server" Style="height: 28px; line-height: 22px; width: 115px;" Text="Chi tiết giao dịch" />
+                <asp:Button ID="btnProduct" runat="server" Style="height: 28px; line-height: 22px; width: 115px;" Text="Chi tiết giao dịch" OnClick="btnHistory_Click" />
             </div>
 
         </div>
