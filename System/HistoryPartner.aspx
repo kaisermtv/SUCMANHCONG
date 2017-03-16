@@ -2,6 +2,9 @@
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
     <div class="container" style="width: 100%; text-align: right;">
         <div class="row" style="margin-bottom: 10px;">
             <div class="col-md-1" style="height: 100%">

@@ -951,7 +951,6 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
         }
     }
 
-
     #endregion
 
     #region method btnSaveByCard_Click
@@ -1041,8 +1040,8 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
 
     #region Code for SMS Send
 
-    const string APIKey = "dd42853687E0826254B37E23102810B0"; //Dang ky tai khoan tai esms.vn de lay key//Register account at esms.vn to get key
-    const string SecretKey = "đdF37072E46541B48EA32B7723F6019B";
+    const string APIKey = "F0394FF1EF4D29C563A82A72FC529C"; //Dang ky tai khoan tai esms.vn de lay key//Register account at esms.vn to get key
+    const string SecretKey = "E3CA6CD95E3881E481CBA389FE4EC9";
 
     #region method SendSMS
     public string SendSMS(string phone, string message)
@@ -1074,7 +1073,7 @@ public partial class Store_ProductCustomer : System.Web.UI.Page
                                + "<APIKEY>" + APIKey + "</APIKEY>"
                                + "<SECRETKEY>" + SecretKey + "</SECRETKEY>"
                                + "<ISFLASH>0</ISFLASH>"
-                               + "<SMSTYPE>7</SMSTYPE>"//SMSTYPE 3: đầu số ngẫu nhiên tốc độ chậm, SMSTYPE=7: đầu số ngẫu nhiên tốc độ cao, SMSTYPE=4: Đầu số 19001534; SMSTYpe=6: đàu số 8755                               
+                               + "<SMSTYPE>4</SMSTYPE>"//SMSTYPE 3: đầu số ngẫu nhiên tốc độ chậm, SMSTYPE=7: đầu số ngẫu nhiên tốc độ cao, SMSTYPE=4: Đầu số 19001534; SMSTYpe=6: đàu số 8755                               
                                + "<CONTENT>" + message + "</CONTENT>"
                                + "<CONTACTS>" + customers + "</CONTACTS>"
 

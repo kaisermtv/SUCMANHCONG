@@ -2,6 +2,9 @@
 <%@ Register TagPrefix="cc1" Namespace="SiteUtils" Assembly="CollectionPager" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+
     <div class="container" style="width: 100%;">
         <div class="row">
             <div class="col-md-4">
@@ -75,6 +78,13 @@
                         </li>
                     </ul>
                 </div>
+
+                <style>
+                    .line-panel-bill
+                    {
+                        margin-bottom:0px !important;
+                    }
+                </style>
 
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>HOÁ ĐƠN THANH TOÁN</b></div>

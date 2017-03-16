@@ -193,7 +193,7 @@ public partial class ProductEdit : System.Web.UI.Page
         string strBaseLoactionImg = "";
         try
         {
-            strBaseLoactionImg = Server.MapPath(System.Configuration.ConfigurationSettings.AppSettings["PRODUCTIMAGE"].ToString());
+            strBaseLoactionImg = Server.MapPath(System.Configuration.ConfigurationSettings.AppSettings["CATEGORYIMAGE"].ToString());
             if (upImage1.PostedFile.ContentLength > 5048576)
             {
                 return false;
